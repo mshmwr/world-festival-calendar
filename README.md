@@ -31,7 +31,14 @@ npm test
 
 ## 部署
 
-GitHub Pages 直接從 `main` 分支根目錄發佈，push 後約一分鐘更新。
+GitHub Pages 目前從 `gh-pages` 分支根目錄發佈，內容與 `main` 相同。更新網站時：
+
+```bash
+git push origin main
+git push origin main:gh-pages
+```
+
+約一分鐘後生效。若想只維護 `main`，可到 repo 的 Settings → Pages 把來源改成 `main` 分支的 `/ (root)`，之後就不需要推 `gh-pages`。
 
 ## 資料說明
 
