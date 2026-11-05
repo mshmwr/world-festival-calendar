@@ -35,6 +35,7 @@ await p.click('.chip[data-r="NEA"]');
 check("選東北亞：出現國家列", await visible("#crow"));
 await p.click('#crow .chip[data-c="JP"]');
 check("選日本：出現日本專區", await visible("#jp"));
+check("國家按鈕有活動數說明", (await p.textContent("#crow .lab")).includes("月活動數") && /月共 \d+ 項活動/.test(await p.getAttribute('#crow .chip[data-c="JP"]', "title")));
 for (const tab of ["s", "nat", "wh", "ev"]) await p.click(`[data-tab="${tab}"]`);
 
 await p.evaluate(() => selectPref("14"));
@@ -50,6 +51,16 @@ await p.click('#crow .chip[data-c="KR"]');
 check("切到韓國：日本專區隱藏", !(await visible("#jp")));
 await p.selectOption("#year", "2027");
 await p.click('#months button[data-m="0"]');
+// 「+N 項」在格子內展開與收合
+await p.evaluate(() => { st.country = null; st.region = null; st.y = 2027; st.m = 2; render(); });
+const more = p.locator(".more").first();
+const cell = more.locator("xpath=..");
+const before = await cell.locator(".ev").count();
+await more.click();
+const expanded = await p.locator(".more").first().locator("xpath=..").locator(".ev").count();
+check("「+N 項」展開後顯示全部活動", expanded > before && (await p.locator(".more").first().textContent()) === "收合");
+await p.locator(".more").first().click();
+check("「收合」後恢復", (await p.locator(".more").first().locator("xpath=..").locator(".ev").count()) === before);
 check("頁面無橫向捲動（桌機）", await p.evaluate(() => document.documentElement.scrollWidth <= innerWidth));
 
 const m = await open(390, 1200, "dark");

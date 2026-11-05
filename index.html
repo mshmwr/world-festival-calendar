@@ -67,6 +67,8 @@ h1{font-family:var(--font-display);font-weight:900;font-size:clamp(26px,4vw,38px
 .crow{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin:-8px 0 18px;padding:10px 12px;background:var(--surface);border:1px solid var(--line);border-radius:12px}
 .crow .lab{font-size:12px;color:var(--muted);letter-spacing:.06em;margin-right:4px;display:inline-flex;align-items:center;gap:6px}
 .crow .chip{background:var(--bg)}
+.crow .lab small{font-size:11px;letter-spacing:0;opacity:.85;margin-left:4px}
+.crow .lab small::before{content:"（"}.crow .lab small::after{content:"）"}
 .chip{display:inline-flex;align-items:center;gap:7px;padding:5px 11px;border-radius:999px;border:1px solid var(--line);background:var(--surface);font-size:13px;white-space:nowrap}
 .chip .dot{width:9px;height:9px;border-radius:50%}
 .chip[aria-pressed="true"]{border-color:var(--fg);box-shadow:inset 0 0 0 1px var(--fg);font-weight:700}
@@ -1493,24 +1495,57 @@ function zoomToRegion(rk){
   tr().call(zoom.transform, d3.zoomIdentity.translate(W/2 - k*cx, H/2 - k*cy).scale(k));
 }
 
+// ---------- 共用元件 ----------
+// 篩選按鈕列：第一顆是「全部」，items 為 {v, label, dot, n, title}
+function chipRow(attr, current, allLabel, items){
+  const chip = (v, on, body, title) => `<button class="chip" data-${attr}="${v}" aria-pressed="${on}"${title ? ` title="${title}"` : ""}>${body}</button>`;
+  return chip("", !current, allLabel) + items.map(it => chip(it.v, current === it.v,
+    `${it.dot ? `<i class="dot" style="background:var(--r-${it.dot})"></i>` : ""}${it.label}${it.n != null ? `<span class="n">${it.n}</span>` : ""}`, it.title)).join("");
+}
+// 分頁列：tabs 為 [key, 標籤, 計數函式]，其餘參數傳給計數函式
+function tabBar(attr, current, tabs, ...args){
+  return `<div class="tabs" role="tablist">${tabs.map(([k, label, n]) => `<button role="tab" data-${attr}="${k}" aria-selected="${current === k}">${label}<span>${n(...args)}</span></button>`).join("")}</div>`;
+}
+// 景點方塊清單
+function tagList(items, cls = "", render = s => s){
+  return `<ul class="sights${cls ? " " + cls : ""}">${items.map(s => `<li>${render(s)}</li>`).join("")}</ul>`;
+}
+// 節慶清單，清單為空時顯示提示；opts 傳給 itemHTML
+function eventList(xs, empty, ...opts){
+  return `<ul class="list">${xs.map(x => itemHTML(x, ...opts)).join("") || `<li class="empty">${empty}</li>`}</ul>`;
+}
+// 國家／縣市卡片標題
+function entityHead({flag, name, color, sub, btnId, btnLabel}){
+  return `<div class="country-head">${flag ? `<span class="fl">${flag}</span>` : ""}<div><h3>${name}</h3>
+      <span class="rg" style="font-size:12.5px;color:var(--muted)"><i style="background:var(--r-${color})"></i>${sub}</span></div>
+      <button class="x" id="${btnId}">${btnLabel}</button></div>`;
+}
+// 地圖提示框：填入內容並保持在地圖卡片範圍內
+function placeTip(tipEl, card, ev, html){
+  const r = card.getBoundingClientRect();
+  tipEl.innerHTML = html; tipEl.hidden = false;
+  let x = ev.clientX - r.left + 12, y = ev.clientY - r.top + 12;
+  if (x + tipEl.offsetWidth > r.width - 8) x = ev.clientX - r.left - tipEl.offsetWidth - 12;
+  if (y + tipEl.offsetHeight > r.height - 8) y = ev.clientY - r.top - tipEl.offsetHeight - 12;
+  tipEl.style.left = x + "px"; tipEl.style.top = y + "px";
+}
+function onClicks(root, sel, fn){ root.querySelectorAll(sel).forEach(b => b.onclick = () => fn(b)); }
+// 符合目前類型篩選、且落在目前月份的活動數
+const monthCount = pred => ALL.filter(x => pred(x) && inMonth(x) && st.types[x.t]).length;
+
 const tip = document.getElementById("tip");
 function showTip(ev, code, iso){
-  const card = document.querySelector(".map-card").getBoundingClientRect();
   let html;
   if (code){
     const c = COUNTRIES[code];
-    const n = ALL.filter(x => x.c === code && inMonth(x) && st.types[x.t]).length;
+    const n = monthCount(x => x.c === code);
     const wh = c.wh ? c.wh.length : 0;
     html = `${c.f} <b>${c.n}</b>　${RN[c.r]}<br><span style="color:var(--muted)">${st.m+1} 月 ${n} 項活動${wh ? `・世界遺產 ${wh} 處` : ""}・點擊查看</span>`;
   } else {
     const f = geo.features.find(f => f.id === iso);
     html = `${f ? f.properties.name : ""}　<span style="color:var(--muted)">${RN[ISO_REGION[iso]] || ""}</span>`;
   }
-  tip.innerHTML = html; tip.hidden = false;
-  let x = ev.clientX - card.left + 12, y = ev.clientY - card.top + 12;
-  if (x + tip.offsetWidth > card.width - 8) x = ev.clientX - card.left - tip.offsetWidth - 12;
-  if (y + tip.offsetHeight > card.height - 8) y = ev.clientY - card.top - tip.offsetHeight - 12;
-  tip.style.left = x + "px"; tip.style.top = y + "px";
+  placeTip(tip, document.querySelector(".map-card"), ev, html);
 }
 paths.on("mousemove", (ev, f) => showTip(ev, ISO_CODE[f.id], f.id)).on("mouseleave", () => tip.hidden = true)
   .on("click", (ev, f) => { const code = ISO_CODE[f.id]; if (code) selectCountry(code); else if (ISO_REGION[f.id]) setRegion(ISO_REGION[f.id]); });
@@ -1537,19 +1572,16 @@ function renderRegions(){
   const el = document.getElementById("regions");
   const counts = {};
   for (const c of Object.values(COUNTRIES)) counts[c.r] = (counts[c.r] || 0) + 1;
-  el.innerHTML = `<button class="chip" aria-pressed="${!st.region}" data-r="">全部地區</button>` +
-    REGIONS.map(r => `<button class="chip" data-r="${r.k}" aria-pressed="${st.region === r.k}"><i class="dot" style="background:var(--r-${r.k})"></i>${r.n}<span class="n">${counts[r.k] || 0}</span></button>`).join("");
-  el.querySelectorAll("button").forEach(b => b.onclick = () => setRegion(b.dataset.r || null));
+  el.innerHTML = chipRow("r", st.region, "全部地區", REGIONS.map(r => ({v: r.k, label: r.n, dot: r.k, n: counts[r.k] || 0, title: `${r.n}：收錄 ${counts[r.k] || 0} 個國家`})));
+  onClicks(el, "button", b => setRegion(b.dataset.r || null));
   // 第二層：選定區域後列出該區國家
   const cr = document.getElementById("crow");
   cr.hidden = !st.region;
   if (!st.region){ cr.innerHTML = ""; return; }
-  const n = code => ALL.filter(x => x.c === code && inMonth(x) && st.types[x.t]).length;
   const list = Object.entries(COUNTRIES).filter(([, c]) => c.r === st.region);
-  cr.innerHTML = `<span class="lab"><i class="dot" style="width:9px;height:9px;border-radius:50%;background:var(--r-${st.region})"></i>${RN[st.region]}的國家</span>` +
-    `<button class="chip" data-c="" aria-pressed="${!st.country}">全部國家</button>` +
-    list.map(([code, c]) => `<button class="chip" data-c="${code}" aria-pressed="${st.country === code}">${c.f} ${c.n}<span class="n">${n(code)}</span></button>`).join("");
-  cr.querySelectorAll("button").forEach(b => b.onclick = () => {
+  cr.innerHTML = `<span class="lab"><i class="dot" style="width:9px;height:9px;border-radius:50%;background:var(--r-${st.region})"></i>${RN[st.region]}的國家<small>數字＝${st.m+1} 月活動數</small></span>` +
+    chipRow("c", st.country, "全部國家", list.map(([code, c]) => { const n = monthCount(x => x.c === code); return {v: code, label: `${c.f} ${c.n}`, n, title: `${c.n}：${st.m+1} 月共 ${n} 項活動`}; }));
+  onClicks(cr, "button", b => {
     if (!b.dataset.c){ st.country = null; st.ev = null; render(); return; }
     selectCountry(b.dataset.c);
   });
@@ -1626,21 +1658,19 @@ function renderCalendar(){
     const starts = evs.filter(x => ymd(x.s) === key || (day.getDate() === 1 && x.s < first));
     const ongoing = evs.filter(x => x.s < day && x.e >= day && !starts.includes(x)).length;
     const span = sel && sel.s <= day && sel.e >= day;
-    const chips = starts.slice(0, maxChips).map(x => {
+    const open = st.openDay === key;
+    const chips = starts.slice(0, open ? starts.length : maxChips).map(x => {
       const c = COUNTRIES[x.c];
       return `<button class="ev ${x.t}${x.s < first ? " cont" : ""}" data-id="${x.id}" title="${c.n}${x.p ? "・" + PREF_BY_ID[x.p].n : ""}・${x.n}（${fmtRange(x)}）">${c.f} ${x.n}</button>`;
     }).join("");
-    const more = starts.length > maxChips ? `<button class="more" data-day="${key}">＋${starts.length - maxChips} 項</button>` : "";
+    const more = starts.length > maxChips ? `<button class="more" data-day="${key}" aria-expanded="${open}">${open ? "收合" : `＋${starts.length - maxChips} 項`}</button>` : "";
     html += `<div class="cell${key === today ? " today" : ""}${span ? " span" : ""}">
       <div class="dn"><b>${day.getDate()}</b>${ongoing ? `<span class="ongo">進行中 ${ongoing}</span>` : ""}</div>${chips}${more}</div>`;
   }
   const grid = document.getElementById("grid");
   grid.innerHTML = html;
   grid.querySelectorAll(".ev").forEach(b => b.onclick = () => selectEvent(b.dataset.id));
-  grid.querySelectorAll(".more").forEach(b => b.onclick = () => {
-    const el = document.querySelector(`.item[data-day-start="${b.dataset.day}"]`) || document.getElementById("side");
-    el.scrollIntoView({behavior: reduce ? "auto" : "smooth", block:"center"});
-  });
+  onClicks(grid, ".more", b => { st.openDay = st.openDay === b.dataset.day ? null : b.dataset.day; renderCalendar(); });
 }
 
 // ---------- 側欄 ----------
@@ -1661,30 +1691,28 @@ function renderSide(){
     const c = COUNTRIES[st.country];
     const yearEvs = ALL.filter(x => x.c === st.country && (x.s.getFullYear() === st.y) && st.types[x.t]).sort((a,b) => a.s - b.s);
     html += `<div class="panel">
-      <div class="country-head"><span class="fl">${c.f}</span><div><h3>${c.n}</h3>
-        <span class="rg" style="font-size:12.5px;color:var(--muted)"><i style="background:var(--r-${c.r})"></i>${RN[c.r]}</span></div>
-        <button class="x" id="clearC">看全部國家</button></div>
+      ${entityHead({flag: c.f, name: c.n, color: c.r, sub: RN[c.r], btnId: "clearC", btnLabel: "看全部國家"})}
       ${c.warn ? `<p class="warn">${c.warn}</p>` : ""}
       ${st.country === "JP" ? `<button class="jp-link" id="toJP">查看 47 都道府縣的景點、遺跡與祭典 ↓</button>` : ""}
-      <div class="tabs" role="tablist">${TABS.map(([k, label, n]) => `<button role="tab" data-tab="${k}" aria-selected="${st.tab === k}">${label}<span>${n(c, yearEvs)}</span></button>`).join("")}</div>
-      ${st.tab === "ev" ? `<ul class="list">${yearEvs.map(x => itemHTML(x, false)).join("") || `<li class="empty">這一年沒有符合篩選的項目</li>`}</ul>` : ""}
-      ${st.tab === "s" ? `<ul class="sights">${c.s.map(s => `<li>${s}</li>`).join("")}</ul>` : ""}
-      ${st.tab === "nat" ? `<ul class="sights nat">${(c.nat || []).map(s => `<li>${s}</li>`).join("")}</ul>` : ""}
-      ${st.tab === "wh" ? (c.wh && c.wh.length ? `<ul class="sights wh">${c.wh.map(([n, k]) => `<li><span class="wk ${WK[k]}">${WN[k]}</span>${n}</li>`).join("")}</ul><p class="wh-legend">依聯合國教科文組織登錄類別分為文化、自然、複合遺產。</p>` : `<p class="empty">${WH_NOTE[st.country] || "目前沒有登錄的世界遺產。"}</p>`) : ""}
+      ${tabBar("tab", st.tab, TABS, c, yearEvs)}
+      ${st.tab === "ev" ? eventList(yearEvs, "這一年沒有符合篩選的項目", false) : ""}
+      ${st.tab === "s" ? tagList(c.s) : ""}
+      ${st.tab === "nat" ? tagList(c.nat || [], "nat") : ""}
+      ${st.tab === "wh" ? (c.wh && c.wh.length ? `${tagList(c.wh, "wh", ([n, k]) => `<span class="wk ${WK[k]}">${WN[k]}</span>${n}`)}<p class="wh-legend">依聯合國教科文組織登錄類別分為文化、自然、複合遺產。</p>` : `<p class="empty">${WH_NOTE[st.country] || "目前沒有登錄的世界遺產。"}</p>`) : ""}
     </div>`;
   } else {
     const evs = monthEvents(false);
     const fest = evs.filter(x => x.t !== "S"), seas = evs.filter(x => x.t === "S");
     const byRegion = REGIONS.map(r => ({r, xs: fest.filter(x => x.r === r.k)})).filter(g => g.xs.length);
     html += `<div class="panel"><h3>${st.m+1} 月節慶活動<small>${fest.length} 項</small></h3>
-      ${byRegion.map(g => `<div class="grp"><i class="sw" style="background:var(--r-${g.r.k});border-radius:50%"></i>${g.r.n}</div><ul class="list">${g.xs.map(x => itemHTML(x, true)).join("")}</ul>`).join("")
+      ${byRegion.map(g => `<div class="grp"><i class="sw" style="background:var(--r-${g.r.k});border-radius:50%"></i>${g.r.n}</div>${eventList(g.xs, "", true)}`).join("")
         || `<p class="empty">沒有符合條件的活動，試著放寬區域或類型篩選。</p>`}</div>`;
     if (st.types.S) html += `<div class="panel"><h3>${st.m+1} 月適合前往<small>${seas.length} 項</small></h3>
-      <ul class="list">${seas.map(x => itemHTML(x, true)).join("") || `<li class="empty">沒有符合條件的旅遊季節</li>`}</ul></div>`;
+      ${eventList(seas, "沒有符合條件的旅遊季節", true)}</div>`;
   }
   side.innerHTML = html;
-  side.querySelectorAll(".item").forEach(b => b.onclick = () => selectEvent(b.dataset.id));
-  side.querySelectorAll("[data-tab]").forEach(b => b.onclick = () => { st.tab = b.dataset.tab; renderSide(); });
+  onClicks(side, ".item", b => selectEvent(b.dataset.id));
+  onClicks(side, "[data-tab]", b => { st.tab = b.dataset.tab; renderSide(); });
   const tj = document.getElementById("toJP");
   if (tj) tj.onclick = () => document.getElementById("jp").scrollIntoView({behavior: reduce ? "auto" : "smooth", block:"start"});
   const cc = document.getElementById("clearC");
@@ -1746,14 +1774,9 @@ const jpaths = jg.append("g").selectAll("path").data(jfc.features).join("path")
   .attr("fill", f => `var(--r-${AREA_BY[PREF_BY_ID[f.id].a].c})`);
 const jtip = document.getElementById("jptip");
 jpaths.on("mousemove", (ev, f) => {
-  const p = PREF_BY_ID[f.id], card = document.querySelector(".jp-map-card").getBoundingClientRect();
-  const n = ALL.filter(x => x.p === f.id && inMonth(x)).length;
-  jtip.innerHTML = `<b>${p.n}</b>　${AREA_BY[p.a].n}地方<br><span style="color:var(--muted)">${st.m+1} 月 ${n} 項活動${p.wh.length ? `・世界遺產 ${p.wh.length}` : ""}</span>`;
-  jtip.hidden = false;
-  let x = ev.clientX - card.left + 12, y = ev.clientY - card.top + 12;
-  if (x + jtip.offsetWidth > card.width - 8) x = ev.clientX - card.left - jtip.offsetWidth - 12;
-  if (y + jtip.offsetHeight > card.height - 8) y = ev.clientY - card.top - jtip.offsetHeight - 12;
-  jtip.style.left = x + "px"; jtip.style.top = y + "px";
+  const p = PREF_BY_ID[f.id];
+  const n = monthCount(x => x.p === f.id);
+  placeTip(jtip, document.querySelector(".jp-map-card"), ev, `<b>${p.n}</b>　${AREA_BY[p.a].n}地方<br><span style="color:var(--muted)">${st.m+1} 月 ${n} 項活動${p.wh.length ? `・世界遺產 ${p.wh.length}` : ""}</span>`);
 }).on("mouseleave", () => jtip.hidden = true)
   .on("click", (ev, f) => selectPref(f.id));
 
@@ -1768,9 +1791,9 @@ function renderJP(){
   const jpOn = st.country === "JP";
   document.getElementById("jp").hidden = !jpOn;
   if (!jpOn) return;
-  document.getElementById("areas").innerHTML = `<button class="chip" data-a="" aria-pressed="${!st.area}">全部地方</button>` +
-    JP_AREAS.map(a => `<button class="chip" data-a="${a.k}" aria-pressed="${st.area === a.k}"><i class="dot" style="background:var(--r-${a.c})"></i>${a.n}<span class="n">${PREFS.filter(p => p.a === a.k).length}</span></button>`).join("");
-  document.querySelectorAll("#areas button").forEach(b => b.onclick = () => { st.area = b.dataset.a && st.area !== b.dataset.a ? b.dataset.a : null; renderJP(); renderJPList(); });
+  const areasEl = document.getElementById("areas");
+  areasEl.innerHTML = chipRow("a", st.area, "全部地方", JP_AREAS.map(a => { const n = PREFS.filter(p => p.a === a.k).length; return {v: a.k, label: a.n, dot: a.c, n, title: `${a.n}地方：${n} 個都道府縣`}; }));
+  onClicks(areasEl, "button", b => { st.area = b.dataset.a && st.area !== b.dataset.a ? b.dataset.a : null; renderJP(); renderJPList(); });
   const active = new Set(ALL.filter(x => x.p && inMonth(x) && st.types[x.t]).map(x => x.p));
   jpaths.attr("fill-opacity", f => st.area && PREF_BY_ID[f.id].a !== st.area ? .15 : active.has(f.id) ? 1 : .45)
     .classed("sel", f => f.id === st.pref);
@@ -1787,16 +1810,14 @@ function renderJP(){
   }
   const p = PREF_BY_ID[st.pref], ar = AREA_BY[p.a];
   const evs = ALL.filter(x => x.p === p.id && x.s.getFullYear() === st.y && st.types[x.t]).sort((a, b) => a.s - b.s);
-  const list = (arr, cls) => arr.length ? `<ul class="sights ${cls}">${arr.map(s => `<li>${s}</li>`).join("")}</ul>` : `<p class="empty">此縣沒有登錄的世界遺產。</p>`;
-  el.innerHTML = `<div class="country-head"><div><h3>${p.n}</h3>
-      <span class="rg" style="font-size:12.5px;color:var(--muted)"><i style="background:var(--r-${ar.c})"></i>${ar.n}地方</span></div>
-      <button class="x" id="clearP">全部縣市</button></div>
-    <div class="tabs" role="tablist">${PTABS.map(([k, label, n]) => `<button role="tab" data-ptab="${k}" aria-selected="${st.ptab === k}">${label}<span>${n(p, evs)}</span></button>`).join("")}</div>
+  const list = (arr, cls) => arr.length ? tagList(arr, cls) : `<p class="empty">此縣沒有登錄的世界遺產。</p>`;
+  el.innerHTML = `${entityHead({name: p.n, color: ar.c, sub: `${ar.n}地方`, btnId: "clearP", btnLabel: "全部縣市"})}
+    ${tabBar("ptab", st.ptab, PTABS, p, evs)}
     ${st.ptab === "s" ? list(p.s, "") : ""}
     ${st.ptab === "h" ? list(p.h, "hist") : ""}
     ${st.ptab === "wh" ? list(p.wh, "wh") : ""}
-    ${st.ptab === "ev" ? `<ul class="list">${evs.map(x => itemHTML(x, false, true)).join("") || `<li class="empty">${st.y} 年沒有符合篩選的活動</li>`}</ul>` : ""}`;
-  el.querySelectorAll("[data-ptab]").forEach(b => b.onclick = () => { st.ptab = b.dataset.ptab; renderJP(); });
+    ${st.ptab === "ev" ? eventList(evs, `${st.y} 年沒有符合篩選的活動`, false, true) : ""}`;
+  onClicks(el, "[data-ptab]", b => { st.ptab = b.dataset.ptab; renderJP(); });
   el.querySelector("#clearP").onclick = () => selectPref(st.pref);
   el.querySelectorAll(".item").forEach(b => b.onclick = () => {
     selectEvent(b.dataset.id);
