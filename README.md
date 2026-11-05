@@ -13,7 +13,40 @@
 
 ## 專案結構
 
-整個網站是單一靜態檔 `index.html`，資料（國家、節慶、景點、地圖邊界）都寫在檔案內，不需要建置。d3 與 topojson 從 cdnjs 載入，字型來自 Google Fonts。
+不需要建置，直接用瀏覽器開 `index.html` 就能看。
+
+```
+index.html            頁面結構
+css/style.css         樣式；區域色票在 :root 的 --r-<區域代碼>
+js/components.js      共用元件：篩選按鈕列、分頁列、景點清單、節慶清單、卡片標題、地圖提示框
+js/app.js             程式邏輯：狀態、地圖、月曆、側欄、日本專區
+data/regions.js       區域定義與地圖上各國所屬區域
+data/countries.js     61 國：景點、自然景色、世界遺產
+data/events.js        各國節日、祭典、旅遊季節（日本各縣祭典除外）
+data/japan.js         日本八大地方、47 都道府縣（景點、遺跡史蹟、世界遺產、祭典），以及日本國定假日
+data/map-world.js     世界地圖邊界（world-atlas）
+data/map-japan.js     日本都道府縣邊界（jpn-atlas）
+tests/data.mjs        資料檢查
+tests/smoke.mjs       瀏覽器冒煙測試
+```
+
+`index.html` 依序載入 `data/` → `js/components.js` → `js/app.js`，全部是一般的 `<script>`，所以本機直接開檔也能運作。d3 與 topojson 從 cdnjs 載入，字型來自 Google Fonts。
+
+## 擴充資料
+
+改資料只需要動 `data/`，不用碰 `js/`。每個資料檔開頭都有欄位說明。
+
+- **新增節慶**：在 `data/events.js` 加一行，例如
+  `{"c":"KR","t":"F","n":"活動名稱","d":"10-01~10-05","x":"一句說明"}`
+  - `t`：`H` 國定假日、`F` 祭典活動、`S` 旅遊季節
+  - 日期每年固定用 `d`；每年不同就用 `y`，例如 `{"2026":"02-17","2027":"02-06"}`
+  - 日期是推估的就加 `"a":1`，畫面會標「約」
+- **日本各縣祭典**：加在 `data/japan.js` 對應縣的 `ev`，格式同上，可省略 `c` 和 `t`（預設祭典活動）
+- **景點、自然景色、世界遺產**：改 `data/countries.js` 的 `s`、`nat`、`wh`；日本各縣在 `data/japan.js` 的 `s`、`h`、`wh`
+- **新增國家**：在 `data/countries.js` 加一筆，`iso` 填 ISO 3166 數字碼，並確認它在 `data/regions.js` 的 `REGION_OF` 裡屬於同一個區域；地圖上找不到的小國改填 `pin: [經度, 緯度]`
+- **新增年份**：在 `js/app.js` 的 `YEARS` 加上年份，並替使用 `y` 的節慶補上該年日期
+
+改完執行 `npm test`，`tests/data.mjs` 會檢查國家代碼、區域、日期格式、重複項目與 47 都道府縣是否齊全。
 
 ## 本機開發
 
@@ -25,7 +58,7 @@ npx playwright install chromium
 npm test
 ```
 
-`npm test` 會跑 `tests/smoke.mjs` 的冒煙測試：載入頁面、操作區域與國家篩選、日本專區與縣市一覽，並檢查頁面沒有錯誤、沒有橫向捲動。
+`npm test` 先跑 `tests/data.mjs` 的資料檢查，再跑 `tests/smoke.mjs` 的冒煙測試：載入頁面、操作區域與國家篩選、日本專區與縣市一覽，並檢查頁面沒有錯誤、沒有橫向捲動。
 
 要讓 push 時自動測試，把 `ci/test.yml` 移到 `.github/workflows/test.yml` 再 commit 即可（建立工作流程檔需要有 `workflow` 權限的帳號操作）。
 
