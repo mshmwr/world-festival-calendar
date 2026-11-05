@@ -3,6 +3,7 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "dev": "node scripts/serve.mjs",
     "test": "node tests/data.mjs && node tests/smoke.mjs"
   },
   "devDependencies": {

@@ -1,10 +1,11 @@
 // 冒煙測試：載入頁面並走過主要互動流程，任何頁面錯誤都會讓測試失敗。
-// 用法：npm test。若環境連不到 CDN，可設定 LIBS_DIR 指向含 d3、topojson 的資料夾。
+// 用法：npm test（會自動啟動本機伺服器）。若環境連不到 CDN，可設定 LIBS_DIR 指向含 d3、topojson 的資料夾。
 import { chromium } from "playwright";
 import { readFileSync } from "node:fs";
-import { fileURLToPath } from "node:url";
+import { serve } from "../scripts/serve.mjs";
 
-const page_url = new URL("../index.html", import.meta.url).href;
+const server = await serve(0);
+const page_url = `http://127.0.0.1:${server.address().port}/`;
 const libs = process.env.LIBS_DIR;
 const results = [];
 const check = (name, ok) => results.push({ name, ok });
@@ -12,23 +13,23 @@ const check = (name, ok) => results.push({ name, ok });
 const browser = await chromium.launch();
 const errors = [];
 
-async function open(width, height, colorScheme) {
+async function open(width, height, colorScheme, url = page_url) {
   const p = await browser.newPage({ viewport: { width, height }, colorScheme });
   p.on("pageerror", e => errors.push(e.message));
   if (libs) {
     await p.route("**/d3.min.js", r => r.fulfill({ body: readFileSync(`${libs}/d3.min.js`), contentType: "text/javascript" }));
     await p.route("**/topojson.min.js", r => r.fulfill({ body: readFileSync(`${libs}/topojson.min.js`), contentType: "text/javascript" }));
   }
-  await p.goto(page_url);
-  await p.waitForFunction(() => document.querySelectorAll("#map path").length > 100);
+  await p.goto(url);
+  if (url === page_url) await p.waitForFunction(() => document.querySelectorAll("#map path").length > 100);
   return p;
 }
 
 const p = await open(1300, 1000, "light");
 const visible = sel => p.evaluate(s => { const e = document.querySelector(s); return !!e && !e.hidden && e.offsetParent !== null; }, sel);
 
-check("資料：61 國", await p.evaluate(() => Object.keys(COUNTRIES).length === 61));
-check("資料：47 都道府縣", await p.evaluate(() => PREFS.length === 47));
+check("資料：61 國", await p.evaluate(() => Object.keys(app.COUNTRIES).length === 61));
+check("資料：47 都道府縣", await p.evaluate(() => app.PREFS.length === 47));
 check("初始：國家列與日本專區隱藏", !(await visible("#crow")) && !(await visible("#jp")));
 
 await p.click('.chip[data-r="NEA"]');
@@ -38,7 +39,7 @@ check("選日本：出現日本專區", await visible("#jp"));
 check("國家按鈕有活動數說明", (await p.textContent("#crow .lab")).includes("月活動數") && /月共 \d+ 項活動/.test(await p.getAttribute('#crow .chip[data-c="JP"]', "title")));
 for (const tab of ["s", "nat", "wh", "ev"]) await p.click(`[data-tab="${tab}"]`);
 
-await p.evaluate(() => selectPref("14"));
+await p.evaluate(() => app.selectPref("14"));
 await p.click('[data-ptab="ev"]');
 check("神奈川祭典含箱根驛傳", (await p.textContent("#pref")).includes("箱根驛傳"));
 
@@ -52,7 +53,7 @@ check("切到韓國：日本專區隱藏", !(await visible("#jp")));
 await p.selectOption("#year", "2027");
 await p.click('#months button[data-m="0"]');
 // 「+N 項」在格子內展開與收合
-await p.evaluate(() => { st.country = null; st.region = null; st.y = 2027; st.m = 2; render(); });
+await p.evaluate(() => { Object.assign(app.st, { country: null, region: null, y: 2027, m: 2 }); app.render(); });
 const more = p.locator(".more").first();
 const cell = more.locator("xpath=..");
 const before = await cell.locator(".ev").count();
@@ -67,7 +68,15 @@ const m = await open(390, 1200, "dark");
 check("頁面無橫向捲動（手機）", await m.evaluate(() => document.documentElement.scrollWidth <= innerWidth));
 
 check("沒有頁面錯誤", errors.length === 0);
+
+// 直接開檔（file://）時要顯示如何啟動伺服器，而不是空白頁
+const f = await browser.newPage();
+await f.goto(new URL("../index.html", import.meta.url).href);
+await f.waitForSelector(".load-error", { timeout: 5000 }).catch(() => {});
+check("直接開檔時顯示啟動說明", ((await f.textContent(".load-error").catch(() => "")) || "").includes("npm run dev"));
+
 await browser.close();
+server.close();
 
 for (const r of results) console.log(`${r.ok ? "PASS" : "FAIL"} ${r.name}`);
 if (errors.length) console.log("錯誤：", errors);

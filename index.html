@@ -99,13 +99,16 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/topojson/3.0.2/topojson.min.js"></script>
-<script src="data/map-world.js"></script>
-<script src="data/map-japan.js"></script>
-<script src="data/regions.js"></script>
-<script src="data/countries.js"></script>
-<script src="data/events.js"></script>
-<script src="data/japan.js"></script>
-<script src="js/components.js"></script>
-<script src="js/app.js"></script>
+<script>
+  // 直接開檔時瀏覽器不會執行 ES module，也不允許讀取資料檔，所以在這裡先說明怎麼開啟
+  if (location.protocol === "file:") {
+    const box = document.createElement("div");
+    box.className = "load-error";
+    box.setAttribute("role", "alert");
+    box.innerHTML = "<b>這個網頁需要透過本機伺服器開啟。</b>請在專案資料夾執行 <code>npm run dev</code>，再開啟它顯示的網址。";
+    document.querySelector(".wrap").prepend(box);
+  }
+</script>
+<script type="module" src="js/app.js"></script>
 </body>
 </html>

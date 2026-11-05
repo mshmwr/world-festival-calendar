@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "國家",
+  "type": "object",
+  "properties": {
+    "$schema": { "type": "string" },
+    "countries": {
+      "type": "object",
+      "description": "key 為國家代碼",
+      "propertyNames": { "pattern": "^[A-Z]{2,3}$" },
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "n": { "type": "string", "minLength": 1, "description": "國名" },
+          "r": { "$ref": "common.schema.json#/$defs/code", "description": "所屬區域代碼，對應 regions.json" },
+          "iso": { "type": "string", "pattern": "^\\d{3}$", "description": "ISO 3166 數字碼，用來對應地圖；需和 regions.json 的 regionOf 屬於同一區域" },
+          "pin": { "type": "array", "prefixItems": [{ "type": "number", "description": "經度" }, { "type": "number", "description": "緯度" }], "minItems": 2, "maxItems": 2, "description": "地圖上沒有輪廓的小國，以 [經度, 緯度] 畫圓點" },
+          "f": { "type": "string", "minLength": 1, "description": "國旗 emoji" },
+          "s": { "$ref": "common.schema.json#/$defs/names", "minItems": 1, "description": "景點" },
+          "nat": { "$ref": "common.schema.json#/$defs/names", "description": "自然景色" },
+          "wh": {
+            "type": "array",
+            "description": "世界遺產，每筆為 [名稱, 類別]；沒有時給空陣列並在 whNote 加說明",
+            "items": { "type": "array", "prefixItems": [{ "type": "string", "minLength": 1 }, { "enum": ["文", "自", "複"], "description": "文化、自然、複合" }], "minItems": 2, "maxItems": 2 }
+          },
+          "warn": { "type": "string", "description": "旅遊警示（選填）" }
+        },
+        "required": ["n", "r", "f", "s", "wh"],
+        "anyOf": [{ "required": ["iso"] }, { "required": ["pin"] }],
+        "additionalProperties": false
+      }
+    },
+    "whNote": {
+      "type": "object",
+      "description": "沒有世界遺產的國家要顯示的說明，key 為國家代碼",
+      "additionalProperties": { "type": "string" }
+    }
+  },
+  "required": ["countries", "whNote"],
+  "additionalProperties": false
+}

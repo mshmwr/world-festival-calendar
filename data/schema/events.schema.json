@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "節慶",
+  "type": "object",
+  "properties": {
+    "$schema": { "type": "string" },
+    "events": {
+      "type": "array",
+      "description": "各國節日、祭典、旅遊季節。日本各縣祭典與日本國定假日在 japan.json",
+      "items": { "$ref": "common.schema.json#/$defs/event", "required": ["c", "t"] }
+    }
+  },
+  "required": ["events"],
+  "additionalProperties": false
+}

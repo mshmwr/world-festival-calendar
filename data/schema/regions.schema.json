@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "區域",
+  "type": "object",
+  "properties": {
+    "$schema": { "type": "string" },
+    "regions": {
+      "type": "array",
+      "description": "區域清單，順序即畫面上的按鈕順序。地圖色票在 css/style.css 的 --r-<代碼>",
+      "items": {
+        "type": "object",
+        "properties": { "k": { "$ref": "common.schema.json#/$defs/code" }, "n": { "type": "string", "minLength": 1, "description": "區域名稱" } },
+        "required": ["k", "n"],
+        "additionalProperties": false
+      }
+    },
+    "regionOf": {
+      "type": "object",
+      "description": "地圖上各國所屬區域：key 為區域代碼，值為 ISO 3166 數字碼，以空白分隔。沒有詳細資料的國家也依此上色",
+      "propertyNames": { "pattern": "^[A-Z]{2,3}$" },
+      "additionalProperties": { "type": "string", "pattern": "^\\d{3}( \\d{3})*$" }
+    }
+  },
+  "required": ["regions", "regionOf"],
+  "additionalProperties": false
+}

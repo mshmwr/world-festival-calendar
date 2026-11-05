@@ -1,4 +1,4 @@
-// ---------- 共用元件 ----------
+// 共用元件：只依參數產生 HTML 或操作傳入的元素，不讀取程式狀態
 // 篩選按鈕列：第一顆是「全部」，items 為 {v, label, dot, n, title}
 function chipRow(attr, current, allLabel, items){
   const chip = (v, on, body, title) => `<button class="chip" data-${attr}="${v}" aria-pressed="${on}"${title ? ` title="${title}"` : ""}>${body}</button>`;
@@ -13,9 +13,9 @@ function tabBar(attr, current, tabs, ...args){
 function tagList(items, cls = "", render = s => s){
   return `<ul class="sights${cls ? " " + cls : ""}">${items.map(s => `<li>${render(s)}</li>`).join("")}</ul>`;
 }
-// 節慶清單，清單為空時顯示提示；opts 傳給 itemHTML
-function eventList(xs, empty, ...opts){
-  return `<ul class="list">${xs.map(x => itemHTML(x, ...opts)).join("") || `<li class="empty">${empty}</li>`}</ul>`;
+// 清單：renderItem 產生每個 <li>，清單為空時顯示提示
+function listOf(xs, renderItem, empty){
+  return `<ul class="list">${xs.map(renderItem).join("") || `<li class="empty">${empty}</li>`}</ul>`;
 }
 // 國家／縣市卡片標題
 function entityHead({flag, name, color, sub, btnId, btnLabel}){
@@ -33,5 +33,5 @@ function placeTip(tipEl, card, ev, html){
   tipEl.style.left = x + "px"; tipEl.style.top = y + "px";
 }
 function onClicks(root, sel, fn){ root.querySelectorAll(sel).forEach(b => b.onclick = () => fn(b)); }
-// 符合目前類型篩選、且落在目前月份的活動數
-const monthCount = pred => ALL.filter(x => pred(x) && inMonth(x) && st.types[x.t]).length;
+
+export { chipRow, tabBar, tagList, listOf, entityHead, placeTip, onClicks };

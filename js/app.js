@@ -1,8 +1,15 @@
-// ---------- 資料整合 ----------
-// 日本國定假日與各縣祭典定義在 data/japan.js，這裡併入月曆使用的 EVENTS
+import { chipRow, tabBar, tagList, listOf, entityHead, placeTip, onClicks } from "./components.js";
+import { loadData } from "./data.js";
+
+// ---------- 資料 ----------
+const { REGIONS, REGION_OF, COUNTRIES, WH_NOTE, EVENTS, JP_AREAS, PREFS, JP_NATIONAL, TOPO, JPTOPO } = await loadData();
+// 日本國定假日與各縣祭典定義在 data/japan.json，這裡併入月曆使用的 EVENTS
 for (const e of JP_NATIONAL) EVENTS.push({c: "JP", ...e});
 for (const p of PREFS) for (const e of p.ev) EVENTS.push({c: "JP", t: "F", ...e, p: p.id});
 const PREF_BY_ID = Object.fromEntries(PREFS.map(p => [p.id, p]));
+// 節慶清單與當月活動數（依賴程式狀態，所以放在這裡而不是 components.js）
+const eventList = (xs, empty, ...opts) => listOf(xs, x => itemHTML(x, ...opts), empty);
+const monthCount = pred => ALL.filter(x => pred(x) && inMonth(x) && st.types[x.t]).length;
 
 const YEARS = [2026, 2027];
 const TABS = [["ev","節慶", (c, e) => e.length], ["s","景點", c => c.s.length], ["nat","自然景色", c => (c.nat || []).length], ["wh","世界遺產", c => (c.wh || []).length]];
@@ -467,3 +474,6 @@ document.getElementById("jpcopy").onclick = () => {
 let rw = innerWidth;
 addEventListener("resize", () => { if ((rw <= 620) !== (innerWidth <= 620)){ rw = innerWidth; renderCalendar(); } });
 render();
+
+// 測試與除錯用：讓瀏覽器自動化測試能讀取狀態、直接切換畫面
+window.app = { st, render, selectCountry, selectPref, selectEvent, setRegion, ymd, ALL, REGIONS, REGION_OF, COUNTRIES, WH_NOTE, EVENTS, JP_AREAS, PREFS, JP_NATIONAL, TOPO, JPTOPO };

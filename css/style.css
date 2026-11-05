@@ -195,3 +195,5 @@ select#year{height:32px;border-radius:8px;border:1px solid var(--line);backgroun
 footer{margin-top:28px;color:var(--muted);font-size:12px;max-width:80ch}
 footer p{margin:4px 0}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+.load-error{margin:0 0 16px;padding:12px 14px;border-radius:10px;border:1px solid var(--t-H);background:color-mix(in srgb,var(--t-H) 10%,transparent);font-size:14px}
+.load-error code{font-family:var(--font-mono);background:var(--surface);padding:1px 6px;border-radius:4px}

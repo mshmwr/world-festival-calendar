@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "共用定義",
+  "$defs": {
+    "code": { "type": "string", "pattern": "^[A-Z]{2,3}$", "description": "大寫英文代碼，例如 JP、NEA" },
+    "monthDay": { "type": "string", "pattern": "^\\d{2}-\\d{2}(~\\d{2}-\\d{2})?$", "description": "\"MM-DD\" 或 \"MM-DD~MM-DD\"，結束日期早於開始日期時視為跨年" },
+    "names": { "type": "array", "items": { "type": "string", "minLength": 1 }, "uniqueItems": true, "description": "名稱清單，不可重複" },
+    "event": {
+      "type": "object",
+      "description": "一項節日、祭典或旅遊季節",
+      "properties": {
+        "c": { "$ref": "#/$defs/code", "description": "國家代碼，對應 countries.json" },
+        "t": { "enum": ["H", "F", "S"], "description": "類型：H 國定假日、F 祭典活動、S 旅遊季節" },
+        "n": { "type": "string", "minLength": 1, "description": "名稱" },
+        "x": { "type": "string", "minLength": 1, "description": "一句說明" },
+        "d": { "$ref": "#/$defs/monthDay", "description": "每年固定的日期，例如 \"07-01~07-31\"；和 y 二選一" },
+        "y": {
+          "type": "object",
+          "description": "每年不同的日期，key 為西元年，例如 {\"2026\": \"02-17\", \"2027\": \"02-06\"}；和 d 二選一",
+          "propertyNames": { "pattern": "^\\d{4}$" },
+          "additionalProperties": { "$ref": "#/$defs/monthDay" },
+          "minProperties": 1
+        },
+        "a": { "const": 1, "description": "日期為估計值時填 1，畫面會標「約」" }
+      },
+      "required": ["n", "x"],
+      "oneOf": [{ "required": ["d"] }, { "required": ["y"] }],
+      "additionalProperties": false
+    }
+  }
+}
