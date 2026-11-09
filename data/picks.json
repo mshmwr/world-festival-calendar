@@ -1,0 +1,49 @@
+{
+  "$schema": "./schema/picks.schema.json",
+  "sourceNames": {"liontravel.com":"雄獅旅遊","colatour.com.tw":"可樂旅遊","settour.com.tw":"東南旅遊","travel4u.com.tw":"山富旅遊","eztravel.com.tw":"易遊網","kkday.com":"KKday","klook.com":"Klook"},
+  "picks": {
+    "11": {
+      "JP": [
+        {"n":"京都賞楓：嵐山、東福寺、永觀堂、清水寺","pop":3,"p":"26","x":"京都多數名所 11 月中旬到 12 月初最紅，也是各家旅行社關西賞楓團的主軸，部分行程加排夜楓點燈。","src":["https://livejapan.com/zh-tw/article-a0002628/","https://event.liontravel.com/zh-tw/japan/november-travel","https://www.travel4u.com.tw/group/itinerary/OSA05CIV01/"]},
+        {"n":"東北紅葉：奧入瀨溪流、藏王紅葉纜車、銀山溫泉","pop":3,"p":"02","x":"東北楓期從 10 月初延續到 11 月中下旬，11 月初出發的東北團常把溪流、纜車賞楓和溫泉街排在一起。","src":["https://tour.colatour.com.tw/itinerary?TourCode=NSF110306CI6K&TourDate=2026%2F11%2F03","https://event.liontravel.com/zh-tw/season/autumntravel/japan"]},
+        {"n":"九州秋楓：高千穗峽、九重夢大吊橋、熊本城銀杏、秋月城跡","pop":3,"p":"45","x":"九州紅葉約 11 月中旬到 12 月中旬，適合 11 月下半出發，旅行社多推高雄直飛的 5 日團。","src":["https://tour.settour.com.tw/product/GFG0000024115","https://www.colatour.com.tw/webDM/theme/maple/japan.html","https://event.liontravel.com/zh-tw/season/autumntravel/japan"]},
+        {"n":"河口湖紅葉迴廊與高尾山","pop":3,"p":"19","x":"關東 11 月上中旬是賞楓高峰，富士山搭配紅葉迴廊是關東賞楓團必排行程。","src":["https://www.travel4u.com.tw/project/2026-fall-foliage/Default.aspx","https://www.colatour.com.tw/webDM/theme/maple/japan.html"]},
+        {"n":"明治神宮外苑銀杏大道","pop":2,"p":"13","x":"11 月中旬到 12 月初金黃銀杏大道最美，期間有銀杏祭，東京自由行很容易安排。","src":["https://www.fun-japan.jp/tw/articles/1599","https://livejapan.com/zh-tw/article-a0002628/"]},
+        {"n":"四國秋楓：大步危峽、祖谷","pop":2,"p":"36","x":"四國賞楓期約 11 月上旬到 12 月上旬，部分旅行社有高雄出發的四國賞楓 5 日團。","src":["https://event.liontravel.com/zh-tw/season/autumntravel/japan"]},
+        {"n":"佐賀御船山樂園夜楓","pop":2,"p":"41","x":"以紅葉夜間點燈聞名的九州庭園，11 月中下旬最熱門，可和雲仙仁田峠纜車賞楓串成九州北部行程。","src":["https://uptogo.com.tw/旅遊/九州11月有楓葉嗎？/"]}
+      ],
+      "KR": [
+        {"n":"內藏山國立公園賞楓","pop":3,"x":"韓國代表性的楓葉名山，紅葉約 10 月下旬到 11 月中旬，是台灣旅行社韓國秋季團最常主打的景點。","src":["https://tour.settour.com.tw/product/GFG0000009826","https://tour.colatour.com.tw/itinerary?PatternNo=243081","https://tour.settour.com.tw/product/GFG0000027282"]},
+        {"n":"南怡島銀杏與楓葉","pop":3,"x":"秋天整座島被銀杏和楓葉染成金紅色，搭渡船上島，幾乎是韓國秋季團的必排景點。","src":["https://vacation.eztravel.com.tw/pkgfrn/p/VDR0000001925/GFG0000035557","https://tour.settour.com.tw/product/GFG0000022454","https://tour.colatour.com.tw/itinerary?PatternNo=243954"]},
+        {"n":"雪嶽山纜車賞楓","pop":3,"x":"江原道的楓葉名山，搭纜車看山頭紅葉，常和南怡島排成同一趟。","src":["https://vacation.eztravel.com.tw/pkgfrn/p/VDR0000001925/GFG0000035557","https://tour.colatour.com.tw/itinerary?PatternNo=243954"]},
+        {"n":"雞龍山國立公園","pop":2,"x":"忠清南道的賞楓名山，旅行社常和內藏山組成雙楓行程。","src":["https://tour.settour.com.tw/product/GFG0000009826"]},
+        {"n":"全州韓屋村韓服體驗","pop":2,"x":"秋季到內藏山的行程多會順路排全州，穿韓服逛韓屋村。","src":["https://tour.settour.com.tw/product/GFG0000009826","https://tour.settour.com.tw/product/GFG0000027282"]},
+        {"n":"首爾市區賞楓","pop":2,"x":"首爾的楓葉比山區晚，11 月上中旬古宮與公園一帶仍有紅葉，適合自由行。","src":["https://www.kkday.com/zh-hk/blog/27833/korea-maple"]}
+      ],
+      "CN": [
+        {"n":"九寨溝秋色","pop":3,"x":"9 月底到 11 月中旬是九寨溝賞楓期，彩林配湖水最美；11 月中旬後落葉漸多，宜排在上旬。","src":["https://www.kkday.com/zh-hk/blog/112544/%E4%B9%9D%E5%AF%A8%E6%BA%9D","https://tour.settour.com.tw/product/GFG0000012353","https://blog.settour.com.tw/hong-kong-macau-china/china/china-maple/"]},
+        {"n":"黃山賞楓","pop":2,"x":"黃山楓期約 10 月中旬到 11 月下旬，11 月上中旬去仍有紅葉和雲海。","src":["https://blog.settour.com.tw/hong-kong-macau-china/china/china-maple/","https://blog.settour.com.tw/season/autumn/china-maple"]},
+        {"n":"張家界與天門山","pop":2,"x":"台灣旅行社 11 月仍有多個張家界出發日，秋末天氣涼爽、遊客較少。","src":["https://www.travel4u.com.tw/en/group/area/72/zhang-jia-jie-central-china/"]},
+        {"n":"四川：熊貓基地、樂山大佛、都江堰","pop":2,"x":"常和九寨溝排成同一趟八日行程，秋季氣候舒適。","src":["https://tour.settour.com.tw/product/GFG0000012353","https://www.travel4u.com.tw/en/group/area/81/southwestern-china/"]}
+      ],
+      "TW": [
+        {"n":"陽明山芒草：七星山、小油坑","pop":3,"x":"11、12 月七星山與小油坑一帶芒花最盛，小油坑芒草受硫氣影響偏紅；假日有交通管制，建議搭公車。","src":["https://www.funtime.com.tw/blog/?p=43462","https://www.bella.tw/articles/travel&foodies/21710"]},
+        {"n":"草嶺古道芒花季","pop":2,"x":"每年 11 月舉辦芒花季，東北角山稜線芒花搭配海景。","src":["https://www.funtime.com.tw/blog/?p=43462"]},
+        {"n":"阿里山紅榨楓","pop":2,"x":"11 月中旬後紅榨楓轉紅，搭配雲海與森林鐵路。","src":["https://www.funtime.com.tw/blog/?p=166092"]},
+        {"n":"奧萬大楓紅","pop":2,"x":"南投奧萬大的大楓葉在秋冬轉紅，11 月下旬起漸入佳境。","src":["https://www.marieclaire.com.tw/lifestyle/travel/96128"]},
+        {"n":"司馬庫斯楓紅","pop":1,"x":"新竹尖石鄉 11 月下旬開始轉紅，部落山路較遠，適合安排兩天。","src":["https://www.funtime.com.tw/blog/?p=166092"]}
+      ],
+      "HK": [
+        {"n":"香港繽紛冬日巡禮","pop":2,"x":"11 月 14 日起登場，中環有冬日小鎮和 20 米高耶誕樹，一路到跨年煙火。","src":["https://www.mirrormedia.mg/story/20261002tour003","https://money.udn.com/money/story/6721/9132489"]},
+        {"n":"香港美食月","pop":2,"x":"整個 11 月有全港 400 多間餐廳酒吧推出限定菜色與宵夜優惠。","src":["https://macaubusiness.com/%E5%BB%B6%E7%BA%8C%E7%BE%8E%E9%85%92%E4%BD%B3%E9%A4%9A%E7%86%B1%E6%BD%AE%E6%97%85%E7%99%BC%E5%B1%80%E6%8E%A8%E3%80%8C%E9%A6%99%E6%B8%AF%E7%BE%8E%E9%A3%9F%E6%9C%88%E3%80%8D%E5%8D%88%E5%B8%82%E8%87%B3/","https://www.ctee.com.tw/news/20260929701086-431401"]},
+        {"n":"秋季行山：麥理浩徑、龍脊","pop":2,"x":"11 月乾爽、最高溫約 25°C，是香港行山和看海景的最佳季節。","src":["https://gotripzi.com/zh-tw/destinations/hong-kong-hk/weather/november"]}
+      ],
+      "MN": [
+        {"n":"特勒吉國家公園冬季蒙古包","pop":1,"x":"距烏蘭巴托約 80 公里，11 月已入冬，可住冬季蒙古包、看雪原；許多夏季營地已關閉，需找冬季營運的業者。","src":["https://tour2mongolia.com/when-to-visit-mongolia/winter-nov-feb/mongolia-in-winter/mongolia-in-november","https://meanwhileinmongolia.com/mongolia-in-winter/"]},
+        {"n":"狗拉雪橇與越野滑雪","pop":1,"x":"特勒吉一帶入冬後的雪地活動，白天氣溫約零下 5 到 15 度。","src":["https://indyguide.com/article/what-to-do-in-mongolia-in-winter"]},
+        {"n":"西部阿爾泰鷹獵季","pop":1,"x":"鷹獵活動約 11 月到隔年 2 月，屬於冷門深度行程。","src":["https://tour2mongolia.com/when-to-visit-in-mongolia/winter-nov-feb"]},
+        {"n":"胡斯台國家公園野馬與成吉思汗騎馬像","pop":1,"x":"烏蘭巴托近郊一日遊，常和特勒吉排在一起；11 月是淡季，價格較低但服務較少。","src":["https://app.advguides.com/marketplace/3-day-winter-nomad-experience-hustai-terelj-from-ulaanbaatar"]}
+      ]
+    }
+  }
+}

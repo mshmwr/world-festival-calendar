@@ -7,7 +7,7 @@ const errors = [];
 const fail = (where, msg) => errors.push(`${where}：${msg}`);
 
 // 1. 結構
-const files = { regions: "regions.json", countries: "countries.json", events: "events.json", japan: "japan.json" };
+const files = { regions: "regions.json", countries: "countries.json", events: "events.json", japan: "japan.json", picks: "picks.json" };
 const data = {};
 for (const [k, f] of Object.entries(files)) {
   data[k] = read(f);
@@ -65,6 +65,24 @@ national.forEach((e, i) => { if (e.c && e.c !== "JP") fail(`japan.json national[
 const allEv = [...events, ...national.map(e => ({ c: "JP", ...e })), ...prefectures.flatMap(p => p.ev.map(e => ({ c: "JP", ...e, p: p.id })))];
 const keys = allEv.map(e => `${e.c}|${e.p || ""}|${e.n}|${e.d || JSON.stringify(e.y)}`);
 for (const k of keys.filter((x, i) => keys.indexOf(x) !== i)) fail("節慶", `重複項目 ${k}`);
+
+// 每月推薦：國家代碼、日本縣市代碼、重複名稱；REQUIRED_MONTHS 內的月份必須涵蓋全部國家
+const REQUIRED_MONTHS = ["11"];
+const prefIds = new Set(ids);
+for (const [month, byCountry] of Object.entries(data.picks.picks)) {
+  for (const [code, items] of Object.entries(byCountry)) {
+    const w = `picks.json ${month} 月 ${code}`;
+    if (!countries[code]) { fail(w, `國家代碼 ${code} 不存在`); continue; }
+    const names = items.map(i => i.n);
+    for (const n of names.filter((x, i) => names.indexOf(x) !== i)) fail(w, `重複項目 ${n}`);
+    for (const it of items) if (it.p && (code !== "JP" || !prefIds.has(it.p))) fail(`${w} ${it.n}`, `p=${it.p} 只能用在日本，且需為 01～47`);
+  }
+  if (REQUIRED_MONTHS.includes(month)) {
+    const missing = Object.keys(countries).filter(c => !byCountry[c]);
+    if (missing.length) fail(`picks.json ${month} 月`, `缺少 ${missing.length} 國：${missing.join("、")}`);
+  }
+}
+for (const m of REQUIRED_MONTHS) if (!data.picks.picks[m]) fail("picks.json", `缺少 ${m} 月`);
 
 report();
 function report(note) {

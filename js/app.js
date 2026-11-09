@@ -1,8 +1,8 @@
-import { chipRow, tabBar, tagList, listOf, entityHead, placeTip, onClicks } from "./components.js";
+import { chipRow, tabBar, tagList, listOf, pickList, entityHead, placeTip, onClicks } from "./components.js";
 import { loadData } from "./data.js";
 
 // ---------- 資料 ----------
-const { REGIONS, REGION_OF, COUNTRIES, WH_NOTE, EVENTS, JP_AREAS, PREFS, JP_NATIONAL, TOPO, JPTOPO } = await loadData();
+const { REGIONS, REGION_OF, COUNTRIES, WH_NOTE, EVENTS, JP_AREAS, PREFS, JP_NATIONAL, PICKS, SOURCE_NAMES, TOPO, JPTOPO } = await loadData();
 // 日本國定假日與各縣祭典定義在 data/japan.json，這裡併入月曆使用的 EVENTS
 for (const e of JP_NATIONAL) EVENTS.push({c: "JP", ...e});
 for (const p of PREFS) for (const e of p.ev) EVENTS.push({c: "JP", t: "F", ...e, p: p.id});
@@ -10,6 +10,13 @@ const PREF_BY_ID = Object.fromEntries(PREFS.map(p => [p.id, p]));
 // 節慶清單與當月活動數（依賴程式狀態，所以放在這裡而不是 components.js）
 const eventList = (xs, empty, ...opts) => listOf(xs, x => itemHTML(x, ...opts), empty);
 const monthCount = pred => ALL.filter(x => pred(x) && inMonth(x) && st.types[x.t]).length;
+// 每月推薦：picks.json 依月份、國家存放
+const monthPicks = code => (PICKS[st.m + 1] || {})[code] || [];
+const sourceName = url => {
+  const host = new URL(url).hostname.replace(/^www\./, "");
+  const key = Object.keys(SOURCE_NAMES).find(d => host === d || host.endsWith("." + d));
+  return key ? SOURCE_NAMES[key] : host;
+};
 
 const YEARS = [2026, 2027];
 const TABS = [["ev","節慶", (c, e) => e.length], ["s","景點", c => c.s.length], ["nat","自然景色", c => (c.nat || []).length], ["wh","世界遺產", c => (c.wh || []).length]];
@@ -47,7 +54,7 @@ const today = ymd(now);
 const st = {
   y: YEARS.includes(now.getFullYear()) ? now.getFullYear() : YEARS[0],
   m: YEARS.includes(now.getFullYear()) ? now.getMonth() : 0,
-  region: null, country: null, ev: null, q: "", tab: "s", pref: null, ptab: "s", area: null,
+  region: null, country: null, ev: null, q: "", tab: "pk", pref: null, ptab: "s", area: null,
   types: {H:true, F:true, S:true}
 };
 try { const saved = JSON.parse(localStorage.getItem("fest-types")); if (saved) Object.assign(st.types, saved); } catch(_) {}
@@ -282,15 +289,20 @@ function renderSide(){
   if (st.country){
     const c = COUNTRIES[st.country];
     const yearEvs = ALL.filter(x => x.c === st.country && (x.s.getFullYear() === st.y) && st.types[x.t]).sort((a,b) => a.s - b.s);
+    // 有當月推薦時多一個分頁並預設打開；沒有時退回景點分頁
+    const picks = monthPicks(st.country);
+    const tabs = picks.length ? [["pk", `${st.m + 1} 月推薦`, () => picks.length], ...TABS] : TABS;
+    const tab = st.tab === "pk" && !picks.length ? "s" : st.tab;
     html += `<div class="panel">
       ${entityHead({flag: c.f, name: c.n, color: c.r, sub: RN[c.r], btnId: "clearC", btnLabel: "看全部國家"})}
       ${c.warn ? `<p class="warn">${c.warn}</p>` : ""}
       ${st.country === "JP" ? `<button class="jp-link" id="toJP">查看 47 都道府縣的景點、遺跡與祭典 ↓</button>` : ""}
-      ${tabBar("tab", st.tab, TABS, c, yearEvs)}
-      ${st.tab === "ev" ? eventList(yearEvs, "這一年沒有符合篩選的項目", false) : ""}
-      ${st.tab === "s" ? tagList(c.s) : ""}
-      ${st.tab === "nat" ? tagList(c.nat || [], "nat") : ""}
-      ${st.tab === "wh" ? (c.wh && c.wh.length ? `${tagList(c.wh, "wh", ([n, k]) => `<span class="wk ${WK[k]}">${WN[k]}</span>${n}`)}<p class="wh-legend">依聯合國教科文組織登錄類別分為文化、自然、複合遺產。</p>` : `<p class="empty">${WH_NOTE[st.country] || "目前沒有登錄的世界遺產。"}</p>`) : ""}
+      ${tabBar("tab", tab, tabs, c, yearEvs)}
+      ${tab === "pk" ? `<p class="pk-legend">熱門程度依台灣旅行社 ${st.m + 1} 月行程與旅遊網站推薦整理，★★★ 為最熱門。</p>${pickList(picks, sourceName, it => it.p ? `<p class="meta">${PREF_BY_ID[it.p].n}</p>` : "")}` : ""}
+      ${tab === "ev" ? eventList(yearEvs, "這一年沒有符合篩選的項目", false) : ""}
+      ${tab === "s" ? tagList(c.s) : ""}
+      ${tab === "nat" ? tagList(c.nat || [], "nat") : ""}
+      ${tab === "wh" ? (c.wh && c.wh.length ? `${tagList(c.wh, "wh", ([n, k]) => `<span class="wk ${WK[k]}">${WN[k]}</span>${n}`)}<p class="wh-legend">依聯合國教科文組織登錄類別分為文化、自然、複合遺產。</p>` : `<p class="empty">${WH_NOTE[st.country] || "目前沒有登錄的世界遺產。"}</p>`) : ""}
     </div>`;
   } else {
     const evs = monthEvents(false);
@@ -476,4 +488,4 @@ addEventListener("resize", () => { if ((rw <= 620) !== (innerWidth <= 620)){ rw 
 render();
 
 // 測試與除錯用：讓瀏覽器自動化測試能讀取狀態、直接切換畫面
-window.app = { st, render, selectCountry, selectPref, selectEvent, setRegion, ymd, ALL, REGIONS, REGION_OF, COUNTRIES, WH_NOTE, EVENTS, JP_AREAS, PREFS, JP_NATIONAL, TOPO, JPTOPO };
+window.app = { st, render, selectCountry, selectPref, selectEvent, setRegion, ymd, ALL, REGIONS, REGION_OF, COUNTRIES, WH_NOTE, EVENTS, JP_AREAS, PREFS, JP_NATIONAL, PICKS, TOPO, JPTOPO };

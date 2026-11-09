@@ -17,6 +17,15 @@ function tagList(items, cls = "", render = s => s){
 function listOf(xs, renderItem, empty){
   return `<ul class="list">${xs.map(renderItem).join("") || `<li class="empty">${empty}</li>`}</ul>`;
 }
+// 推薦清單：依熱門程度排序，附來源連結。sourceName 把網址換成來源名稱，extra 產生名稱下方的補充說明
+function pickList(items, sourceName, extra = () => ""){
+  const stars = n => `<span class="stars" role="img" aria-label="熱門程度 ${n} 顆星（滿分 3）">${"★".repeat(n)}<span class="off">${"★".repeat(3 - n)}</span></span>`;
+  const sorted = [...items].sort((a, b) => b.pop - a.pop);
+  return `<ul class="list picks">${sorted.map(it => `<li class="pick">
+    <div class="pk-h"><span class="nm">${it.n}</span>${stars(it.pop)}</div>
+    ${extra(it)}<p class="ds">${it.x}</p>
+    <p class="src">來源：${it.src.map(u => `<a href="${u}" target="_blank" rel="noopener">${sourceName(u)}</a>`).join("、")}</p></li>`).join("")}</ul>`;
+}
 // 國家／縣市卡片標題
 function entityHead({flag, name, color, sub, btnId, btnLabel}){
   return `<div class="country-head">${flag ? `<span class="fl">${flag}</span>` : ""}<div><h3>${name}</h3>
@@ -34,4 +43,4 @@ function placeTip(tipEl, card, ev, html){
 }
 function onClicks(root, sel, fn){ root.querySelectorAll(sel).forEach(b => b.onclick = () => fn(b)); }
 
-export { chipRow, tabBar, tagList, listOf, entityHead, placeTip, onClicks };
+export { chipRow, tabBar, tagList, listOf, pickList, entityHead, placeTip, onClicks };

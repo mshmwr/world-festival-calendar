@@ -4,6 +4,7 @@ const FILES = {
   countries: "data/countries.json",
   events: "data/events.json",
   japan: "data/japan.json",
+  picks: "data/picks.json",
   worldMap: "data/map-world.json",
   japanMap: "data/map-japan.json",
 };
@@ -35,6 +36,8 @@ export async function loadData() {
       JP_AREAS: d.japan.areas,
       PREFS: d.japan.prefectures,
       JP_NATIONAL: d.japan.national,
+      PICKS: d.picks.picks,
+      SOURCE_NAMES: d.picks.sourceNames,
       TOPO: d.worldMap,
       JPTOPO: d.japanMap,
     };
