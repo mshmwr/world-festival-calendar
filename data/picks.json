@@ -132,6 +132,97 @@
         {"n":"佩特拉玫瑰城","pop":3,"x":"秋季氣溫舒適適合健行，旅行社約旦團多連住佩特拉，走蛇道到卡茲尼神殿與國王墓。","src":["https://travel.liontravel.com/detail?Platform=APP&normgroupid=cc43c756-e4d6-4ab2-8ab4-fc10cb6d6060","https://travel.liontravel.com/category/zh-tw/middleeast/index"]},
         {"n":"瓦地倫沙漠","pop":2,"x":"沙漠吉普車與熱氣球，熱氣球受風向影響可能取消。","src":["https://travel.liontravel.com/detail?Platform=APP&normgroupid=cc43c756-e4d6-4ab2-8ab4-fc10cb6d6060"]},
         {"n":"死海漂浮","pop":2,"x":"約旦團的固定行程，秋天水溫仍適合下水。","src":["https://travel.liontravel.com/category/zh-tw/middleeast/index"]}
+      ],
+      "GB": [
+        {"n":"英荷比法：倫敦博物館與泰晤士河","pop":2,"x":"11 月底出發的英荷比法 10 日團，倫敦段排大英博物館與市區名勝，再搭歐洲之星接法國。","src":["https://vacation.eztravel.com.tw/pkgfrn/p/VDR0000001846/26EU10LAP","https://event.liontravel.com/zh-tw/europe/we"]},
+        {"n":"坎特伯里、伯明翰聖誕市集","pop":2,"x":"英國聖誕市集多在 11 月中旬開張，坎特伯里往年約 11/12 起；2026 年日期以官方公告為準。","src":["https://www.kkday.com/zh-tw/blog/3583/europe-christmas"]}
+      ],
+      "IE": [
+        {"n":"都柏林與英國聯遊","pop":1,"x":"台灣旅行社很少有愛爾蘭單國團，多和英國、蘇格蘭組合；11 月偏冷多雨，以都柏林市區為主較實際。","src":["https://tour.colatour.com.tw/search?TourArea=L","https://blog.kkday.com/10118/europe-travel-guide"]}
+      ],
+      "FR": [
+        {"n":"史特拉斯堡聖誕市集","pop":3,"x":"號稱「聖誕之都」，2026 年多數資料列 11 月 26 日到 12 月 24 日，是法國聖誕市集團的重點。","src":["https://www.travelpirates.com/captains-log/european-christmas-market-dates-2026","https://www.kkday.com/zh-tw/blog/3583/europe-christmas","https://www.colatour.com.tw/webDM/tour/eu/market/Christmas_Market.html"]},
+        {"n":"科爾馬聖誕市集","pop":2,"x":"阿爾薩斯童話小鎮，常和史特拉斯堡排在同一天。","src":["https://www.kkday.com/zh-tw/blog/3583/europe-christmas"]},
+        {"n":"巴黎羅浮宮與塞納河遊船","pop":2,"x":"11 月底出發的英荷比法團巴黎段，博物館與遊船不受天氣影響。","src":["https://vacation.eztravel.com.tw/pkgfrn/p/VDR0000001846/26EU10LAP"]}
+      ],
+      "NL": [
+        {"n":"阿姆斯特丹運河與海牙","pop":2,"x":"荷比法、英荷比法團的荷蘭段，運河遊船與海牙莫瑞泰斯美術館（戴珍珠耳環的少女）。","src":["https://vacation.eztravel.com.tw/pkgfrn/p/VDR0000001846/26EU10LAP","https://www.travel4u.com.tw/en/group/itinerary/AMS10WS-A/"]},
+        {"n":"荷比法聖誕市集團","pop":2,"x":"11 月底起的歐洲聖誕市集團有荷比法路線。","src":["https://www.colatour.com.tw/webDM/tour/eu/market/Christmas_Market.html"]}
+      ],
+      "BE": [
+        {"n":"布魯塞爾冬季奇幻市集","pop":2,"x":"2026 年列為 11 月 27 日到隔年 1 月 3 日，大廣場有燈光秀與溜冰場。","src":["https://www.travelpirates.com/captains-log/european-christmas-market-dates-2026","https://www.kkday.com/zh-tw/blog/3583/europe-christmas"]},
+        {"n":"布魯日古城","pop":2,"x":"英荷比法、荷比盧團的必排運河古城。","src":["https://vacation.eztravel.com.tw/pkgfrn/p/VDR0000001846/26EU10LAP","https://www.travel4u.com.tw/en/group/itinerary/AMS10WS-A/"]}
+      ],
+      "DE": [
+        {"n":"紐倫堡聖誕市集","pop":3,"x":"德國最有名的聖誕市集，2026 年 11 月 27 日開幕到平安夜；德捷、德奧捷聖誕團多會安排。","src":["https://www.travelpirates.com/captains-log/european-christmas-market-dates-2026","https://www.colatour.com.tw/C10A_TourSell/C10A16_TourItinerary.aspx?PatternNo=220731","https://event.liontravel.com/zh-tw/europe/christmas"]},
+        {"n":"羅騰堡、法蘭克福聖誕市集","pop":2,"x":"旅行社整理的預估日期為羅騰堡約 11/24、法蘭克福約 11/23 開幕。","src":["https://www.colatour.com.tw/webDM/tour/eu/market/Christmas_Market.html"]},
+        {"n":"德奧捷 10 日","pop":2,"x":"串連德國、奧地利、捷克的聖誕市集經典路線。","src":["https://www.travel4u.com.tw/en/group/itinerary/MUC10WS-D/"]}
+      ],
+      "AT": [
+        {"n":"維也納聖誕市集：美泉宮、市政廳廣場","pop":3,"x":"美泉宮市集 11 月 6 日最早開，市政廳廣場 11 月 13 日起；奧捷團的重點。","src":["https://www.travelpirates.com/captains-log/european-christmas-market-dates-2026","https://www.colatour.com.tw/webDM/tour/eu/market/Christmas_Market.html","https://vacation.eztravel.com.tw/pkgfrn/p/VDR0000001925/GFG0000034646"]},
+        {"n":"薩爾斯堡聖誕市集","pop":2,"x":"預估 11 月 21 日起，莫札特故鄉的老城市集。","src":["https://www.colatour.com.tw/webDM/tour/eu/market/Christmas_Market.html"]},
+        {"n":"哈修塔特湖區","pop":2,"x":"奧捷 10 日團的經典湖區小鎮，冬季遊客較少。","src":["https://www.travel4u.com.tw/group/product/VIE10261227B/"]}
+      ],
+      "CH": [
+        {"n":"瑞士聖誕市集（德瑞路線）","pop":2,"x":"旅行社聖誕市集團有德瑞組合。","src":["https://www.colatour.com.tw/webDM/tour/eu/market/Christmas_Market.html"]},
+        {"n":"法瑞、德瑞聯遊","pop":1,"x":"瑞士多和德國或法國一起排，法瑞之間可搭 TGV Lyria。","src":["https://www.colatour.com.tw/C000_Portal/C000_HP01A_Main.aspx?TourArea=L-01"]}
+      ],
+      "CZ": [
+        {"n":"布拉格老城廣場聖誕市集","pop":3,"x":"主市集約 11 月 28 日開到隔年 1 月 6 日，小型市集 11 月 20 日起；奧捷、德捷團必排。","src":["https://www.travel4u.com.tw/group/product/VIE10261227B/","https://www.travelpirates.com/captains-log/european-christmas-market-dates-2026","https://www.colatour.com.tw/C10A_TourSell/C10A16_TourItinerary.aspx?PatternNo=220731"]},
+        {"n":"庫倫洛夫與溫泉小鎮","pop":2,"x":"捷克南部童話小鎮與卡羅維瓦利溫泉鎮，常和布拉格排在一起。","src":["https://www.colatour.com.tw/C10A_TourSell/C10A16_TourItinerary.aspx?PatternNo=220731","https://vacation.eztravel.com.tw/pkgfrn/p/VDR0000001925/GFG0000034646"]}
+      ],
+      "HU": [
+        {"n":"布達佩斯多瑙河遊船","pop":2,"x":"奧捷匈、匈羅團的固定行程，夜景遊船不受天氣影響。","src":["https://vacation.eztravel.com.tw/pkgfrn/p/VDR0000001925/GFG0000030384","https://www.travel4u.com.tw/group/itinerary/SOF10QR/"]},
+        {"n":"布達佩斯聖誕市集","pop":2,"x":"2026 年尚未正式公布，暫定 11 月中旬開到 1 月 1 日。","src":["https://www.travelpirates.com/captains-log/european-christmas-market-dates-2026"]}
+      ],
+      "PL": [
+        {"n":"克拉科夫聖誕市集","pop":1,"x":"暫定 11 月 27～28 日開幕，中央廣場一帶。","src":["https://www.travelpirates.com/captains-log/european-christmas-market-dates-2026"]},
+        {"n":"維利奇卡鹽礦與奧斯威辛集中營","pop":1,"x":"波蘭與波羅的海多國團的固定行程，鹽礦在地下不受天候影響。","src":["https://www.travel4u.com.tw/en/group/product/ESS13200903B/","https://www.travel4u.com.tw/group/itinerary/EUR1219/"]}
+      ],
+      "RU": [
+        {"n":"莫斯科、聖彼得堡","pop":1,"x":"台灣旅行社有波羅的海加俄羅斯的多國團，但非 11 月專屬行程；需另辦簽證，出發前請留意外交部旅遊警示。","src":["https://www.travel4u.com.tw/en/group/product/ESS13200903B/"]}
+      ],
+      "RO": [
+        {"n":"德古拉城堡與外西凡尼亞古鎮","pop":2,"x":"匈羅、保羅 10 日團 11 月仍有多個出發日，含布朗城堡與佩雷什城堡。","src":["https://www.travel4u.com.tw/group/itinerary/SOF10QR/","https://www.travel4u.com.tw/en/group/itinerary/SOF10TK/"]}
+      ],
+      "BG": [
+        {"n":"里拉修道院","pop":2,"x":"保加利亞、羅馬尼亞雙國團的世界遺產重點。","src":["https://www.travel4u.com.tw/en/group/itinerary/SOF10TK/","https://www.settour.com.tw/act/gfg/europe/balkan/index.html"]}
+      ],
+      "EE": [
+        {"n":"塔林聖誕市集","pop":2,"x":"市政廳廣場市集 11 月 20 日開到隔年 1 月 6 日，常被評為歐洲最美聖誕市集之一。","src":["https://www.travelpirates.com/captains-log/european-christmas-market-dates-2026","https://www.trvlogue.com/en/europe-christmas-markets-2026"]},
+        {"n":"波羅的海三國","pop":1,"x":"愛沙尼亞、拉脫維亞、立陶宛常和波蘭排成多國團，有跨國渡輪。","src":["https://www.travel4u.com.tw/en/group/product/ESS13200903B/"]}
+      ],
+      "IT": [
+        {"n":"阿爾巴白松露節","pop":1,"x":"皮埃蒙特的秋季美食盛事，2026 年多數資料列 10 月 10 日到 12 月 6 日，市集只在週末開。","src":["https://www.idealista.it/en/news/node/457555","https://www.visitlmr.it/en/events/top-events/the-international-alba-white-truffle-fair-alba"]},
+        {"n":"義大利冬季淡季團","pop":2,"x":"11 月起歐洲進入平季，旅行社推出飯店升等、無購物的超值團，羅馬、佛羅倫斯、威尼斯人潮較少。","src":["https://event.liontravel.com/zh-tw/europe/winter-sale","https://blog.eztravel.com.tw/best-travel-months-guide/"]}
+      ],
+      "ES": [
+        {"n":"西班牙、葡萄牙淡季團","pop":2,"x":"11 月是平季，南歐團價格較低、景點人少，適合以城市與建築為主的行程。","src":["https://event.liontravel.com/zh-tw/europe/se","https://blog.eztravel.com.tw/best-travel-months-guide/"]}
+      ],
+      "PT": [
+        {"n":"里斯本與辛特拉","pop":1,"x":"11～2 月是一年中最便宜的時段，但偏涼多雨，部分景點縮短開放時間。","src":["https://www.kkday.com/en-us/destination/pt-portugal"]}
+      ],
+      "GR": [
+        {"n":"雅典衛城","pop":1,"x":"11 月已是淡季，雅典市區古蹟仍可參觀；愛琴海小島多數店家與渡輪班次減少。","src":["https://www.kkday.com/en-us/destination/gr-greece"]}
+      ],
+      "HR": [
+        {"n":"杜布羅夫尼克古城","pop":1,"x":"11 月雨量偏多、需保暖，但古城遊客明顯減少；最佳季節是 9～10 月。","src":["https://www.kkday.com/en-us/destination/hr-croatia"]},
+        {"n":"巴爾幹多國團","pop":1,"x":"旅行社的巴爾幹路線串連克羅埃西亞與周邊國家。","src":["https://www.settour.com.tw/act/gfg/europe/balkan/index.html"]}
+      ],
+      "NO": [
+        {"n":"挪威極光與帝王蟹","pop":2,"x":"11 月是極光季初期，芬蘭挪威雙國團多排極圈纜車與帝王蟹大餐；極光無法保證看到。","src":["https://www.colatour.com.tw/webDM/theme/aurora/aurora_europe.html","https://tour.settour.com.tw/product/GFG0000025086"]}
+      ],
+      "SE": [
+        {"n":"北歐多國團：極地特快車與詩麗雅號","pop":2,"x":"芬蘭、瑞典、挪威的 11～12 日團，串連夜臥極地特快車與波羅的海遊輪。","src":["https://tour.settour.com.tw/product/GFG0000032036","https://tour.settour.com.tw/product/GFG0000025086"]}
+      ],
+      "FI": [
+        {"n":"芬蘭極光玻璃屋、聖誕老人村、破冰船","pop":3,"x":"11 月起進入極光季，多家旅行社 11 月有密集出發的芬蘭極光團，主打玻璃屋與聖誕老人村。","src":["https://tour.colatour.com.tw/itinerary?PatternNo=238653","https://www.colatour.com.tw/webDM/theme/aurora/aurora_europe.html","https://www.travel4u.com.tw/en/group/itinerary/FIN10TK/"]}
+      ],
+      "DK": [
+        {"n":"北歐多國團的哥本哈根段","pop":1,"x":"丹麥多出現在北歐多國團中，11 月日照短，以市區景點為主。","src":["https://www.travel4u.com.tw/group/itinerary/EUR1223PAK2/"]}
+      ],
+      "IS": [
+        {"n":"冰島極光與冰洞","pop":2,"x":"秋冬是冰島極光季，冰河藍冰洞約 11 月起開放，旅行社極光團有冰島路線。","src":["https://vacation.eztravel.com.tw/activity/aurora/","https://www.settour.com.tw/act/theme/aurora/"]}
       ]
     }
   }
