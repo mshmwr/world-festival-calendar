@@ -94,6 +94,44 @@
         {"n":"水村與水上計程車","pop":2,"x":"汶萊河上的高腳屋聚落，搭水上計程車進出並到當地人家喝茶。","src":["https://www.colatour.com.tw/C10A_TourSell/C10A16_TourItinerary.aspx?PatternNo=211288","https://vacation.eztravel.com.tw/pkgfrn/p/VDR0000001846/24BWN5D1"]},
         {"n":"紅樹林長鼻猴生態","pop":2,"x":"搭船進紅樹林找長鼻猴，秋冬汶萊團的常見行程。","src":["https://vacation.eztravel.com.tw/pkgfrn/p/VDR0000001846/24BWN5D1","https://www.colatour.com.tw/C10A_TourSell/C10A16_TourItinerary.aspx?PatternNo=211288"]},
         {"n":"淡布倫國家公園雨林吊橋","pop":1,"x":"東部熱帶雨林保護區，60 米高的樹冠吊橋；自由行需當天早上到遊客中心報名。","src":["https://vacation.eztravel.com.tw/sight/plc0000054768/ulu-temburong-park-%E7%83%8F%E9%AD%AF%E6%B7%A1%E5%B8%83%E5%80%AB%E5%9C%8B%E5%AE%B6%E5%85%AC%E5%9C%92","https://www.travel4u.com.tw/group/itinerary/BWN05BI2017/"]}
+      ],
+      "IN": [
+        {"n":"印度金三角：德里、阿格拉泰姬瑪哈陵、齋浦爾","pop":3,"x":"11 月北印度涼爽乾燥，是旺季開始；多家旅行社 11 月有密集出發的 6～8 日金三角團。","src":["https://tour.settour.com.tw/product/GFG0000025623","https://vacation.eztravel.com.tw/pkgfrn/p/VDR0000001943/DEL06BRK02","https://tour.settour.com.tw/product/GFG0000032951"]},
+        {"n":"瓦拉納西恆河日出遊船與夜祭","pop":2,"x":"較長的 8～10 日團會加排恆河，部分行程的夜祭屬自費項目。","src":["https://tour.colatour.com.tw/itinerary?PatternNo=218985","https://tour.settour.com.tw/product/GFG0000023785"]},
+        {"n":"普什卡駱駝節","pop":1,"x":"2026 年多數資料列為 11 月 17～24 日，24 日為迦締月滿月；拉賈斯坦觀光局尚未正式公布，台灣團體行程未見安排。","src":["https://www.esquireindia.co.in/lifestyle/travel/pushkar-camel-fair-2026-dates-how-to-reach-where-to-stay-and-what-to-expect","https://hindutone.com/festivals/pushkar-fair-2026/"]}
+      ],
+      "NP": [
+        {"n":"喜馬拉雅山景與博卡拉費瓦湖","pop":3,"x":"10～11 月是尼泊爾最佳季節，天空清朗最容易看到雪山，旅行社 9 日團多含博卡拉雙日出。","src":["https://vacation.eztravel.com.tw/pkgfrn/p/VDR0000000522/KTM09CX-2","https://vacation.eztravel.com.tw/pkgfrn/p/VDR0000001925/GFG0000032173","https://www.kkday.com/en-us/destination/np-nepal"]},
+        {"n":"加德滿都谷地世界遺產","pop":2,"x":"尼泊爾團的固定行程，古王城杜巴廣場與佛塔群。","src":["https://vacation.eztravel.com.tw/pkgfrn/p/VDR0000001925/GFG0000032173"]},
+        {"n":"奇旺國家公園叢林探險","pop":2,"x":"秋季氣候溫和，多數尼泊爾團安排一晚叢林住宿與獨木舟、大象生態行程。","src":["https://vacation.eztravel.com.tw/pkgfrn/p/VDR0000000522/KTM09CX-2"]}
+      ],
+      "LK": [
+        {"n":"三大世界遺產：獅子岩、佛牙寺、丹布拉石窟寺","pop":2,"x":"斯里蘭卡團的核心行程；旅行社常和馬爾地夫排成雙國遊。","src":["https://vacation.eztravel.com.tw/pkgfrn/p/VDR0000001914/CMBMLEUL","https://www.travel4u.com.tw/en/group/area/34/south-asia/"]},
+        {"n":"高山茶園火車與加勒古堡","pop":2,"x":"雙國遊行程常搭高山火車、住遺產酒店，再到南部海岸的加勒古城。","src":["https://vacation.eztravel.com.tw/pkgfrn/p/VDR0000001914/CMBMLEUL"]}
+      ],
+      "MV": [
+        {"n":"馬爾地夫水上屋度假村","pop":3,"x":"11～4 月是乾季旺季，天氣晴朗、海水透明度最高，最適合浮潛與潛水。","src":["https://www.settour.com.tw/act/gfg/maldives/cover.html","https://www.kkday.com/en-us/destination/mv-maldives","https://blog.settour.com.tw/southeast-asia/maldives-hotel/"]},
+        {"n":"斯里蘭卡與馬爾地夫雙國遊","pop":2,"x":"兼顧文化與海島，旅行社有 9～12 日的組合行程。","src":["https://vacation.eztravel.com.tw/pkgfrn/p/VDR0000001925/GFG0000032799","https://vacation.eztravel.com.tw/pkgfrn/p/VDR0000001914/CMBMLEUL"]}
+      ],
+      "UZ": [
+        {"n":"撒馬爾罕雷吉斯坦廣場","pop":1,"x":"11 月涼爽、遊客少，清晨薄霧中的廣場特別安靜；夜間可能降到個位數，需帶保暖外套。","src":["https://www.roughguides.com/uzbekistan/when-to-go/november/"]},
+        {"n":"布哈拉古城","pop":1,"x":"秋末光線柔和適合拍照，日照約 9～10 小時，行程宜集中在白天。","src":["https://www.roughguides.com/uzbekistan/when-to-go/november/"]},
+        {"n":"希瓦伊錢卡拉內城","pop":1,"x":"淡季遊客少，可和布哈拉排在同一段；11 月降雨略增但影響不大。","src":["https://www.roughguides.com/uzbekistan/when-to-go/november/"]}
+      ],
+      "TR": [
+        {"n":"卡帕多奇亞熱氣球","pop":3,"x":"土耳其團的招牌，11 月仍有多個出發日；熱氣球多為自費加購，受天候影響可能改期或改到棉堡。","src":["https://vacation.eztravel.com.tw/pkgfrn/p/VDR0000001838/241643","https://tour.colatour.com.tw/itinerary?PatternNo=222524"]},
+        {"n":"伊斯坦堡與博斯普魯斯海峽遊船","pop":3,"x":"幾乎每個土耳其團都排，常搭配宮殿與老城區。","src":["https://tour.colatour.com.tw/itinerary?PatternNo=222524","https://vacation.eztravel.com.tw/pkgfrn/p/VDR0000001838/245544"]},
+        {"n":"棉堡石灰華梯田","pop":2,"x":"雪白的石灰華梯田，土耳其環線團的固定景點。","src":["https://vacation.eztravel.com.tw/pkgfrn/p/VDR0000001838/241643","https://vacation.eztravel.com.tw/pkgfrn/p/VDR0000001838/245544"]},
+        {"n":"安塔利亞地中海岸","pop":2,"x":"秋天地中海仍溫和，中段搭機的行程會加排安塔利亞。","src":["https://tour.colatour.com.tw/itinerary?PatternNo=222524"]}
+      ],
+      "AE": [
+        {"n":"杜拜與阿布達比","pop":2,"x":"11 月起進入涼季，土耳其團常加排杜拜、阿布達比的清真寺與現代建築。","src":["https://vacation.eztravel.com.tw/pkgfrn/p/VDR0000001838/241643","https://vacation.eztravel.com.tw/pkgfrn/p/VDR0000001838/245544"]},
+        {"n":"中東串聯行程","pop":2,"x":"可樂旅遊 11 月有串連土耳其、約旦佩特拉與杜拜的中東團。","src":["https://tour.colatour.com.tw/search?TourArea=M-01&ctype=itourarea"]}
+      ],
+      "JO": [
+        {"n":"佩特拉玫瑰城","pop":3,"x":"秋季氣溫舒適適合健行，旅行社約旦團多連住佩特拉，走蛇道到卡茲尼神殿與國王墓。","src":["https://travel.liontravel.com/detail?Platform=APP&normgroupid=cc43c756-e4d6-4ab2-8ab4-fc10cb6d6060","https://travel.liontravel.com/category/zh-tw/middleeast/index"]},
+        {"n":"瓦地倫沙漠","pop":2,"x":"沙漠吉普車與熱氣球，熱氣球受風向影響可能取消。","src":["https://travel.liontravel.com/detail?Platform=APP&normgroupid=cc43c756-e4d6-4ab2-8ab4-fc10cb6d6060"]},
+        {"n":"死海漂浮","pop":2,"x":"約旦團的固定行程，秋天水溫仍適合下水。","src":["https://travel.liontravel.com/category/zh-tw/middleeast/index"]}
       ]
     }
   }
