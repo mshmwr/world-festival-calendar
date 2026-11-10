@@ -2,6 +2,114 @@
   "$schema": "./schema/picks.schema.json",
   "sourceNames": {"liontravel.com":"雄獅旅遊","colatour.com.tw":"可樂旅遊","settour.com.tw":"東南旅遊","travel4u.com.tw":"山富旅遊","eztravel.com.tw":"易遊網","kkday.com":"KKday","klook.com":"Klook"},
   "picks": {
+    "1": {
+      "JP": [
+        {"n":"道東流冰與破冰船：網走、紋別","pop":3,"p":"01","x":"鄂霍次克海流冰約 1 月下旬靠岸，網走破冰船約 1/20 起航，是北海道冬季團主打；流冰是自然現象，量多量少無法保證。","src":["https://tour.settour.com.tw/product/GFG0000025120","https://tour.settour.com.tw/product/GFG0000026706","https://vacation.eztravel.com.tw/pkgfrn/p/VDR0000001943/CTST5CI26001"]},
+        {"n":"層雲峽冰瀑祭","pop":2,"p":"01","x":"北海道三大冬祭之一，約 1 月下旬開幕，冰柱與冰洞夜間打燈，常和旭山動物園、流冰排在同一團。","src":["https://www.kkday.com/zh-hk/blog/109801/sounkyo-ice-fall-festival","https://tour.settour.com.tw/product/GFG0000027454"]},
+        {"n":"阿寒湖冰上活動與旭山動物園企鵝散步","pop":2,"p":"01","x":"結冰的阿寒湖上玩雪上摩托車、冰上滑梯；旭山動物園冬季企鵝散步是道東團常見安排。","src":["https://tour.settour.com.tw/product/GFG0000027454","https://vacation.eztravel.com.tw/pkgfrn/p/VDR0000001943/CTST5CI26001"]},
+        {"n":"白川鄉合掌村點燈","pop":3,"p":"21","x":"一年只辦幾晚（2027 年預定 1/11、1/17、1/24、1/31），雪中合掌屋點燈，名額稀少，各家旅行社都推限定團。","src":["https://www.kkday.com/zh-tw/blog/3549/asia-japan-gassho-zukuri-light-up","https://tour.settour.com.tw/product/GFG0000028137","https://www.travel4u.com.tw/en/group/itinerary/NGO05JX3/","https://tour.colatour.com.tw/itinerary?PatternNo=246670"]},
+        {"n":"藏王樹冰與銀山溫泉","pop":3,"x":"藏王纜車上看「雪怪」樹冰，1 月下旬後最明顯，夜間有點燈；常與山形銀山溫泉雪夜排成東北冬季團。","src":["https://www.kkday.com/zh-tw/blog/184241/asia-japan-northeast-snow-monster","https://tour.settour.com.tw/product/GFG0000028885","https://tour.settour.com.tw/product/GFG0000025013"]},
+        {"n":"沖繩寒緋櫻：八重岳、今歸仁城","pop":2,"p":"47","x":"日本最早的櫻花，本部八重岳約 1 月中旬開花，今歸仁城跡約 1 月下旬；花期每年差一週左右。","src":["https://www.colatour.com.tw/C10A_TourSell/C10A16_TourItinerary.aspx?PatternNo=224349","https://tour.settour.com.tw/product/GFG0000025603","https://www.kkday.com/zh-hk/blog/53797/okinawa-sakura"]},
+        {"n":"新年初詣與福袋","pop":1,"x":"元旦前三天到明治神宮、伏見稻荷等神社參拜，百貨公司新年福袋；人潮多，行程安排要預留時間。","src":["https://www.kkday.com/zh-hk/blog/101339/kyoto","https://www.colatour.com.tw/webDM/theme/newyearparty/pkg.html"]}
+      ],
+      "KR": [
+        {"n":"華川山鱒魚冰雪節","pop":3,"x":"約 1 月中旬至 2 月初，在結冰的華川川上冰釣山鱒魚、現烤品嚐，還有冰上雪橇；山富、東南、易遊網、KKday 都有專團，天候不佳可能延期。","src":["https://www.travel4u.com.tw/en/group/itinerary/SEL0524CD/","https://tour.settour.com.tw/product/GFG0000029056","https://vacation.eztravel.com.tw/pkgfrn/p/VDR0000001925/GFG0000032990","https://www.kkday.com/zh-tw/product/546968"]},
+        {"n":"江原道滑雪體驗","pop":3,"x":"韓國冬季團幾乎都排滑雪場半日體驗，1 月雪況最穩。","src":["https://tour.settour.com.tw/product/GFG0000025151","https://www.travel4u.com.tw/en/group/area/14/seoul/"]},
+        {"n":"冬季採草莓","pop":2,"x":"1 月是韓國溫室草莓盛產期，常和冰釣、滑雪組成冬季團。","src":["https://tour.settour.com.tw/product/GFG0000029056","https://vacation.eztravel.com.tw/pkgfrn/p/VDR0000001925/GFG0000032990"]},
+        {"n":"濟州漢拏山 1100 高地雪景與山茶花","pop":2,"x":"冬季濟州團常排 1100 高地「銀河雪」、山茶花之丘、採橘子；山上比市區低 6～10 度。","src":["https://www.colatour.com.tw/C10A_TourSell/C10A16_TourItinerary.aspx?PatternNo=211106","https://vacation.eztravel.com.tw/pkgfrn/p/VDR0000001838/216645","https://activity.eztravel.com.tw/detail/TKNKL-137743"]}
+      ],
+      "CN": [
+        {"n":"哈爾濱冰雪大世界","pop":3,"x":"1 月是冰雪大世界最完整的時期（約 12/25 開園），東南、可樂、山富都有冰雪團，晚上冰燈最漂亮。","src":["https://tour.settour.com.tw/product/GFG0000028826","https://www.colatour.com.tw/C10A_TourSell/C10A16_TourItinerary.aspx?PatternNo=223999","https://www.travel4u.com.tw/group/itinerary/HRB08MU01/"]},
+        {"n":"雪鄉蘑菇屋","pop":3,"x":"厚雪覆蓋的屋頂像蘑菇，景區限制車輛進入，需步行；東北冰雪團必排。","src":["https://tour.settour.com.tw/product/GFG0000028493","https://www.colatour.com.tw/C10A_TourSell/C10A16_TourItinerary.aspx?PatternNo=229247"]},
+        {"n":"吉林霧凇與長白山","pop":2,"x":"松花江畔霧凇長廊、長白山溫泉與天池；霧凇看天氣，天池遇大風會關閉。","src":["https://www.colatour.com.tw/C10A_TourSell/C10A16_TourItinerary.aspx?PatternNo=229169","https://tour.settour.com.tw/product/GFG0000002684","https://vacation.eztravel.com.tw/pkgfrn/p/VDR0000001888/HRB08CZ01"]},
+        {"n":"亞布力滑雪","pop":2,"x":"中國規模最大的滑雪場之一，哈爾濱冰雪團常排半日滑雪。","src":["https://tour.settour.com.tw/product/GFG0000028826","https://www.colatour.com.tw/C10A_TourSell/C10A03_TourItinerary.aspx?TourCode=KRC122108BR9&TourDate=2019/12/21&GASource=%E7%B3%BB%E5%88%97%E5%9C%98%E6%9F%A5%E8%A9%A2"]}
+      ],
+      "TW": [
+        {"n":"賞梅：信義鄉、梅山公園、角板山","pop":2,"x":"1 月中旬到 2 月中旬是梅花季，南投信義、嘉義梅山、桃園角板山最有名。","src":["https://www.kkday.com/zh-tw/blog/237640/asia-taiwan-blossom-season","https://blog.settour.com.tw/taiwan/taipeiflower/"]},
+        {"n":"早櫻：淡水天元宮、平菁街","pop":2,"x":"1 月下旬起山櫻花、八重櫻陸續開，淡水天元宮與平菁街 42 巷人潮最多。","src":["https://www.kkday.com/zh-tw/blog/66055/asia-taiwan-sakura-attractions","https://www.kkday.com/zh-tw/blog/66458/asia-taiwan-taipei-sakura"]},
+        {"n":"大湖草莓季","pop":2,"x":"苗栗大湖冬季草莓盛產，現採加草莓製品，可順遊泰安溫泉。","src":["https://www.kkday.com/zh-tw/blog/237640/asia-taiwan-blossom-season"]},
+        {"n":"冬季泡湯：礁溪、北投、烏來","pop":1,"x":"寒流來時最適合泡湯，烏來還能順便看早開的櫻花。","src":["https://www.kkday.com/zh-tw/blog/95152/asia-taiwan-chinese-newyear-vacation"]}
+      ],
+      "HK": [
+        {"n":"維港兩岸與太平山頂夜景","pop":2,"x":"1 月香港乾燥涼爽、能見度好，最適合山頂纜車與維港夜景。","src":["https://www.kkday.com/en-us/destination/hk-hong-kong-island","https://www.kkday.com/zh-tw/blog/57956/january-where-to-travel"]},
+        {"n":"西九文化區：M+、香港故宮文化博物館","pop":1,"x":"冬季適合看展，兩館都在西九海濱，可一起排半天。","src":["https://www.kkday.com/en-us/destination/hk-kowloon"]}
+      ],
+      "MN": [
+        {"n":"蒙古冬季雪原：狗拉雪橇、騎馬、蒙古包","pop":1,"x":"特勒吉國家公園冰封的土拉河上玩狗拉雪橇，住暖氣蒙古包；1 月氣溫常低於零下 20 度。","src":["https://www.colatour.com.tw/webDM/theme/snowfun/tour.html","https://www.selenatravel.com/dog-sledding-on-the-frozen-tuul-river"]},
+        {"n":"烏蘭巴托冬季活動","pop":1,"x":"市區有冰雕與冬季市集，庫蘇古爾湖冰雪節則在 3 月，不在 1 月。","src":["https://tour2mongolia.com/travel-tips/what-to-do-and-see-in-ulaanbaatar-in-winter","https://www.nationalgeographic.com/travel/destinations/asia/mongolia/winter-khovsgol-festival-of-ice/"]}
+      ],
+      "TH": [
+        {"n":"清邁涼季：古城、寺廟、山地部落","pop":3,"x":"1 月是泰北最涼爽乾燥的時候，早晚約 15 度，適合古城騎車、國家公園健行；花卉節通常在 2 月初。","src":["https://www.kkday.com/zh-tw/blog/202395/asia-thailand-weather-travelseason","https://tour.settour.com.tw/product/GFG0000002168","https://www.travel4u.com.tw/en/group/itinerary/CNX05003C/"]},
+        {"n":"普吉島跳島：皮皮島、攀牙灣","pop":3,"x":"安達曼海 11～4 月風浪最小，1 月海水最清，是跳島浮潛旺季。","src":["https://www.kkday.com/zh-tw/blog/202395/asia-thailand-weather-travelseason","https://www.settour.com.tw/act/mkt/giftwine/index.html"]},
+        {"n":"曼谷涼季","pop":2,"x":"1 月曼谷不太熱也少雨，大皇宮、鄭王廟、水上市場可以白天慢慢逛。","src":["https://www.kkday.com/zh-tw/blog/202395/asia-thailand-weather-travelseason","https://blog.eztravel.com.tw/thailand-travel/"]}
+      ],
+      "VN": [
+        {"n":"中越峴港、會安古鎮","pop":3,"x":"1 月起中越進入少雨期，會安燈籠夜景、巴拿山黃金佛手橋是各家越南團主力。","src":["https://www.kkday.com/zh-tw/blog/172123/asia-vietnam-dagang-weather-guide","https://www.travel4u.com.tw/en/group/itinerary/HAN07DADVNK1/","https://travel.liontravel.com/category/zh-tw/vietnam/index"]},
+        {"n":"富國島乾季度假","pop":2,"x":"南越 1 月是乾季，海島晴天多，台中、桃園都有直飛團。","src":["https://www.liontravel.com/category/zh-tw/fromtaichung/southeastasia","https://www.kkday.com/zh-hk/blog/phu-quoc-travel-guide/122856/phu-quoc-island-self-guided-tour"]},
+        {"n":"北越下龍灣與沙壩","pop":1,"x":"1 月下龍灣少雨但常起海霧、能見度較差；沙壩可能低溫甚至下雪，要準備禦寒衣物。","src":["https://www.kkday.com/zh-hk/blog/ha-long-bay/127306/halong-bay-weather-best-season-cruise-guide","https://www.settour.com.tw/act/gfg/southeast_asia/vietnam/"]}
+      ],
+      "SG": [
+        {"n":"新馬雙國團","pop":2,"x":"新加坡 1 月偶有陣雨，但以室內景點、聖淘沙與濱海灣為主，影響不大；常和馬來西亞排在同一團。","src":["https://www.settour.com.tw/cms/P01/City_Singapore-002.shtml","https://www.settour.com.tw/act/gfg/southeast_asia/malaysia/index0.html"]},
+        {"n":"濱海灣花園與聖淘沙","pop":2,"x":"擎天樹燈光秀、雲霧林、聖淘沙環球影城是新加坡必排，雨天也能安排室內館。","src":["https://www.kkday.com/zh-hk/blog/53051/singapore-travel-guide"]}
+      ],
+      "MY": [
+        {"n":"麻六甲古城（新馬團）","pop":2,"x":"世界遺產古城，荷蘭紅屋、雞場街夜市，新馬團必經。","src":["https://www.settour.com.tw/act/gfg/southeast_asia/malaysia/index0.html"]},
+        {"n":"沙巴亞庇","pop":1,"x":"1 月仍是沙巴雨季，多是短暫午後雷陣雨，跳島與浮潛條件較差，最佳是 5～9 月。","src":["https://www.kkday.com/zh-tw/blog/18733/asia-malaysia-sabah-guide"]}
+      ],
+      "ID": [
+        {"n":"峇里島度假","pop":2,"x":"1 月是峇里島雨季也是淡季，價格較低，午後陣雨通常很快就停。","src":["https://www.settour.com.tw/cms/P01/City_Bali-002.shtml","https://www.kkday.com/zh-hk/blog/30456/indonesia-travelling-information"]},
+        {"n":"烏布梯田與寺廟","pop":1,"x":"雨季的德格拉朗梯田最翠綠，海神廟、聖泉寺可安排在上午避開午後雨。","src":["https://www.kkday.com/zh-hk/blog/117538/2025%E5%B3%87%E9%87%8C%E5%B3%B6%E8%87%AA%E7%94%B1%E8%A1%8C%E4%B8%80%E7%AF%87%E6%90%9E%E5%AE%9A%E5%B3%87%E9%87%8C%E5%B3%B6%E6%99%AF%E9%BB%9E%E7%BE%8E%E9%A3%9F"]}
+      ],
+      "PH": [
+        {"n":"宿霧 Sinulog 節","pop":2,"x":"每年 1 月第三個星期日的聖嬰節大遊行，上百萬人湧入宿霧；遊行日交通管制，飯店要提早 3～6 個月訂。","src":["https://bohol-philippines.com/whats-on-in-bohol-cebu","https://suroy.ph/sinulog-festival-in-cebu-city-a-feast-for-the-senses","https://vacation.eztravel.com.tw/pkgfrn/p/VDR0000001914/CEB05BR12"]},
+        {"n":"長灘島","pop":3,"x":"1 月是乾季旺季，白沙灘、帆船夕陽、跳島浮潛，雄獅與 KKday 都主推。","src":["https://www.kkday.com/zh-tw/blog/3539/asia-philippines-boracay-must-visit","https://travel.liontravel.com/category/zh-tw/philippines/index"]}
+      ],
+      "KH": [
+        {"n":"吳哥窟","pop":2,"x":"1 月乾季、氣溫舒適，是看吳哥窟日出最好的時候，但也是人最多的旺季。","src":["https://threeland.com/blogs/cambodia-in-january-the-ultimate-guide-for-us-travelers","https://www.travellocal.com/en/articles/the-best-time-to-visit-laos-and-cambodia"]}
+      ],
+      "LAO": [
+        {"n":"龍坡邦古城與布施","pop":2,"x":"1 月不濕不熱，是寮國最好的旅遊月份；清晨僧侶托缽布施、光西瀑布。","src":["https://www.idctravel.com/blog/laos-in-january.html","https://www.travellocal.com/en/articles/the-best-time-to-visit-laos-and-cambodia"]},
+        {"n":"湄公河慢船","pop":1,"x":"乾季水位適中，龍坡邦到會曬的兩天慢船很受背包客歡迎。","src":["https://www.idctravel.com/blog/laos-in-january.html"]}
+      ],
+      "MM": [
+        {"n":"蒲甘萬塔平原","pop":1,"x":"1 月乾季天氣最好，清晨熱氣球飛越佛塔群；出發前請確認當地安全情勢。","src":["https://www.selectiveasia.com/weather/january","https://www.insideasiatours.com/us/month/january"]}
+      ],
+      "BN": [
+        {"n":"帝國酒店與水村","pop":2,"x":"汶萊團主打帝國酒店、清真寺與世界最大水上村落，雨季陣雨不影響室內行程。","src":["https://www.travel4u.com.tw/group/itinerary/BWN05BI2017/","https://vacation.eztravel.com.tw/pkgfrn/p/VDR0000009616/27BNBI1"]},
+        {"n":"紅樹林長鼻猴生態","pop":2,"x":"搭船進紅樹林找長鼻猴，汶萊團常見安排。","src":["https://vacation.eztravel.com.tw/pkgfrn/p/VDR0000001846/24BWN5D1","https://www.colatour.com.tw/C10A_TourSell/C10A16_TourItinerary.aspx?PatternNo=211288"]}
+      ],
+      "IN": [
+        {"n":"印度金三角：德里、阿格拉、齋浦爾","pop":3,"x":"10～3 月乾爽涼爽，1 月是北印度旅遊旺季；泰姬瑪哈陵早晨常有霧，早晚溫差大。","src":["https://www.settour.com.tw/act/gfg/africa/india/","https://vacation.eztravel.com.tw/pkgfrn/tipInfo/FRN0000015220","https://www.travel4u.com.tw/en/group/area/144/sri-lanka-india/"]},
+        {"n":"瓦拉納西恆河","pop":2,"x":"清晨恆河遊船看沐浴與祭典，冬季早晨很冷。","src":["https://www.settour.com.tw/act/gfg/africa/india/"]}
+      ],
+      "NP": [
+        {"n":"加德滿都谷地古城與寺廟","pop":2,"x":"冬季乾燥少雨，1 月平均雨量幾乎為零，天空清澈、看得到雪山。","src":["https://www.kkday.com/en-us/destination/np-nepal","https://www.settour.com.tw/act/gfg/africa/india/nepal.html"]},
+        {"n":"博卡拉魚尾峰與奇旺","pop":2,"x":"費娃湖與安娜普納山景，奇旺國家公園看犀牛；山區夜晚很冷。","src":["https://vacation.eztravel.com.tw/pkgfrn/p/VDR0000001925/GFG0000033384","https://www.settour.com.tw/act/gfg/africa/india/nepal.html"]}
+      ],
+      "LK": [
+        {"n":"西南與南部海岸、文化三角","pop":2,"x":"12～4 月是西南部乾季，獅子岩、康提佛牙寺、加勒古城最適合；東岸海灘則要等 5～9 月。","src":["https://blog.settour.com.tw/world/srilanka/","https://www.travel4u.com.tw/en/group/area/144/sri-lanka-india/"]}
+      ],
+      "MV": [
+        {"n":"馬爾地夫度假村","pop":3,"x":"1 月是東北季風乾季，晴朗少雨、海水能見度高，是度假村旺季。","src":["https://www.settour.com.tw/act/gfg/maldives/cover.html","https://blog.settour.com.tw/southeast-asia/maldives-hotel/"]}
+      ],
+      "UZ": [
+        {"n":"撒馬爾罕、布哈拉淡季古城","pop":1,"x":"1 月很冷但遊客少，藍色清真寺與經學院可以慢慢看，部分戶外餐廳休業。","src":["https://www.intrepidtravel.com/us/uzbekistan/best-time-to-visit-uzbekistan","https://www.holidify.com/pages/winter-in-uzbekistan-6995.html"]},
+        {"n":"阿米爾索伊滑雪","pop":1,"x":"塔什干近郊的滑雪度假村，1 月雪況最好。","src":["https://www.holidify.com/pages/winter-in-uzbekistan-6995.html"]}
+      ],
+      "TR": [
+        {"n":"卡帕多奇亞雪景熱氣球","pop":3,"x":"1 月有機會遇到雪中奇岩，熱氣球受天候影響大，取消會候補隔日；山富、易遊網、可樂都有 1 月團。","src":["https://www.travel4u.com.tw/en/group/itinerary/IST10TK3/","https://vacation.eztravel.com.tw/pkgfrn/p/VDR0000001846/TK9DNOFLY2/","https://tour.colatour.com.tw/itinerary?PatternNo=238089"]},
+        {"n":"棉堡與伊斯坦堡","pop":2,"x":"棉堡白色石灰華梯田與伊斯坦堡藍色清真寺、博斯普魯斯海峽遊船，冬季團必排；棉堡要赤腳走、地面濕滑。","src":["https://www.travel4u.com.tw/en/group/itinerary/IST10TK1C/","https://www.colatour.com.tw/webDM/tour/mideast/visitturkey/tour.html"]}
+      ],
+      "AE": [
+        {"n":"杜拜購物節","pop":2,"x":"約 12 月中旬到 1 月下旬，全城折扣、地球村攤位與煙火；正式日期以杜拜旅遊局公告為準。","src":["https://vacation.eztravel.com.tw/pkgfrn/p/VDR0000001846/26DXB1228","https://tour.settour.com.tw/product/GFG0000031215"]},
+        {"n":"沙漠衝沙與營地晚餐","pop":3,"x":"1 月是杜拜最涼爽的月份，沙漠吉普車衝沙、營地晚餐是各家杜拜團必排。","src":["https://www.colatour.com.tw/C10A_TourSell/C10A16_TourItinerary.aspx?PatternNo=227897","https://tour.settour.com.tw/product/GFG0000013286","https://www.kkday.com/zh-tw/blog/228622/asia-uae-dubai-traval"]},
+        {"n":"杜拜奇蹟花園","pop":2,"x":"只在冬季開放的花園，1 月花況好。","src":["https://tour.settour.com.tw/product/GFG0000024619"]}
+      ],
+      "JO": [
+        {"n":"佩特拉與瓦地倫","pop":1,"x":"1 月是約旦最冷的月份，佩特拉偶爾下雪，瓦地倫沙漠夜晚接近零度；遊客少。","src":["https://travel.liontravel.com/category/zh-tw/middleeast/index"]},
+        {"n":"死海漂浮","pop":1,"x":"死海海拔低於海平面 400 多公尺，冬季比安曼溫暖許多，仍可以下水漂浮。","src":["https://travel.liontravel.com/category/zh-tw/middleeast/index"]}
+      ]
+    },
     "11": {
       "JP": [
         {"n":"京都賞楓：嵐山、東福寺、永觀堂、清水寺","pop":3,"p":"26","x":"京都多數名所 11 月中旬到 12 月初最紅，也是各家旅行社關西賞楓團的主軸，部分行程加排夜楓點燈。","src":["https://livejapan.com/zh-tw/article-a0002628/","https://event.liontravel.com/zh-tw/japan/november-travel","https://www.travel4u.com.tw/group/itinerary/OSA05CIV01/"]},
