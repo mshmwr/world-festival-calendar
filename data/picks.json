@@ -462,6 +462,47 @@
       ],
       "IS": [
         {"n":"冰島極光與冰洞","pop":2,"x":"冬季是冰島極光與藍冰洞季，台灣旅行社的冬季冰島團較少，多為極光主題團。","src":["https://vacation.eztravel.com.tw/activity/aurora/","https://www.settour.com.tw/act/theme/aurora/"]}
+      ],
+      "US": [
+        {"n":"紐約時代廣場跨年","pop":3,"x":"全球最知名的跨年倒數，多家旅行社有 12 月底出發的 8～9 日美東跨年團，31 日自由活動讓團員提早卡位。","src":["https://www.colatour.com.tw/C10A_TourSell/C10A16_TourItinerary.aspx?PatternNo=228893","https://vacation.eztravel.com.tw/pkgfrn/p/VDR0000001943/JFK09CIT02","https://tour.settour.com.tw/product/GFG0000012346"]},
+        {"n":"美東三大名城：紐約、華盛頓、費城","pop":2,"x":"跨年團的白天行程，含自由女神遊船、EDGE 觀景台與聖誕購物季。","src":["https://www.colatour.com.tw/C10A_TourSell/C10A16_TourItinerary.aspx?PatternNo=228893","https://tour.settour.com.tw/product/GFG0000012346"]}
+      ],
+      "CA": [
+        {"n":"黃刀鎮極光","pop":3,"x":"12 月有多個出發日的黃刀鎮極光團，連住三晚、兩家極光營地與狗拉雪橇；天候常影響飛黃刀鎮的航班，極光無法保證。","src":["https://tour.colatour.com.tw/itinerary?PatternNo=242114","https://www.colatour.com.tw/webDM/theme/aurora/canada.html","https://www.travel4u.com.tw/en/group/itinerary/YZF12JX/"]},
+        {"n":"洛磯山脈冬季國家公園","pop":2,"x":"黃刀鎮雙主題團加排班夫、露易絲湖與冰原雪車。","src":["https://tour.colatour.com.tw/itinerary?PatternNo=239139","https://www.travel4u.com.tw/en/group/itinerary/YZF12JX/"]}
+      ],
+      "MX": [
+        {"n":"墨西哥城與馬雅遺址","pop":1,"x":"12 月是乾季，台灣旅行社的墨西哥團多集中在 10 月底亡靈節，年底班次少。","src":["https://www.travel4u.com.tw/en/group/area/31/central-america-south-america/","https://event.liontravel.com/zh-tw/latin-america/index"]}
+      ],
+      "BR": [
+        {"n":"伊瓜蘇瀑布（南極遊輪前後段）","pop":1,"x":"南半球夏季，12 月出發的南極遊輪行程含巴西、阿根廷兩側的伊瓜蘇瀑布。","src":["https://travel.liontravel.com/category/zh-tw/centralsouthamerica/index"]}
+      ],
+      "PE": [
+        {"n":"馬丘比丘與的的喀喀湖","pop":2,"x":"12 月初仍有秘魯 12 日團與秘魯玻利維亞天空之鏡 15 日團出發；當地已進入雨季，雨多在午後。","src":["https://www.travel4u.com.tw/en/group/area/31/central-america-south-america/","https://travel.liontravel.com/category/zh-tw/centralsouthamerica/index"]}
+      ],
+      "AR": [
+        {"n":"南極半島遊輪","pop":2,"x":"12 月是南極旅遊旺季，遊輪多從阿根廷出發，旅行社有 12 月 1 日出發的 20 日行程。","src":["https://travel.liontravel.com/category/zh-tw/centralsouthamerica/index"]},
+        {"n":"巴塔哥尼亞冰川","pop":1,"x":"南半球夏季是巴塔哥尼亞的旅遊旺季，阿根廷單國團含莫雷諾冰川健行與火地島。","src":["https://travel.liontravel.com/category/zh-tw/centralsouthamerica/index"]}
+      ],
+      "EG": [
+        {"n":"金字塔、尼羅河遊輪與阿布辛貝","pop":3,"x":"冬季涼爽是埃及旅遊旺季，開羅 12 月高溫約 21 度、早晚溫差大；多家旅行社 12 月有出團。","src":["https://travel.liontravel.com/category/zh-tw/africa/index","https://tour.colatour.com.tw/search?DepartureCity=*&KeyWord=%E5%9F%83%E5%8F%8A","https://tour.settour.com.tw/africa_middle_east.html"]}
+      ],
+      "MA": [
+        {"n":"撒哈拉與皇城","pop":2,"x":"冬季白天舒適但沙漠夜晚很冷；台灣旅行社摩洛哥團 12 月班次較少，多在 1 月後。","src":["https://tour.colatour.com.tw/search?KeyWord=%E6%91%A9%E6%B4%9B%E5%93%A5","https://travel.liontravel.com/category/zh-tw/africa/index"]}
+      ],
+      "ZA": [
+        {"n":"開普敦與克魯格國家公園","pop":1,"x":"南半球夏季陽光充足、早晚溫差大；台灣旅行社的南非團多在 1 月以後出發。","src":["https://travel.liontravel.com/category/zh-tw/africa/index"]}
+      ],
+      "KE": [
+        {"n":"馬賽馬拉野生動物遊獵","pop":1,"x":"12 月較乾燥，適合看野生動物，但台灣旅行社網站上少見 12 月出發的肯亞團。","src":["https://travel.liontravel.com/category/zh-tw/africa/index"]}
+      ],
+      "AU": [
+        {"n":"雪梨跨年煙火","pop":3,"x":"全球最早的大型跨年煙火之一，多家旅行社有 12 月 24～30 日出發的 7～11 日跨年團，部分安排海港景觀餐廳或煙火船。","src":["https://www.colatour.com.tw/webDM/tour/aus/newyearparty/sydney_firework.html","https://www.settour.com.tw/act/gfg/oceania/australia/event.html","https://tour.settour.com.tw/product/GFG0000027416"]},
+        {"n":"藍山國家公園與雪梨港灣遊船","pop":2,"x":"跨年團的白天行程，南半球夏季的三姊妹岩與港灣。","src":["https://www.colatour.com.tw/C10A_TourSell/C10A16_TourItinerary.aspx?PatternNo=220449","https://tour.settour.com.tw/product/GFG0000024172"]},
+        {"n":"墨爾本與神仙企鵝","pop":2,"x":"雪梨加墨爾本的跨年雙城團，含普芬比利蒸汽火車與菲利普島企鵝歸巢。","src":["https://tour.settour.com.tw/product/GFG0000027416","https://www.colatour.com.tw/C10A_TourSell/C10A16_TourItinerary.aspx?PatternNo=220449"]}
+      ],
+      "NZ": [
+        {"n":"紐西蘭南北島夏季","pop":2,"x":"12 月進入南半球夏季、日照長，南北島團含冰河、峽灣與皇后鎮。","src":["https://www.settour.com.tw/act/gfg/oceania/newzealand/index.html","https://www.travel4u.com.tw/en/group/category/10/newzealand-australia/"]}
       ]
     }
   }
