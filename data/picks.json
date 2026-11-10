@@ -1664,6 +1664,195 @@
         {"n":"紐西蘭冬季","pop":1,"x":"南島滑雪季，東南有南北島團。","src":["https://tour.settour.com.tw/oceania.html"]}
       ]
     },
+    "9": {
+      "JP": [
+        {"n":"北海道大雪山初紅葉","pop":2,"p":"01","x":"大雪山旭岳、層雲峽 9 月上中旬開始轉紅，是日本最早的紅葉。","src":["https://www.kkday.com/zh-hk/blog/japanese-maple-guide/128576/hokkaido-autumn-leaves-guide","https://www.colatour.com.tw/webDM/theme/maple/japan.html"]},
+        {"n":"立山黑部紅葉","pop":2,"p":"16","x":"9 月下旬到 10 月中旬高海拔紅葉，山上已很冷。","src":["https://www.kkday.com/zh-hk/blog/127050/tateyama-kurobe-alpine-route-maple-viewing","https://www.settour.com.tw/act/mkt/mapletime/index.html"]},
+        {"n":"大阪、京都","pop":1,"x":"9 月仍熱、颱風多，下旬起轉涼；9 月中旬岸和田山車祭。","src":["https://www.kkday.com/zh-tw/blog/213726/september-where-to-travel"]}
+      ],
+      "KR": [
+        {"n":"中秋節（秋夕）","pop":1,"x":"2027 年 9/14～9/16 秋夕連假，景福宮有民俗活動，但許多店家休息、交通擁擠。","src":["https://publicholidays.co.kr/chuseok/"]},
+        {"n":"濟州秋季","pop":1,"x":"9 月濟州芒草與秋花開始。","src":["https://www.kkday.com/zh-tw/blog/213726/september-where-to-travel"]}
+      ],
+      "CN": [
+        {"n":"九寨溝與北疆秋色","pop":2,"x":"9 月下旬北疆喀納斯、禾木村金黃秋色，九寨溝 10 月最美。","src":["https://www.travel4u.com.tw/en/group/area/78/xing-jiang-northwestern-china/","https://www.settour.com.tw/act/gfg/china/shinjang/"]},
+        {"n":"中秋節","pop":1,"x":"2027 年 9/15。","src":["https://www.officeholidays.com/calendars/2027/09/15"]}
+      ],
+      "TW": [
+        {"n":"中秋烤肉與教師節","pop":1,"x":"2027 年中秋 9/15（無連假），教師節 9/28。","src":["https://www.kkday.com/zh-tw/blog/240209/asia-taiwan-2027-holiday"]}
+      ],
+      "HK": [
+        {"n":"中秋大坑舞火龍","pop":1,"x":"中秋前後三晚，大坑舞火龍是非物質文化遺產；9 月仍可能有颱風。","src":["https://www.kkday.com/zh-tw/blog/18243/best-time-to-travel"]}
+      ],
+      "MN": [
+        {"n":"蒙古秋季","pop":1,"x":"9 月上旬草原轉黃，中旬後開始冷，旅遊季結束。","src":["https://www.travel4u.com.tw/en/group/area/68/mongolia-northern-china/"]}
+      ],
+      "TH": [
+        {"n":"清邁、檳城等城市短遊","pop":1,"x":"9 月雨季尾聲，城市行程影響不大。","src":["https://www.kkday.com/zh-tw/blog/213726/september-where-to-travel"]}
+      ],
+      "VN": [
+        {"n":"富國島、峴港會安","pop":2,"x":"KKday 9 月推薦的東南亞快閃目的地；中越 9 月下旬起雨季颱風。","src":["https://www.kkday.com/zh-tw/blog/213726/september-where-to-travel","https://www.kkday.com/zh-tw/blog/172123/asia-vietnam-dagang-weather-guide"]}
+      ],
+      "SG": [
+        {"n":"新加坡 F1 夜間賽與濱海灣","pop":2,"x":"9 月是新加坡推薦旅遊月份，環球影城、濱海灣花園適合親子。","src":["https://www.kkday.com/zh-tw/blog/213726/september-where-to-travel","https://www.kkday.com/zh-tw/blog/18243/best-time-to-travel"]}
+      ],
+      "MY": [
+        {"n":"檳城與沙巴","pop":1,"x":"檳城古城美食，沙巴乾季尾聲。","src":["https://www.kkday.com/zh-tw/blog/213726/september-where-to-travel"]}
+      ],
+      "ID": [
+        {"n":"峇里島乾季","pop":2,"x":"暑假過後人潮減少、仍是乾季，9 月是峇里島最推薦的月份之一。","src":["https://www.settour.com.tw/cms/P01/City_Bali-002.shtml","https://www.colatour.com.tw/webDM/theme/island/travel.html"]}
+      ],
+      "PH": [
+        {"n":"菲律賓雨季","pop":1,"x":"9 月颱風多。","src":["https://www.kkday.com/zh-tw/blog/18243/best-time-to-travel"]}
+      ],
+      "KH": [
+        {"n":"吳哥窟雨季","pop":1,"x":"9～10 月雨量最大。","src":["https://www.travellocal.com/en/articles/the-best-time-to-visit-laos-and-cambodia"]}
+      ],
+      "LAO": [
+        {"n":"龍坡邦雨季","pop":1,"x":"雨季尾聲。","src":["https://www.travellocal.com/en/articles/the-best-time-to-visit-laos-and-cambodia"]}
+      ],
+      "MM": [
+        {"n":"緬甸雨季","pop":1,"x":"雨季；出發前請確認當地安全情勢。","src":["https://www.audleytravel.com/us/southeast-asia/best-time-to-visit"]}
+      ],
+      "BN": [
+        {"n":"帝國酒店與水村","pop":1,"x":"汶萊團全年都有。","src":["https://www.travel4u.com.tw/group/itinerary/BWN05BI2017/"]}
+      ],
+      "IN": [
+        {"n":"拉達克秋季","pop":1,"x":"9 月拉達克仍適合旅遊，平原季風漸退。","src":["https://www.himalayanecotourism.com/hemis-festival-ladakh-in-2026-dates-history-travel-guide/"]}
+      ],
+      "NP": [
+        {"n":"加德滿都因陀羅節","pop":1,"x":"9 月加德滿都杜巴廣場的因陀羅節，活女神庫瑪麗出巡；季風月底結束。","src":["https://www.settour.com.tw/act/gfg/africa/india/nepal.html"]}
+      ],
+      "LK": [
+        {"n":"斯里蘭卡野生動物與古城","pop":1,"x":"KKday 9 月推薦，雅拉國家公園看豹、古城世界遺產。","src":["https://www.kkday.com/zh-tw/blog/213726/september-where-to-travel"]}
+      ],
+      "MV": [
+        {"n":"馬爾地夫","pop":1,"x":"雨季尾聲，價格低。","src":["https://www.settour.com.tw/act/gfg/maldives/cover.html"]}
+      ],
+      "UZ": [
+        {"n":"撒馬爾罕、布哈拉秋季","pop":2,"x":"9 月轉涼、瓜果盛產，秋季旅遊旺季開始；山富中亞團秋季出發。","src":["https://www.travel4u.com.tw/group/area/189/Central-Asia/","https://www.intrepidtravel.com/us/uzbekistan/best-time-to-visit-uzbekistan"]}
+      ],
+      "TR": [
+        {"n":"土耳其秋季","pop":3,"x":"9 月暑熱退去，熱氣球、棉堡與伊斯坦堡最舒適，秋季土耳其團多。","src":["https://www.travel4u.com.tw/en/group/area/141/turkey/","https://www.colatour.com.tw/webDM/tour/mideast/visitturkey/tour.html","https://www.settour.com.tw/act/gfg/africa/trukey/"]}
+      ],
+      "AE": [
+        {"n":"杜拜","pop":1,"x":"9 月仍很熱，10 月後轉旺季。","src":["https://www.kkday.com/zh-tw/blog/228622/asia-uae-dubai-traval"]}
+      ],
+      "JO": [
+        {"n":"佩特拉秋季","pop":1,"x":"9 月下旬開始轉涼。","src":["https://travel.liontravel.com/category/zh-tw/middleeast/index"]}
+      ],
+      "GB": [
+        {"n":"英國初秋","pop":2,"x":"9 月遊客減少、天氣仍穩，蘇格蘭高地秋色開始。","src":["https://tour.colatour.com.tw/search?TourArea=L","https://tour.settour.com.tw/europe.html"]}
+      ],
+      "IE": [
+        {"n":"愛爾蘭初秋","pop":1,"x":"9 月人潮減少。","src":["https://tour.colatour.com.tw/search?TourArea=L"]}
+      ],
+      "FR": [
+        {"n":"法國葡萄採收季","pop":2,"x":"9 月波爾多、勃根地、香檳區採收季。","src":["https://all.accor.com/a/en/limitless/thematics/travel-tips-guides/whats-on-in-september.html","https://tour.settour.com.tw/europe.html"]}
+      ],
+      "NL": [
+        {"n":"荷蘭初秋","pop":1,"x":"9 月天氣穩定。","src":["https://www.settour.com.tw/act/gfg/south-western_europe/index.html"]}
+      ],
+      "BE": [
+        {"n":"布魯日","pop":1,"x":"9 月遊客減少。","src":["https://www.settour.com.tw/act/gfg/south-western_europe/index.html"]}
+      ],
+      "DE": [
+        {"n":"慕尼黑啤酒節","pop":3,"x":"2027 年約 9/18 開幕到 10/3，世界最大啤酒節；KKday 9 月推薦，德國秋季團常排。帳篷座位要很早訂。","src":["https://www.oktoberfesttours.travel/oktoberfest-2027/schedule/","https://www.kkday.com/zh-tw/blog/213726/september-where-to-travel","https://tour.settour.com.tw/europe.html"]}
+      ],
+      "AT": [
+        {"n":"維也納秋季","pop":2,"x":"9 月維也納森林與瓦豪河谷葡萄採收。","src":["https://www.travel4u.com.tw/en/group/category/7/europe/"]}
+      ],
+      "CH": [
+        {"n":"瑞士初秋","pop":2,"x":"9 月天氣穩定、人潮比暑假少，高山健行好季節。","src":["https://event.liontravel.com/zh-tw/switzerland/index"]}
+      ],
+      "CZ": [
+        {"n":"布拉格初秋","pop":2,"x":"9 月氣候宜人，奧捷團秋季出發。","src":["https://www.settour.com.tw/act/gfg/south-western_europe/index.html"]}
+      ],
+      "HU": [
+        {"n":"布達佩斯初秋","pop":1,"x":"9 月葡萄酒節。","src":["https://justbudapest.com/budapest-in-winter/"]}
+      ],
+      "PL": [
+        {"n":"克拉科夫初秋","pop":1,"x":"9 月氣候宜人。","src":["https://www.krakowguide.net/?p=3016"]}
+      ],
+      "RU": [
+        {"n":"莫斯科秋季","pop":1,"x":"9 月秋色開始。","src":["https://kimkim.com/c/russia-in-january-travel-tips-weather-and-more"]}
+      ],
+      "RO": [
+        {"n":"外西凡尼亞秋季","pop":1,"x":"9 月葡萄採收與秋色。","src":["https://www.chasingthedonkey.com/romania-in-winter-in-romania-ideas/"]}
+      ],
+      "BG": [
+        {"n":"保加利亞秋季","pop":1,"x":"9 月里拉山與普羅夫迪夫。","src":["https://www.travel4u.com.tw/en/group/itinerary/SOF10TK/"]}
+      ],
+      "EE": [
+        {"n":"塔林初秋","pop":1,"x":"9 月遊客減少。","src":["https://www.settour.com.tw/act/gfg/europe/north/"]}
+      ],
+      "IT": [
+        {"n":"義大利秋季","pop":2,"x":"9 月暑熱退去，托斯卡尼葡萄採收、威尼斯影展（9 月初）。","src":["https://www.colatour.com.tw/C000_Portal/C000_HP01A_Main.aspx?TourArea=L-04","https://all.accor.com/a/en/limitless/thematics/travel-tips-guides/whats-on-in-september.html"]}
+      ],
+      "ES": [
+        {"n":"西班牙秋季","pop":2,"x":"9 月南部仍溫暖，西葡團秋季出發；9/24 巴塞隆納聖梅爾賽節。","src":["https://www.settour.com.tw/act/gfg/europe/spain/"]}
+      ],
+      "PT": [
+        {"n":"斗羅河谷葡萄採收","pop":1,"x":"9 月波特酒產區採收季。","src":["https://all.accor.com/a/en/limitless/thematics/travel-tips-guides/whats-on-in-september.html"]}
+      ],
+      "GR": [
+        {"n":"愛琴海秋季跳島","pop":2,"x":"9 月海水仍暖、人潮與價格比 8 月低。","src":["https://event.liontravel.com/zh-tw/europe/greece"]}
+      ],
+      "HR": [
+        {"n":"克羅埃西亞秋季","pop":2,"x":"9 月海岸仍可下水、人少。","src":["https://tour.settour.com.tw/product/GFG0000019727"]}
+      ],
+      "NO": [
+        {"n":"挪威峽灣秋季與極光季開始","pop":2,"x":"9 月峽灣秋色，北部極光季開始。","src":["https://www.settour.com.tw/act/theme/aurora/index.html","https://www.liontravel.com/promotion/northerneurope/scandinavia/tour.html"]}
+      ],
+      "SE": [
+        {"n":"北歐秋季","pop":1,"x":"拉普蘭秋色。","src":["https://www.liontravel.com/promotion/northerneurope/scandinavia/tour.html"]}
+      ],
+      "FI": [
+        {"n":"拉普蘭秋色 Ruska","pop":1,"x":"9 月上中旬拉普蘭苔原轉紅，也開始有極光。","src":["https://www.settour.com.tw/act/theme/aurora/index.html"]}
+      ],
+      "DK": [
+        {"n":"哥本哈根初秋","pop":1,"x":"9 月遊客減少。","src":["https://www.liontravel.com/promotion/northerneurope/scandinavia/tour.html"]}
+      ],
+      "IS": [
+        {"n":"冰島極光季開始","pop":2,"x":"9 月夜晚變長，極光季開始，高地路仍開放。","src":["https://tour.settour.com.tw/product/GFG0000018497","https://www.colatour.com.tw/webDM/theme/aurora/aurora_iceland.html"]}
+      ],
+      "US": [
+        {"n":"美國國家公園秋季","pop":2,"x":"9 月暑假人潮退去，黃石、大峽谷氣候舒適。","src":["https://www.colatour.com.tw/webDM/tour/usa/USnationalpark/tour.html","https://tour.settour.com.tw/america.html"]}
+      ],
+      "CA": [
+        {"n":"洛磯山秋色","pop":2,"x":"9 月中下旬落葉松轉金黃，東部楓葉 9 月底開始。","src":["https://tour.settour.com.tw/product/GFG0000017956","https://travel.liontravel.com/category/zh-tw/ca/westernca"]}
+      ],
+      "MX": [
+        {"n":"墨西哥獨立紀念日","pop":1,"x":"9/15 晚上墨西哥城憲法廣場「呼喊」儀式，9/16 閱兵。","src":["https://www.travel4u.com.tw/en/group/area/31/central-america-south-america/"]}
+      ],
+      "BR": [
+        {"n":"潘塔納爾乾季","pop":1,"x":"9 月乾季末，動物集中。","src":["https://travel.liontravel.com/category/zh-tw/centralsouthamerica/index"]}
+      ],
+      "PE": [
+        {"n":"馬丘比丘乾季","pop":2,"x":"9 月乾季尾聲，人潮比 7～8 月少。","src":["https://tour.settour.com.tw/product/GFG0000022499"]}
+      ],
+      "AR": [
+        {"n":"阿根廷春季","pop":1,"x":"9 月南半球春天，瓦爾德斯半島賞鯨季。","src":["https://travel.liontravel.com/category/zh-tw/centralsouthamerica/index"]}
+      ],
+      "EG": [
+        {"n":"埃及","pop":1,"x":"9 月仍熱，10 月後轉旺季。","src":["https://travel.liontravel.com/category/zh-tw/africa/index"]}
+      ],
+      "MA": [
+        {"n":"摩洛哥秋季","pop":2,"x":"9～10 月是摩洛哥最好的季節之一，撒哈拉轉涼。","src":["https://event.liontravel.com/zh-tw/africa/index","https://www.intrepidtravel.com/au/morocco/best-time-to-visit-morocco"]}
+      ],
+      "ZA": [
+        {"n":"納馬夸蘭野花與賞鯨","pop":1,"x":"9 月南非春天，野花季與赫曼努斯賞鯨。","src":["https://travel.liontravel.com/category/zh-tw/africa/index"]}
+      ],
+      "KE": [
+        {"n":"東非動物大遷徙","pop":3,"x":"7～9 月是大遷徙高峰（KKday 9 月推薦），東南、雄獅、山富都有團。","src":["https://www.kkday.com/zh-tw/blog/213726/september-where-to-travel","https://tour.settour.com.tw/product/GFG0000027847","https://www.travel4u.com.tw/en/group/area/151/kenya/"]}
+      ],
+      "AU": [
+        {"n":"坎培拉花節 Floriade 與墨爾本鬱金香","pop":1,"x":"9 月中到 10 月中澳洲春天花季，2027 年日期待公布。","src":["https://all.accor.com/a/en/limitless/thematics/travel-tips-guides/whats-on-in-september.html","https://www.kkday.com/zh-tw/blog/240209/asia-taiwan-2027-holiday"]}
+      ],
+      "NZ": [
+        {"n":"紐西蘭春季","pop":1,"x":"9 月春天、小羊出生，滑雪季尾聲。","src":["https://tour.settour.com.tw/oceania.html"]}
+      ]
+    },
     "11": {
       "JP": [
         {"n":"京都賞楓：嵐山、東福寺、永觀堂、清水寺","pop":3,"p":"26","x":"京都多數名所 11 月中旬到 12 月初最紅，也是各家旅行社關西賞楓團的主軸，部分行程加排夜楓點燈。","src":["https://livejapan.com/zh-tw/article-a0002628/","https://event.liontravel.com/zh-tw/japan/november-travel","https://www.travel4u.com.tw/group/itinerary/OSA05CIV01/"]},

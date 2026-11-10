@@ -67,7 +67,7 @@ const keys = allEv.map(e => `${e.c}|${e.p || ""}|${e.n}|${e.d || JSON.stringify(
 for (const k of keys.filter((x, i) => keys.indexOf(x) !== i)) fail("節慶", `重複項目 ${k}`);
 
 // 每月推薦：國家代碼、日本縣市代碼、重複名稱；REQUIRED_MONTHS 內的月份必須涵蓋全部國家
-const REQUIRED_MONTHS = ["1", "2", "3", "4", "5", "6", "7", "8", "11", "12"];
+const REQUIRED_MONTHS = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "11", "12"];
 const prefIds = new Set(ids);
 for (const [month, byCountry] of Object.entries(data.picks.picks)) {
   for (const [code, items] of Object.entries(byCountry)) {
