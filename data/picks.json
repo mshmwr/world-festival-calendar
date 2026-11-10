@@ -846,6 +846,45 @@
       ],
       "IS": [
         {"n":"冰島春季","pop":1,"x":"4 月白天快速變長，極光機會減少，藍冰洞季結束。","src":["https://www.colatour.com.tw/webDM/theme/aurora/aurora_iceland.html"]}
+      ],
+      "US": [
+        {"n":"美西國家公園：大峽谷、羚羊峽谷","pop":3,"x":"4 月春季氣溫舒適、還沒到夏季酷熱，可樂、東南、雄獅都有美西團（可樂 2027/4/2 出發）。","src":["https://vacation.eztravel.com.tw/pkgfrn/p/VDR0000001838/246172","https://tour.settour.com.tw/product/GFG0000016634","https://www.colatour.com.tw/webDM/tour/usa/USnationalpark/tour.html"]},
+        {"n":"華盛頓櫻花節（至 4/11）","pop":2,"x":"2027 年國家櫻花節到 4/11，4/3 有花瓣節煙火、4/10 大遊行。","src":["https://nationalcherryblossomfestival.org/faqs/"]}
+      ],
+      "CA": [
+        {"n":"溫哥華春季","pop":1,"x":"4 月溫哥華櫻花滿街，美加團常順遊西雅圖。","src":["https://vacation.eztravel.com.tw/pkgfrn/p/VDR0000001846/25CHERRYBR","https://www.settour.com.tw/act/gfg/america/canada/index.html"]}
+      ],
+      "MX": [
+        {"n":"坎昆與猶加敦","pop":1,"x":"4 月是乾季尾聲、開始炎熱，海灘與馬雅遺址。","src":["https://www.travel4u.com.tw/en/group/area/31/central-america-south-america/"]}
+      ],
+      "BR": [
+        {"n":"伊瓜蘇瀑布","pop":1,"x":"4 月雨季結束、水量仍大，氣溫轉涼。","src":["https://travel.liontravel.com/category/zh-tw/centralsouthamerica/index"]}
+      ],
+      "PE": [
+        {"n":"馬丘比丘乾季開始","pop":1,"x":"4 月是雨季轉乾季的過渡期，人潮比 6～8 月少；安地斯夜晚接近零度。","src":["https://kimkim.com/c/machu-picchu-in-april-travel-tips-weather-and-more","https://www.roughguides.com/peru/when-to-go/april"]}
+      ],
+      "AR": [
+        {"n":"巴塔哥尼亞秋色","pop":1,"x":"4 月南半球深秋，冰川區樹林轉紅，部分設施開始休季。","src":["https://travel.liontravel.com/category/zh-tw/centralsouthamerica/index"]}
+      ],
+      "EG": [
+        {"n":"金字塔、尼羅河遊輪","pop":2,"x":"4 月開始變熱，白天可達 30 度以上，行程宜排早上；春季仍有埃及團。","src":["https://event.liontravel.com/zh-tw/europe/goodluck","https://travel.liontravel.com/category/zh-tw/africa/index"]}
+      ],
+      "MA": [
+        {"n":"撒哈拉與皇城","pop":2,"x":"4 月是摩洛哥最好的季節之一，各地約 20 多度，亞特拉斯山健行適合；住宿要提早訂。","src":["https://www.intrepidtravel.com/au/morocco/best-time-to-visit-morocco","https://www.colatour.com.tw/C10A_TourSell/C10A16_TourItinerary.aspx?PatternNo=220092"]}
+      ],
+      "ZA": [
+        {"n":"開普敦秋季","pop":1,"x":"4 月白天約 22 度、晚上 12 度，海水偏冷，旅遊人潮減少。","src":["https://roughguides.com/articles/cape-town-weather-april-travel-tips","https://www.roughguides.com/south-africa/when-to-go/april/"]}
+      ],
+      "KE": [
+        {"n":"大雨季","pop":1,"x":"4 月是肯亞大雨季高峰，常有洪水，多數遊獵團不排 4 月，營地價格最低。","src":["https://www.standardmedia.co.ke/amp/business/counties/article/2001275316/watch-out-for-floods-as-long-rains-hit-peak-weather-experts","https://www.intrepidtravel.com/nz/kenya/best-time-to-visit-kenya"]}
+      ],
+      "AU": [
+        {"n":"澳紐軍團紀念日 ANZAC Day","pop":1,"x":"4/25 清晨各地有黎明追思儀式，坎培拉戰爭紀念館最隆重。","src":["https://anzacportal.dva.gov.au/anzac-day","https://www.awm.gov.au/anzac"]},
+        {"n":"澳洲秋季：雪梨、墨爾本","pop":2,"x":"4 月秋高氣爽，大洋路與藍山最舒適。","src":["https://vacation.eztravel.com.tw/oversea/america-canada-newzealand-australia/","https://tour.settour.com.tw/product/GFG0000027416"]}
+      ],
+      "NZ": [
+        {"n":"南島秋色：箭鎮、皇后鎮","pop":2,"x":"4 月中下旬箭鎮的金黃白楊最美，2027 年箭鎮秋季節約 4/15～4/18。","src":["https://www.queenstownnz.co.nz/stories/post/autumn-in-queenstown/","https://www.scenichotelgroup.co.nz/regions/articles/autumn-events/"]},
+        {"n":"紐西蘭南北島團","pop":2,"x":"秋季遊客少、天氣穩，庫克山與米佛峽灣。","src":["https://www.colatour.com.tw/webDM/tour/nz/NewZealand/tour.html","https://vacation.eztravel.com.tw/oversea/america-canada-newzealand-australia/"]}
       ]
     },
     "11": {
