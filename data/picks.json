@@ -307,6 +307,46 @@
       "MN": [
         {"n":"特勒吉國家公園狗拉雪橇","pop":1,"x":"河面結冰夠厚的 11～3 月可玩，有半小時體驗也有多日行程；12 月氣溫可能低到零下 25～40 度。","src":["https://www.selenatravel.com/dog-sledding-on-the-frozen-tuul-river","https://discovermongolia.mn/about-mongolia/things-to-do/dog-sledding"]},
         {"n":"烏蘭巴托冬季活動","pop":1,"x":"市區有室內國際標準冰場等冬季活動；冬季空污嚴重，呼吸道敏感者要注意。","src":["https://tour2mongolia.com/travel-tips/what-to-do-and-see-in-ulaanbaatar-in-winter"]}
+      ],
+      "TH": [
+        {"n":"清邁涼季與跨年","pop":3,"x":"11～12 月是清邁最佳季節，白天約 18～25 度、早晚溫差大；跨年夜有煙火與天燈活動。","src":["https://www.kkday.com/zh-tw/blog/202395/asia-thailand-weather-travelseason","https://www.kkday.com/zh-hk/blog/45820/thailand-chiang-mai","https://www.settour.com.tw/act/mkt/giftwine/index.html"]},
+        {"n":"普吉島跳島：皮皮島、攀牙灣","pop":3,"x":"12 月是南部海島的乾季旺季，跳島浮潛最穩定；跨年期間價格高、人多。","src":["https://www.kkday.com/zh-tw/blog/202395/asia-thailand-weather-travelseason","https://www.colatour.com.tw/webDM/theme/island/travel.html","https://www.settour.com.tw/act/mkt/giftwine/index.html"]},
+        {"n":"曼谷涼季","pop":2,"x":"11～2 月是泰國氣候最舒適的季節，也是旺季，熱門景點容易排隊。","src":["https://www.kkday.com/zh-tw/blog/202395/asia-thailand-weather-travelseason"]}
+      ],
+      "VN": [
+        {"n":"富國島乾季度假","pop":3,"x":"11～4 月乾季陽光充足，12 月 24 日到 1 月 3 日最擁擠，建議提早 2～3 個月訂機票與飯店。","src":["https://www.kkday.com/zh-hk/blog/phu-quoc-travel-guide/122856/phu-quoc-island-self-guided-tour","https://event.liontravel.com/zh-tw/trends/phuquoc","https://www.liontravel.com/category/zh-tw/fromtaichung/southeastasia"]},
+        {"n":"北越河內與下龍灣","pop":2,"x":"年底北越較涼、雨少，下龍灣遊輪仍是越南團主力；早晚需帶外套。","src":["https://www.kkday.com/zh-tw/blog/18243/best-time-to-travel","https://www.colatour.com.tw/webDM/package/sale/fitpackage/southeastasia.html"]}
+      ],
+      "SG": [
+        {"n":"濱海灣花園聖誕仙境","pop":2,"x":"年度大型聖誕活動，有燈光裝置、市集與人造飄雪；資料為往年內容，2026 年日期請以官方公告為準。","src":["https://www.kkday.com/zh-hk/blog/51049/singapore-christmas-wonderland","https://www.kkday.com/zh-my/blog/9486/singapore-christmaswonderland"]},
+        {"n":"濱海灣跨年煙火","pop":2,"x":"新加坡跨年的焦點，天氣溫暖，適合想避冬又想跨年的人。","src":["https://www.kkday.com/zh-tw/blog/136295/global-new-year-celebrations"]},
+        {"n":"新馬雙國團","pop":2,"x":"年底新馬團結合新加坡聖誕燈飾與馬六甲古城。","src":["https://www.settour.com.tw/act/gfg/southeast_asia/malaysia/index0.html"]}
+      ],
+      "MY": [
+        {"n":"麻六甲古城（新馬團）","pop":2,"x":"年底新馬團的固定行程，古城一帶年末熱鬧。","src":["https://www.settour.com.tw/act/gfg/southeast_asia/malaysia/index0.html"]},
+        {"n":"沙巴亞庇","pop":1,"x":"12 月處於西北季風雨季，下午常有陣雨，跳島行程可能受影響。","src":["https://www.kkday.com/zh-tw/blog/18733/asia-malaysia-sabah-guide"]}
+      ],
+      "ID": [
+        {"n":"峇里島跨年度假","pop":2,"x":"12 月是雨季但多為午後陣雨，跨年期間度假村熱門；烏布與梯田仍是經典行程。","src":["https://www.colatour.com.tw/webDM/theme/island/travel.html","https://www.settour.com.tw/cms/P01/City_Bali-002.shtml","https://www.kkday.com/zh-hk/blog/117538/2025%E5%B3%87%E9%87%8C%E5%B3%B6%E8%87%AA%E7%94%B1%E8%A1%8C%E4%B8%80%E7%AF%87%E6%90%9E%E5%AE%9A%E5%B3%87%E9%87%8C%E5%B3%B6%E6%99%AF%E9%BB%9E%E7%BE%8E%E9%A3%9F"]},
+        {"n":"佩尼達島快艇一日遊","pop":2,"x":"石灰岩斷崖與精靈海灘，雨季海象不穩時可能停航。","src":["https://www.kkday.com/zh-hk/blog/117538/2025%E5%B3%87%E9%87%8C%E5%B3%B6%E8%87%AA%E7%94%B1%E8%A1%8C%E4%B8%80%E7%AF%87%E6%90%9E%E5%AE%9A%E5%B3%87%E9%87%8C%E5%B3%B6%E6%99%AF%E9%BB%9E%E7%BE%8E%E9%A3%9F"]}
+      ],
+      "PH": [
+        {"n":"長灘島","pop":3,"x":"12～4 月是長灘島最佳季節，12 月雨季剛過、海況穩定；島上沒有機場，需經班乃島轉船。","src":["https://www.kkday.com/zh-tw/blog/22349/asia-philippines-boracay-first-visit-guide","https://www.kkday.com/zh-tw/blog/3539/asia-philippines-boracay-must-visit","https://travel.liontravel.com/category/zh-tw/philippines/index"]},
+        {"n":"宿霧與薄荷島","pop":2,"x":"菲律賓團的經典組合，年底仍可能有颱風尾，行程宜保留彈性。","src":["https://travel.liontravel.com/category/zh-tw/philippines/index","https://vacation.eztravel.com.tw/pkgfrn/p/VDR0000001914/CEB05BR12"]}
+      ],
+      "KH": [
+        {"n":"吳哥窟","pop":2,"x":"12 月乾燥晴朗、濕度低、均溫約 26 度，是一年中最舒適也最熱門的時期。","src":["https://www.selectiveasia.com/discover-asia/weather/december/","https://www.travellocal.com/articles/the-best-time-to-visit-laos-and-cambodia"]}
+      ],
+      "LAO": [
+        {"n":"龍坡邦","pop":2,"x":"12 月涼爽乾燥，雨季剛結束，古城寺廟與夜市最舒服的季節。","src":["https://www.selectiveasia.com/discover-asia/weather/december/","https://www.travellocal.com/articles/the-best-time-to-visit-laos-and-cambodia"]},
+        {"n":"湄公河遊船","pop":1,"x":"雨季剛過、河水仍高，適合坐船遊河。","src":["https://grantourismotravels.com/end-of-monsoon-in-northern-southeast-asia/"]}
+      ],
+      "MM": [
+        {"n":"蒲甘萬塔平原","pop":1,"x":"12 月幾乎無雨、約 17～30 度，是蒲甘熱氣球季；多國對緬甸發布旅遊警示，出發前請查詢外交部資訊。","src":["https://www.asiahighlights.com/southeast-asia/weather-in-december"]}
+      ],
+      "BN": [
+        {"n":"帝國酒店與水村","pop":2,"x":"汶萊團的固定組合，全年出團；年底屬婆羅洲雨季，以室內與水上行程為主較穩。","src":["https://www.travel4u.com.tw/group/itinerary/BWN05BI2017/","https://vacation.eztravel.com.tw/pkgfrn/p/VDR0000009616/27BNBI1"]},
+        {"n":"紅樹林長鼻猴生態","pop":2,"x":"搭船進紅樹林找長鼻猴，汶萊團常見行程。","src":["https://vacation.eztravel.com.tw/pkgfrn/p/VDR0000001846/24BWN5D1","https://www.colatour.com.tw/C10A_TourSell/C10A16_TourItinerary.aspx?PatternNo=211288"]}
       ]
     }
   }
