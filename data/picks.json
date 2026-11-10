@@ -550,7 +550,7 @@
         {"n":"馬爾地夫度假村","pop":3,"x":"3 月仍是乾季，晴朗少雨，海水能見度高。","src":["https://www.settour.com.tw/act/gfg/maldives/cover.html","https://blog.settour.com.tw/southeast-asia/maldives-hotel/"]}
       ],
       "UZ": [
-        {"n":"納吾肉孜節 Navruz","pop":1,"x":"3/21 波斯新年，撒馬爾罕、布哈拉有市集、傳統表演與 sumalak 甜粥；之後進入春季旅遊旺季。","src":["https://www.intrepidtravel.com/us/uzbekistan/best-time-to-visit-uzbekistan","https://www.roughguides.com/uzbekistan/when-to-go/december/"]}
+        {"n":"納吾肉孜節 Navruz","pop":1,"x":"3/21 波斯新年，聯合國非物質文化遺產；撒馬爾罕、布哈拉有市集、傳統表演與 sumalak 甜粥，之後進入春季旅遊旺季。","src":["https://uzbekistan.travel/en/o/navruz-and-spring-equinox","https://en.wikipedia.org/wiki/Navruz_in_Uzbekistan"]}
       ],
       "TR": [
         {"n":"土耳其春季：熱氣球、棉堡、伊斯坦堡","pop":3,"x":"3 月回暖、遊客還不多；齋戒月約到 3/9，之後是開齋節假期，景點人多。","src":["https://www.travel4u.com.tw/en/group/area/141/turkey/","https://www.colatour.com.tw/webDM/tour/mideast/visitturkey/tour.html","https://www.settour.com.tw/act/gfg/africa/trukey/"]}
@@ -640,6 +640,47 @@
       ],
       "IS": [
         {"n":"冰島極光與藍冰洞","pop":3,"x":"可樂冰島團排到 3 月中旬，春分前後極光活動強；藍冰洞約 3 月底結束。","src":["https://www.colatour.com.tw/webDM/theme/aurora/aurora_iceland.html","https://event.liontravel.com/zh-tw/winter-travel/aurora/index","https://www.settour.com.tw/act/theme/aurora/index.html"]}
+      ],
+      "US": [
+        {"n":"華盛頓 DC 國家櫻花節","pop":2,"x":"2027 年 3/20～4/11，適逢潮汐湖吉野櫻 100 週年；3/27 風箏節、4/10 遊行，滿開日每年不同。","src":["https://nationalcherryblossomfestival.org/faqs/","https://wjla.com/news/local/century-bloom-dc-unveils-big-plans-for-2027-cherry-blossom-festival-yoshino-trees-centennial-celebration-art-work-announcement"]},
+        {"n":"西雅圖華盛頓大學櫻花（美加團）","pop":2,"x":"3 月下旬到 4 月初盛開，雄獅、易遊網的美加團 3/27 出發，順遊洛磯山脈。","src":["https://vacation.eztravel.com.tw/pkgfrn/p/VDR0000001846/25CHERRYBR","https://tour.settour.com.tw/america.html"]},
+        {"n":"阿拉斯加極光季尾聲","pop":2,"x":"可樂阿拉斯加團排到 3 月下旬，春分前後極光活躍、氣溫較不冷。","src":["https://tour.colatour.com.tw/itinerary?PatternNo=236949","https://www.colatour.com.tw/webDM/theme/aurora/alaska.html"]}
+      ],
+      "CA": [
+        {"n":"黃刀鎮極光","pop":3,"x":"12～3 月是黃刀鎮極光最佳期，3 月白天較長、比較不冷；易遊網、東南、可樂 3 月仍有團。","src":["https://vacation.eztravel.com.tw/pkgfrn/p/VDR0000001897/WCRBR-10D-03","https://tour.settour.com.tw/product/GFG0000024750","https://blog.settour.com.tw/europetravel/aurora/"]}
+      ],
+      "MX": [
+        {"n":"奇琴伊察春分羽蛇神影","pop":2,"x":"春分前後午後陽光在庫庫爾坎金字塔階梯投下蛇形光影，3/21 當天上萬人聚集；前後幾天也看得到。","src":["https://mexiconewsdaily.com/lifestyle/mark-the-spring-equinox-at-mexicos-iconic-ruins","https://yucatantoday.com/en/blog/equinox"]},
+        {"n":"帝王斑蝶保護區（至 3 月初）","pop":1,"x":"斑蝶高峰期到 3 月初，之後開始北返。","src":["https://escapetomexico.com/momentours/monarch-butterfly-season-in-mexico/"]}
+      ],
+      "BR": [
+        {"n":"里約與伊瓜蘇瀑布","pop":1,"x":"嘉年華後人潮減少，3 月仍是夏末，伊瓜蘇水量大。","src":["https://travel.liontravel.com/category/zh-tw/centralsouthamerica/index","https://www.roughguides.com/articles/rio-de-janeiro-weather-january-travel-tips"]}
+      ],
+      "PE": [
+        {"n":"馬丘比丘與印加古道","pop":1,"x":"印加古道 3 月重新開放，3 月中旬後雨季結束，上半月人少但步道泥濘。","src":["https://www.vayaadventures.com/destinations/peru/weather","https://wildlandtrekking.com/peru-visitor-guide/visiting-peru-in-march/"]}
+      ],
+      "AR": [
+        {"n":"門多薩葡萄採收節 Vendimia","pop":1,"x":"2027 年主活動在 3/6～3/7，花車遊行與希臘劇場大型表演，葡萄酒莊採收季。","src":["https://www.elsol.com.ar/?p=2247814","https://rove.me/de/to/argentina/grape-harvest"]},
+        {"n":"巴塔哥尼亞秋色","pop":1,"x":"3 月南半球入秋，冰川健行季尾聲，人潮減少。","src":["https://vacation.eztravel.com.tw/pkgfrn/introduction/VDR0000001846/25XAO02EK-T"]}
+      ],
+      "EG": [
+        {"n":"金字塔、尼羅河遊輪","pop":3,"x":"3 月開羅約 24 度，仍是旅遊旺季；雄獅、東南、可樂都有團。","src":["https://event.liontravel.com/zh-tw/africa/index","https://tour.settour.com.tw/africa_middle_east.html","https://www.colatour.com.tw/C000_Portal/C000_HP01A_Main.aspx?TourArea=M-04"]}
+      ],
+      "MA": [
+        {"n":"撒哈拉與皇城","pop":2,"x":"3 月雨季結束、春天開始，杏花與綠意，天氣回暖。","src":["https://event.liontravel.com/zh-tw/africa/index","https://www.colatour.com.tw/C10A_TourSell/C10A16_TourItinerary.aspx?PatternNo=220092"]}
+      ],
+      "ZA": [
+        {"n":"開普敦與花園大道","pop":2,"x":"3 月開普敦乾燥舒適，是夏末秋初最好的時段。","src":["https://event.liontravel.com/zh-tw/africa/index","https://www.globalhighlights.com/kenya/weather-in-march"]}
+      ],
+      "KE": [
+        {"n":"馬賽馬拉遊獵（雨季前）","pop":1,"x":"3 月中旬起進入大雨季（3～6 月），3 月上旬還能遊獵，之後道路泥濘、部分營地休業。","src":["https://event.liontravel.com/zh-tw/africa/index","https://www.intrepidtravel.com/nz/kenya/best-time-to-visit-kenya"]}
+      ],
+      "AU": [
+        {"n":"墨爾本秋季：Moomba 節與亞拉河谷採收","pop":2,"x":"3 月墨爾本氣溫最宜人，Moomba 長週末有遊行與煙火，亞拉河谷酒莊進入採收季。","src":["https://www.kkday.com/zh-tw/blog/64375/march-where-to-travel","https://www.skyscanner.com.au/news/where-should-australians-travel-this-year"]},
+        {"n":"雪梨與藍山","pop":2,"x":"夏末秋初，雪梨仍可下水。","src":["https://tour.settour.com.tw/product/GFG0000024172","https://www.colatour.com.tw/C10A_TourSell/C10A16_TourItinerary.aspx?PatternNo=220449"]}
+      ],
+      "NZ": [
+        {"n":"紐西蘭初秋","pop":2,"x":"3 月天氣仍穩、遊客減少，南島開始有秋色；南北島團持續出發。","src":["https://www.colatour.com.tw/webDM/tour/nz/NewZealand/tour.html","https://tour.settour.com.tw/product/GFG0000029913"]}
       ]
     },
     "11": {
