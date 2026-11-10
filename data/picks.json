@@ -347,6 +347,36 @@
       "BN": [
         {"n":"帝國酒店與水村","pop":2,"x":"汶萊團的固定組合，全年出團；年底屬婆羅洲雨季，以室內與水上行程為主較穩。","src":["https://www.travel4u.com.tw/group/itinerary/BWN05BI2017/","https://vacation.eztravel.com.tw/pkgfrn/p/VDR0000009616/27BNBI1"]},
         {"n":"紅樹林長鼻猴生態","pop":2,"x":"搭船進紅樹林找長鼻猴，汶萊團常見行程。","src":["https://vacation.eztravel.com.tw/pkgfrn/p/VDR0000001846/24BWN5D1","https://www.colatour.com.tw/C10A_TourSell/C10A16_TourItinerary.aspx?PatternNo=211288"]}
+      ],
+      "IN": [
+        {"n":"印度金三角：德里、阿格拉、齋浦爾","pop":3,"x":"12 月是北印度冬季、約 5～25 度，10～3 月氣候最舒適，各家旅行社金三角團的旺季。","src":["https://vacation.eztravel.com.tw/pkgfrn/tipInfo/FRN0000015220","https://www.settour.com.tw/act/gfg/africa/india/","https://vacation.eztravel.com.tw/oversea/india-westasia-africa/"]},
+        {"n":"瓦拉納西恆河","pop":2,"x":"冬季清晨恆河常起霧，日出遊船氣氛特別；早晚冷，需保暖。","src":["https://www.settour.com.tw/act/gfg/africa/india/"]}
+      ],
+      "NP": [
+        {"n":"加德滿都谷地古城與寺廟","pop":2,"x":"12 月乾冷少雨，適合參觀古王城與寺廟；高山健行早晚溫差大，需完整禦寒。","src":["https://vacation.eztravel.com.tw/pkgfrn/tipInfo/FRN0000015220","https://www.kkday.com/en-us/destination/np-nepal"]},
+        {"n":"博卡拉魚尾峰與奇旺","pop":2,"x":"冬季天空清朗、雪山清楚，旅行社 9 日團含魚尾峰日出與奇旺叢林。","src":["https://vacation.eztravel.com.tw/pkgfrn/p/VDR0000001925/GFG0000033384"]}
+      ],
+      "LK": [
+        {"n":"西南與南部海岸、文化三角","pop":2,"x":"12～4 月適合西南部與南部，獅子岩、康提等文化景點也在旅遊季；東岸則以 5～9 月較佳。","src":["https://blog.settour.com.tw/world/srilanka/","https://vacation.eztravel.com.tw/pkgfrn/tipInfo/FRN0000015220"]}
+      ],
+      "MV": [
+        {"n":"馬爾地夫度假村","pop":3,"x":"台灣旅遊網站多列 11～4 月為乾季旺季，跨年蜜月熱門；但也有資料顯示 12 月雨量不低，出發前看天氣預報。","src":["https://www.settour.com.tw/act/gfg/maldives/cover.html","https://blog.settour.com.tw/southeast-asia/maldives-hotel/","https://www.kkday.com/en-us/destination/mv-maldives"]}
+      ],
+      "UZ": [
+        {"n":"撒馬爾罕、布哈拉淡季古城","pop":1,"x":"白天約 -5～5 度、乾燥多晴，古城遊客少、價格低；布哈拉與希瓦不少民宿冬季歇業，要先確認住宿。","src":["https://www.roughguides.com/uzbekistan/when-to-go/december/","https://www.intrepidtravel.com/us/uzbekistan/best-time-to-visit-uzbekistan"]},
+        {"n":"塔什干新年燈飾與阿米爾索伊滑雪","pop":1,"x":"年底大城市有新年燈飾，塔什干近郊的阿米爾索伊是新興滑雪場。","src":["https://www.holidify.com/pages/winter-in-uzbekistan-6995.html"]}
+      ],
+      "TR": [
+        {"n":"土耳其與杜拜聯遊","pop":2,"x":"冬季土耳其團常加排杜拜，卡帕多奇亞洞穴飯店、伊斯坦堡與哈里發塔一次走完。","src":["https://www.colatour.com.tw/C10A_TourSell/C10A16_TourItinerary.aspx?PatternNo=224745"]},
+        {"n":"卡帕多奇亞雪景熱氣球","pop":2,"x":"冬季可能看到雪景奇岩，熱氣球受天候影響取消機率較高。","src":["https://www.colatour.com.tw/C10A_TourSell/C10A16_TourItinerary.aspx?PatternNo=224745","https://tour.colatour.com.tw/itinerary?PatternNo=222524"]}
+      ],
+      "AE": [
+        {"n":"杜拜跨年：哈里發塔煙火","pop":3,"x":"哈里發塔煙火結合雷射與噴泉水舞，多家旅行社有 12 月底出發的 6～7 日跨年團；煙火內容以 EMAAR 公布為準，跨年週觀景台人潮多。","src":["https://tour.colatour.com.tw/itinerary?PatternNo=239424","https://tour.settour.com.tw/product/GFG0000023917","https://vacation.eztravel.com.tw/pkgfrn/p/VDR0000001846/26DXB1228"]},
+        {"n":"杜拜奇蹟花園","pop":2,"x":"冬季才開放的花園，跨年團常排。","src":["https://tour.settour.com.tw/product/GFG0000024619","https://tour.settour.com.tw/product/GFG0000023917"]},
+        {"n":"沙漠衝沙與營地晚餐","pop":2,"x":"冬季沙漠氣溫舒適，杜拜團的必排體驗。","src":["https://www.colatour.com.tw/C10A_TourSell/C10A16_TourItinerary.aspx?PatternNo=227897","https://tour.settour.com.tw/product/GFG0000031522"]}
+      ],
+      "JO": [
+        {"n":"佩特拉與瓦地倫","pop":1,"x":"冬季白天涼爽適合健行，但沙漠夜晚很冷；台灣旅行社 12 月的約旦團不多。","src":["https://travel.liontravel.com/category/zh-tw/middleeast/index"]}
       ]
     }
   }
