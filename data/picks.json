@@ -195,6 +195,49 @@
       "IS": [
         {"n":"冰島藍冰洞與極光","pop":3,"x":"藍冰洞只在冬季開放，各家冰島團 1 月都有出發；天候不佳冰洞健行與極光船會取消退費。","src":["https://www.colatour.com.tw/C10A_TourSell/C10A16_TourItinerary.aspx?PatternNo=225475","https://www.travel4u.com.tw/en/group/itinerary/EUR10PAK01/","https://vacation.eztravel.com.tw/pkgfrn/p/VDR0000001846/27ED10LA01"]},
         {"n":"藍湖溫泉與金環","pop":2,"x":"雪中泡藍湖溫泉，金環線看間歇泉與黃金瀑布；1 月白天只有約 4～5 小時。","src":["https://www.colatour.com.tw/C10A_TourSell/C10A16_TourItinerary.aspx?PatternNo=225475","https://www.colatour.com.tw/webDM/theme/aurora/aurora_iceland.html"]}
+      ],
+      "US": [
+        {"n":"阿拉斯加費爾班克斯極光","pop":3,"x":"北緯 64 度、極光機率高，1 月可樂、東南、雄獅都有團，多排三晚極光小屋與珍娜溫泉；極光看天氣、無法保證。","src":["https://tour.colatour.com.tw/itinerary?PatternNo=236949","https://tour.settour.com.tw/product/GFG0000025023","https://travel.liontravel.com/tourdetail?TourID=BRFAISEA9D&NormGroupID=null&fr=cg18C0401C0201M01"]},
+        {"n":"冬季極光列車","pop":2,"x":"安克拉治到費爾班克斯的冬季極光列車，一路雪原風景。","src":["https://tour.colatour.com.tw/itinerary?PatternNo=236949","https://www.kkday.com/zh-tw/blog/172972/america-usa-alaska-aurora"]}
+      ],
+      "CA": [
+        {"n":"黃刀鎮極光","pop":3,"x":"1 月是黃刀鎮人最多的旺季，可樂、山富、東南都有 1 月團，含狗拉雪橇、雪上摩托車；夜間常低於零下 30 度。","src":["https://tour.colatour.com.tw/itinerary?PatternNo=242114","https://www.travel4u.com.tw/en/group/itinerary/YZF10BR/","https://tour.settour.com.tw/product/GFG0000028858"]},
+        {"n":"洛磯山脈冬季與露易絲湖","pop":2,"x":"冬季結冰的露易絲湖可溜冰，硫磺山纜車看雪山，常和黃刀鎮排成同一團。","src":["https://tour.settour.com.tw/product/GFG0000031145","https://www.travel4u.com.tw/group/itinerary/CAN10YVR/"]}
+      ],
+      "MX": [
+        {"n":"米卻肯帝王斑蝶保護區","pop":1,"x":"數百萬隻帝王斑蝶在山區冷杉林過冬，1 月下旬到 3 月初最壯觀；週末人很多。","src":["https://escapetomexico.com/momentours/monarch-butterfly-season-in-mexico/","https://mexiconewsdaily.com/travel/monarch-butterflies-arrive-winter-michoacan"]},
+        {"n":"墨西哥城與馬雅遺址","pop":1,"x":"1 月是乾季，猶加敦半島的奇琴伊察與坎昆海灘天氣最好。","src":["https://www.travel4u.com.tw/en/group/area/31/central-america-south-america/","https://event.liontravel.com/zh-tw/latin-america/index"]}
+      ],
+      "BR": [
+        {"n":"里約熱內盧夏季海灘","pop":1,"x":"1 月是巴西盛夏與暑假，科帕卡巴納海灘、基督像人潮多，白天約 29 度，偶有熱帶陣雨。","src":["https://www.roughguides.com/articles/rio-de-janeiro-weather-january-travel-tips","https://www.kimkim.com/c/brazil-in-january-travel-tips-weather-and-more"]},
+        {"n":"伊瓜蘇瀑布（南美多國團）","pop":2,"x":"南美四國團與南極遊輪團的前後段，巴西、阿根廷兩側都看；1 月雨季水量大。","src":["https://travel.liontravel.com/category/zh-tw/centralsouthamerica/index","https://tour.settour.com.tw/product/GFG0000028968"]}
+      ],
+      "PE": [
+        {"n":"馬丘比丘","pop":2,"x":"南美四國團必排，但 1 月是安地斯山雨季，山路偶有坍方；印加古道每年 2 月封閉維修。","src":["https://travel.liontravel.com/category/zh-tw/centralsouthamerica/index","https://vacation.eztravel.com.tw/pkgfrn/p/VDR0000007686/T20250704000001"]}
+      ],
+      "AR": [
+        {"n":"南極半島遊輪","pop":2,"x":"1 月是南極夏季旺季，企鵝育雛、日照最長，從烏斯懷亞出發；團費約百萬元起。","src":["https://event.liontravel.com/zh-tw/antarctica/group","https://tour.settour.com.tw/product/GFG0000024514"]},
+        {"n":"巴塔哥尼亞：莫雷諾冰川","pop":2,"x":"南半球夏季是冰川健行最好的季節，阿根廷單國團 1 月有出發。","src":["https://vacation.eztravel.com.tw/pkgfrn/introduction/VDR0000001846/25XAO02EK-T","https://travel.liontravel.com/category/zh-tw/centralsouthamerica/index"]}
+      ],
+      "EG": [
+        {"n":"金字塔、尼羅河遊輪與阿布辛貝","pop":3,"x":"1 月氣候涼爽，是埃及旅遊旺季；雄獅、東南、可樂都有 1 月團，大埃及博物館也是新重點。","src":["https://travel.liontravel.com/category/zh-tw/africa/index","https://tour.settour.com.tw/africa_middle_east.html","https://tour.colatour.com.tw/search?DepartureCity=*&KeyWord=%E5%9F%83%E5%8F%8A"]}
+      ],
+      "MA": [
+        {"n":"撒哈拉與皇城","pop":2,"x":"冬季約 9～20 度，馬拉喀什、費斯古城、藍色山城蕭安與撒哈拉帳篷；沙漠夜晚接近零度。","src":["https://www.colatour.com.tw/C10A_TourSell/C10A16_TourItinerary.aspx?PatternNo=220092","https://travel.liontravel.com/category/zh-tw/africa/index"]}
+      ],
+      "ZA": [
+        {"n":"南非全覽：開普敦、花園大道、克魯格","pop":2,"x":"1 月是南非夏季，開普敦乾燥晴朗，好望角、企鵝灘與克魯格國家公園遊獵；雄獅、山富都有冬季出發團。","src":["https://travel.liontravel.com/category/zh-tw/africa/index","https://vacation.eztravel.com.tw/pkgfrn/results/TPE/84"]}
+      ],
+      "KE": [
+        {"n":"馬賽馬拉野生動物遊獵","pop":1,"x":"1～2 月是肯亞短乾季，動物集中、好觀察；大遷徙渡河要等 7～10 月，1 月角馬在坦尚尼亞南部產仔。","src":["https://www.asiliaafrica.com/blog/where-to-go-on-safari-in-january/","https://www.safari.co.za/Great_Migration_Maps_By_Month-travel/great-migration-map-january.html"]}
+      ],
+      "AU": [
+        {"n":"澳洲夏季：雪梨、藍山、墨爾本","pop":2,"x":"1 月是澳洲盛夏與暑假，雪梨港灣、藍山國家公園、墨爾本大洋路都在旺季。","src":["https://www.colatour.com.tw/C10A_TourSell/C10A16_TourItinerary.aspx?PatternNo=220449","https://tour.settour.com.tw/product/GFG0000024172"]},
+        {"n":"墨爾本澳洲網球公開賽","pop":1,"x":"2027 年 1/11～1/31 在墨爾本公園舉行，決賽在 1/30、1/31；比賽期間市區飯店較貴。","src":["https://www.melbournepark.com.au/event/australian-open-2027/","https://ministryofsport.com/australian-open-2027-dates-confirmed-following-record-breaking-2026/"]}
+      ],
+      "NZ": [
+        {"n":"紐西蘭南島夏季：庫克山、皇后鎮、米佛峽灣","pop":3,"x":"1 月是紐西蘭夏季旺季，白天長、氣溫約 20 度，可樂、東南、山富的南北島團都在 1 月出發。","src":["https://www.colatour.com.tw/C10A_TourSell/C10A16_TourItinerary.aspx?PatternNo=214406","https://tour.settour.com.tw/product/GFG0000029913","https://www.travel4u.com.tw/en/group/itinerary/NZL11NZ01/"]},
+        {"n":"北島：哈比屯與螢火蟲洞","pop":2,"x":"魔戒拍攝地哈比屯、懷托摩螢火蟲洞、羅托魯瓦毛利文化。","src":["https://tour.settour.com.tw/product/GFG0000029913","https://www.colatour.com.tw/webDM/tour/nz/NewZealand/tour.html"]}
       ]
     },
     "11": {
