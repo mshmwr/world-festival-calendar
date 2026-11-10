@@ -53,6 +53,7 @@
         {"n":"濱海灣花園與聖淘沙","pop":2,"x":"擎天樹燈光秀、雲霧林、聖淘沙環球影城是新加坡必排，雨天也能安排室內館。","src":["https://www.kkday.com/zh-hk/blog/53051/singapore-travel-guide"]}
       ],
       "MY": [
+        {"n":"黑風洞大寶森節","pop":1,"x":"2027 年 1/22，上百萬信徒背負卡瓦第爬 272 級階梯到黑風洞神廟，是馬來西亞最大的印度教節慶。","src":["https://cutisekolah.com.my/en/public-holidays-2027/thaipusam","https://www.asiantrails.travel/destinations/malaysia-events"]},
         {"n":"麻六甲古城（新馬團）","pop":2,"x":"世界遺產古城，荷蘭紅屋、雞場街夜市，新馬團必經。","src":["https://www.settour.com.tw/act/gfg/southeast_asia/malaysia/index0.html"]},
         {"n":"沙巴亞庇","pop":1,"x":"1 月仍是沙巴雨季，多是短暫午後雷陣雨，跳島與浮潛條件較差，最佳是 5～9 月。","src":["https://www.kkday.com/zh-tw/blog/18733/asia-malaysia-sabah-guide"]}
       ],
@@ -238,6 +239,103 @@
       "NZ": [
         {"n":"紐西蘭南島夏季：庫克山、皇后鎮、米佛峽灣","pop":3,"x":"1 月是紐西蘭夏季旺季，白天長、氣溫約 20 度，可樂、東南、山富的南北島團都在 1 月出發。","src":["https://www.colatour.com.tw/C10A_TourSell/C10A16_TourItinerary.aspx?PatternNo=214406","https://tour.settour.com.tw/product/GFG0000029913","https://www.travel4u.com.tw/en/group/itinerary/NZL11NZ01/"]},
         {"n":"北島：哈比屯與螢火蟲洞","pop":2,"x":"魔戒拍攝地哈比屯、懷托摩螢火蟲洞、羅托魯瓦毛利文化。","src":["https://tour.settour.com.tw/product/GFG0000029913","https://www.colatour.com.tw/webDM/tour/nz/NewZealand/tour.html"]}
+      ]
+    },
+    "2": {
+      "JP": [
+        {"n":"札幌雪祭","pop":3,"p":"01","x":"2027 年預定 2/4～2/11，大通公園巨型雪雕、薄野冰雕；雪祭週飯店價格常翻倍，各家北海道團春節檔都主打。","src":["https://www.kkday.com/zh-hk/blog/131781/sapporo-snow-festival","https://vacation.eztravel.com.tw/pkgfrn/p/VDR0000006753/HKD05IT09","https://tour.settour.com.tw/product/GFG0000025120"]},
+        {"n":"小樽雪燈之路","pop":2,"p":"01","x":"2027 年約 2/6～2/13，小樽運河與手宮線鋪滿雪燈和浮燭，常和雪祭排在同一天。","src":["https://www.kkday.com/en/blog/82597/sapporo-snow-festival","https://vacation.eztravel.com.tw/pkgfrn/p/VDR0000006753/HKD05IT09"]},
+        {"n":"道東流冰與破冰船","pop":3,"p":"01","x":"2 月是流冰最多的時候，網走、紋別破冰船是春節北海道團主力；流冰量看天氣。","src":["https://vacation.eztravel.com.tw/pkgfrn/p/VDR0000001943/CTSK5IT27003","https://vacation.eztravel.com.tw/pkgfrn/p/VDR0000001886/JPC06CTS017G","https://www.colatour.com.tw/webDM/theme/cny/tour.html"]},
+        {"n":"伊豆河津櫻與熱海梅園","pop":3,"x":"河津櫻 2 月上旬到 3 月上旬開，東京近郊最早的櫻花；熱海梅園同期，東南、易遊網、KKday 都有團。","src":["https://tour.settour.com.tw/product/GFG0000028946","https://vacation.eztravel.com.tw/pkgfrn/p/VDR0000001913/UD052928","https://www.kkday.com/zh-tw/product/137331"]},
+        {"n":"藏王樹冰","pop":2,"x":"2 月是樹冰最壯觀的時候，夜間點燈；東北冬季團必排。","src":["https://www.kkday.com/zh-tw/blog/184241/asia-japan-northeast-snow-monster","https://tour.settour.com.tw/product/GFG0000028885"]},
+        {"n":"沖繩名護櫻花祭與今歸仁城寒緋櫻","pop":2,"p":"47","x":"寒緋櫻 1 月底至 2 月上旬滿開，今歸仁城跡打燈夜櫻。","src":["https://www.colatour.com.tw/C10A_TourSell/C10A16_TourItinerary.aspx?PatternNo=224349","https://vacation.eztravel.com.tw/pkgfrn/p/VDR0000001914/OKA0426-SL1"]}
+      ],
+      "KR": [
+        {"n":"春節滑雪團","pop":3,"x":"2 月雪況仍穩，2027 春節（2/4～2/10）韓國團幾乎都排滑雪、採草莓、愛寶樂園。","src":["https://www.colatour.com.tw/webDM/theme/cny/tour.html","https://vacation.eztravel.com.tw/pkgfrn/p/VDR0000007986/CJJ05RFA_15502","https://event.liontravel.com/zh-tw/korea/winter"]},
+        {"n":"冬季採草莓","pop":2,"x":"2 月仍是溫室草莓產季，春節團常見。","src":["https://www.colatour.com.tw/webDM/theme/cny/tour.html","https://tour.settour.com.tw/product/GFG0000025129"]},
+        {"n":"首爾春節古宮韓服遊","pop":2,"x":"春節（설날）期間景福宮等古宮常有民俗活動，穿韓服免費入場；部分店家休息。","src":["https://www.colatour.com.tw/webDM/theme/cny/tour.html","https://www.settour.com.tw/cms/P00/p00-korea.shtml"]}
+      ],
+      "CN": [
+        {"n":"哈爾濱冰雪大世界","pop":3,"x":"冰雪大世界開到 2 月下旬，春節東北冰雪團最熱門；春節期間團費最高。","src":["https://tour.settour.com.tw/product/GFG0000031713","https://www.colatour.com.tw/C10A_TourSell/C10A16_TourItinerary.aspx?PatternNo=229169","https://www.travel4u.com.tw/group/itinerary/HRB08MU02/"]},
+        {"n":"雪鄉與長白山","pop":2,"x":"雪鄉蘑菇屋、長白山溫泉，2 月仍是厚雪期。","src":["https://tour.settour.com.tw/product/GFG0000031713","https://www.colatour.com.tw/C10A_TourSell/C10A16_TourItinerary.aspx?PatternNo=229247"]}
+      ],
+      "TW": [
+        {"n":"2027 台灣燈會（苗栗）","pop":2,"x":"暫定 2/20 元宵起至 3/7，主燈區在高鐵苗栗站周邊。","src":["https://www.cna.com.tw/news/ahel/202603170324.aspx","https://blog.settour.com.tw/taiwan/lanternfestival/"]},
+        {"n":"平溪天燈節","pop":2,"x":"元宵（2027 年 2/20）前後在十分、平溪施放天燈，2027 年場次以新北市公告為準。","src":["https://www.kkday.com/zh-tw/blog/100119/asia-taiwan-new-taipei-pingxi-sky-lantern","https://activity.eztravel.com.tw/detail/TKNKL-138381"]},
+        {"n":"賞櫻：武陵農場、阿里山、陽明山","pop":2,"x":"2 月是台灣櫻花主花期，武陵農場、九族文化村櫻花祭、陽明山花季陸續登場。","src":["https://www.kkday.com/zh-tw/blog/66055/asia-taiwan-sakura-attractions","https://event.liontravel.com/zh-tw/flower/index-tw"]},
+        {"n":"春節走春","pop":1,"x":"春節 7 連休，廟宇參拜、溫泉與老街人潮最多，熱門景點要早出門。","src":["https://www.kkday.com/zh-tw/blog/95152/asia-taiwan-chinese-newyear-vacation","https://www.settour.com.tw/act/mkt/cny/gather.html"]}
+      ],
+      "HK": [
+        {"n":"新春國際匯演之夜","pop":2,"x":"大年初一（2027 年 2/6）晚上尖沙咀花車巡遊，初二起花車移到各區展出。","src":["https://m.discoverhongkong.com/tc/events-festivals/highlight-events/chinese-new-year-celebrations/night-parade.jsp","https://www.kkday.com/zh-hk/blog/85146/%E5%9C%8B%E6%B3%B0%E6%96%B0%E6%98%A5%E5%9C%8B%E9%9A%9B%E8%A1%A8%E6%BC%94%E4%B9%8B%E5%A4%9C%E5%8F%8A%E8%8A%B1%E8%BB%8A%E5%B1%95"]},
+        {"n":"初二維港煙花與大埔林村許願","pop":2,"x":"往年大年初二晚上維港放煙花（2027 年為 2/7），2027 年安排以旅發局公告為準；林村許願樹也是新春熱點。","src":["https://www.discoverhongkong.com/content/dam/dhk/zh_tc/corporate/newsroom/press-release/hktb/2026/02-ICNYP-2026-Photo-Release-C.pdf","https://www.kkday.com/zh-hk/blog/52703/%E6%96%B0%E5%B9%B4%E5%A5%BD%E5%8E%BB%E8%99%95"]}
+      ],
+      "MN": [
+        {"n":"白月節 Tsagaan Sar","pop":1,"x":"蒙古農曆新年，2027 年約 2/7～2/9，家家吃包子（buuz）向長輩拜年；期間商店與景點多休息。","src":["https://nationaltoday.com/tsagaan-sar/","https://www.officeholidays.com/countries/mongolia/2027"]},
+        {"n":"特勒吉國家公園雪原","pop":1,"x":"狗拉雪橇、騎馬與暖氣蒙古包，2 月仍是嚴冬。","src":["https://www.colatour.com.tw/webDM/theme/snowfun/tour.html","https://www.selenatravel.com/dog-sledding-on-the-frozen-tuul-river"]}
+      ],
+      "TH": [
+        {"n":"清邁花卉節","pop":2,"x":"每年 2 月第一個週末，花車遊行與花卉展，2027 年約 2/6～2/7（以官方公告為準）；剛好遇到春節團出發。","src":["https://www.kkday.com/zh-tw/blog/60494/february-where-to-travel","https://vacation.eztravel.com.tw/pkgfrn/p/VDR0000001888/CNX05CNY01"]},
+        {"n":"清邁清萊：白廟、藍廟、金三角","pop":3,"x":"2 月泰北仍乾爽，易遊網、東南、雄獅春節都有泰北團。","src":["https://vacation.eztravel.com.tw/pkgfrn/p/VDR0000001838/245958","https://tour.settour.com.tw/search?destinationCode=THAI04_3","https://vacation.eztravel.com.tw/pkgfrn/p/VDR0000001913/Z0523490"]},
+        {"n":"普吉島跳島","pop":2,"x":"安達曼海 2 月風浪平靜，海水清澈。","src":["https://www.kkday.com/zh-tw/blog/202395/asia-thailand-weather-travelseason","https://www.settour.com.tw/act/mkt/giftwine/index.html"]}
+      ],
+      "VN": [
+        {"n":"越南春節（Tết）","pop":1,"x":"2027 年農曆新年 2/6，街上花市與年節裝飾很熱鬧，但初一到初三許多店家、餐廳休息，交通與住宿也較緊。","src":["https://www.kkday.com/en-ph/blog/28069/asia-vietnam-tet-lunar-new-year-celebration-guide","https://www.kkday.com/en-us/category/vn-hanoi/sightseeing-tours/list"]},
+        {"n":"北越下龍灣","pop":2,"x":"春節熱門短程團，雙龍灣遊船；2 月偶有海霧。","src":["https://www.settour.com.tw/act/mkt/cny/","https://www.kkday.com/zh-hk/blog/ha-long-bay/127306/halong-bay-weather-best-season-cruise-guide"]},
+        {"n":"中越峴港、會安","pop":2,"x":"2 月中越已進入少雨期，會安燈籠夜景。","src":["https://www.kkday.com/zh-tw/blog/172123/asia-vietnam-dagang-weather-guide","https://travel.liontravel.com/category/zh-tw/vietnam/index"]}
+      ],
+      "SG": [
+        {"n":"春到河畔 River Hongbao 與妝藝大遊行 Chingay","pop":2,"x":"春節期間在濱海灣舉辦花燈與市集；Chingay 大遊行通常在春節後兩三週，2027 年日期待公布。","src":["https://www.chingay.gov.sg/join-us/volunteerschingay2027/","https://thehoneycombers.com/singapore/chinese-new-year-events-in-singapore/"]},
+        {"n":"新馬雙國春節團","pop":2,"x":"春節新馬團熱門，2 月新加坡雨量開始減少。","src":["https://www.settour.com.tw/act/mkt/cny/","https://www.settour.com.tw/act/gfg/southeast_asia/malaysia/index0.html"]}
+      ],
+      "MY": [
+        {"n":"檳城極樂寺新春燈會","pop":1,"x":"春節期間整座山寺點滿燈籠，2027 年約春節起持續數週；元宵（2/20）檳城有拋柑習俗。","src":["https://onpenang.com/chinese-new-year/","https://everythingboleh.com/event/kek-lok-si-temple-cny-celebrations-2026/"]},
+        {"n":"麻六甲古城（新馬團）","pop":2,"x":"雞場街與華人街春節裝飾，新馬團必經。","src":["https://www.settour.com.tw/act/gfg/southeast_asia/malaysia/index0.html"]}
+      ],
+      "ID": [
+        {"n":"峇里島度假","pop":2,"x":"2 月仍是雨季、價格較低，春節東南亞海島團常見。","src":["https://www.settour.com.tw/cms/P01/City_Bali-002.shtml","https://www.colatour.com.tw/webDM/theme/cny/tour.html"]}
+      ],
+      "PH": [
+        {"n":"碧瑤花卉節 Panagbenga","pop":1,"x":"每年 2 月在高原城市碧瑤舉辦，花車與街舞遊行；2027 年日期約 2 月初起，待主辦單位公布。","src":["https://philippinestravelguides.com/eventfestival/baguio-flower-festival/","https://rove.me/to/philippines/panagbenga-festival"]},
+        {"n":"長灘島","pop":3,"x":"2 月乾季，白沙灘與帆船夕陽，海島團旺季。","src":["https://www.kkday.com/zh-tw/blog/3539/asia-philippines-boracay-must-visit","https://travel.liontravel.com/category/zh-tw/philippines/index"]}
+      ],
+      "KH": [
+        {"n":"吳哥窟","pop":2,"x":"2 月仍是乾季，氣溫開始升高，早上看日出最舒服。","src":["https://www.travellocal.com/en/articles/the-best-time-to-visit-laos-and-cambodia","https://www.audleytravel.com/us/southeast-asia/best-time-to-visit"]}
+      ],
+      "LAO": [
+        {"n":"龍坡邦古城","pop":2,"x":"2 月乾季、溫和，2 月滿月有佛教萬佛節（Makha Bucha）。","src":["https://www.travellocal.com/en/articles/the-best-time-to-visit-laos-and-cambodia","https://www.idctravel.com/blog/laos-in-january.html"]}
+      ],
+      "MM": [
+        {"n":"蒲甘萬塔平原","pop":1,"x":"2 月乾季，熱氣球季仍在；出發前請確認當地安全情勢。","src":["https://www.audleytravel.com/us/southeast-asia/best-time-to-visit","https://www.insideasiatours.com/us/month/january"]}
+      ],
+      "BN": [
+        {"n":"帝國酒店與水村","pop":2,"x":"汶萊團主打帝國酒店、清真寺與水上村落。","src":["https://www.travel4u.com.tw/group/itinerary/BWN05BI2017/","https://vacation.eztravel.com.tw/pkgfrn/p/VDR0000009616/27BNBI1"]}
+      ],
+      "IN": [
+        {"n":"印度金三角","pop":3,"x":"2 月北印度氣溫回升、晴朗，是金三角旅遊旺季，春節團多。","src":["https://www.settour.com.tw/act/gfg/africa/india/","https://vacation.eztravel.com.tw/oversea/india-westasia-africa/","https://www.travel4u.com.tw/en/group/area/144/sri-lanka-india/"]},
+        {"n":"齋沙默爾沙漠節","pop":1,"x":"拉賈斯坦金色沙丘上的駱駝賽、民俗舞蹈，2027 年暫定 2/18～2/20，日期以官方公告為準。","src":["https://happyfares.in/blog/jaisalmer-desert-festival-2027-flights/","https://www.topindianholidays.com/fair/desert-festival"]}
+      ],
+      "NP": [
+        {"n":"夏爾巴新年 Sonam Losar","pop":1,"x":"2027 年 2/7，加德滿都博達哈佛塔周邊最熱鬧；Maha Shivaratri 在 3/6，不在 2 月。","src":["https://www.officeholidays.com/holidays/nepal/sonam-lhosar","https://www.officeholidays.com/holidays/nepal/maha-shivratri"]},
+        {"n":"博卡拉與加德滿都谷地","pop":2,"x":"2 月乾燥晴朗、雪山清楚，山區早晚很冷。","src":["https://vacation.eztravel.com.tw/pkgfrn/p/VDR0000001925/GFG0000033384","https://www.settour.com.tw/act/gfg/africa/india/nepal.html"]}
+      ],
+      "LK": [
+        {"n":"西南海岸與文化三角","pop":2,"x":"2 月是西南部乾季，獅子岩、康提、加勒古城最適合；2 月滿月科倫坡有 Navam Perahera 遊行。","src":["https://blog.settour.com.tw/world/srilanka/","https://www.travel4u.com.tw/en/group/area/144/sri-lanka-india/"]}
+      ],
+      "MV": [
+        {"n":"馬爾地夫度假村","pop":3,"x":"2 月是一年中最乾燥的月份，海水能見度最高，春節蜜月與度假旺季。","src":["https://www.settour.com.tw/act/gfg/maldives/cover.html","https://blog.settour.com.tw/southeast-asia/maldives-hotel/"]}
+      ],
+      "UZ": [
+        {"n":"撒馬爾罕、布哈拉淡季古城","pop":1,"x":"2 月仍冷、遊客少，3 月下旬納吾肉孜節後才進入旺季。","src":["https://www.intrepidtravel.com/us/uzbekistan/best-time-to-visit-uzbekistan","https://www.holidify.com/pages/winter-in-uzbekistan-6995.html"]}
+      ],
+      "TR": [
+        {"n":"土耳其春節團：熱氣球、棉堡","pop":3,"x":"春節期間雄獅、可樂、易遊網都有土耳其團，卡帕多奇亞可能有雪景；熱氣球看天候。","src":["https://travel.liontravel.com/category/zh-tw/middleeast/index","https://www.colatour.com.tw/C000_Portal/C000_HP01A_Main.aspx?TourArea=M-01&ctype=itourarea","https://www.travel4u.com.tw/project/spring-festival/mea.aspx"]}
+      ],
+      "AE": [
+        {"n":"杜拜沙漠與哈里發塔","pop":3,"x":"2 月杜拜氣溫約 20～25 度，春節杜拜團與土耳其、埃及聯遊團都多。","src":["https://search.liontravel.com/zh-tw/%E6%9D%9C%E6%8B%9C?TagList=grp","https://tour.settour.com.tw/product/GFG0000031215","https://www.colatour.com.tw/C10A_TourSell/C10A16_TourItinerary.aspx?PatternNo=227897"]},
+        {"n":"杜拜奇蹟花園與地球村","pop":2,"x":"兩處都只在冬季開放，2 月仍營業。","src":["https://tour.settour.com.tw/product/GFG0000024619","https://tour.settour.com.tw/product/GFG0000031215"]}
+      ],
+      "JO": [
+        {"n":"佩特拉與死海","pop":2,"x":"寒假春節有約旦團，佩特拉古城與死海漂浮；2 月早晚仍冷。","src":["https://event.liontravel.com/zh-tw/middleeast/information","https://travel.liontravel.com/category/zh-tw/middleeast/index"]}
       ]
     },
     "11": {
