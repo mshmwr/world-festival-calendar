@@ -108,6 +108,93 @@
       "JO": [
         {"n":"佩特拉與瓦地倫","pop":1,"x":"1 月是約旦最冷的月份，佩特拉偶爾下雪，瓦地倫沙漠夜晚接近零度；遊客少。","src":["https://travel.liontravel.com/category/zh-tw/middleeast/index"]},
         {"n":"死海漂浮","pop":1,"x":"死海海拔低於海平面 400 多公尺，冬季比安曼溫暖許多，仍可以下水漂浮。","src":["https://travel.liontravel.com/category/zh-tw/middleeast/index"]}
+      ],
+      "GB": [
+        {"n":"昔德蘭群島火祭 Up Helly Aa","pop":1,"x":"每年 1 月最後一個星期二（2027 年為 1/26）在勒威克舉行，上千人持火炬遊行後焚燒維京長船。","src":["https://www.uphellyaa.org/up-helly-aa-2027/","https://www.northlinkferries.co.uk/festivals-in-shetland/"]},
+        {"n":"格拉斯哥 Celtic Connections 音樂節","pop":1,"x":"2027 年 1/14～1/31，凱爾特與民謠音樂節，蘇格蘭冬季最大的文化活動。","src":["https://www.broadwayworld.com/article/Celtic-Connections-Unveils-2027-Programme-20261006","https://www.visitscotland.com/planning/when-to-visit/christmas-winter/january-breaks"]},
+        {"n":"冰島英國聯遊團的倫敦段","pop":2,"x":"冬季冰島極光團常經倫敦轉機並安排市區觀光；入境英國需先申請 ETA。","src":["https://www.travel4u.com.tw/group/itinerary/EUR09PAK01/","https://vacation.eztravel.com.tw/pkgfrn/p/VDR0000001846/27ED10LA01"]}
+      ],
+      "IE": [
+        {"n":"都柏林 TradFest 愛爾蘭傳統音樂節","pop":1,"x":"2027 年 1/20～1/24，在都柏林市區的教堂、城堡與酒館舉行傳統音樂演出。","src":["https://www.festivalfinder.eu/festivals/tradfest-2027","https://www.visitdublin.com/guides/trad-fest-dublin"]}
+      ],
+      "FR": [
+        {"n":"巴黎冬季折扣季","pop":3,"x":"法國法定折扣季，2027 年預估 1/6～2/2；可樂、易遊網、東南都推出折扣季團，搭配羅浮宮與塞納河遊船。","src":["https://tour.colatour.com.tw/itinerary?PatternNo=239099","https://vacation.eztravel.com.tw/pkgfrn/p/VDR0000001914/EBR10PP24W03","https://tour.settour.com.tw/product/GFG0000025504"]},
+        {"n":"北法聖米歇爾山","pop":2,"x":"冬季北法團常排，遊客較少，但海風很冷。","src":["https://vacation.eztravel.com.tw/pkgfrn/p/VDR0000001914/EBR10PP24W03"]}
+      ],
+      "NL": [
+        {"n":"法比荷團：阿姆斯特丹運河遊船","pop":2,"x":"1 月法比荷折扣季團的荷蘭段，運河遊船與國家博物館；冰島團也有接荷蘭的版本。","src":["https://tour.colatour.com.tw/itinerary?PatternNo=239460","https://www.colatour.com.tw/C10A_TourSell/C10A16_TourItinerary.aspx?PatternNo=225535"]}
+      ],
+      "BE": [
+        {"n":"法比荷團：布魯塞爾大廣場、布魯日","pop":2,"x":"1 月法比荷折扣季團必經比利時，布魯日運河小鎮冬天人少。","src":["https://tour.colatour.com.tw/itinerary?PatternNo=239099","https://tour.colatour.com.tw/itinerary?PatternNo=239460"]}
+      ],
+      "DE": [
+        {"n":"新天鵝堡雪景","pop":3,"x":"1 月有機會看到雪中城堡，德瑞、德奧冬季團必排；積雪時巴士停駛改搭馬車或步行，瑪麗安橋結冰時可能封閉。","src":["https://tour.settour.com.tw/product/GFG0000027473","https://vacation.eztravel.com.tw/pkgfrn/p/VDR0000001913/TM1023397","https://www.kkday.com/zh-tw/blog/21261/europe-germany-schloss-neuschwanstein"]},
+        {"n":"楚格峰與國王湖","pop":2,"x":"德國最高峰楚格峰冬季可玩雪，國王湖冬季遊船常和德奧團排在一起。","src":["https://vacation.eztravel.com.tw/pkgfrn/p/VDR0000001943/MUC08BRT03"]}
+      ],
+      "AT": [
+        {"n":"維也納音樂會","pop":2,"x":"奧捷冬季團多附一場維也納古典音樂會；元旦新年音樂會一票難求，一般團不含。","src":["https://vacation.eztravel.com.tw/pkgfrn/p/VDR0000008652/VIE12CIF","https://travel.liontravel.com/detail?normgroupid=d8113074-1a1e-4231-ab22-76f0e64fb686","https://vacation.liontravel.com/ticketinfo?code=18VIE071&ExpireWebShow=0"]},
+        {"n":"哈修塔特湖區雪景與鹽礦","pop":2,"x":"冬季湖畔小鎮人少、常有雪景，奧捷團常排鹽礦與天空步道。","src":["https://vacation.eztravel.com.tw/pkgfrn/p/VDR0000008652/VIE12EKA2","https://travel.liontravel.com/detail?normgroupid=d8113074-1a1e-4231-ab22-76f0e64fb686"]}
+      ],
+      "CH": [
+        {"n":"冬季瑞士：少女峰、馬特洪峰","pop":3,"x":"1 月雪景最完整，東南、易遊網、雄獅都有冬季瑞士團；山上約零下 10 度，纜車遇天候會停駛。","src":["https://tour.settour.com.tw/product/GFG0000025872","https://vacation.eztravel.com.tw/pkgfrn/p/VDR0000015929/MXP5CA1122A5","https://event.liontravel.com/zh-tw/switzerland/index"]},
+        {"n":"冰河列車與伯連納列車","pop":2,"x":"策馬特到聖莫里茲的冰河列車穿越雪白山谷；部分團在同路段改搭國鐵，報名前要看清楚。","src":["https://vacation.eztravel.com.tw/pkgfrn/p/VDR0000015929/MXP5CA1122A5","https://tour.settour.com.tw/product/GFG0000023714"]}
+      ],
+      "CZ": [
+        {"n":"布拉格冬季古城","pop":2,"x":"查理大橋與城堡區冬天常有雪景，奧捷冬季團多在布拉格連泊。","src":["https://vacation.eztravel.com.tw/pkgfrn/p/VDR0000008652/VIE12CIF","https://travel.liontravel.com/detail?normgroupid=d8113074-1a1e-4231-ab22-76f0e64fb686"]},
+        {"n":"庫倫洛夫雪景小鎮","pop":2,"x":"世界遺產小鎮，冬季遊客少，雪後最漂亮。","src":["https://travel.liontravel.com/detail?normgroupid=d8113074-1a1e-4231-ab22-76f0e64fb686"]}
+      ],
+      "HU": [
+        {"n":"布達佩斯溫泉浴場","pop":1,"x":"1 月雪中泡塞切尼、蓋勒特露天溫泉最有感覺，遊客也比 12 月少。","src":["https://justbudapest.com/january-in-budapest-what-to-expect-in-winter/","https://www.budapest-trip.com/guides/outdoor-baths-in-winter/"]},
+        {"n":"多瑙河夜景","pop":1,"x":"國會大廈與鏈橋夜景，冬季天黑早，傍晚就能看。","src":["https://justbudapest.com/budapest-in-winter/"]}
+      ],
+      "PL": [
+        {"n":"札科帕內滑雪","pop":1,"x":"塔特拉山腳的滑雪小鎮，1 月是滑雪旺季，週末住宿要提早 2～4 個月訂；附近有溫泉。","src":["https://visit.zakopane.pl/things-to-do/winter","https://www.ontheluce.com/things-to-do-in-zakopane-in-winter/"]}
+      ],
+      "RU": [
+        {"n":"莫斯科東正教聖誕與冬季假期","pop":1,"x":"東正教聖誕節是 1/7，1 月上旬仍有聖誕市集與燈飾；當天部分博物館休館。","src":["https://kimkim.com/c/russia-in-january-travel-tips-weather-and-more","https://moscowpass.com/blog/what-to-do-in-moscow-during-christmas-and-new-year-the-best-plans"]}
+      ],
+      "RO": [
+        {"n":"外西凡尼亞雪景與波亞納布拉索夫滑雪","pop":1,"x":"1 月是羅馬尼亞最冷也最多雪的月份，布拉索夫古城、雪橇與滑雪最適合。","src":["https://www.kimkim.com/c/romania-in-january-travel-tips-weather-more","https://www.chasingthedonkey.com/romania-in-winter-in-romania-ideas/"]}
+      ],
+      "BG": [
+        {"n":"佩爾尼克 Surva 假面節","pop":1,"x":"聯合國非物質文化遺產，通常在 1 月下旬的週末，上萬名戴獸面、掛鈴鐺的表演者遊行驅邪；2027 年日期尚未公布。","src":["https://www.carnifest.com/surva-carnival-festival-of-the-masquerade-games-2027/","https://www.bta.bg/en/news/1045403-surva-turns-pernik-into-a-two-weekend-carnival-festival"]}
+      ],
+      "EE": [
+        {"n":"塔林聖誕市集（至 1/6）","pop":1,"x":"2026～27 年市集開到 2027/1/6，1 月上旬去還趕得上。","src":["https://visitestonia.com/tallinn-christmas-market","https://www.visittallinn.ee/christmas"]}
+      ],
+      "IT": [
+        {"n":"威尼斯面具嘉年華","pop":2,"x":"2027 年約 1/30 開幕、2/9 結束，雄獅冬季歐洲主打；開幕日各來源不一，以官方公告為準。","src":["https://event.liontravel.com/zh-tw/europe/winter-sale","https://www.visit-venice-italy.com/carnival-venice-italy-dates.html"]},
+        {"n":"義大利冬季團","pop":2,"x":"1 月羅馬、佛羅倫斯人潮少，各大景點排隊時間短。","src":["https://travel.liontravel.com/category/zh-tw/southerneurope-northerneurope/index","https://tour.settour.com.tw/europe.html"]}
+      ],
+      "ES": [
+        {"n":"三王節遊行","pop":1,"x":"1/5 傍晚全國各城市都有三王節遊行，馬德里沿卡斯提亞大道到西貝萊斯廣場，花車撒糖果，晚上很冷。","src":["https://www.idealista.com/en/news/node/874619","https://www.52spain.com/d/131109-2026-Three-Kings-Day-in-Spain-Parade-Guide-for-Madrid-Barcelona-and-Rosc-n-de-Reyes-Traditions"]},
+        {"n":"冬遊西班牙：高第建築、阿罕布拉宮","pop":2,"x":"冬季西葡團主打，南部安達魯西亞白天約 15 度。","src":["https://www.settour.com.tw/act/gfg/europe/spain/","https://event.liontravel.com/zh-tw/europe/se"]}
+      ],
+      "PT": [
+        {"n":"葡萄牙冬遊：波多、里斯本","pop":2,"x":"冬季是葡萄牙淡季，氣候溫和多雨，波特酒莊是常見賣點，常和西班牙排成雙國團。","src":["https://www.settour.com.tw/act/gfg/europe/spain/","https://travel.liontravel.com/category/zh-tw/southerneurope-northerneurope/index"]}
+      ],
+      "GR": [
+        {"n":"主顯節祝聖水儀式","pop":1,"x":"1/6 神父把十字架拋入海中，年輕人跳進冬天的海裡搶撈，比雷埃夫斯、塞薩洛尼基等港口最熱鬧。","src":["https://greekherald.com.au/community/church/epiphany-what-and-why-do-greeks-celebrate","https://www.euronews.com/2026/01/06/young-men-in-greece-dive-for-wooden-cross-in-epiphany-celebration"]}
+      ],
+      "HR": [
+        {"n":"杜布羅夫尼克淡季古城","pop":1,"x":"冬季遊客最少，城牆步道可以慢慢走；許多海島渡輪和餐廳停業。","src":["https://www.kkday.com/en-us/destination/hr-croatia"]}
+      ],
+      "NO": [
+        {"n":"挪威極光與帝王蟹","pop":2,"x":"極夜時段長，北挪威追極光機會高；北歐極光團多排基爾克內斯抓帝王蟹。","src":["https://tour.settour.com.tw/product/GFG0000023138","https://vacation.eztravel.com.tw/pkgfrn/p/VDR0000007686/T20260531000001"]}
+      ],
+      "SE": [
+        {"n":"北歐三國極光團","pop":2,"x":"挪芬瑞三國團的瑞典段，雪上摩托車與冰旅館。","src":["https://tour.settour.com.tw/product/GFG0000023138"]}
+      ],
+      "FI": [
+        {"n":"芬蘭極光玻璃屋","pop":3,"x":"1 月元旦後人潮回落但最冷，可樂、東南、易遊網都有莎麗薩卡、羅瓦涅米玻璃屋團；極光看天氣。","src":["https://tour.colatour.com.tw/itinerary?PatternNo=239175","https://tour.settour.com.tw/product/GFG0000017393","https://vacation.eztravel.com.tw/pkgfrn/p/VDR0000007686/T20260531000001"]},
+        {"n":"凱米破冰船","pop":3,"x":"波的尼亞灣結冰後才能出航，破冰船約三小時，還能穿防寒衣在浮冰間漂浮。","src":["https://www.colatour.com.tw/webDM/theme/aurora/aurora_europe.html","https://www.settour.com.tw/theme/icebreaker_Season0000010/","https://tour.settour.com.tw/product/GFG0000023138"]}
+      ],
+      "DK": [
+        {"n":"哥本哈根冬季","pop":1,"x":"1 月冷而遊客少，有冬季時裝週、冬季美食週與冬季折扣；趣伏里樂園開放時間要先查。","src":["https://www.hellotickets.com/denmark/copenhagen/copenhagen-in-january/sc-202-4512","https://abackpackersworld.com/copenhagen-in-january/"]}
+      ],
+      "IS": [
+        {"n":"冰島藍冰洞與極光","pop":3,"x":"藍冰洞只在冬季開放，各家冰島團 1 月都有出發；天候不佳冰洞健行與極光船會取消退費。","src":["https://www.colatour.com.tw/C10A_TourSell/C10A16_TourItinerary.aspx?PatternNo=225475","https://www.travel4u.com.tw/en/group/itinerary/EUR10PAK01/","https://vacation.eztravel.com.tw/pkgfrn/p/VDR0000001846/27ED10LA01"]},
+        {"n":"藍湖溫泉與金環","pop":2,"x":"雪中泡藍湖溫泉，金環線看間歇泉與黃金瀑布；1 月白天只有約 4～5 小時。","src":["https://www.colatour.com.tw/C10A_TourSell/C10A16_TourItinerary.aspx?PatternNo=225475","https://www.colatour.com.tw/webDM/theme/aurora/aurora_iceland.html"]}
       ]
     },
     "11": {
