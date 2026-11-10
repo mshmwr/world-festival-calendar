@@ -995,7 +995,7 @@
       ],
       "CZ": [
         {"n":"布拉格之春音樂節","pop":1,"x":"2027 年 5/12～6/2，以史麥塔納《我的祖國》開幕，布拉格最重要的古典音樂節。","src":["https://prague.eu/en/akce/prague-spring-2027-opening-concert/","https://www.rudolfinum.cz/en/event/37166--prague-spring-2027"]},
-        {"n":"庫倫洛夫五瓣玫瑰節","pop":1,"x":"6 月中旬前後小鎮回到中世紀，騎士、市集與遊行；春季奧捷團常排庫倫洛夫。","src":["https://www.kkday.com/zh-tw/blog/207969/may-travel-countries-recommendation"]}
+        {"n":"布拉格與庫倫洛夫春季","pop":2,"x":"5 月花開、白天長，奧捷團春季出發；庫倫洛夫五瓣玫瑰節在 6 月。","src":["https://vacation.eztravel.com.tw/pkgfrn/p/VDR0000001846/26EE10VV42","https://travel.liontravel.com/detail?normgroupid=d8113074-1a1e-4231-ab22-76f0e64fb686"]}
       ],
       "HU": [
         {"n":"布達佩斯春季","pop":1,"x":"5 月多瑙河畔回暖，溫泉與夜景遊船。","src":["https://justbudapest.com/budapest-in-winter/"]}
@@ -1048,6 +1048,46 @@
       ],
       "IS": [
         {"n":"冰島春季","pop":1,"x":"5 月白天接近 20 小時，海鸚 5 月起回到懸崖繁殖。","src":["https://tour.settour.com.tw/product/GFG0000023872"]}
+      ],
+      "US": [
+        {"n":"美國國家公園春季：黃石、優勝美地、大峽谷","pop":2,"x":"5 月黃石道路陸續開放、優勝美地瀑布水量最大；春季比暑假人少。","src":["https://www.kkday.com/zh-tw/blog/207969/may-travel-countries-recommendation","https://www.colatour.com.tw/webDM/tour/usa/USnationalpark/tour.html","https://tour.settour.com.tw/product/GFG0000016634"]}
+      ],
+      "CA": [
+        {"n":"渥太華鬱金香節","pop":1,"x":"5 月中旬，百萬株鬱金香盛開，2027 年是 75 週年鑽禧；日期待公布。","src":["https://tulipfestival.ca","https://www.carnifest.com/canadian-tulip-festival-2027/"]},
+        {"n":"洛磯山脈春季","pop":1,"x":"5 月下旬湖面解凍，夢蓮湖、露易絲湖開始呈現湖水綠；6 月才是旺季。","src":["https://tour.settour.com.tw/america.html"]}
+      ],
+      "MX": [
+        {"n":"五月五日節","pop":1,"x":"5/5 紀念普埃布拉戰役，普埃布拉有遊行與重演。","src":["https://www.kkday.com/zh-tw/blog/207969/may-travel-countries-recommendation"]}
+      ],
+      "BR": [
+        {"n":"伊瓜蘇與潘塔納爾","pop":1,"x":"5 月秋季，人潮少、天氣乾爽。","src":["https://travel.liontravel.com/category/zh-tw/centralsouthamerica/index"]}
+      ],
+      "PE": [
+        {"n":"馬丘比丘乾季","pop":2,"x":"5～10 月是秘魯乾季，能見度高；易遊網、東南、可樂都有秘魯團（易遊網 2027/5/17 出發）。","src":["https://vacation.eztravel.com.tw/pkgfrn/p/VDR0000008652/LIM15BRA","https://tour.settour.com.tw/product/GFG0000022499","https://www.colatour.com.tw/C000_Portal/C000_HP01A_Main.aspx?TourArea=I-05"]}
+      ],
+      "AR": [
+        {"n":"布宜諾斯艾利斯秋季","pop":1,"x":"5 月入秋，探戈與葡萄酒，巴塔哥尼亞多數設施休季。","src":["https://travel.liontravel.com/category/zh-tw/centralsouthamerica/index"]}
+      ],
+      "EG": [
+        {"n":"聞風節 Sham el-Nessim","pop":1,"x":"2027 年 5/3（科普特復活節隔天），全國到尼羅河畔野餐、吃鹹魚與彩蛋。","src":["https://www.officeholidays.com/holidays/egypt/sham-el-nessim"]},
+        {"n":"金字塔與尼羅河","pop":1,"x":"5 月已經很熱，白天常超過 35 度，景點宜排早上。","src":["https://travel.liontravel.com/category/zh-tw/africa/index"]}
+      ],
+      "MA": [
+        {"n":"玫瑰谷玫瑰節","pop":1,"x":"卡拉特姆古納 5 月中旬採收玫瑰，玫瑰節約 5 月上中旬（2026 年是 5/7～5/10），2027 年日期待公布。","src":["https://www.worldnomads.com/explore/north-africa/morocco/may-rose-festival-morocco","https://moroccotravelblog.com/kelaa-mgouna-a-town-of-roses-home-to-moroccos-rose-festival-your-morocco-tour-guide/"]},
+        {"n":"撒哈拉與皇城","pop":2,"x":"5 月仍舒適，沙漠白天開始變熱。","src":["https://www.colatour.com.tw/C10A_TourSell/C10A16_TourItinerary.aspx?PatternNo=220092","https://www.intrepidtravel.com/au/morocco/best-time-to-visit-morocco"]}
+      ],
+      "ZA": [
+        {"n":"克魯格國家公園乾季開始","pop":1,"x":"5 月進入南非冬季乾季，草變短、動物易見，是遊獵好季節。","src":["https://www.roughguides.com/south-africa/when-to-go/april/"]}
+      ],
+      "KE": [
+        {"n":"雨季尾聲","pop":1,"x":"5 月仍是大雨季（海岸 5 月最濕），6 月後才適合遊獵。","src":["https://www.intrepidtravel.com/nz/kenya/best-time-to-visit-kenya"]}
+      ],
+      "AU": [
+        {"n":"雪梨燈光音樂節 Vivid Sydney","pop":2,"x":"2027 年 5/28～6/19，歌劇院與環形碼頭光雕投影、音樂與講座。","src":["https://www.sydney.com/uk/destinations/sydney/sydney-city/sydney-harbour/events/vivid-sydney-2027","https://www.nsw.gov.au/visiting-and-exploring-nsw/nsw-events/vivid-sydney-2027"]},
+        {"n":"澳洲秋季","pop":1,"x":"5 月秋涼，大堡礁水母季結束、海況佳。","src":["https://vacation.eztravel.com.tw/oversea/america-canada-newzealand-australia/"]}
+      ],
+      "NZ": [
+        {"n":"紐西蘭晚秋","pop":1,"x":"5 月遊客少、價格低，南島開始降雪，6 月滑雪季。","src":["https://www.colatour.com.tw/webDM/tour/nz/NewZealand/tour.html"]}
       ]
     },
     "11": {
