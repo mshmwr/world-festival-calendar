@@ -424,6 +424,50 @@
       "IS": [
         {"n":"冰島藍冰洞與極光","pop":3,"x":"可樂春節有 2/3、2/4、2/7 出發的冰島團，藍冰洞、極光船；天候不佳會取消退費。","src":["https://www.colatour.com.tw/webDM/theme/aurora/aurora_iceland.html","https://vacation.eztravel.com.tw/pkgfrn/p/VDR0000001846/27ED10LA01","https://www.travel4u.com.tw/en/group/itinerary/EUR10PAK01/"]},
         {"n":"雷克雅維克冬季燈光節","pop":1,"x":"2027 年 2/4～2/7，建築光雕、博物館之夜與泳池之夜，全部免費。","src":["https://reykjavik.is/en/winter-lights-festival","https://reykjavik.is/en/winter-lights-festival/museum-night"]}
+      ],
+      "US": [
+        {"n":"阿拉斯加費爾班克斯極光","pop":3,"x":"春節極光團熱門，可樂、易遊網、東南都有團，搭冬季極光列車、住三晚看極光；極光無法保證。","src":["https://www.colatour.com.tw/webDM/theme/aurora/alaska.html","https://vacation.eztravel.com.tw/activity/aurora/","https://tour.settour.com.tw/product/GFG0000025023"]},
+        {"n":"紐奧良 Mardi Gras","pop":2,"x":"2027 年懺悔星期二是 2/9，前兩週每天都有花車遊行、拋串珠，是美國最大的嘉年華。","src":["https://www.farmersalmanac.com/?p=429066","https://tripprof.com/pt/blog/best-carnivals-2027/"]}
+      ],
+      "CA": [
+        {"n":"黃刀鎮極光","pop":3,"x":"2 月天氣較穩定、極光機率高，可樂 2027/2/6 有春節團，易遊網、東南也有；夜間零下 30 度。","src":["https://www.colatour.com.tw/webDM/theme/aurora/canada.html","https://vacation.eztravel.com.tw/pkgfrn/p/VDR0000001838/227742","https://www.settour.com.tw/act/gfg/america/canada/index.html"]},
+        {"n":"魁北克冬季嘉年華","pop":1,"x":"2027 年 2/5～2/14，世界最大的冬季嘉年華，冰宮、夜間遊行與冰上獨木舟賽。","src":["https://tripprof.com/pt/blog/best-carnivals-2027/","https://tripprof.com/fr/blog/best-places-visit-winter-2026-2027/"]}
+      ],
+      "MX": [
+        {"n":"米卻肯帝王斑蝶保護區","pop":1,"x":"1 月下旬到 3 月初是帝王斑蝶最活躍的高峰期，El Rosario 保護區週末人很多。","src":["https://escapetomexico.com/momentours/monarch-butterfly-season-in-mexico/","https://journeynorth.org/news/overwintering-season-off-to-a-good-start-at-el-rosario"]},
+        {"n":"墨西哥城與馬雅遺址","pop":1,"x":"2 月是乾季，猶加敦半島與坎昆天氣最好。","src":["https://www.travel4u.com.tw/en/group/area/31/central-america-south-america/","https://event.liontravel.com/zh-tw/latin-america/index"]}
+      ],
+      "BR": [
+        {"n":"里約嘉年華","pop":3,"x":"2027 年約 2/5～2/13，森巴大道特級組遊行約在 2/7～2/9；看台票 2026 年 8 月已開賣，便宜座位很快售完。","src":["https://riocarnaval.org/samba-parade/samba-parade","https://riotimesonline.com/rio-carnival-2027-dates-tickets-parade-schedule","https://www.officeholidays.com/holidays/brazil/rio-de-janeiro/brazil-carnival"]},
+        {"n":"伊瓜蘇瀑布（南美多國團）","pop":2,"x":"雨季水量最大，南美四國團必排。","src":["https://travel.liontravel.com/category/zh-tw/centralsouthamerica/index","https://tour.settour.com.tw/product/GFG0000028968"]}
+      ],
+      "PE": [
+        {"n":"馬丘比丘","pop":1,"x":"2 月是安地斯雨季最高峰，印加古道每年 2 月封閉維修，只能搭火車上山；團體較少排 2 月。","src":["https://travel.liontravel.com/category/zh-tw/centralsouthamerica/index","https://vacation.eztravel.com.tw/pkgfrn/p/VDR0000007686/T20250704000001"]}
+      ],
+      "AR": [
+        {"n":"南極半島遊輪","pop":2,"x":"2 月是南極夏季，企鵝雛鳥長大、鯨魚多；從烏斯懷亞出發，團費高。","src":["https://event.liontravel.com/zh-tw/antarctica/group","https://tour.settour.com.tw/product/GFG0000028968"]},
+        {"n":"巴塔哥尼亞：莫雷諾冰川","pop":2,"x":"南半球夏季，冰川健行與百內國家公園的最佳季節。","src":["https://vacation.eztravel.com.tw/pkgfrn/introduction/VDR0000001846/25XAO02EK-T","https://travel.liontravel.com/category/zh-tw/centralsouthamerica/index"]}
+      ],
+      "EG": [
+        {"n":"金字塔、尼羅河遊輪","pop":3,"x":"春節埃及團多，雄獅、易遊網、可樂都有；2 月氣候涼爽。","src":["https://travel.liontravel.com/category/zh-tw/middleeast/index","https://vacation.eztravel.com.tw/pkgfrn/p/VDR0000003336/T20260612000001","https://www.colatour.com.tw/C000_Portal/C000_HP01A_Main.aspx?TourArea=M"]},
+        {"n":"阿布辛貝太陽節","pop":2,"x":"每年 2/22 清晨，陽光穿過神殿照亮拉美西斯二世雕像，一年只有兩天（另一天是 10/22）。","src":["https://www.ask-aladdin.com/all-destinations/egypt/category/egypt-travel-tips/page/abu-simbel-sun-festival","https://www.thenationalnews.com/mena/egypt/2022/02/22/solar-alignment-celebrated-at-egypts-abu-simbel-temple"]}
+      ],
+      "MA": [
+        {"n":"撒哈拉與皇城","pop":2,"x":"冬季約 9～20 度，2 月杏花開始開；可樂、雄獅都有摩洛哥團。","src":["https://www.colatour.com.tw/C10A_TourSell/C10A16_TourItinerary.aspx?PatternNo=220092","https://travel.liontravel.com/category/zh-tw/africa/index"]}
+      ],
+      "ZA": [
+        {"n":"南非全覽：開普敦、花園大道、克魯格","pop":2,"x":"2 月是南非夏末，開普敦晴朗乾燥，葡萄酒鄉採收季。","src":["https://travel.liontravel.com/category/zh-tw/africa/index","https://vacation.eztravel.com.tw/pkgfrn/results/TPE/84"]}
+      ],
+      "KE": [
+        {"n":"馬賽馬拉野生動物遊獵","pop":1,"x":"1～2 月是短乾季，動物好觀察；同期坦尚尼亞塞倫蓋提南部是角馬產仔季。","src":["https://www.asiliaafrica.com/blog/where-to-go-on-safari-in-january/","https://www.discoverafrica.com/blog/in-pictures-the-great-migration-calving-season/"]}
+      ],
+      "AU": [
+        {"n":"澳洲夏季：黃金海岸、雪梨","pop":2,"x":"2 月仍是澳洲夏天，春節有黃金海岸 6 日團；北部是雨季。","src":["https://www.settour.com.tw/act/mkt/cny/","https://tour.settour.com.tw/product/GFG0000024172"]},
+        {"n":"墨爾本與大洋路","pop":2,"x":"夏季大洋路十二門徒岩、菲利普島神仙企鵝。","src":["https://tour.settour.com.tw/product/GFG0000027416","https://www.colatour.com.tw/C10A_TourSell/C10A16_TourItinerary.aspx?PatternNo=220449"]}
+      ],
+      "NZ": [
+        {"n":"紐西蘭南島夏季","pop":3,"x":"2 月天氣最穩定，春節東南、可樂都有紐西蘭團，庫克山、皇后鎮、米佛峽灣。","src":["https://www.settour.com.tw/act/mkt/cny/","https://www.colatour.com.tw/webDM/tour/nz/NewZealand/tour.html","https://www.travel4u.com.tw/en/group/itinerary/NZL11NZ01/"]},
+        {"n":"北島：哈比屯與螢火蟲洞","pop":2,"x":"魔戒拍攝地哈比屯、懷托摩螢火蟲洞、羅托魯瓦毛利文化。","src":["https://tour.settour.com.tw/product/GFG0000029913","https://www.colatour.com.tw/webDM/tour/nz/NewZealand/tour.html"]}
       ]
     },
     "11": {
