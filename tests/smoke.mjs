@@ -41,7 +41,10 @@ for (const tab of ["s", "nat", "wh", "ev"]) await p.click(`[data-tab="${tab}"]`)
 
 check("日本 11 月推薦分頁有星等與來源", await p.evaluate(() => { Object.assign(app.st, { y: 2026, m: 10, tab: "pk" }); app.render();
   const s = document.getElementById("side"); return s.querySelector('[data-tab="pk"]')?.textContent.includes("11 月推薦") && s.querySelectorAll(".pick").length > 0 && !!s.querySelector(".pick .stars") && !!s.querySelector(".pick .src a[href^='https://']"); }));
-check("沒有推薦的月份不顯示推薦分頁", await p.evaluate(() => { app.st.m = 5; app.render(); const ok = !document.querySelector('#side [data-tab="pk"]') && !!document.querySelector('#side [data-tab="s"][aria-selected="true"]'); app.st.m = 10; app.render(); return ok; }));
+check("沒有推薦的月份不顯示推薦分頁", await p.evaluate(() => {
+  const m = [...Array(12).keys()].find(i => !(app.PICKS[i + 1] || {})[app.st.country]);
+  if (m === undefined) return true; // 每個月都有推薦時沒有可測的月份
+  app.st.m = m; app.render(); const ok = !document.querySelector('#side [data-tab="pk"]') && !!document.querySelector('#side [data-tab="s"][aria-selected="true"]'); app.st.m = 10; app.render(); return ok; }));
 await p.evaluate(() => app.selectPref("14"));
 await p.click('[data-ptab="ev"]');
 check("神奈川祭典含箱根驛傳", (await p.textContent("#pref")).includes("箱根驛傳"));
