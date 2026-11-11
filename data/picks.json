@@ -1483,6 +1483,7 @@
         {"n":"德島阿波舞","pop":1,"p":"36","x":"每年 8/12～8/15 盂蘭盆節期間，上萬人跳阿波舞遊街，日本最大的舞蹈祭。","src":["https://www.kkday.com/zh-tw/blog/170418/asia-japan-festival"]}
       ],
       "KR": [
+        {"n":"首爾、釜山暑假親子團","pop":2,"x":"可樂 2026 年暑假親子團 7/1～8/28 出發，以首爾、釜山、樂園為主；2027 年團期待公布。","src":["https://www.colatour.com.tw/webDM/theme/family/summer.html"]},
         {"n":"韓國盛夏海灘","pop":1,"x":"8 月炎熱，釜山海雲台、江陵海水浴場旺季；8/15 光復節。","src":["https://www.settour.com.tw/act/gfg/korea/seoul/"]}
       ],
       "CN": [
@@ -1528,6 +1529,7 @@
         {"n":"帝國酒店與水村","pop":1,"x":"汶萊團全年都有。","src":["https://www.travel4u.com.tw/group/itinerary/BWN05BI2017/"]}
       ],
       "IN": [
+        {"n":"印度金三角夏季團","pop":2,"x":"易遊網 2026 年 6～9 月有印度金三角 6 日團；8 月是雨季，但泰姬瑪哈陵遊客少。","src":["https://vacation.eztravel.com.tw/pkgfrn/p/VDR0000001925/GFG0000032951"]},
         {"n":"拉達克與 8/15 獨立紀念日","pop":1,"x":"8 月拉達克仍是旺季；8/15 印度獨立紀念日。","src":["https://www.himalayanecotourism.com/hemis-festival-ladakh-in-2026-dates-history-travel-guide/"]}
       ],
       "NP": [
@@ -1601,9 +1603,11 @@
         {"n":"錫耶納賽馬節（8/16）與南義海岸","pop":2,"x":"8/16 第二場賽馬；8/15 聖母升天節全國放假，海灘最擠。","src":["https://www.colatour.com.tw/C000_Portal/C000_HP01A_Main.aspx?TourArea=L-04","https://www.kkday.com/zh-tw/blog/206979/july-where-to-travel"]}
       ],
       "ES": [
+        {"n":"西葡夏季團","pop":2,"x":"易遊網 2026 年有 8/19、8/31 出發的葡萄牙西班牙 13 日團；南部 8 月酷熱。","src":["https://vacation.eztravel.com.tw/pkgfrn/p/VDR0000007686/T20260302000003"]},
         {"n":"番茄節 La Tomatina","pop":1,"x":"8 月最後一個星期三（2027 年 8/25）在瓦倫西亞附近布尼奧爾，一小時互丟番茄；需購票。","src":["https://www.visitvalencia.com/agenda-valencia/la-tomatina-una-verdadera-batalla-de-tomates-en-valencia","https://icalendario.net/fiestas-populares/tomatina"]}
       ],
       "PT": [
+        {"n":"西葡夏季團的葡萄牙段","pop":2,"x":"易遊網 2026 年 8/19、8/31 出發的西葡團，含辛特拉佩納宮。","src":["https://vacation.eztravel.com.tw/pkgfrn/p/VDR0000007686/T20260302000003"]},
         {"n":"阿爾加維海岸","pop":1,"x":"8 月海灘旺季。","src":["https://event.liontravel.com/zh-tw/europe/se"]}
       ],
       "GR": [
@@ -1671,6 +1675,7 @@
         {"n":"大阪、京都","pop":1,"x":"9 月仍熱、颱風多，下旬起轉涼；9 月中旬岸和田山車祭。","src":["https://www.kkday.com/zh-tw/blog/213726/september-where-to-travel"]}
       ],
       "KR": [
+        {"n":"中秋連假韓國團","pop":2,"x":"雄獅 2026 年中秋連假（9/25～9/28）首爾、釜山、濟州團多已成團；2027 年秋夕是 9/14～9/16。","src":["https://event.liontravel.com/zh-tw/korea/guarantee","https://event.liontravel.com/zh-tw/holidays/moon-festival/index"]},
         {"n":"中秋節（秋夕）","pop":1,"x":"2027 年 9/14～9/16 秋夕連假，景福宮有民俗活動，但許多店家休息、交通擁擠。","src":["https://publicholidays.co.kr/chuseok/"]},
         {"n":"濟州秋季","pop":1,"x":"9 月濟州芒草與秋花開始。","src":["https://www.kkday.com/zh-tw/blog/213726/september-where-to-travel"]}
       ],
@@ -1688,6 +1693,7 @@
         {"n":"蒙古秋季","pop":1,"x":"9 月上旬草原轉黃，中旬後開始冷，旅遊季結束。","src":["https://www.travel4u.com.tw/en/group/area/68/mongolia-northern-china/"]}
       ],
       "TH": [
+        {"n":"中秋連假泰國團","pop":2,"x":"2026 年中秋與教師節連假，易遊網、東南都有泰國團；9 月底雨季尾聲。","src":["https://www.eztravel.com.tw/activity/octobervacation/","https://www.settour.com.tw/act/mkt/holidays/"]},
         {"n":"清邁、檳城等城市短遊","pop":1,"x":"9 月雨季尾聲，城市行程影響不大。","src":["https://www.kkday.com/zh-tw/blog/213726/september-where-to-travel"]}
       ],
       "VN": [
@@ -1697,12 +1703,14 @@
         {"n":"新加坡 F1 夜間賽與濱海灣","pop":2,"x":"9 月是新加坡推薦旅遊月份，環球影城、濱海灣花園適合親子。","src":["https://www.kkday.com/zh-tw/blog/213726/september-where-to-travel","https://www.kkday.com/zh-tw/blog/18243/best-time-to-travel"]}
       ],
       "MY": [
+        {"n":"麻六甲與海上 Villa","pop":2,"x":"東南 2026 年中秋檔有馬來西亞海上 Villa、麻六甲古城六日團（9/23、9/26 出發）。","src":["https://www.settour.com.tw/act/mkt/holidays/"]},
         {"n":"檳城與沙巴","pop":1,"x":"檳城古城美食，沙巴乾季尾聲。","src":["https://www.kkday.com/zh-tw/blog/213726/september-where-to-travel"]}
       ],
       "ID": [
         {"n":"峇里島乾季","pop":2,"x":"暑假過後人潮減少、仍是乾季，9 月是峇里島最推薦的月份之一。","src":["https://www.settour.com.tw/cms/P01/City_Bali-002.shtml","https://www.colatour.com.tw/webDM/theme/island/travel.html"]}
       ],
       "PH": [
+        {"n":"宿霧、馬尼拉連假團","pop":2,"x":"東南 2026 年中秋檔有菲律賓宿霧、馬尼拉團；9 月仍可能有颱風。","src":["https://www.settour.com.tw/act/mkt/holidays/"]},
         {"n":"菲律賓雨季","pop":1,"x":"9 月颱風多。","src":["https://www.kkday.com/zh-tw/blog/18243/best-time-to-travel"]}
       ],
       "KH": [
@@ -1718,6 +1726,7 @@
         {"n":"帝國酒店與水村","pop":1,"x":"汶萊團全年都有。","src":["https://www.travel4u.com.tw/group/itinerary/BWN05BI2017/"]}
       ],
       "IN": [
+        {"n":"印度金三角","pop":2,"x":"易遊網 2026 年 6～9 月有印度金三角 6 日團，9 月底季風結束。","src":["https://vacation.eztravel.com.tw/pkgfrn/p/VDR0000001925/GFG0000032951"]},
         {"n":"拉達克秋季","pop":1,"x":"9 月拉達克仍適合旅遊，平原季風漸退。","src":["https://www.himalayanecotourism.com/hemis-festival-ladakh-in-2026-dates-history-travel-guide/"]}
       ],
       "NP": [
@@ -1751,9 +1760,11 @@
         {"n":"法國葡萄採收季","pop":2,"x":"9 月波爾多、勃根地、香檳區採收季。","src":["https://all.accor.com/a/en/limitless/thematics/travel-tips-guides/whats-on-in-september.html","https://tour.settour.com.tw/europe.html"]}
       ],
       "NL": [
+        {"n":"荷比德法盧當地團","pop":2,"x":"山富 2026 年有 9/19、9/26 出發的荷比德法盧 7 日當地參團；法比荷團秋季出發。","src":["https://www.travel4u.com.tw/en/group/area/167/localtour-europe/","https://www.travel4u.com.tw/en/group/itinerary/EUR09PAK02/"]},
         {"n":"荷蘭初秋","pop":1,"x":"9 月天氣穩定。","src":["https://www.settour.com.tw/act/gfg/south-western_europe/index.html"]}
       ],
       "BE": [
+        {"n":"荷比盧團的比利時段","pop":2,"x":"山富荷比盧團與當地參團 9 月出發，布魯日、布魯塞爾。","src":["https://www.travel4u.com.tw/en/group/area/167/localtour-europe/","https://www.travel4u.com.tw/en/group/itinerary/EUR09PAK02/"]},
         {"n":"布魯日","pop":1,"x":"9 月遊客減少。","src":["https://www.settour.com.tw/act/gfg/south-western_europe/index.html"]}
       ],
       "DE": [
@@ -1805,12 +1816,15 @@
         {"n":"挪威峽灣秋季與極光季開始","pop":2,"x":"9 月峽灣秋色，北部極光季開始。","src":["https://www.settour.com.tw/act/theme/aurora/index.html","https://www.liontravel.com/promotion/northerneurope/scandinavia/tour.html"]}
       ],
       "SE": [
+        {"n":"北歐四國秋季團","pop":2,"x":"易遊網 2026 年 9/19、10/1 有北歐四國 13 日團，斯德哥爾摩、峽灣與雙郵輪。","src":["https://vacation.eztravel.com.tw/pkgfrn/p/VDR0000001943/CPH13BRT26AP"]},
         {"n":"北歐秋季","pop":1,"x":"拉普蘭秋色。","src":["https://www.liontravel.com/promotion/northerneurope/scandinavia/tour.html"]}
       ],
       "FI": [
+        {"n":"北歐四國團的芬蘭段","pop":2,"x":"易遊網 2026 年 9/19 出發的北歐四國團含赫爾辛基；拉普蘭 9 月秋色。","src":["https://vacation.eztravel.com.tw/pkgfrn/p/VDR0000001943/CPH13BRT26AP"]},
         {"n":"拉普蘭秋色 Ruska","pop":1,"x":"9 月上中旬拉普蘭苔原轉紅，也開始有極光。","src":["https://www.settour.com.tw/act/theme/aurora/index.html"]}
       ],
       "DK": [
+        {"n":"北歐四國團的丹麥段","pop":2,"x":"易遊網 2026 年 9/19 出發的北歐四國團從哥本哈根進出。","src":["https://vacation.eztravel.com.tw/pkgfrn/p/VDR0000001943/CPH13BRT26AP"]},
         {"n":"哥本哈根初秋","pop":1,"x":"9 月遊客減少。","src":["https://www.liontravel.com/promotion/northerneurope/scandinavia/tour.html"]}
       ],
       "IS": [
@@ -1875,6 +1889,7 @@
         {"n":"蒙古初冬","pop":1,"x":"10 月已冷，旅遊季結束。","src":["https://tour2mongolia.com/travel-tips/what-to-do-and-see-in-ulaanbaatar-in-winter"]}
       ],
       "TH": [
+        {"n":"雙十連假泰國團","pop":2,"x":"可樂 2026 年 10/20～10/23 有泰國團，易遊網、東南雙十檔也有；10 月雨季尾聲。","src":["https://www.colatour.com.tw/webDM/theme/holiday/tour.html","https://www.eztravel.com.tw/activity/octobervacation/"]},
         {"n":"普吉九皇齋節","pop":1,"x":"農曆九月初一到初九（約 10 月），普吉華人穿白衣吃素、遊行；雨季接近尾聲。","src":["https://www.kkday.com/zh-tw/blog/202395/asia-thailand-weather-travelseason"]}
       ],
       "VN": [
@@ -1884,12 +1899,14 @@
         {"n":"屠妖節小印度燈飾","pop":1,"x":"屠妖節（2027 年約 10/29）前小印度街頭點燈。","src":["https://publicholidays.com/diwali/"]}
       ],
       "MY": [
+        {"n":"雙十連假馬來西亞團","pop":2,"x":"東南 2026 年 10/7、10/8 出發的馬來西亞海上 Villa、麻六甲團。","src":["https://www.settour.com.tw/act/mkt/holidays/"]},
         {"n":"屠妖節","pop":1,"x":"2027 年約 10/29，吉隆坡十五碑、檳城小印度最熱鬧。","src":["https://publicholidays.com/diwali/"]}
       ],
       "ID": [
         {"n":"峇里島乾季尾聲","pop":2,"x":"10 月仍是乾季，11 月起雨季。","src":["https://www.settour.com.tw/cms/P01/City_Bali-002.shtml"]}
       ],
       "PH": [
+        {"n":"雙十連假宿霧團","pop":2,"x":"東南 2026 年雙十檔有宿霧、馬尼拉團；10 月仍可能有颱風。","src":["https://www.settour.com.tw/act/mkt/holidays/"]},
         {"n":"菲律賓雨季尾聲","pop":1,"x":"10 月仍有颱風，11 月起轉乾季。","src":["https://www.kkday.com/zh-tw/blog/18243/best-time-to-travel"]}
       ],
       "KH": [
@@ -1938,9 +1955,11 @@
         {"n":"法國秋季","pop":2,"x":"10 月秋色與葡萄酒鄉，巴黎人潮減少。","src":["https://tour.settour.com.tw/europe.html"]}
       ],
       "NL": [
+        {"n":"荷比法秋季團","pop":2,"x":"山富 2026 年 10/3、10/10、10/17 有荷比德法盧當地參團。","src":["https://www.travel4u.com.tw/en/group/area/167/localtour-europe/","https://www.travel4u.com.tw/en/group/itinerary/EUR09PAK02/"]},
         {"n":"荷蘭秋季","pop":1,"x":"10 月遊客少。","src":["https://www.settour.com.tw/act/gfg/south-western_europe/index.html"]}
       ],
       "BE": [
+        {"n":"荷比盧團的比利時段","pop":2,"x":"山富 2026 年 10 月有荷比盧當地參團。","src":["https://www.travel4u.com.tw/en/group/area/167/localtour-europe/"]},
         {"n":"布魯日秋季","pop":1,"x":"10 月遊客少。","src":["https://www.settour.com.tw/act/gfg/south-western_europe/index.html"]}
       ],
       "DE": [
@@ -1959,6 +1978,7 @@
         {"n":"布達佩斯秋季","pop":1,"x":"10 月溫泉季開始。","src":["https://justbudapest.com/budapest-in-winter/"]}
       ],
       "PL": [
+        {"n":"波蘭與波羅的海秋季團","pop":2,"x":"易遊網 2026/10/12 有北歐、波羅的海、波蘭五國 10 日團，另有 10～12 月出發的波蘭波羅的海團。","src":["https://vacation.eztravel.com.tw/pkgfrn/p/VDR0000009616/26HELQREDS","https://vacation.eztravel.com.tw/pkgfrn/p/VDR0000009085/WAW10CAB"]},
         {"n":"波蘭秋季","pop":1,"x":"金色秋天。","src":["https://www.krakowguide.net/?p=3016"]}
       ],
       "RU": [
@@ -1971,6 +1991,7 @@
         {"n":"里拉山秋色","pop":1,"x":"10 月山區秋色。","src":["https://www.travel4u.com.tw/en/group/itinerary/SOF10TK/"]}
       ],
       "EE": [
+        {"n":"波羅的海三國秋季團","pop":2,"x":"易遊網 2026 年 10 月有塔林、里加、維爾紐斯的波羅的海團。","src":["https://vacation.eztravel.com.tw/pkgfrn/p/VDR0000009616/26HELQREDS","https://vacation.eztravel.com.tw/pkgfrn/p/VDR0000009085/WAW10CAB"]},
         {"n":"塔林秋季","pop":1,"x":"10 月遊客少。","src":["https://www.settour.com.tw/act/gfg/europe/north/"]}
       ],
       "IT": [
@@ -1992,12 +2013,14 @@
         {"n":"挪威極光","pop":2,"x":"10 月北極圈極光季，特羅姆瑟極光團開始。","src":["https://www.settour.com.tw/act/theme/aurora/index.html","https://event.liontravel.com/zh-tw/winter-travel/aurora/index"]}
       ],
       "SE": [
+        {"n":"北歐四國秋季團","pop":2,"x":"易遊網 2026/10/1 有北歐四國 13 日團。","src":["https://vacation.eztravel.com.tw/pkgfrn/p/VDR0000001943/CPH13BRT26AP"]},
         {"n":"瑞典拉普蘭極光","pop":1,"x":"10 月起極光季。","src":["https://www.settour.com.tw/act/theme/aurora/index.html"]}
       ],
       "FI": [
         {"n":"芬蘭極光季","pop":2,"x":"秋季極光季開始，湖面未結冰時可看到極光倒影。","src":["https://www.colatour.com.tw/webDM/theme/aurora/aurora_europe.html","https://www.settour.com.tw/act/theme/aurora/index.html"]}
       ],
       "DK": [
+        {"n":"北歐四國團的丹麥段","pop":2,"x":"易遊網 2026/10/1 出發的北歐四國團從哥本哈根進出。","src":["https://vacation.eztravel.com.tw/pkgfrn/p/VDR0000001943/CPH13BRT26AP"]},
         {"n":"哥本哈根秋季","pop":1,"x":"10 月遊客少。","src":["https://www.liontravel.com/promotion/northerneurope/scandinavia/tour.html"]}
       ],
       "IS": [
@@ -2011,12 +2034,14 @@
         {"n":"加東楓葉大道","pop":3,"x":"9 月底到 10 月中魁北克、洛朗區楓紅，加東楓葉團是秋季主力。","src":["https://www.settour.com.tw/act/gfg/america/canada/index.html","https://www.liontravel.com/tourpackage/ca/","https://tour.settour.com.tw/product/GFG0000023417"]}
       ],
       "MX": [
+        {"n":"墨西哥亡靈節團","pop":2,"x":"雄獅、山富有 10/28、10/29 出發的亡靈節 11 日團，含馬雅金字塔與坎昆。","src":["https://event.liontravel.com/zh-tw/latin-america/index","https://www.travel4u.com.tw/en/group/area/31/central-america-south-america/"]},
         {"n":"亡靈節前夕","pop":1,"x":"10 月底各地開始搭祭壇、萬壽菊裝飾，亡靈節在 11/1～11/2。","src":["https://www.travel4u.com.tw/en/group/area/31/central-america-south-america/"]}
       ],
       "BR": [
         {"n":"巴西春季","pop":1,"x":"10 月春季，伊瓜蘇與里約。","src":["https://travel.liontravel.com/category/zh-tw/centralsouthamerica/index"]}
       ],
       "PE": [
+        {"n":"秘魯秋季團","pop":2,"x":"雄獅、山富往年秘魯團有 10/1、10/9 出發；10 月雨季前。","src":["https://www.liontravel.com/promotion/latin-america/tourism/almost.html","https://www.travel4u.com.tw/en/group/area/31/central-america-south-america/"]},
         {"n":"馬丘比丘","pop":1,"x":"10 月雨季前，人潮減少。","src":["https://tour.settour.com.tw/product/GFG0000022499"]}
       ],
       "AR": [
