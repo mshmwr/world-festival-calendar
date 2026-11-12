@@ -58,6 +58,13 @@ const st = {
   types: {H:true, F:true, S:true}
 };
 try { const saved = JSON.parse(localStorage.getItem("fest-types")); if (saved) Object.assign(st.types, saved); } catch(_) {}
+// 網址參數：?m=1～12 開在該月（今年已過就開明年），?c=國家代碼 開在該國；國家頁與月份頁的連結會帶這兩個參數
+const qs = new URLSearchParams(location.search);
+const qm = Number(qs.get("m")), qc = (qs.get("c") || "").toUpperCase();
+if (qm >= 1 && qm <= 12){
+  st.m = qm - 1;
+  if (st.y === now.getFullYear() && st.m < now.getMonth() && YEARS.includes(st.y + 1)) st.y++;
+}
 
 function matches(x, ignoreCountry){
   if (!st.types[x.t]) return false;
@@ -486,6 +493,7 @@ document.getElementById("jpcopy").onclick = () => {
 let rw = innerWidth;
 addEventListener("resize", () => { if ((rw <= 620) !== (innerWidth <= 620)){ rw = innerWidth; renderCalendar(); } });
 render();
+if (COUNTRIES[qc]) selectCountry(qc);
 
 // 測試與除錯用：讓瀏覽器自動化測試能讀取狀態、直接切換畫面
 window.app = { st, render, selectCountry, selectPref, selectEvent, setRegion, ymd, ALL, REGIONS, REGION_OF, COUNTRIES, WH_NOTE, EVENTS, JP_AREAS, PREFS, JP_NATIONAL, PICKS, TOPO, JPTOPO };

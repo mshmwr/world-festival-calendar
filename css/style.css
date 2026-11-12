@@ -207,3 +207,11 @@ footer p{margin:4px 0}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 .load-error{margin:0 0 16px;padding:12px 14px;border-radius:10px;border:1px solid var(--t-H);background:color-mix(in srgb,var(--t-H) 10%,transparent);font-size:14px}
 .load-error code{font-family:var(--font-mono);background:var(--surface);padding:1px 6px;border-radius:4px}
+
+/* 主頁底部的每月推薦與各國頁面連結（也讓搜尋引擎找得到這些頁面） */
+.seo-links{margin-top:28px;padding-top:16px;border-top:1px solid var(--line);font-size:13px;color:var(--muted)}
+.seo-links h2{font-family:var(--font-display);font-size:17px;color:var(--fg);margin:0 0 8px}
+.seo-links p{margin:4px 0;line-height:1.9}
+.seo-links b{color:var(--fg);margin-right:6px;font-weight:600}
+.seo-links a{color:var(--accent);margin-right:10px;text-decoration:none;white-space:nowrap}
+.seo-links a:hover{text-decoration:underline}

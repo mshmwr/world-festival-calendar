@@ -73,6 +73,21 @@ check("頁面無橫向捲動（桌機）", await p.evaluate(() => document.docum
 const m = await open(390, 1200, "dark");
 check("頁面無橫向捲動（手機）", await m.evaluate(() => document.documentElement.scrollWidth <= innerWidth));
 
+// 網址參數：國家頁、月份頁的「在互動行事曆中查看」會帶 ?c= 與 ?m=
+const deep = await open(1300, 1000, "light", page_url + "?c=FR&m=7");
+await deep.waitForFunction(() => window.app && document.querySelectorAll("#map path").length > 100);
+check("網址參數 ?c=FR&m=7 開在法國 7 月", await deep.evaluate(() => app.st.country === "FR" && app.st.m === 6 && document.querySelector("#side").textContent.includes("法國")));
+
+// 靜態國家頁：不需要 JavaScript 也看得到內容
+const sp = await browser.newPage({ javaScriptEnabled: false });
+await sp.goto(page_url + "c/jp.html");
+check("國家頁不靠 JavaScript 就有標題與推薦", (await sp.textContent("h1")).includes("日本") && (await sp.locator("ul.picks li").count()) > 20);
+await sp.goto(page_url + "m/2.html");
+check("月份頁有各國推薦與節慶", (await sp.locator("h4").count()) === 61 && (await sp.locator("ul.evs li").count()) > 10);
+const mob = await browser.newPage({ viewport: { width: 390, height: 900 } });
+await mob.goto(page_url + "m/7.html");
+check("月份頁手機版無橫向捲動", await mob.evaluate(() => document.documentElement.scrollWidth <= innerWidth));
+
 check("沒有頁面錯誤", errors.length === 0);
 
 // 直接開檔（file://）時要顯示如何啟動伺服器，而不是空白頁

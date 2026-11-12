@@ -31,6 +31,10 @@ data/map-japan.json      日本都道府縣邊界（jpn-atlas）
 data/schema/             資料格式（JSON Schema），也是欄位說明
 scripts/serve.mjs        本機開發伺服器
 scripts/add-picks.mjs    把推薦資料併入 data/picks.json
+scripts/build-pages.mjs  產生給搜尋引擎讀的國家頁、月份頁、sitemap.xml
+scripts/make-og.mjs      產生社群分享圖 og.png
+css/page.css             國家頁、月份頁的樣式
+c/、m/、sitemap.xml      build-pages.mjs 產生的檔案，不要手動修改
 tests/data.mjs           資料檢查
 tests/schema.mjs         資料檢查使用的 JSON Schema 驗證器
 tests/smoke.mjs          瀏覽器冒煙測試
@@ -61,6 +65,21 @@ npm run dev        # 開啟 http://localhost:8000/
 - **每月推薦**：在 `data/picks.json` 的 `picks.<月份>.<國家代碼>` 加景點或行程，欄位有 `n` 名稱、`pop` 熱門程度 1～3、`x` 說明、`src` 來源網址，日本可加 `p` 縣市代碼。熱門程度的標準寫在 `data/schema/picks.schema.json`。也可以把多國資料寫成一個 JSON，再用 `node scripts/add-picks.mjs <月份> <檔案>` 一次併入。要求某個月份涵蓋全部國家時，把月份加進 `tests/data.mjs` 的 `REQUIRED_MONTHS`
 - **新增年份**：在 `js/app.js` 的 `YEARS` 加上年份，並替使用 `y` 的節慶補上該年日期
 
+## 搜尋引擎最佳化（SEO）
+
+主頁的內容是 JavaScript 畫出來的，搜尋引擎不一定讀得到，所以另外產生不需要 JavaScript 的靜態頁面：
+
+- `c/<國家代碼>.html`：61 國各一頁，含 12 個月推薦、節日祭典、景點、自然景色、世界遺產
+- `m/<月>.html`：12 個月各一頁，含當月最熱門、各國推薦與節日
+- `sitemap.xml`：全部頁面的網址
+- `index.html` 底部 `<!-- seo:links -->` 標記之間的連結清單
+
+**改過 `data/` 之後要執行 `npm run build`（`node scripts/build-pages.mjs`）再 commit**，`npm test` 會檢查這些檔案是不是最新的。分享圖 `og.png` 用 `node scripts/make-og.mjs` 產生。
+
+主頁網址可以帶參數：`?c=JP` 開在日本、`?m=7` 開在 7 月（今年已過就開明年），可以一起用，例如 `?c=FR&m=7`。
+
+GitHub Pages 的專案網站不在網域根目錄，放 `robots.txt` 無效。要讓 Google 更快收錄，可到 Google Search Console 新增網址前綴資源 `https://mshmwr.github.io/world-festival-calendar/`，驗證後提交 `sitemap.xml`。
+
 ## 測試
 
 ```bash
@@ -72,7 +91,8 @@ npm test
 `npm test` 會依序執行：
 
 1. `tests/data.mjs`：依 `data/schema/` 驗證每個 JSON 的結構（欄位名稱、類型、日期格式、必填欄位），再檢查檔案之間的對應（國家代碼、區域、地圖碼、不存在的日期、重複項目、47 都道府縣）。只動資料時，跑 `node tests/data.mjs` 就夠，不需要安裝任何套件。
-2. `tests/smoke.mjs`：自動啟動本機伺服器，用瀏覽器操作區域與國家篩選、日本專區、縣市一覽、月曆展開，並檢查沒有頁面錯誤、沒有橫向捲動，以及直接開檔時會顯示說明。
+2. `tests/pages.mjs`：檢查靜態頁面是最新的，每頁都有標題、說明、canonical、單一 `<h1>`、分享圖，標題與說明不重複，站內連結都指到存在的檔案。
+3. `tests/smoke.mjs`：自動啟動本機伺服器，用瀏覽器操作區域與國家篩選、日本專區、縣市一覽、月曆展開，並檢查沒有頁面錯誤、沒有橫向捲動，以及直接開檔時會顯示說明。
 
 要讓 push 時自動測試，把 `ci/test.yml` 移到 `.github/workflows/test.yml` 再 commit 即可（建立工作流程檔需要有 `workflow` 權限的帳號操作）。
 
