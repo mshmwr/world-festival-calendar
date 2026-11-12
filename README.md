@@ -78,7 +78,7 @@ npm run dev        # 開啟 http://localhost:8000/
 
 主頁網址可以帶參數：`?c=JP` 開在日本、`?m=7` 開在 7 月（今年已過就開明年），可以一起用，例如 `?c=FR&m=7`。
 
-GitHub Pages 的專案網站不在網域根目錄，放 `robots.txt` 無效。要讓 Google 更快收錄，可到 Google Search Console 新增網址前綴資源 `https://mshmwr.github.io/world-festival-calendar/`，驗證後提交 `sitemap.xml`。
+GitHub Pages 的專案網站不在網域根目錄，放 `robots.txt` 無效。要讓 Google 更快收錄，可到 Google Search Console 新增網址前綴資源 `https://mshmwr.github.io/world-festival-calendar/`，驗證後提交 `sitemap.xml`。根目錄的 `google0c6ad999e91924d9.html` 是 Search Console 的擁有權驗證檔，刪掉會失去驗證，請保留。
 
 ## 測試
 
