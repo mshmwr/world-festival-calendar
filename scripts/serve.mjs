@@ -11,7 +11,8 @@ export function serve(port = 8000) {
   const server = createServer(async (req, res) => {
     const path = normalize(decodeURIComponent(new URL(req.url, "http://x").pathname)).replace(/^(\.\.[/\\])+/, "");
     const file = join(ROOT, path.endsWith("/") ? path + "index.html" : path);
-    if (!file.startsWith(ROOT)) { res.writeHead(403).end(); return; }
+    // 不提供專案以外的檔案，也不提供 .git 等以點開頭的檔案或資料夾
+    if (!file.startsWith(ROOT) || file.slice(ROOT.length).split(/[/\\]/).some(seg => seg.startsWith("."))) { res.writeHead(403).end(); return; }
     try {
       const body = await readFile(file);
       res.writeHead(200, { "content-type": TYPES[extname(file)] || "application/octet-stream", "cache-control": "no-store" }).end(body);

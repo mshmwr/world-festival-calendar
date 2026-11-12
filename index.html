@@ -3,6 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-OdnE20q7JSktrKrUng1fCtcOaNxL3okgC3ru7iS9qtw='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
 <title>環球節慶行事曆｜61 國節日、祭典與每月出國推薦</title>
 <meta name="description" content="61 國的國定假日、祭典活動與最佳旅遊季節月曆，每月推薦景點與行程依台灣旅行社熱門程度標星，附世界地圖、世界遺產與日本 47 都道府縣專區。">
 <link rel="canonical" href="https://mshmwr.github.io/world-festival-calendar/">
@@ -132,8 +134,8 @@
   </footer>
 </div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/topojson/3.0.2/topojson.min.js"></script>
+<script src="vendor/d3.min.js"></script>
+<script src="vendor/topojson.min.js"></script>
 <script>
   // 直接開檔時瀏覽器不會執行 ES module，也不允許讀取資料檔，所以在這裡先說明怎麼開啟
   if (location.protocol === "file:") {

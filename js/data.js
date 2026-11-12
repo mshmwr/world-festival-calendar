@@ -19,7 +19,9 @@ function showLoadError(err) {
   const box = document.createElement("div");
   box.className = "load-error";
   box.setAttribute("role", "alert");
-  box.innerHTML = `<b>資料無法載入。</b>${err.message}`;
+  const b = document.createElement("b");
+  b.textContent = "資料無法載入。";
+  box.append(b, err.message);
   document.querySelector(".wrap").prepend(box);
 }
 

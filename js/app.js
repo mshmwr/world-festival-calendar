@@ -28,6 +28,9 @@ for (const [k, s] of Object.entries(REGION_OF)) for (const id of s.split(" ")) I
 const ISO_CODE = {};
 for (const [code, c] of Object.entries(COUNTRIES)) if (c.iso) ISO_CODE[c.iso] = code;
 
+// 把使用者輸入的文字放進 HTML 前先跳脫
+const esc = s => String(s).replace(/[&<>"']/g, ch => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[ch]));
+
 // ---------- 日期展開 ----------
 const pad = n => String(n).padStart(2, "0");
 const ymd = d => `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`;
@@ -57,7 +60,8 @@ const st = {
   region: null, country: null, ev: null, q: "", tab: "pk", pref: null, ptab: "s", area: null,
   types: {H:true, F:true, S:true}
 };
-try { const saved = JSON.parse(localStorage.getItem("fest-types")); if (saved) Object.assign(st.types, saved); } catch(_) {}
+// 只讀回 H、F、S 三個布林值，其他內容一律忽略
+try { const saved = JSON.parse(localStorage.getItem("fest-types")); for (const k of Object.keys(st.types)) if (typeof saved?.[k] === "boolean") st.types[k] = saved[k]; } catch(_) {}
 // 網址參數：?m=1～12 開在該月（今年已過就開明年），?c=國家代碼 開在該國；國家頁與月份頁的連結會帶這兩個參數
 const qs = new URLSearchParams(location.search);
 const qm = Number(qs.get("m")), qc = (qs.get("c") || "").toUpperCase();
@@ -335,7 +339,7 @@ function renderActive(){
   const pills = [];
   if (st.region) pills.push(`<span class="pill">區域：${RN[st.region]}<button data-k="region" aria-label="清除區域">✕</button></span>`);
   if (st.country) pills.push(`<span class="pill">只看 ${COUNTRIES[st.country].f} ${COUNTRIES[st.country].n}<button data-k="country" aria-label="清除國家">✕</button></span>`);
-  if (st.q) pills.push(`<span class="pill">搜尋：${st.q}<button data-k="q" aria-label="清除搜尋">✕</button></span>`);
+  if (st.q) pills.push(`<span class="pill">搜尋：${esc(st.q)}<button data-k="q" aria-label="清除搜尋">✕</button></span>`);
   el.innerHTML = pills.join("");
   el.querySelectorAll("button").forEach(b => b.onclick = () => {
     if (b.dataset.k === "region"){ st.region = null; zoomToRegion(null); }
@@ -438,7 +442,6 @@ function renderJP(){
 
 // ---------- 日本縣市一覽 ----------
 st.jpView = "map"; st.jpq = "";
-const esc = s => String(s).replace(/[&<>"]/g, ch => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[ch]));
 const prefEvents = p => ALL.filter(x => x.p === p.id && x.s.getFullYear() === st.y).sort((a, b) => a.s - b.s);
 const prefText = p => [p.n, ...p.s, ...p.h, ...p.wh, ...prefEvents(p).map(x => x.n + x.x)].join(" ");
 const visiblePrefs = () => PREFS.filter(p => (!st.area || p.a === st.area) && (!st.jpq || prefText(p).includes(st.jpq)));

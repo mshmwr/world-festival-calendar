@@ -34,13 +34,14 @@ scripts/add-picks.mjs    把推薦資料併入 data/picks.json
 scripts/build-pages.mjs  產生給搜尋引擎讀的國家頁、月份頁、sitemap.xml
 scripts/make-og.mjs      產生社群分享圖 og.png
 css/page.css             國家頁、月份頁的樣式
+vendor/                  d3、topojson 與授權檔
 c/、m/、sitemap.xml      build-pages.mjs 產生的檔案，不要手動修改
 tests/data.mjs           資料檢查
 tests/schema.mjs         資料檢查使用的 JSON Schema 驗證器
 tests/smoke.mjs          瀏覽器冒煙測試
 ```
 
-程式是 ES modules，d3 與 topojson 從 cdnjs 載入，字型來自 Google Fonts。
+程式是 ES modules。d3 7.9.0 與 topojson 3.0.2 放在 `vendor/`（從 npm 官方套件複製，授權檔一併附上），不依賴外部 CDN；只有字型來自 Google Fonts。
 
 ## 本機開發
 
@@ -80,6 +81,14 @@ npm run dev        # 開啟 http://localhost:8000/
 
 GitHub Pages 的專案網站不在網域根目錄，放 `robots.txt` 無效。要讓 Google 更快收錄，可到 Google Search Console 新增網址前綴資源 `https://mshmwr.github.io/world-festival-calendar/`，驗證後提交 `sitemap.xml`。根目錄的 `google0c6ad999e91924d9.html` 是 Search Console 的擁有權驗證檔，刪掉會失去驗證，請保留。
 
+## 資訊安全
+
+- 網站是純靜態頁面，沒有後端、帳號、表單或 Cookie，不收集任何個人資料；瀏覽器只在本機記住月曆的類型篩選。
+- `index.html` 與所有靜態頁都有內容安全政策（CSP）：只允許執行網站自己的程式，樣式與字型只允許 Google Fonts，資料只從網站本身讀取。**改了 `index.html` 裡的內嵌 `<script>` 時，要重新計算 CSP 裡的 `sha256-…` 雜湊**，否則那段程式會被擋下（`npm test` 會檢查出來）。
+- 使用者輸入的搜尋文字一律跳脫後才放進畫面；推薦來源網址在資料檢查時限定 `https://`。
+- `npm run dev` 的本機伺服器只聽 127.0.0.1，不提供專案以外的檔案，也不提供 `.git` 等隱藏檔案。
+- GitHub Pages 無法自訂 HTTP 標頭，所以 `X-Frame-Options`、HSTS 這類設定沒辦法加；github.io 本身已強制 HTTPS。
+
 ## 測試
 
 ```bash
@@ -92,7 +101,7 @@ npm test
 
 1. `tests/data.mjs`：依 `data/schema/` 驗證每個 JSON 的結構（欄位名稱、類型、日期格式、必填欄位），再檢查檔案之間的對應（國家代碼、區域、地圖碼、不存在的日期、重複項目、47 都道府縣）。只動資料時，跑 `node tests/data.mjs` 就夠，不需要安裝任何套件。
 2. `tests/pages.mjs`：檢查靜態頁面是最新的，每頁都有標題、說明、canonical、單一 `<h1>`、分享圖，標題與說明不重複，站內連結都指到存在的檔案。
-3. `tests/smoke.mjs`：自動啟動本機伺服器，用瀏覽器操作區域與國家篩選、日本專區、縣市一覽、月曆展開，並檢查沒有頁面錯誤、沒有橫向捲動，以及直接開檔時會顯示說明。
+3. `tests/smoke.mjs`：自動啟動本機伺服器，用瀏覽器操作區域與國家篩選、日本專區、縣市一覽、月曆展開、網址參數，並檢查沒有頁面錯誤、沒有橫向捲動、CSP 沒有擋下任何資源、搜尋文字不會被當成 HTML 執行、本機伺服器拒絕隱藏檔案，以及直接開檔時會顯示說明。不需要連網。
 
 要讓 push 時自動測試，把 `ci/test.yml` 移到 `.github/workflows/test.yml` 再 commit 即可（建立工作流程檔需要有 `workflow` 權限的帳號操作）。
 

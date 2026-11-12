@@ -1,12 +1,10 @@
 // 冒煙測試：載入頁面並走過主要互動流程，任何頁面錯誤都會讓測試失敗。
-// 用法：npm test（會自動啟動本機伺服器）。若環境連不到 CDN，可設定 LIBS_DIR 指向含 d3、topojson 的資料夾。
+// 用法：npm test（會自動啟動本機伺服器，不需要連網）。
 import { chromium } from "playwright";
-import { readFileSync } from "node:fs";
 import { serve } from "../scripts/serve.mjs";
 
 const server = await serve(0);
 const page_url = `http://127.0.0.1:${server.address().port}/`;
-const libs = process.env.LIBS_DIR;
 const results = [];
 const check = (name, ok) => results.push({ name, ok });
 
@@ -16,10 +14,8 @@ const errors = [];
 async function open(width, height, colorScheme, url = page_url) {
   const p = await browser.newPage({ viewport: { width, height }, colorScheme });
   p.on("pageerror", e => errors.push(e.message));
-  if (libs) {
-    await p.route("**/d3.min.js", r => r.fulfill({ body: readFileSync(`${libs}/d3.min.js`), contentType: "text/javascript" }));
-    await p.route("**/topojson.min.js", r => r.fulfill({ body: readFileSync(`${libs}/topojson.min.js`), contentType: "text/javascript" }));
-  }
+  // 記錄內容安全政策（CSP）擋下的資源，最後檢查應該一個都沒有
+  await p.addInitScript(() => { window.__csp = []; document.addEventListener("securitypolicyviolation", e => window.__csp.push(`${e.violatedDirective} ${e.blockedURI}`)); });
   await p.goto(url);
   if (url === page_url) await p.waitForFunction(() => document.querySelectorAll("#map path").length > 100);
   return p;
@@ -87,6 +83,20 @@ check("月份頁有各國推薦與節慶", (await sp.locator("h4").count()) === 
 const mob = await browser.newPage({ viewport: { width: 390, height: 900 } });
 await mob.goto(page_url + "m/7.html");
 check("月份頁手機版無橫向捲動", await mob.evaluate(() => document.documentElement.scrollWidth <= innerWidth));
+
+// 搜尋框輸入的 HTML 只能當文字顯示，不能變成元素或執行
+await p.fill("#q", '<img src=x onerror="window.__xss=1">');
+await p.waitForTimeout(200);
+check("搜尋文字不會被當成 HTML 執行", await p.evaluate(() => !document.querySelector("#af img") && !window.__xss && document.querySelector("#af").textContent.includes("<img")));
+await p.fill("#q", "");
+
+const violations = [...await p.evaluate(() => window.__csp), ...await deep.evaluate(() => window.__csp), ...await m.evaluate(() => window.__csp)];
+check("內容安全政策沒有擋下任何資源", violations.length === 0);
+if (violations.length) console.log("CSP：", violations);
+
+// 本機伺服器不提供 .git 等隱藏檔案
+const hidden = await fetch(page_url + ".git/HEAD");
+check("本機伺服器拒絕 .git 檔案", hidden.status === 403);
 
 check("沒有頁面錯誤", errors.length === 0);
 

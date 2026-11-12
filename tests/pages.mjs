@@ -27,6 +27,7 @@ for (const [p, s] of Object.entries(files)) {
   if (canon !== SITE + (p === "index.html" ? "" : p)) fail(p, `canonical 不正確：${canon}`);
   if ((s.match(/<h1[\s>]/g) || []).length !== 1) fail(p, "應該剛好有一個 <h1>");
   if (!s.includes('property="og:image"')) fail(p, "缺少 og:image");
+  if (!s.includes('http-equiv="Content-Security-Policy"')) fail(p, "缺少內容安全政策（CSP）");
   for (const m of s.matchAll(/<script type="application\/ld\+json">([^<]+)<\/script>/g)) {
     try { JSON.parse(m[1]); } catch { fail(p, "JSON-LD 不是合法的 JSON"); }
   }
