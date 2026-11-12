@@ -833,18 +833,22 @@
         {"n":"杜布羅夫尼克春季","pop":1,"x":"4 月回暖、旺季前人少，渡輪與餐廳陸續恢復。","src":["https://www.kkday.com/en-us/destination/hr-croatia"]}
       ],
       "NO": [
+        {"n":"北歐春季團：挪威峽灣","pop":2,"x":"山富 2026 年 4～5 月有挪威深度遊與北歐多國團，可樂 4/24、易遊網 4/25 也有北歐團；4 月峽灣仍有殘雪。","src":["https://www.travel4u.com.tw/en/group/area/27/northern-europe/","https://vacation.eztravel.com.tw/pkgfrn/p/VDR0000008652/SCA13EKC"]},
         {"n":"挪威峽灣春季","pop":1,"x":"4 月極光季結束，峽灣仍有雪山，5 月後才是峽灣旺季。","src":["https://www.settour.com.tw/act/gfg/europe/north/"]}
       ],
       "SE": [
+        {"n":"北歐多國春季團","pop":2,"x":"易遊網 2026/4/25 的北歐五國團、可樂 4/24 北歐四國團都經過斯德哥爾摩。","src":["https://vacation.eztravel.com.tw/pkgfrn/p/VDR0000008652/SCA13EKC","https://www.travel4u.com.tw/en/group/area/27/northern-europe/"]},
         {"n":"瓦爾普吉斯之夜 Valborg","pop":1,"x":"4/30 各地升篝火、合唱迎接春天，烏普薩拉大學城最熱鬧。","src":["https://www.google.co.uk/amp/s/sweden.se/culture-traditions/valborg/amp/"]}
       ],
       "FI": [
+        {"n":"北歐多國春季團的芬蘭段","pop":2,"x":"易遊網 2026/4/25 北歐五國團含赫爾辛基。","src":["https://vacation.eztravel.com.tw/pkgfrn/p/VDR0000008652/SCA13EKC"]},
         {"n":"芬蘭春季","pop":1,"x":"4 月極光季已過，雪開始融化；4/30 晚上是五一節前夜派對。","src":["https://www.settour.com.tw/act/gfg/europe/north/"]}
       ],
       "DK": [
         {"n":"哥本哈根賞櫻","pop":2,"x":"4 月下旬比斯佩比耶墓園與朗厄利尼長堤的櫻花盛開，可樂有丹麥賞櫻團。","src":["https://www.colatour.com.tw/webDM/theme/flower/europe.html"]}
       ],
       "IS": [
+        {"n":"冰島環島春季團","pop":2,"x":"山富 2026 年 4/10、4/17、4/24 出發的冰島環島 12 日團，含黑冰洞、賞鯨。","src":["https://www.travel4u.com.tw/en/group/area/27/northern-europe/"]},
         {"n":"冰島春季","pop":1,"x":"4 月白天快速變長，極光機會減少，藍冰洞季結束。","src":["https://www.colatour.com.tw/webDM/theme/aurora/aurora_iceland.html"]}
       ],
       "US": [
@@ -852,6 +856,7 @@
         {"n":"華盛頓櫻花節（至 4/11）","pop":2,"x":"2027 年國家櫻花節到 4/11，4/3 有花瓣節煙火、4/10 大遊行。","src":["https://nationalcherryblossomfestival.org/faqs/"]}
       ],
       "CA": [
+        {"n":"加拿大東西岸春季團","pop":2,"x":"東南往年有 4 月出發的加拿大東西岸 14 日團。","src":["https://tour.settour.com.tw/america.html"]},
         {"n":"溫哥華春季","pop":1,"x":"4 月溫哥華櫻花滿街，美加團常順遊西雅圖。","src":["https://vacation.eztravel.com.tw/pkgfrn/p/VDR0000001846/25CHERRYBR","https://www.settour.com.tw/act/gfg/america/canada/index.html"]}
       ],
       "MX": [
@@ -972,6 +977,7 @@
         {"n":"英國春季：湖區、科茲窩","pop":2,"x":"5 月花園與鄉村最美、白天長，英國團旺季開始。","src":["https://tour.colatour.com.tw/search?TourArea=L","https://www.travel4u.com.tw/en/group/category/7/europe/"]}
       ],
       "IE": [
+        {"n":"英格蘭、蘇格蘭、愛爾蘭團","pop":2,"x":"可樂 2026 年 5/12、5/26 出發的英愛 15 日團，含英愛渡輪。","src":["https://tour.colatour.com.tw/search?TourArea=L"]},
         {"n":"愛爾蘭春季","pop":1,"x":"5 月是全年最乾的月份之一，莫赫懸崖、巨人堤道。","src":["https://tour.colatour.com.tw/search?TourArea=L"]}
       ],
       "FR": [
@@ -1013,6 +1019,7 @@
         {"n":"玫瑰谷採玫瑰","pop":2,"x":"卡贊勒克玫瑰谷 5 月下旬到 6 月初採收，玫瑰節在 6 月初週末；可樂、雄獅、易遊網、東南都有團。","src":["https://event.liontravel.com/zh-tw/flower/tulip_copy","https://www.colatour.com.tw/C10A_TourSell/C10A16_TourItinerary.aspx?PatternNo=225642","https://tour.settour.com.tw/product/GFG0000019997"]}
       ],
       "EE": [
+        {"n":"波羅的海四國團","pop":2,"x":"易遊網 2026/5/8 出發的團含塔林、里加、維爾紐斯。","src":["https://vacation.eztravel.com.tw/pkgfrn/p/VDR0000001933/EHEL10HO"]},
         {"n":"塔林老城","pop":1,"x":"5 月白天快速變長，波羅的海三國團開始出發。","src":["https://www.settour.com.tw/act/gfg/europe/north/"]}
       ],
       "IT": [
@@ -1041,18 +1048,21 @@
         {"n":"北歐多國團：斯德哥爾摩","pop":2,"x":"北歐四國團的瑞典段，5 月起白晝很長。","src":["https://tour.settour.com.tw/product/GFG0000025780","https://tour.colatour.com.tw/itinerary?PatternNo=243284"]}
       ],
       "FI": [
+        {"n":"芬蘭與波羅的海團","pop":2,"x":"易遊網 2026/5/8 有芬蘭加波羅的海三國 10 日團。","src":["https://vacation.eztravel.com.tw/pkgfrn/p/VDR0000001933/EHEL10HO"]},
         {"n":"五一節 Vappu","pop":1,"x":"4/30 晚上到 5/1，赫爾辛基學生戴白帽為雕像戴帽、公園野餐。","src":["https://www.settour.com.tw/act/gfg/europe/north/"]}
       ],
       "DK": [
         {"n":"哥本哈根","pop":2,"x":"北歐四國團的丹麥段，新港與小美人魚。","src":["https://tour.settour.com.tw/product/GFG0000025780"]}
       ],
       "IS": [
+        {"n":"冰島環島春季團","pop":2,"x":"山富 2026 年 5/1、5/8 出發的冰島環島團。","src":["https://www.travel4u.com.tw/en/group/area/27/northern-europe/"]},
         {"n":"冰島春季","pop":1,"x":"5 月白天接近 20 小時，海鸚 5 月起回到懸崖繁殖。","src":["https://tour.settour.com.tw/product/GFG0000023872"]}
       ],
       "US": [
         {"n":"美國國家公園春季：黃石、優勝美地、大峽谷","pop":2,"x":"5 月黃石道路陸續開放、優勝美地瀑布水量最大；春季比暑假人少。","src":["https://www.kkday.com/zh-tw/blog/207969/may-travel-countries-recommendation","https://www.colatour.com.tw/webDM/tour/usa/USnationalpark/tour.html","https://tour.settour.com.tw/product/GFG0000016634"]}
       ],
       "CA": [
+        {"n":"加拿大東西岸團","pop":2,"x":"東南往年有 5 月出發的加拿大東西岸 14 日團。","src":["https://tour.settour.com.tw/america.html"]},
         {"n":"渥太華鬱金香節","pop":1,"x":"5 月中旬，百萬株鬱金香盛開，2027 年是 75 週年鑽禧；日期待公布。","src":["https://tulipfestival.ca","https://www.carnifest.com/canadian-tulip-festival-2027/"]},
         {"n":"洛磯山脈春季","pop":1,"x":"5 月下旬湖面解凍，夢蓮湖、露易絲湖開始呈現湖水綠；6 月才是旺季。","src":["https://tour.settour.com.tw/america.html"]}
       ],
@@ -1171,6 +1181,7 @@
         {"n":"英國夏季：蘇格蘭高地、湖區","pop":2,"x":"6 月白天最長，英國薰衣草田 6～8 月開，英國團旺季。","src":["https://www.settour.com.tw/act/gfg/theme/lavender.html","https://www.settour.com.tw/act/gfg/south-western_europe/index.html"]}
       ],
       "IE": [
+        {"n":"英格蘭、蘇格蘭、愛爾蘭團","pop":2,"x":"可樂 2026/6/9 出發的英愛 15 日團。","src":["https://tour.colatour.com.tw/search?TourArea=L"]},
         {"n":"愛爾蘭夏季","pop":1,"x":"6/16 都柏林布魯姆日紀念喬伊斯《尤利西斯》，6 月日照長。","src":["https://tour.colatour.com.tw/search?TourArea=L"]}
       ],
       "FR": [
@@ -1234,12 +1245,15 @@
         {"n":"挪威峽灣與午夜太陽","pop":3,"x":"6 月峽灣最美、北極圈午夜太陽；易遊網（2027/6/6）、可樂、東南都有北歐峽灣團。","src":["https://vacation.eztravel.com.tw/pkgfrn/p/VDR0000001846/26ED13OO01","https://tour.colatour.com.tw/itinerary?PatternNo=244435","https://tour.settour.com.tw/product/GFG0000029952"]}
       ],
       "SE": [
+        {"n":"北歐五國夏季團","pop":2,"x":"可樂 2026 年 6/3 有北歐五國團。","src":["https://tour.colatour.com.tw/search?TourArea=L","https://tour.colatour.com.tw/itinerary?PatternNo=243284"]},
         {"n":"瑞典仲夏節","pop":1,"x":"2027 年 6/25 仲夏夜，立五月柱、跳青蛙舞、吃醃鯡魚；很多店家休息。","src":["https://www.officeholidays.com/amp/holidays/sweden/sweden-midsummer-day","https://www.travelinmypocket.com/midsummer-sweden-traditions/"]}
       ],
       "FI": [
+        {"n":"北歐五國夏季團的芬蘭段","pop":2,"x":"可樂 2026/6/3 北歐五國團含赫爾辛基。","src":["https://tour.colatour.com.tw/search?TourArea=L"]},
         {"n":"芬蘭仲夏節 Juhannus","pop":1,"x":"2027 年 6/25～6/26，湖畔篝火、夜不黑，城市居民都到鄉下度假。","src":["https://www.officeholidays.com/holidays/finland/finland-midsummer-day"]}
       ],
       "DK": [
+        {"n":"北歐夏季團的丹麥段","pop":2,"x":"可樂 6 月北歐四國、五國團從哥本哈根進出。","src":["https://tour.colatour.com.tw/itinerary?PatternNo=243284"]},
         {"n":"聖約翰之夜 Sankt Hans","pop":1,"x":"6/23 海邊升篝火、燒女巫草人，北歐團夏季經過哥本哈根。","src":["https://tour.settour.com.tw/product/GFG0000025780"]}
       ],
       "IS": [
@@ -1268,6 +1282,7 @@
         {"n":"埃及夏季","pop":1,"x":"6 月極熱，紅海潛水適合，古蹟只宜清晨。","src":["https://travel.liontravel.com/category/zh-tw/africa/index"]}
       ],
       "MA": [
+        {"n":"摩洛哥團","pop":2,"x":"可樂往年有 6/15 出發的摩洛哥 15 日團；6 月內陸開始炎熱。","src":["https://www.colatour.com.tw/C000_Portal/C000_HP01A_Main.aspx?TourArea=M-04"]},
         {"n":"索維拉格納瓦音樂節","pop":1,"x":"6 月下旬在海港小鎮索維拉舉辦的非洲融合音樂節；內陸開始炎熱。","src":["https://www.intrepidtravel.com/au/morocco/best-time-to-visit-morocco"]}
       ],
       "ZA": [
@@ -1291,6 +1306,7 @@
         {"n":"河口湖薰衣草祭","pop":1,"p":"19","x":"約 6 月中到 7 月中，以富士山為背景的薰衣草田。","src":["https://www.settour.com.tw/theme/lavender_Season0000018/"]}
       ],
       "KR": [
+        {"n":"首爾、釜山暑假親子團","pop":2,"x":"可樂 2026 年暑假親子團 7/1～8/28 出發，樂天世界、愛寶樂園雙樂園。","src":["https://www.colatour.com.tw/webDM/theme/family/summer.html"]},
         {"n":"保寧泥漿節","pop":1,"x":"每年 7 月中下旬在大川海水浴場舉行，韓國國際遊客最多的慶典；2027 年日期待公布。","src":["https://www.kkday.com/zh-hk/product/143289"]}
       ],
       "CN": [
@@ -1301,18 +1317,22 @@
         {"n":"高山避暑：合歡山、鹿谷","pop":1,"x":"台灣暑假 7/1 開始，高山地區涼爽；颱風季要注意封路。","src":["https://www.kkday.com/zh-tw/blog/206979/july-where-to-travel","https://www.kkday.com/zh-tw/blog/240209/asia-taiwan-2027-holiday"]}
       ],
       "HK": [
+        {"n":"香港迪士尼親子團","pop":2,"x":"可樂 2026 年暑假有香港迪士尼 4 日團。","src":["https://www.colatour.com.tw/webDM/theme/family/summer.html"]},
         {"n":"香港暑假室內景點","pop":1,"x":"7 月炎熱多雨、有颱風，以主題樂園、博物館等室內行程為主。","src":["https://www.kkday.com/zh-hk/blog/113847/hk-summer-vaccation"]}
       ],
       "MN": [
         {"n":"那達慕大會","pop":2,"x":"2027 年 7/11～7/13 在烏蘭巴托國家體育場開幕，摔角、賽馬、射箭三項競技；7/11～7/15 是國定假日，住宿要提早訂。","src":["https://www.officeholidays.com/holidays/mongolia/naadam","https://www.travel4u.com.tw/en/group/area/68/mongolia-northern-china/"]}
       ],
       "TH": [
+        {"n":"泰國暑假親子團","pop":2,"x":"雄獅、山富 2026 年暑假有泰國華欣親子團。","src":["https://event.liontravel.com/zh-tw/southeastasia/family","https://www.travel4u.com.tw/project/familytogo/sea.aspx"]},
         {"n":"蘇美島","pop":1,"x":"泰國灣的蘇美島 7～8 月仍適合海島，安達曼海則風浪大。","src":["https://www.kkday.com/zh-tw/blog/3439/asia-thailand-island-water-sport"]}
       ],
       "VN": [
+        {"n":"峴港會安親子團","pop":2,"x":"雄獅 2026 年暑假有峴港會安雙樂園親子團。","src":["https://event.liontravel.com/zh-tw/southeastasia/family"]},
         {"n":"富國島與峴港","pop":1,"x":"中越峴港 7 月仍是海灘季，富國島進入雨季、價格較低。","src":["https://www.kkday.com/zh-tw/blog/172123/asia-vietnam-dagang-weather-guide","https://www.kkday.com/zh-tw/blog/164884/world-island-tourism"]}
       ],
       "SG": [
+        {"n":"新馬暑假親子團","pop":2,"x":"暑假新馬團排環球影城、樂高樂園，雄獅、山富都有。","src":["https://event.liontravel.com/zh-tw/southeastasia/family","https://www.travel4u.com.tw/project/familytogo/sea.aspx"]},
         {"n":"新加坡美食節","pop":1,"x":"7 月新加坡美食節，5～9 月雨量較少，暑假親子團熱門。","src":["https://www.kkday.com/zh-tw/blog/18243/best-time-to-travel","https://blog.eztravel.com.tw/summer-family-travel-2/"]}
       ],
       "MY": [
@@ -1322,6 +1342,7 @@
         {"n":"峇里島旺季","pop":3,"x":"7～8 月是峇里島最佳季節也是旺季，乾燥不太熱；東南、可樂、雄獅都主推暑假峇里島團。","src":["https://www.kkday.com/zh-tw/blog/3562/asia-indonesia-bali-10-must-do","https://www.colatour.com.tw/webDM/theme/island/travel.html","https://event.liontravel.com/zh-tw/southeastasia/island"]}
       ],
       "PH": [
+        {"n":"宿霧、長灘島親子團","pop":2,"x":"雄獅 2026 年暑假有菲律賓親子團；7 月颱風多，要留意天候。","src":["https://event.liontravel.com/zh-tw/southeastasia/family"]},
         {"n":"巴拉望","pop":1,"x":"7 月雨季颱風多，巴拉望愛妮島相對較受影響小。","src":["https://www.kkday.com/zh-tw/blog/164884/world-island-tourism"]}
       ],
       "KH": [
@@ -1393,6 +1414,7 @@
         {"n":"布達佩斯夏季","pop":1,"x":"夏季溫泉泳池派對、多瑙河遊船。","src":["https://www.kkday.com/zh-tw/blog/18243/best-time-to-travel"]}
       ],
       "PL": [
+        {"n":"波蘭與波羅的海夏季團","pop":2,"x":"易遊網 2026/7/20 有芬蘭、波羅的海、波蘭五國 12 日團，經華沙、托倫。","src":["https://vacation.eztravel.com.tw/pkgfrn/p/VDR0000001933/EHEL12HO"]},
         {"n":"克拉科夫夏季","pop":1,"x":"夏季老城戶外活動多。","src":["https://www.krakowguide.net/?p=3016"]}
       ],
       "RU": [
@@ -1405,6 +1427,7 @@
         {"n":"黑海海岸","pop":1,"x":"7 月是黑海瓦爾納、布爾加斯海灘旺季。","src":["https://www.travel4u.com.tw/en/group/itinerary/SOF10TK/"]}
       ],
       "EE": [
+        {"n":"波羅的海夏季團","pop":2,"x":"易遊網 2026/7/20 出發的團含塔林、里加、維爾紐斯。","src":["https://vacation.eztravel.com.tw/pkgfrn/p/VDR0000001933/EHEL12HO"]},
         {"n":"波羅的海三國夏季","pop":1,"x":"夏季白天長，北歐團常順遊塔林。","src":["https://tour.settour.com.tw/product/GFG0000025780"]}
       ],
       "IT": [
@@ -1430,6 +1453,7 @@
         {"n":"北歐多國團：斯德哥爾摩","pop":2,"x":"夏季北歐四國團經過。","src":["https://tour.settour.com.tw/product/GFG0000025780"]}
       ],
       "FI": [
+        {"n":"北歐夏季團的芬蘭段","pop":2,"x":"易遊網 2026/7/2 北歐四國團、7/20 芬蘭波蘭波羅的海團都經過赫爾辛基。","src":["https://vacation.eztravel.com.tw/pkgfrn/p/VDR0000001838/230714","https://vacation.eztravel.com.tw/pkgfrn/p/VDR0000001933/EHEL12HO"]},
         {"n":"赫爾辛基夏季","pop":1,"x":"夏季湖區與芬蘭堡，北歐團經過。","src":["https://www.settour.com.tw/act/gfg/europe/north/"]}
       ],
       "DK": [
