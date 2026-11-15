@@ -121,10 +121,10 @@ await p.evaluate(() => { Object.assign(app.st, { y: 2027, m: 7, region: null, co
 const longList = await p.evaluate(() => {
   const gs = [...document.querySelectorAll('#side .grp-d[data-g^="mon:"]')].filter(d => d.dataset.g !== "mon:season");
   return { groups: gs.length, maxShown: Math.max(...gs.map(d => d.querySelectorAll(".item").length)), anyMore: !!document.querySelector("#side .more-g"),
-    desc: document.querySelectorAll("#side .item .ds").length, sideH: document.getElementById("side").getBoundingClientRect().height, vh: innerHeight };
+    desc: document.querySelectorAll("#side .item .ds").length, items: document.querySelectorAll("#side .item").length, sideH: document.getElementById("side").getBoundingClientRect().height, vh: innerHeight };
 });
 check("整月清單：每組最多先列 6 項", longList.groups > 3 && longList.maxShown <= 6 && longList.anyMore);
-check("整月清單：未選取的項目不顯示說明", longList.desc === 0);
+check("整月清單：每一項都顯示說明", longList.desc > 0 && longList.desc === longList.items);
 check("桌機：右側清單不超過一個畫面高", longList.sideH <= longList.vh);
 const moreKey = await p.evaluate(() => document.querySelector("#side .more-g").dataset.g);
 const moreTotal = await p.evaluate(k => parseInt(document.querySelector(`#side .grp-d[data-g="${k}"] summary small`).textContent), moreKey);

@@ -300,11 +300,11 @@ function itemHTML(x, showCountry, hidePref){
   const c = COUNTRIES[x.c];
   const approx = x.a ? `<i>約</i>` : "";
   const sel = st.ev === x.id ? " on" : "";
-  return `<li><button class="item${sel}" data-id="${x.id}" data-day-start="${ymd(x.s)}" title="${esc(x.x)}" aria-expanded="${!!sel}">
+  return `<li><button class="item${sel}" data-id="${x.id}" data-day-start="${ymd(x.s)}">
     <span class="dt">${fmtRange(x)}${approx}</span>
     <span><span class="nm">${showCountry ? c.f + " " : ""}${x.n}<span class="tag ${x.t}">${TYPE_N[x.t]}</span></span>
     ${showCountry ? `<span class="meta rg"><i style="background:var(--r-${x.r})"></i>${c.n}${x.p ? "・" + PREF_BY_ID[x.p].n : ""}・${RN[x.r]}</span>` : x.p && !hidePref ? `<span class="meta">${PREF_BY_ID[x.p].n}</span>` : ""}
-    ${sel ? `<span class="ds">${x.x}</span>` : ""}</span></button></li>`;
+    <span class="ds">${x.x}</span></span></button></li>`;
 }
 // 可收合的分組：標題顯示項目數，每組先列 LIMIT 項，按「顯示全部」再展開。
 // 使用者展開或收合過的分組記在 st.groupOpen，重畫側欄時維持；含有選取中活動的分組一律展開
