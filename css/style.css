@@ -100,6 +100,17 @@ select#year{height:32px;border-radius:8px;border:1px solid var(--line);backgroun
 .cell .dn b{font-weight:600}
 .cell .ongo{font-size:10.5px;color:var(--muted)}
 .cell.span{background:color-mix(in srgb,var(--accent) 10%,transparent)}
+/* 點日期或格子空白處可在右側列出當天活動 */
+.cell[data-day]{cursor:pointer}
+.cell[data-day]:hover{background:color-mix(in srgb,var(--accent) 5%,transparent)}
+.cell.picked,.cell.picked:hover{background:color-mix(in srgb,var(--accent) 16%,transparent);box-shadow:inset 0 0 0 2px var(--accent)}
+.dbtn{border:0;background:none;padding:0;font:inherit;color:inherit;cursor:pointer;border-radius:5px}
+.dbtn:hover b{text-decoration:underline}
+.cell.picked .dn b{color:var(--accent)}
+.cell.picked.today .dn b{color:var(--surface)}
+.day-panel{position:relative}
+.day-panel h3{padding-right:120px}
+.day-clear{position:absolute;top:12px;right:12px;border:1px solid var(--line);background:var(--surface);border-radius:8px;padding:4px 10px;font-size:12.5px}
 .ev{display:block;width:100%;text-align:left;border:0;border-left:3px solid var(--c);background:color-mix(in srgb,var(--c) 11%,transparent);border-radius:3px;padding:2px 5px;font-size:11.5px;line-height:1.35;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .ev.H{--c:var(--t-H)} .ev.F{--c:var(--t-F)}
 .ev.cont{opacity:.75;font-style:italic}

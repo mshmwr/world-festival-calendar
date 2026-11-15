@@ -84,6 +84,34 @@ const mob = await browser.newPage({ viewport: { width: 390, height: 900 } });
 await mob.goto(page_url + "m/7.html");
 check("月份頁手機版無橫向捲動", await mob.evaluate(() => document.documentElement.scrollWidth <= innerWidth));
 
+// 點月曆的日期：右側改列當天活動，再點一次或按按鈕回到整個月
+await p.evaluate(() => { Object.assign(app.st, { y: 2027, m: 1, region: null, country: null, ev: null, day: null, q: "", openDay: null }); app.render(); });
+await p.click('.dbtn[data-day="2027-02-06"]');
+const dayInfo = await p.evaluate(() => {
+  const d = new Date(2027, 1, 6);
+  const expect = app.ALL.filter(x => app.st.types[x.t] && x.s <= d && x.e >= d).length;
+  return { day: app.st.day, title: document.querySelector("#side .day-panel h3")?.textContent || "", items: document.querySelectorAll("#side .day-panel .item").length, expect, monthList: document.querySelector("#side").textContent.includes("2 月節慶活動"), picked: !!document.querySelector('.cell.picked[data-day="2027-02-06"]') };
+});
+check("點日期：右側列出當天全部活動", dayInfo.day === "2027-02-06" && dayInfo.title.includes("2 月 6 日（六）") && dayInfo.items === dayInfo.expect && dayInfo.items > 0 && !dayInfo.monthList && dayInfo.picked);
+await p.click("#clearDay");
+check("取消選取日期後回到整個月", await p.evaluate(() => app.st.day === null && document.querySelector("#side").textContent.includes("2 月節慶活動") && !document.querySelector(".cell.picked")));
+await p.locator('.cell[data-day="2027-02-10"]').click({ position: { x: 40, y: 98 } });
+check("點格子空白處也能選取日期", await p.evaluate(() => app.st.day === "2027-02-10"));
+await p.locator('.cell[data-day="2027-02-10"]').click({ position: { x: 40, y: 98 } });
+check("再點一次取消選取", await p.evaluate(() => app.st.day === null));
+const chip = p.locator('.cell[data-day="2027-02-06"] .ev').first();
+await chip.click();
+check("點格子裡的活動仍是選取該活動，不是選日期", await p.evaluate(() => app.st.day === null && app.st.ev !== null));
+await p.evaluate(() => { app.st.ev = null; app.selectCountry("JP"); });
+await p.click('.dbtn[data-day="2027-02-06"]');
+check("已選國家時：當天面板只列該國，國家卡片仍在", await p.evaluate(() => {
+  const items = [...document.querySelectorAll("#side .day-panel .item")];
+  return items.length > 0 && items.every(b => app.ALL.find(x => x.id === b.dataset.id).c === "JP") && !!document.querySelector("#side .country-head");
+}));
+await p.click("#next");
+check("換月份時取消選取日期", await p.evaluate(() => app.st.day === null && !document.querySelector("#side .day-panel")));
+await p.evaluate(() => { app.selectCountry("JP"); app.st.y = new Date().getFullYear(); app.st.m = new Date().getMonth(); app.render(); });
+
 // 搜尋框輸入的 HTML 只能當文字顯示，不能變成元素或執行
 await p.fill("#q", '<img src=x onerror="window.__xss=1">');
 await p.waitForTimeout(200);

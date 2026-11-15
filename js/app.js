@@ -57,7 +57,7 @@ const today = ymd(now);
 const st = {
   y: YEARS.includes(now.getFullYear()) ? now.getFullYear() : YEARS[0],
   m: YEARS.includes(now.getFullYear()) ? now.getMonth() : 0,
-  region: null, country: null, ev: null, q: "", tab: "pk", pref: null, ptab: "s", area: null,
+  region: null, country: null, ev: null, day: null, q: "", tab: "pk", pref: null, ptab: "s", area: null,
   types: {H:true, F:true, S:true}
 };
 // 只讀回 H、F、S 三個布林值，其他內容一律忽略
@@ -229,6 +229,11 @@ function selectCountry(code){
   render();
   if (st.country && innerWidth <= 900) document.getElementById("side").scrollIntoView({behavior: reduce ? "auto" : "smooth", block:"start"});
 }
+function selectDay(key){
+  st.day = st.day === key ? null : key;
+  renderCalendar(); renderSide();
+  if (st.day && innerWidth <= 900) document.getElementById("side").scrollIntoView({behavior: reduce ? "auto" : "smooth", block:"start"});
+}
 function selectEvent(id){
   const x = ALL.find(a => a.id === id);
   st.ev = st.ev === id ? null : id;
@@ -274,12 +279,19 @@ function renderCalendar(){
       return `<button class="ev ${x.t}${x.s < first ? " cont" : ""}" data-id="${x.id}" title="${c.n}${x.p ? "・" + PREF_BY_ID[x.p].n : ""}・${x.n}（${fmtRange(x)}）">${c.f} ${x.n}</button>`;
     }).join("");
     const more = starts.length > maxChips ? `<button class="more" data-day="${key}" aria-expanded="${open}">${open ? "收合" : `＋${starts.length - maxChips} 項`}</button>` : "";
-    html += `<div class="cell${key === today ? " today" : ""}${span ? " span" : ""}">
-      <div class="dn"><b>${day.getDate()}</b>${ongoing ? `<span class="ongo">進行中 ${ongoing}</span>` : ""}</div>${chips}${more}</div>`;
+    const picked = st.day === key;
+    html += `<div class="cell${key === today ? " today" : ""}${span ? " span" : ""}${picked ? " picked" : ""}" data-day="${key}">
+      <div class="dn"><button class="dbtn" data-day="${key}" aria-pressed="${picked}" aria-label="${st.m+1} 月 ${day.getDate()} 日，在右側列出當天活動"><b>${day.getDate()}</b></button>${ongoing ? `<span class="ongo">進行中 ${ongoing}</span>` : ""}</div>${chips}${more}</div>`;
   }
   const grid = document.getElementById("grid");
   grid.innerHTML = html;
   grid.querySelectorAll(".ev").forEach(b => b.onclick = () => selectEvent(b.dataset.id));
+  // 點日期數字或格子空白處：在右側列出當天的活動；格子裡的活動按鈕維持原本的行為
+  grid.onclick = e => {
+    if (e.target.closest(".ev, .more")) return;
+    const cell = e.target.closest(".cell[data-day]");
+    if (cell) selectDay(cell.dataset.day);
+  };
   onClicks(grid, ".more", b => { st.openDay = st.openDay === b.dataset.day ? null : b.dataset.day; renderCalendar(); });
 }
 
@@ -294,9 +306,26 @@ function itemHTML(x, showCountry, hidePref){
     ${showCountry ? `<span class="meta rg"><i style="background:var(--r-${x.r})"></i>${c.n}${x.p ? "・" + PREF_BY_ID[x.p].n : ""}・${RN[x.r]}</span>` : x.p && !hidePref ? `<span class="meta">${PREF_BY_ID[x.p].n}</span>` : ""}
     <span class="ds" style="display:block">${x.x}</span></span></button></li>`;
 }
+// 選取日期時的當天活動面板；showCountry 為 false 時（已選國家）只列該國、版面較精簡
+function dayPanel(showCountry){
+  const [y, m, d] = st.day.split("-").map(Number);
+  const day = new Date(y, m - 1, d);
+  const evs = ALL.filter(x => matches(x) && x.s <= day && x.e >= day).sort((a, b) => a.s - b.s || a.e - b.e);
+  const fest = evs.filter(x => x.t !== "S"), seas = evs.filter(x => x.t === "S");
+  const starts = fest.filter(x => +x.s === +day), ongoing = fest.filter(x => +x.s !== +day);
+  const where = st.country ? COUNTRIES[st.country].n : st.region ? RN[st.region] : "";
+  const title = `${m} 月 ${d} 日（${"日一二三四五六"[day.getDay()]}）${where ? `・${where}` : ""}`;
+  const groups = [["當天開始", starts], ["進行中", ongoing]].filter(([, xs]) => xs.length);
+  return `<div class="panel day-panel"><h3>${title}<small>${fest.length} 項</small></h3>
+    <button class="x day-clear" id="clearDay">${showCountry ? "看整個月" : "取消選取日期"}</button>
+    ${groups.map(([label, xs]) => `<div class="grp">${label}</div>${eventList(xs, "", showCountry)}`).join("")
+      || `<p class="empty">這天沒有符合篩選的節慶活動${st.types.S && seas.length ? "，但適合前往下列地方" : ""}。</p>`}
+    ${st.types.S && seas.length ? `<div class="grp">適合前往</div>${eventList(seas, "", showCountry)}` : ""}</div>`;
+}
 function renderSide(){
   const side = document.getElementById("side");
   let html = "";
+  if (st.day) html += dayPanel(!st.country);
   if (st.country){
     const c = COUNTRIES[st.country];
     const yearEvs = ALL.filter(x => x.c === st.country && (x.s.getFullYear() === st.y) && st.types[x.t]).sort((a,b) => a.s - b.s);
@@ -315,7 +344,7 @@ function renderSide(){
       ${tab === "nat" ? tagList(c.nat || [], "nat") : ""}
       ${tab === "wh" ? (c.wh && c.wh.length ? `${tagList(c.wh, "wh", ([n, k]) => `<span class="wk ${WK[k]}">${WN[k]}</span>${n}`)}<p class="wh-legend">依聯合國教科文組織登錄類別分為文化、自然、複合遺產。</p>` : `<p class="empty">${WH_NOTE[st.country] || "目前沒有登錄的世界遺產。"}</p>`) : ""}
     </div>`;
-  } else {
+  } else if (!st.day){
     const evs = monthEvents(false);
     const fest = evs.filter(x => x.t !== "S"), seas = evs.filter(x => x.t === "S");
     const byRegion = REGIONS.map(r => ({r, xs: fest.filter(x => x.r === r.k)})).filter(g => g.xs.length);
@@ -330,6 +359,8 @@ function renderSide(){
   onClicks(side, "[data-tab]", b => { st.tab = b.dataset.tab; renderSide(); });
   const tj = document.getElementById("toJP");
   if (tj) tj.onclick = () => document.getElementById("jp").scrollIntoView({behavior: reduce ? "auto" : "smooth", block:"start"});
+  const cd = document.getElementById("clearDay");
+  if (cd) cd.onclick = () => selectDay(st.day);
   const cc = document.getElementById("clearC");
   if (cc) cc.onclick = () => selectCountry(st.country);
 }
@@ -350,6 +381,8 @@ function renderActive(){
 }
 
 function render(){
+  // 選取的日期不在目前顯示的月份時就取消，例如換月、換年
+  if (st.day && !st.day.startsWith(`${st.y}-${pad(st.m+1)}-`)) st.day = null;
   document.querySelectorAll(".tbtn").forEach(b => b.setAttribute("aria-pressed", st.types[b.dataset.t]));
   renderRegions(); renderActive(); renderCalendar(); renderSide(); paintMap(); renderJP(); renderJPList();
 }
@@ -499,4 +532,4 @@ render();
 if (COUNTRIES[qc]) selectCountry(qc);
 
 // 測試與除錯用：讓瀏覽器自動化測試能讀取狀態、直接切換畫面
-window.app = { st, render, selectCountry, selectPref, selectEvent, setRegion, ymd, ALL, REGIONS, REGION_OF, COUNTRIES, WH_NOTE, EVENTS, JP_AREAS, PREFS, JP_NATIONAL, PICKS, TOPO, JPTOPO };
+window.app = { st, render, selectCountry, selectPref, selectEvent, selectDay, setRegion, ymd, ALL, REGIONS, REGION_OF, COUNTRIES, WH_NOTE, EVENTS, JP_AREAS, PREFS, JP_NATIONAL, PICKS, TOPO, JPTOPO };
