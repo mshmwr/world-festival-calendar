@@ -90,9 +90,13 @@ await p.click('.dbtn[data-day="2027-02-06"]');
 const dayInfo = await p.evaluate(() => {
   const d = new Date(2027, 1, 6);
   const expect = app.ALL.filter(x => app.st.types[x.t] && x.s <= d && x.e >= d).length;
-  return { day: app.st.day, title: document.querySelector("#side .day-panel h3")?.textContent || "", items: document.querySelectorAll("#side .day-panel .item").length, expect, monthList: document.querySelector("#side").textContent.includes("2 月節慶活動"), picked: !!document.querySelector('.cell.picked[data-day="2027-02-06"]') };
+  const counted = [...document.querySelectorAll("#side .day-panel .grp-d summary small")].reduce((a, e) => a + parseInt(e.textContent), 0);
+  const g = k => document.querySelector(`#side .grp-d[data-g="${k}"]`);
+  return { day: app.st.day, title: document.querySelector("#side .day-panel h3")?.textContent || "", counted, expect, monthList: document.querySelector("#side").textContent.includes("2 月節慶活動"), picked: !!document.querySelector('.cell.picked[data-day="2027-02-06"]'),
+    startOpen: g("day:start")?.open, onOpen: g("day:on")?.open, seasonOpen: g("day:season")?.open };
 });
-check("點日期：右側列出當天全部活動", dayInfo.day === "2027-02-06" && dayInfo.title.includes("2 月 6 日（六）") && dayInfo.items === dayInfo.expect && dayInfo.items > 0 && !dayInfo.monthList && dayInfo.picked);
+check("點日期：右側列出當天全部活動（各組數字加總）", dayInfo.day === "2027-02-06" && dayInfo.title.includes("2 月 6 日（六）") && dayInfo.counted === dayInfo.expect && dayInfo.counted > 0 && !dayInfo.monthList && dayInfo.picked);
+check("點日期：「當天開始」展開，「進行中」「適合前往」收合", dayInfo.startOpen === true && dayInfo.onOpen === false && dayInfo.seasonOpen === false);
 await p.click("#clearDay");
 check("取消選取日期後回到整個月", await p.evaluate(() => app.st.day === null && document.querySelector("#side").textContent.includes("2 月節慶活動") && !document.querySelector(".cell.picked")));
 await p.locator('.cell[data-day="2027-02-10"]').click({ position: { x: 40, y: 98 } });
@@ -111,6 +115,33 @@ check("已選國家時：當天面板只列該國，國家卡片仍在", await p
 await p.click("#next");
 check("換月份時取消選取日期", await p.evaluate(() => app.st.day === null && !document.querySelector("#side .day-panel")));
 await p.evaluate(() => { app.selectCountry("JP"); app.st.y = new Date().getFullYear(); app.st.m = new Date().getMonth(); app.render(); });
+
+// 長清單：分組每組先列 6 項、可展開全部；說明只在選取時顯示；桌機右側不超過一個畫面高
+await p.evaluate(() => { Object.assign(app.st, { y: 2027, m: 7, region: null, country: null, ev: null, day: null }); app.render(); });
+const longList = await p.evaluate(() => {
+  const gs = [...document.querySelectorAll('#side .grp-d[data-g^="mon:"]')].filter(d => d.dataset.g !== "mon:season");
+  return { groups: gs.length, maxShown: Math.max(...gs.map(d => d.querySelectorAll(".item").length)), anyMore: !!document.querySelector("#side .more-g"),
+    desc: document.querySelectorAll("#side .item .ds").length, sideH: document.getElementById("side").getBoundingClientRect().height, vh: innerHeight };
+});
+check("整月清單：每組最多先列 6 項", longList.groups > 3 && longList.maxShown <= 6 && longList.anyMore);
+check("整月清單：未選取的項目不顯示說明", longList.desc === 0);
+check("桌機：右側清單不超過一個畫面高", longList.sideH <= longList.vh);
+const moreKey = await p.evaluate(() => document.querySelector("#side .more-g").dataset.g);
+const moreTotal = await p.evaluate(k => parseInt(document.querySelector(`#side .grp-d[data-g="${k}"] summary small`).textContent), moreKey);
+await p.click(`#side .more-g[data-g="${moreKey}"]`);
+check("按「顯示全部」後列出該組全部項目", await p.evaluate(([k, n]) => document.querySelectorAll(`#side .grp-d[data-g="${k}"] .item`).length === n && !document.querySelector(`#side .more-g[data-g="${k}"]`), [moreKey, moreTotal]));
+await p.click(`#side .grp-d[data-g="${moreKey}"] summary`);
+await p.evaluate(() => app.render());
+check("收合過的分組重畫後仍維持收合", await p.evaluate(k => document.querySelector(`#side .grp-d[data-g="${k}"]`).open === false, moreKey));
+await p.click(`#side .grp-d[data-g="${moreKey}"] summary`);
+await p.locator("#side .item").first().click();
+check("點清單項目後顯示該項說明", await p.evaluate(() => { const on = document.querySelector("#side .item.on"); return !!on && !!on.querySelector(".ds"); }));
+await p.evaluate(() => { Object.assign(app.st, { ev: null, country: "JP", region: "NEA", tab: "ev", m: 4 }); app.render(); });
+check("國家節慶分頁：按月份分組，只展開目前月份", await p.evaluate(() => {
+  const gs = [...document.querySelectorAll('#side .grp-d[data-g^="cev:"]')];
+  return gs.length >= 10 && gs.filter(d => d.open).map(d => d.dataset.g).join() === "cev:4";
+}));
+await p.evaluate(() => { Object.assign(app.st, { country: null, region: null, tab: "pk", y: new Date().getFullYear(), m: new Date().getMonth() }); app.render(); });
 
 // 搜尋框輸入的 HTML 只能當文字顯示，不能變成元素或執行
 await p.fill("#q", '<img src=x onerror="window.__xss=1">');

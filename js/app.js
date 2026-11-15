@@ -57,7 +57,7 @@ const today = ymd(now);
 const st = {
   y: YEARS.includes(now.getFullYear()) ? now.getFullYear() : YEARS[0],
   m: YEARS.includes(now.getFullYear()) ? now.getMonth() : 0,
-  region: null, country: null, ev: null, day: null, q: "", tab: "pk", pref: null, ptab: "s", area: null,
+  region: null, country: null, ev: null, day: null, q: "", groupOpen: {}, more: new Set(), tab: "pk", pref: null, ptab: "s", area: null,
   types: {H:true, F:true, S:true}
 };
 // 只讀回 H、F、S 三個布林值，其他內容一律忽略
@@ -300,12 +300,26 @@ function itemHTML(x, showCountry, hidePref){
   const c = COUNTRIES[x.c];
   const approx = x.a ? `<i>約</i>` : "";
   const sel = st.ev === x.id ? " on" : "";
-  return `<li><button class="item${sel}" data-id="${x.id}" data-day-start="${ymd(x.s)}">
+  return `<li><button class="item${sel}" data-id="${x.id}" data-day-start="${ymd(x.s)}" title="${esc(x.x)}" aria-expanded="${!!sel}">
     <span class="dt">${fmtRange(x)}${approx}</span>
     <span><span class="nm">${showCountry ? c.f + " " : ""}${x.n}<span class="tag ${x.t}">${TYPE_N[x.t]}</span></span>
     ${showCountry ? `<span class="meta rg"><i style="background:var(--r-${x.r})"></i>${c.n}${x.p ? "・" + PREF_BY_ID[x.p].n : ""}・${RN[x.r]}</span>` : x.p && !hidePref ? `<span class="meta">${PREF_BY_ID[x.p].n}</span>` : ""}
-    <span class="ds" style="display:block">${x.x}</span></span></button></li>`;
+    ${sel ? `<span class="ds">${x.x}</span>` : ""}</span></button></li>`;
 }
+// 可收合的分組：標題顯示項目數，每組先列 LIMIT 項，按「顯示全部」再展開。
+// 使用者展開或收合過的分組記在 st.groupOpen，重畫側欄時維持；含有選取中活動的分組一律展開
+const LIMIT = 6;
+function group(key, label, xs, { open = true, showCountry = true, hidePref = false } = {}){
+  if (!xs.length) return "";
+  const hasSel = st.ev && xs.some(x => x.id === st.ev);
+  const isOpen = hasSel || (st.groupOpen[key] ?? open);
+  const shown = st.more.has(key) || hasSel ? xs : xs.slice(0, LIMIT);
+  return `<details class="grp-d" data-g="${key}"${isOpen ? " open" : ""}><summary><span class="gl">${label}</span><small>${xs.length} 項</small></summary>
+    ${eventList(shown, "", showCountry, hidePref)}
+    ${xs.length > shown.length ? `<button class="more-g" data-g="${key}">顯示全部 ${xs.length} 項</button>` : ""}</details>`;
+}
+const dotLabel = (r, text) => `<i class="sw" style="background:var(--r-${r});border-radius:50%"></i>${text}`;
+
 // 選取日期時的當天活動面板；showCountry 為 false 時（已選國家）只列該國、版面較精簡
 function dayPanel(showCountry){
   const [y, m, d] = st.day.split("-").map(Number);
@@ -315,13 +329,14 @@ function dayPanel(showCountry){
   const starts = fest.filter(x => +x.s === +day), ongoing = fest.filter(x => +x.s !== +day);
   const where = st.country ? COUNTRIES[st.country].n : st.region ? RN[st.region] : "";
   const title = `${m} 月 ${d} 日（${"日一二三四五六"[day.getDay()]}）${where ? `・${where}` : ""}`;
-  const groups = [["當天開始", starts], ["進行中", ongoing]].filter(([, xs]) => xs.length);
   return `<div class="panel day-panel"><h3>${title}<small>${fest.length} 項</small></h3>
     <button class="x day-clear" id="clearDay">${showCountry ? "看整個月" : "取消選取日期"}</button>
-    ${groups.map(([label, xs]) => `<div class="grp">${label}</div>${eventList(xs, "", showCountry)}`).join("")
-      || `<p class="empty">這天沒有符合篩選的節慶活動${st.types.S && seas.length ? "，但適合前往下列地方" : ""}。</p>`}
-    ${st.types.S && seas.length ? `<div class="grp">適合前往</div>${eventList(seas, "", showCountry)}` : ""}</div>`;
+    ${fest.length ? "" : `<p class="empty">這天沒有符合篩選的節慶活動${st.types.S && seas.length ? "，但適合前往下列地方" : ""}。</p>`}
+    ${group("day:start", "當天開始", starts, { showCountry })}
+    ${group("day:on", "進行中", ongoing, { showCountry, open: !starts.length })}
+    ${st.types.S ? group("day:season", "適合前往", seas, { showCountry, open: !fest.length }) : ""}</div>`;
 }
+let lastSideView = "";
 function renderSide(){
   const side = document.getElementById("side");
   let html = "";
@@ -339,7 +354,7 @@ function renderSide(){
       ${st.country === "JP" ? `<button class="jp-link" id="toJP">查看 47 都道府縣的景點、遺跡與祭典 ↓</button>` : ""}
       ${tabBar("tab", tab, tabs, c, yearEvs)}
       ${tab === "pk" ? `<p class="pk-legend">熱門程度依台灣旅行社 ${st.m + 1} 月行程與旅遊網站推薦整理，★★★ 為最熱門。</p>${pickList(picks, sourceName, it => it.p ? `<p class="meta">${PREF_BY_ID[it.p].n}</p>` : "")}` : ""}
-      ${tab === "ev" ? eventList(yearEvs, "這一年沒有符合篩選的項目", false) : ""}
+      ${tab === "ev" ? (yearEvs.length ? Array.from({length: 12}, (_, i) => group(`cev:${i}`, `${i + 1} 月`, yearEvs.filter(x => x.s.getMonth() === i), { showCountry: false, open: i === st.m })).join("") : `<p class="empty">這一年沒有符合篩選的項目</p>`) : ""}
       ${tab === "s" ? tagList(c.s) : ""}
       ${tab === "nat" ? tagList(c.nat || [], "nat") : ""}
       ${tab === "wh" ? (c.wh && c.wh.length ? `${tagList(c.wh, "wh", ([n, k]) => `<span class="wk ${WK[k]}">${WN[k]}</span>${n}`)}<p class="wh-legend">依聯合國教科文組織登錄類別分為文化、自然、複合遺產。</p>` : `<p class="empty">${WH_NOTE[st.country] || "目前沒有登錄的世界遺產。"}</p>`) : ""}
@@ -349,12 +364,24 @@ function renderSide(){
     const fest = evs.filter(x => x.t !== "S"), seas = evs.filter(x => x.t === "S");
     const byRegion = REGIONS.map(r => ({r, xs: fest.filter(x => x.r === r.k)})).filter(g => g.xs.length);
     html += `<div class="panel"><h3>${st.m+1} 月節慶活動<small>${fest.length} 項</small></h3>
-      ${byRegion.map(g => `<div class="grp"><i class="sw" style="background:var(--r-${g.r.k});border-radius:50%"></i>${g.r.n}</div>${eventList(g.xs, "", true)}`).join("")
+      ${byRegion.map(g => group(`mon:${g.r.k}`, dotLabel(g.r.k, g.r.n), g.xs)).join("")
         || `<p class="empty">沒有符合條件的活動，試著放寬區域或類型篩選。</p>`}</div>`;
     if (st.types.S) html += `<div class="panel"><h3>${st.m+1} 月適合前往<small>${seas.length} 項</small></h3>
-      ${eventList(seas, "沒有符合條件的旅遊季節", true)}</div>`;
+      ${seas.length ? group("mon:season", "全部地區", seas, { open: false }) : `<p class="empty">沒有符合條件的旅遊季節</p>`}</div>`;
   }
+  // 換了顯示內容（月份、日期、國家、分頁）時，回到清單頂端並收起「顯示全部」
+  const view = `${st.y}-${st.m}|${st.day}|${st.country}|${st.tab}`;
+  if (view !== lastSideView){ st.more.clear(); }
   side.innerHTML = html;
+  if (view !== lastSideView){ side.scrollTop = 0; lastSideView = view; }
+  // 只記住使用者自己點開或收合的分組（瀏覽器在預設展開時也會觸發 toggle，所以改聽點擊）
+  // 點擊事件先於展開動作，所以點下時的相反狀態就是新狀態；立即記下，避免緊接著重畫時用到舊狀態
+  side.querySelectorAll("details.grp-d > summary").forEach(sm => sm.addEventListener("click", () => {
+    const d = sm.parentElement; st.groupOpen[d.dataset.g] = !d.open;
+  }));
+  onClicks(side, ".more-g", b => { st.more.add(b.dataset.g); renderSide(); });
+  const on = side.querySelector(".item.on");
+  if (on && side.scrollHeight > side.clientHeight) on.scrollIntoView({block: "nearest"});
   onClicks(side, ".item", b => selectEvent(b.dataset.id));
   onClicks(side, "[data-tab]", b => { st.tab = b.dataset.tab; renderSide(); });
   const tj = document.getElementById("toJP");
