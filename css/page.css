@@ -39,3 +39,14 @@ nav.all p{margin:6px 0;line-height:1.9}
 nav.all a,nav.all span{margin-right:10px;white-space:nowrap}
 nav.all span{color:var(--muted)}
 footer{margin-top:36px;color:var(--muted);font-size:12.5px}
+/* 閱讀進度：固定在頂端的細條與目前段落 */
+.readbar{position:fixed;inset:0 0 auto 0;z-index:10;display:flex;align-items:center;gap:10px;height:32px;padding:0 max(16px,env(safe-area-inset-left,0px));
+  background:var(--surface);border-bottom:1px solid var(--line);font-size:12.5px;color:var(--muted)}
+.readbar .fill{position:absolute;left:0;bottom:-1px;height:3px;width:100%;background:var(--accent);transform-origin:left;transform:scaleX(0)}
+.readbar .where{flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.readbar a{flex:none;text-decoration:none}
+.readbar:not([hidden])~.wrap{padding-top:44px}
+:target{scroll-margin-top:44px}
+h2,h3,h4{scroll-margin-top:44px}
+nav.toc{display:flex;flex-wrap:wrap;gap:6px;margin:4px 0 10px}
+nav.toc a{padding:3px 10px;border-radius:999px;border:1px solid var(--line);background:var(--surface);text-decoration:none;font-size:13px}

@@ -84,6 +84,18 @@ await sp.goto(page_url + "c/jp.html");
 check("國家頁不靠 JavaScript 就有標題與推薦", (await sp.textContent("h1")).includes("日本") && (await sp.locator("ul.picks li").count()) > 20);
 await sp.goto(page_url + "m/2.html");
 check("月份頁有各國推薦與節慶", (await sp.locator("h4").count()) === 61 && (await sp.locator("ul.evs li").count()) > 10);
+// 月份頁的閱讀進度條與區域跳轉
+const rp = await browser.newPage({ viewport: { width: 1100, height: 900 } });
+await rp.addInitScript(() => { window.__csp = []; document.addEventListener("securitypolicyviolation", e => window.__csp.push(e.violatedDirective)); });
+await rp.goto(page_url + "m/1.html");
+await rp.waitForFunction(() => !document.querySelector(".readbar").hidden);
+await rp.evaluate(() => scrollTo(0, (document.documentElement.scrollHeight - innerHeight) / 2));
+await rp.waitForTimeout(150);
+const mid = await rp.evaluate(() => ({ where: document.querySelector(".readbar .where").textContent, now: +document.querySelector(".readbar").getAttribute("aria-valuenow"), csp: window.__csp.length }));
+check("月份頁進度條：捲到一半顯示約 50% 與目前段落", mid.now >= 45 && mid.now <= 55 && mid.where.includes("各國 1 月推薦 › ") && mid.csp === 0);
+await rp.click('nav.toc a[href="#r-NE"]');
+await rp.waitForTimeout(150);
+check("月份頁區域跳轉：點北歐跳到北歐段落", await rp.evaluate(() => location.hash === "#r-NE" && document.querySelector(".readbar .where").textContent.includes("北歐")));
 const mob = await browser.newPage({ viewport: { width: 390, height: 900 } });
 await mob.goto(page_url + "m/7.html");
 check("月份頁手機版無橫向捲動", await mob.evaluate(() => document.documentElement.scrollWidth <= innerWidth));

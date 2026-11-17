@@ -76,7 +76,7 @@ function page({ path, title, desc, h1, lead, crumbs, body, ld }) {
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'none'; style-src 'self'; img-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <title>${esc(title)}</title>
 <meta name="description" content="${esc(desc)}">
@@ -94,16 +94,20 @@ function page({ path, title, desc, h1, lead, crumbs, body, ld }) {
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="${up}favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="${up}css/page.css">
+<script src="${up}js/page.js" defer></script>
 ${lds}
 </head>
 <body>
-<div class="wrap">
+<div class="readbar" role="progressbar" aria-label="閱讀進度" aria-valuemin="0" aria-valuemax="100" hidden><div class="fill"></div><span class="where"></span><a href="#top">回到頂端</a></div>
+<div class="wrap" id="top">
 <nav class="crumb" aria-label="導覽路徑">${crumbs.map(([n, p], i) => i === crumbs.length - 1 ? `<span aria-current="page">${esc(n)}</span>` : `<a href="${up}${p}">${esc(n)}</a>`).join(" › ")}</nav>
 <header>
 <h1>${esc(h1)}</h1>
 <p class="lead">${esc(lead)}</p>
 </header>
+<main>
 ${body}
+</main>
 <footer>
 <p>標「約」的日期是依往年慣例或農曆、伊斯蘭曆推算的估計值，以主辦單位當年公告為準。推薦熱門程度：★★★ 多家台灣旅行社排入當月行程或是當月最具代表性的活動，★★ 一兩家旅行社或主要旅遊網站推薦，★ 觀光局或旅遊指南推薦。</p>
 <p><a href="${up}">回到${SITE_NAME}</a></p>
@@ -180,14 +184,14 @@ function monthPage(D, m) {
   const regionHTML = D.regions.map(r => {
     const cs = Object.keys(byCountry).filter(code => D.countries[code].r === r.k);
     if (!cs.length) return "";
-    return `<h3>${esc(r.n)}</h3>${cs.map(code => `<h4><a href="../c/${code.toLowerCase()}.html#m${m}">${D.countries[code].f} ${esc(cname(code))}</a></h4><ul class="picks">${[...byCountry[code]].sort((a, b) => b.pop - a.pop).map(it => pickLi(it, D.sourceNames)).join("")}</ul>`).join("")}`;
+    return `<h3 id="r-${r.k}">${esc(r.n)}</h3>${cs.map(code => `<h4 id="c-${code.toLowerCase()}"><a href="../c/${code.toLowerCase()}.html#m${m}">${D.countries[code].f} ${esc(cname(code))}</a></h4><ul class="picks">${[...byCountry[code]].sort((a, b) => b.pop - a.pop).map(it => pickLi(it, D.sourceNames)).join("")}</ul>`).join("")}`;
   }).join("");
   const evs = D.evs.filter(e => !e.p).map(e => ({ ...e, span: span(e) })).filter(e => e.span?.months.has(m)).sort((a, b) => sortKey(a.span) - sortKey(b.span));
   const evHTML = `<ul class="evs">${evs.map(x => evLi(x, `（<a href="../c/${x.c.toLowerCase()}.html">${esc(cname(x.c))}</a>）`)).join("")}</ul>`;
   const body = `<p class="cta"><a href="../?m=${m}">在互動行事曆中查看 ${m} 月 →</a></p>
 ${monthNav("../", m)}
 ${topHTML}
-<section><h2>各國 ${m} 月推薦</h2>${regionHTML}</section>
+<section><h2>各國 ${m} 月推薦</h2><nav class="toc" aria-label="跳到區域">${D.regions.filter(r => Object.keys(byCountry).some(code => D.countries[code].r === r.k)).map(r => `<a href="#r-${r.k}">${esc(r.n)}</a>`).join("")}</nav>${regionHTML}</section>
 <section><h2>${YEAR} 年 ${m} 月各國節日與祭典</h2><p>日本各縣市祭典請看<a href="../c/jp.html">日本頁面</a>或互動行事曆的日本專區。</p>${evHTML}</section>
 ${regionNav(D, "../")}`;
   return page({
