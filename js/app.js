@@ -57,7 +57,7 @@ const today = ymd(now);
 const st = {
   y: YEARS.includes(now.getFullYear()) ? now.getFullYear() : YEARS[0],
   m: YEARS.includes(now.getFullYear()) ? now.getMonth() : 0,
-  region: null, country: null, ev: null, day: null, q: "", groupOpen: {}, more: new Set(), tab: "pk", pref: null, ptab: "s", area: null,
+  region: null, country: null, ev: null, day: null, q: "", groupOpen: {}, more: new Set(), open: new Set(), tab: "pk", pref: null, ptab: "s", area: null,
   types: {H:true, F:true, S:true}
 };
 // 只讀回 H、F、S 三個布林值，其他內容一律忽略
@@ -234,18 +234,17 @@ function selectDay(key){
   renderCalendar(); renderSide();
   if (st.day && innerWidth <= 900) document.getElementById("side").scrollIntoView({behavior: reduce ? "auto" : "smooth", block:"start"});
 }
+// 點清單項目：在原地展開或收合介紹，並在月曆上標出期間；不改變國家、區域、月份等篩選
 function selectEvent(id){
-  const x = ALL.find(a => a.id === id);
-  st.ev = st.ev === id ? null : id;
-  if (st.ev){
-    st.country = x.c;
-    st.tab = "ev";
-    if (x.p){ st.pref = x.p; st.ptab = "ev"; }
-    if (x.s.getFullYear() === st.y || x.e.getFullYear() === st.y){
-      if (!inMonth(x)){ st.m = x.s.getFullYear() === st.y ? x.s.getMonth() : 0; }
-    }
-  }
-  render();
+  if (st.open.has(id)){ st.open.delete(id); if (st.ev === id) st.ev = null; }
+  else { st.open.add(id); st.ev = id; }
+  renderCalendar(); renderSide(); renderJP();
+}
+// 點月曆格子裡的活動：在右側列出那一天的活動，並展開這一項的介紹
+function showEventOnDay(id, key){
+  st.open.add(id); st.ev = id; st.day = key;
+  renderCalendar(); renderSide();
+  if (innerWidth <= 900) document.getElementById("side").scrollIntoView({behavior: reduce ? "auto" : "smooth", block:"start"});
 }
 
 // ---------- 月曆 ----------
@@ -285,7 +284,7 @@ function renderCalendar(){
   }
   const grid = document.getElementById("grid");
   grid.innerHTML = html;
-  grid.querySelectorAll(".ev").forEach(b => b.onclick = () => selectEvent(b.dataset.id));
+  grid.querySelectorAll(".ev").forEach(b => b.onclick = () => showEventOnDay(b.dataset.id, b.closest(".cell").dataset.day));
   // 點日期數字或格子空白處：在右側列出當天的活動；格子裡的活動按鈕維持原本的行為
   grid.onclick = e => {
     if (e.target.closest(".ev, .more")) return;
@@ -299,21 +298,22 @@ function renderCalendar(){
 function itemHTML(x, showCountry, hidePref){
   const c = COUNTRIES[x.c];
   const approx = x.a ? `<i>約</i>` : "";
-  const sel = st.ev === x.id ? " on" : "";
-  return `<li><button class="item${sel}" data-id="${x.id}" data-day-start="${ymd(x.s)}">
+  const sel = st.open.has(x.id) ? " on" : "";
+  return `<li><button class="item${sel}" data-id="${x.id}" data-day-start="${ymd(x.s)}" aria-expanded="${!!sel}" title="${sel ? "收合介紹" : "看介紹"}">
     <span class="dt">${fmtRange(x)}${approx}</span>
     <span><span class="nm">${showCountry ? c.f + " " : ""}${x.n}<span class="tag ${x.t}">${TYPE_N[x.t]}</span></span>
     ${showCountry ? `<span class="meta rg"><i style="background:var(--r-${x.r})"></i>${c.n}${x.p ? "・" + PREF_BY_ID[x.p].n : ""}・${RN[x.r]}</span>` : x.p && !hidePref ? `<span class="meta">${PREF_BY_ID[x.p].n}</span>` : ""}
-    <span class="ds">${x.x}</span></span></button></li>`;
+    ${sel ? `<span class="ds">${x.x}</span>` : ""}</span></button></li>`;
 }
 // 可收合的分組：標題顯示項目數，每組先列 LIMIT 項，按「顯示全部」再展開。
 // 使用者展開或收合過的分組記在 st.groupOpen，重畫側欄時維持；含有選取中活動的分組一律展開
 const LIMIT = 6;
 function group(key, label, xs, { open = true, showCountry = true, hidePref = false } = {}){
   if (!xs.length) return "";
-  const hasSel = st.ev && xs.some(x => x.id === st.ev);
+  // 有點開介紹的項目就展開這組；只有點開的項目落在前 LIMIT 項之外時才列出全部
+  const hasSel = xs.some(x => st.open.has(x.id));
   const isOpen = hasSel || (st.groupOpen[key] ?? open);
-  const shown = st.more.has(key) || hasSel ? xs : xs.slice(0, LIMIT);
+  const shown = st.more.has(key) || xs.slice(LIMIT).some(x => st.open.has(x.id)) ? xs : xs.slice(0, LIMIT);
   return `<details class="grp-d" data-g="${key}"${isOpen ? " open" : ""}><summary><span class="gl">${label}</span><small>${xs.length} 項</small></summary>
     ${eventList(shown, "", showCountry, hidePref)}
     ${xs.length > shown.length ? `<button class="more-g" data-g="${key}">顯示全部 ${xs.length} 項</button>` : ""}</details>`;
@@ -380,7 +380,7 @@ function renderSide(){
     const d = sm.parentElement; st.groupOpen[d.dataset.g] = !d.open;
   }));
   onClicks(side, ".more-g", b => { st.more.add(b.dataset.g); renderSide(); });
-  const on = side.querySelector(".item.on");
+  const on = st.ev && side.querySelector(`.item.on[data-id="${st.ev}"]`);
   if (on && side.scrollHeight > side.clientHeight) on.scrollIntoView({block: "nearest"});
   onClicks(side, ".item", b => selectEvent(b.dataset.id));
   onClicks(side, "[data-tab]", b => { st.tab = b.dataset.tab; renderSide(); });
@@ -494,10 +494,7 @@ function renderJP(){
     ${st.ptab === "ev" ? eventList(evs, `${st.y} 年沒有符合篩選的活動`, false, true) : ""}`;
   onClicks(el, "[data-ptab]", b => { st.ptab = b.dataset.ptab; renderJP(); });
   el.querySelector("#clearP").onclick = () => selectPref(st.pref);
-  el.querySelectorAll(".item").forEach(b => b.onclick = () => {
-    selectEvent(b.dataset.id);
-    document.querySelector(".cal").scrollIntoView({behavior: reduce ? "auto" : "smooth", block:"start"});
-  });
+  el.querySelectorAll(".item").forEach(b => b.onclick = () => selectEvent(b.dataset.id));
 }
 
 // ---------- 日本縣市一覽 ----------

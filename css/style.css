@@ -138,6 +138,11 @@ select#year{height:32px;border-radius:8px;border:1px solid var(--line);backgroun
 .item .ds{font-size:12.5px;color:var(--fg);opacity:.85;margin-top:2px}
 .item.on{background:var(--accent-soft);border-radius:8px}
 .item .ds{display:block}
+/* 項目可以點開看介紹：右側小箭頭提示，展開時轉向 */
+.item{position:relative;padding-right:22px}
+.item::after{content:"";position:absolute;right:8px;top:15px;width:6px;height:6px;border-right:1.5px solid var(--muted);border-bottom:1.5px solid var(--muted);transform:rotate(45deg);transition:transform .15s}
+.item.on::after{transform:rotate(-135deg);top:18px}
+.item:hover .nm{color:var(--accent)}
 /* 可收合的分組 */
 .grp-d{border-top:1px solid var(--line);margin-top:6px}
 .grp-d:first-of-type{border-top:0}
