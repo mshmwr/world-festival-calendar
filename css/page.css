@@ -50,3 +50,17 @@ footer{margin-top:36px;color:var(--muted);font-size:12.5px}
 h2,h3,h4{scroll-margin-top:44px}
 nav.toc{display:flex;flex-wrap:wrap;gap:6px;margin:4px 0 10px}
 nav.toc a{padding:3px 10px;border-radius:999px;border:1px solid var(--line);background:var(--surface);text-decoration:none;font-size:13px}
+/* 時間軸：左側一條虛線，區域是方形節點、國家／月份是圓點；捲動時讀過的部分由 js/page.js 上色 */
+ol.tl{list-style:none;margin:8px 0 0;padding:0 0 0 30px;position:relative}
+ol.tl::before{content:"";position:absolute;left:10px;top:14px;bottom:14px;border-left:2px dashed var(--line)}
+ol.tl::after{content:"";position:absolute;left:10px;top:14px;width:2px;height:var(--fill,0px);background:var(--accent)}
+.tl>li{position:relative;padding:4px 0 10px}
+.tl>li::before{content:"";position:absolute;left:-26px;top:12px;width:10px;height:10px;border-radius:50%;background:var(--surface);border:2px solid var(--muted);z-index:1;transition:background .15s,border-color .15s,box-shadow .15s}
+.tl>li.tl-r{padding:14px 0 4px}
+.tl>li.tl-r::before{left:-29px;top:20px;width:16px;height:16px;border-radius:5px}
+.tl>li.past::before,.tl>li.now::before{background:var(--accent);border-color:var(--accent)}
+.tl>li.now::before{box-shadow:0 0 0 5px color-mix(in srgb,var(--accent) 22%,transparent)}
+.tl h3,.tl h4{margin:0 0 6px;line-height:1.5}
+.tl .tl-r h3{display:inline-block;padding:4px 14px;border-radius:8px;background:var(--surface);border:1px solid var(--line);font-size:17px}
+.tl .tl-c>h3{font-size:18px}
+.tl ul.picks li:first-child{margin-top:4px}

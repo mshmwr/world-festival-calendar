@@ -19,6 +19,16 @@ if (bar) {
     }
     where.textContent = `${trail.filter(Boolean).join(" › ") || document.querySelector("h1").textContent.trim()}・${Math.round(pct * 100)}%`;
     bar.setAttribute("aria-valuenow", Math.round(pct * 100));
+    // 時間軸：線從頂端畫到目前閱讀位置（畫面頂端下方 90px），經過的節點填色，最後經過的那個加光圈
+    const REF = 90;
+    for (const tl of document.querySelectorAll("ol.tl")) {
+      const top = tl.getBoundingClientRect().top, max = tl.offsetHeight - 28;
+      tl.style.setProperty("--fill", `${Math.min(max, Math.max(0, REF - top - 14))}px`);
+      const items = [...tl.children];
+      const passed = items.map(li => li.getBoundingClientRect().top + (li.classList.contains("tl-r") ? 28 : 17) <= REF);
+      const cur = passed.lastIndexOf(true);
+      items.forEach((li, i) => { li.classList.toggle("past", passed[i] && i !== cur); li.classList.toggle("now", i === cur); });
+    }
   }
   addEventListener("scroll", () => { if (!ticking) { ticking = true; requestAnimationFrame(update); } }, { passive: true });
   addEventListener("resize", update);

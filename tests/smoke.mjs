@@ -93,6 +93,15 @@ await rp.evaluate(() => scrollTo(0, (document.documentElement.scrollHeight - inn
 await rp.waitForTimeout(150);
 const mid = await rp.evaluate(() => ({ where: document.querySelector(".readbar .where").textContent, now: +document.querySelector(".readbar").getAttribute("aria-valuenow"), csp: window.__csp.length }));
 check("月份頁進度條：捲到一半顯示約 50% 與目前段落", mid.now >= 45 && mid.now <= 55 && mid.where.includes("各國 1 月推薦 › ") && mid.csp === 0);
+// 時間軸：捲到泰國時，泰國是目前節點、之前的節點都已填色、之後的還沒有，線畫到目前位置
+await rp.evaluate(() => scrollTo(0, document.querySelector("#c-th").getBoundingClientRect().top + scrollY - 60));
+await rp.waitForTimeout(150);
+check("月份頁時間軸：讀到哪個國家就標到哪裡", await rp.evaluate(() => {
+  const items = [...document.querySelector("ol.tl").children];
+  const i = items.findIndex(li => li.querySelector("#c-th"));
+  const fill = parseFloat(getComputedStyle(document.querySelector("ol.tl")).getPropertyValue("--fill"));
+  return i > 0 && items[i].classList.contains("now") && items.slice(0, i).every(li => li.classList.contains("past")) && items.slice(i + 1).every(li => !li.classList.contains("past") && !li.classList.contains("now")) && fill > 100;
+}));
 await rp.click('nav.toc a[href="#r-NE"]');
 await rp.waitForTimeout(150);
 check("月份頁區域跳轉：點北歐跳到北歐段落", await rp.evaluate(() => location.hash === "#r-NE" && document.querySelector(".readbar .where").textContent.includes("北歐")));

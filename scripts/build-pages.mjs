@@ -150,7 +150,7 @@ function countryPage(D, code) {
   const picksHTML = MONTHS.map(m => {
     const items = [...(D.picks[m]?.[code] || [])].sort((a, b) => b.pop - a.pop);
     if (!items.length) return "";
-    return `<h3 id="m${m}">${m} 月</h3><ul class="picks">${items.map(it => pickLi(it, D.sourceNames, prefLabel(it))).join("")}</ul>`;
+    return `<li class="tl-c"><h3 id="m${m}">${m} 月</h3><ul class="picks">${items.map(it => pickLi(it, D.sourceNames, prefLabel(it))).join("")}</ul></li>`;
   }).join("");
   const evHTML = evs.length ? `<ul class="evs">${evs.map(x => evLi(x, x.p ? `（${esc(D.prefName[x.p])}）` : "")).join("")}</ul>` : "<p>目前沒有資料。</p>";
   const list = (h, xs) => xs?.length ? `<section><h2>${h}</h2><ul class="tags">${xs.map(x => `<li>${esc(x)}</li>`).join("")}</ul></section>` : "";
@@ -158,7 +158,7 @@ function countryPage(D, code) {
   const prefs = code === "JP" ? `<section><h2>日本 47 都道府縣</h2>${D.japan.areas.map(a => `<p><b>${esc(a.n)}</b> ${D.japan.prefectures.filter(p => p.a === a.k).map(p => esc(p.n)).join("、")}</p>`).join("")}<p>各縣市的景點、遺跡、世界遺產與祭典，請到<a href="../?c=JP">互動行事曆的日本專區</a>查看。</p></section>` : "";
   const body = `<p class="cta"><a href="../?c=${code}">在互動行事曆中查看${esc(c.n)} →</a></p>
 ${monthNav("../")}
-<section><h2>${esc(c.n)}每月推薦景點與行程</h2>${picksHTML}</section>
+<section><h2>${esc(c.n)}每月推薦景點與行程</h2><ol class="tl">${picksHTML}</ol></section>
 <section><h2>${esc(c.n)}節日、祭典與旅遊季節（${YEAR} 年）</h2>${evHTML}</section>
 ${list("熱門景點", c.s)}${list("自然景色", c.nat)}${wh}${prefs}
 ${regionNav(D, "../", code)}`;
@@ -184,14 +184,14 @@ function monthPage(D, m) {
   const regionHTML = D.regions.map(r => {
     const cs = Object.keys(byCountry).filter(code => D.countries[code].r === r.k);
     if (!cs.length) return "";
-    return `<h3 id="r-${r.k}">${esc(r.n)}</h3>${cs.map(code => `<h4 id="c-${code.toLowerCase()}"><a href="../c/${code.toLowerCase()}.html#m${m}">${D.countries[code].f} ${esc(cname(code))}</a></h4><ul class="picks">${[...byCountry[code]].sort((a, b) => b.pop - a.pop).map(it => pickLi(it, D.sourceNames)).join("")}</ul>`).join("")}`;
+    return `<li class="tl-r"><h3 id="r-${r.k}">${esc(r.n)}</h3></li>${cs.map(code => `<li class="tl-c"><h4 id="c-${code.toLowerCase()}"><a href="../c/${code.toLowerCase()}.html#m${m}">${D.countries[code].f} ${esc(cname(code))}</a></h4><ul class="picks">${[...byCountry[code]].sort((a, b) => b.pop - a.pop).map(it => pickLi(it, D.sourceNames)).join("")}</ul></li>`).join("")}`;
   }).join("");
   const evs = D.evs.filter(e => !e.p).map(e => ({ ...e, span: span(e) })).filter(e => e.span?.months.has(m)).sort((a, b) => sortKey(a.span) - sortKey(b.span));
   const evHTML = `<ul class="evs">${evs.map(x => evLi(x, `（<a href="../c/${x.c.toLowerCase()}.html">${esc(cname(x.c))}</a>）`)).join("")}</ul>`;
   const body = `<p class="cta"><a href="../?m=${m}">在互動行事曆中查看 ${m} 月 →</a></p>
 ${monthNav("../", m)}
 ${topHTML}
-<section><h2>各國 ${m} 月推薦</h2><nav class="toc" aria-label="跳到區域">${D.regions.filter(r => Object.keys(byCountry).some(code => D.countries[code].r === r.k)).map(r => `<a href="#r-${r.k}">${esc(r.n)}</a>`).join("")}</nav>${regionHTML}</section>
+<section><h2>各國 ${m} 月推薦</h2><nav class="toc" aria-label="跳到區域">${D.regions.filter(r => Object.keys(byCountry).some(code => D.countries[code].r === r.k)).map(r => `<a href="#r-${r.k}">${esc(r.n)}</a>`).join("")}</nav><ol class="tl">${regionHTML}</ol></section>
 <section><h2>${YEAR} 年 ${m} 月各國節日與祭典</h2><p>日本各縣市祭典請看<a href="../c/jp.html">日本頁面</a>或互動行事曆的日本專區。</p>${evHTML}</section>
 ${regionNav(D, "../")}`;
   return page({
