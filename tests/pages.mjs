@@ -31,6 +31,13 @@ for (const [p, s] of Object.entries(files)) {
   for (const m of s.matchAll(/<script type="application\/ld\+json">([^<]+)<\/script>/g)) {
     try { JSON.parse(m[1]); } catch { fail(p, "JSON-LD 不是合法的 JSON"); }
   }
+  // 月份頁要有常見問題，而且頁面上的問答和 FAQPage 結構化資料一致
+  if (p.startsWith("m/")) {
+    const faq = [...s.matchAll(/<script type="application\/ld\+json">([^<]+)<\/script>/g)].map(m => JSON.parse(m[1])).find(o => o["@type"] === "FAQPage");
+    const shown = [...(s.match(/<section class="faq">[\s\S]*?<\/section>/)?.[0] || "").matchAll(/<h3>([^<]+)<\/h3>/g)].map(m => m[1]);
+    if (!faq || faq.mainEntity.length < 3) fail(p, "缺少常見問題（FAQPage）");
+    else if (faq.mainEntity.map(q => q.name.replace(/&/g, "&amp;")).join("|") !== shown.join("|")) fail(p, "常見問題的頁面內容和結構化資料不一致");
+  }
   if (titles.has(title)) fail(p, `標題和 ${titles.get(title)} 重複`); else titles.set(title, p);
   if (descs.has(desc)) fail(p, `說明和 ${descs.get(desc)} 重複`); else descs.set(desc, p);
   // 站內連結都要指到存在的檔案

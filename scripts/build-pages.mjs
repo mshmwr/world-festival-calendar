@@ -93,6 +93,8 @@ function page({ path, title, desc, h1, lead, crumbs, body, ld }) {
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="${up}favicon.svg" type="image/svg+xml">
+<link rel="icon" href="${up}favicon-192.png" sizes="192x192" type="image/png">
+<link rel="apple-touch-icon" href="${up}favicon-192.png">
 <link rel="stylesheet" href="${up}css/page.css">
 <script src="${up}js/page.js" defer></script>
 ${lds}
@@ -174,12 +176,45 @@ ${regionNav(D, "../", code)}`;
 }
 
 // ---------- 月份頁 ----------
+// 月份頁的常見問題：全部從現有資料產生，回傳 [[問題, 回答], …]
+const FAQ_COUNTRIES = ["JP", "KR", "TH"];
+function monthFAQ(D, m, all, evs) {
+  const cname = code => D.countries[code].n;
+  const label = it => { const n = it.n.split("：")[0]; return n.includes(cname(it.code)) ? n : `${cname(it.code)}${n}`; };
+  const list = xs => xs.join("、");
+  const out = [];
+  const best = Math.max(...all.map(it => it.pop));
+  const hot = all.filter(it => it.pop === best);
+  const countries = [...new Set(hot.map(it => it.code))].map(cname);
+  out.push([`${m} 月出國去哪裡最熱門？`,
+    `依台灣旅行社 ${m} 月的出團與推薦，${best === 3 ? "最熱門（★★★）" : "較熱門（★★）"}的是：${list(hot.map(label))}。` +
+    `涵蓋${list(countries)}共 ${countries.length} 國；全部 ${new Set(all.map(it => it.code)).size} 國、${all.length} 項推薦依區域列在本頁。`]);
+  for (const code of FAQ_COUNTRIES) {
+    const items = [...(D.picks[m]?.[code] || [])].sort((a, b) => b.pop - a.pop);
+    if (!items.length) continue;
+    const [first] = items;
+    out.push([`${m} 月去${cname(code)}玩什麼？`,
+      `${m} 月${cname(code)}推薦：${list(items.map(it => `${it.n.split("：")[0]}（${stars(it.pop)}）`))}。${first.x}`]);
+  }
+  const hol = evs.filter(e => e.t === "H");
+  if (hol.length) {
+    const MAX = 14;
+    const shown = hol.slice(0, MAX).map(e => `${cname(e.c)}${e.n}（${fmtSpan(e.span)}）`);
+    out.push([`${YEAR} 年 ${m} 月有哪些國家放假？`,
+      `${YEAR} 年 ${m} 月共有 ${hol.length} 個國定假日或連假：${list(shown)}${hol.length > MAX ? " 等" : ""}。` +
+      `當地放假時景點和交通較擠、部分商店會休息，訂票前先確認；完整日期見本頁「${m} 月各國節日與祭典」。`]);
+  }
+  out.push(["推薦的星等是怎麼決定的？",
+    "★★★ 代表多家台灣旅行社把它排進當月行程，或是當月最具代表性的活動；★★ 是一兩家旅行社或主要旅遊網站推薦；★ 是觀光局或旅遊指南推薦。每項推薦都附資料來源連結。"]);
+  return out;
+}
+
 function monthPage(D, m) {
   const byCountry = D.picks[m] || {};
   const all = Object.entries(byCountry).flatMap(([code, items]) => items.map(it => ({ ...it, code })));
   const top = all.filter(it => it.pop === 3);
   const cname = code => D.countries[code].n;
-  const desc = fit(`${m} 月出國去哪玩？${Object.keys(byCountry).length} 國 ${m} 月推薦景點依旅行社熱門程度標星，附各國節日。${top.length ? "最熱門：" : ""}`, top.map(it => { const n = it.n.split("：")[0]; return n.startsWith(cname(it.code)) ? n : cname(it.code) + n; }), "");
+  const desc = fit(`${m} 月出國去哪玩？${Object.keys(byCountry).length} 國 ${m} 月推薦景點依旅行社熱門程度標星，附各國節日。${top.length ? "最熱門：" : ""}`, top.map(it => { const n = it.n.split("：")[0]; return n.includes(cname(it.code)) ? n : cname(it.code) + n; }), "");
   const topHTML = top.length ? `<section><h2>${m} 月最熱門（★★★）</h2><ul class="picks">${top.map(it => pickLi(it, D.sourceNames, `（<a href="../c/${it.code.toLowerCase()}.html#m${m}">${esc(cname(it.code))}</a>）`)).join("")}</ul></section>` : "";
   const regionHTML = D.regions.map(r => {
     const cs = Object.keys(byCountry).filter(code => D.countries[code].r === r.k);
@@ -188,11 +223,14 @@ function monthPage(D, m) {
   }).join("");
   const evs = D.evs.filter(e => !e.p).map(e => ({ ...e, span: span(e) })).filter(e => e.span?.months.has(m)).sort((a, b) => sortKey(a.span) - sortKey(b.span));
   const evHTML = `<ul class="evs">${evs.map(x => evLi(x, `（<a href="../c/${x.c.toLowerCase()}.html">${esc(cname(x.c))}</a>）`)).join("")}</ul>`;
+  const faq = monthFAQ(D, m, all, evs);
+  const faqHTML = `<section class="faq"><h2>${m} 月出國常見問題</h2>${faq.map(([q, a]) => `<h3>${esc(q)}</h3><p>${esc(a)}</p>`).join("")}</section>`;
   const body = `<p class="cta"><a href="../?m=${m}">在互動行事曆中查看 ${m} 月 →</a></p>
 ${monthNav("../", m)}
 ${topHTML}
 <section><h2>各國 ${m} 月推薦</h2><nav class="toc" aria-label="跳到區域">${D.regions.filter(r => Object.keys(byCountry).some(code => D.countries[code].r === r.k)).map(r => `<a href="#r-${r.k}">${esc(r.n)}</a>`).join("")}</nav><ol class="tl">${regionHTML}</ol></section>
 <section><h2>${YEAR} 年 ${m} 月各國節日與祭典</h2><p>日本各縣市祭典請看<a href="../c/jp.html">日本頁面</a>或互動行事曆的日本專區。</p>${evHTML}</section>
+${faqHTML}
 ${regionNav(D, "../")}`;
   return page({
     path: `m/${m}.html`,
@@ -201,6 +239,7 @@ ${regionNav(D, "../")}`;
     lead: `${Object.keys(byCountry).length} 國 ${m} 月的推薦景點與行程，依熱門程度 1～3 顆星排列，附資料來源；下方另有 ${m} 月各國節日與祭典。`,
     crumbs: [[SITE_NAME, ""], [`${m} 月推薦`, `m/${m}.html`]],
     body,
+    ld: { "@context": "https://schema.org", "@type": "FAQPage", mainEntity: faq.map(([q, a]) => ({ "@type": "Question", name: q, acceptedAnswer: { "@type": "Answer", text: a } })) },
   });
 }
 
