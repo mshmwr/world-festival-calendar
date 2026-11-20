@@ -7,7 +7,7 @@ const errors = [];
 const fail = (where, msg) => errors.push(`${where}：${msg}`);
 
 // 1. 結構
-const files = { regions: "regions.json", countries: "countries.json", events: "events.json", japan: "japan.json", picks: "picks.json" };
+const files = { regions: "regions.json", countries: "countries.json", events: "events.json", japan: "japan.json", picks: "picks.json", future: "future.json" };
 const data = {};
 for (const [k, f] of Object.entries(files)) {
   data[k] = read(f);
@@ -37,6 +37,12 @@ for (const [code, c] of Object.entries(countries)) {
   if (!regionKeys.has(c.r)) fail(w, `區域 ${c.r} 不存在`);
   if (c.iso && isoRegion[c.iso] !== c.r) fail(w, `地圖碼 ${c.iso} 在 regionOf 屬於 ${isoRegion[c.iso] || "（沒有）"}，和 r=${c.r} 不一致`);
   if (!c.wh.length && !whNote[code]) fail(w, "沒有世界遺產時請在 whNote 加說明");
+}
+// 未來屆次：國家要存在；年份進入行事曆範圍後應移到 events.json
+const appYears = JSON.parse(readFileSync(new URL("../js/app.js", import.meta.url), "utf8").match(/const YEARS = (\[[^\]]*\])/)[1]);
+for (const f of data.future.future) {
+  if (!countries[f.c]) fail(`future.json ${f.n}`, `國家 ${f.c} 不存在`);
+  if (f.year <= Math.max(...appYears)) fail(`future.json ${f.n}`, `${f.year} 年已在行事曆範圍內，請移到 events.json`);
 }
 for (const code of Object.keys(whNote)) if (!countries[code]) fail("countries.json whNote", `國家代碼 ${code} 不存在`);
 

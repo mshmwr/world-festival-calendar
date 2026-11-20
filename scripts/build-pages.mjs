@@ -33,11 +33,12 @@ function loadAll() {
   const { events } = read("events.json");
   const japan = read("japan.json");
   const { picks, sourceNames } = read("picks.json");
+  const { future } = read("future.json");
   const evs = [...events];
   for (const e of japan.national) evs.push({ c: "JP", ...e });
   for (const p of japan.prefectures) for (const e of p.ev) evs.push({ c: "JP", t: "F", ...e, p: p.id });
   const prefName = Object.fromEntries(japan.prefectures.map(p => [p.id, p.n]));
-  return { regions, countries, evs, japan, picks, sourceNames, prefName };
+  return { regions, countries, evs, japan, picks, sourceNames, prefName, future };
 }
 
 // 一筆節慶在 YEAR（或前一年）的起訖月日；回傳 {y, s:[m,d], e:[m,d], months:Set}
@@ -145,6 +146,14 @@ function regionNav(D, up, current) {
 const monthNav = (up, current) => `<nav class="months" aria-label="各月推薦">${MONTHS.map(m => m === current ? `<span>${m} 月</span>` : `<a href="${up}m/${m}.html">${m} 月</a>`).join(" ")}</nav>`;
 
 // ---------- 國家頁 ----------
+// 未來幾年的大型活動（奧運、世界盃等），日期未定的標示出來
+function futureHTML(D, code) {
+  const xs = D.future.filter(f => f.c === code).sort((a, b) => a.year - b.year);
+  if (!xs.length) return "";
+  const when = f => f.d ? `${f.year} 年 ${f.d.split("~").map(x => x.replace(/^0/, "").replace("-0", "/").replace("-", "/")).join("–")}${f.a ? "（暫定）" : ""}` : `${f.year} 年（日期未公布）`;
+  return `<section><h2>未來的大型活動</h2><ul class="evs">${xs.map(f => `<li><span class="dt">${when(f)}</span> <span class="t ${f.t}">${TYPE_N[f.t]}</span> <b>${esc(f.n)}</b>：${esc(f.x)}</li>`).join("")}</ul></section>`;
+}
+
 function countryPage(D, code) {
   const c = D.countries[code];
   const rn = D.regions.find(r => r.k === c.r).n;
@@ -166,6 +175,7 @@ function countryPage(D, code) {
 ${monthNav("../")}
 <section><h2>${esc(c.n)}每月推薦景點與行程</h2><ol class="tl">${picksHTML}</ol></section>
 <section><h2>${esc(c.n)}節日、祭典與旅遊季節（${YEAR} 年）</h2>${evHTML}</section>
+${futureHTML(D, code)}
 ${list("熱門景點", c.s)}${list("自然景色", c.nat)}${wh}${prefs}
 ${regionNav(D, "../", code)}`;
   return page({

@@ -28,6 +28,7 @@ data/countries.json      各國：景點、自然景色、世界遺產
 data/events.json         各國節日、祭典、旅遊季節（日本各縣祭典除外）
 data/japan.json          日本八大地方、47 都道府縣（景點、遺跡史蹟、世界遺產、祭典）、日本國定假日
 data/picks.json          每月推薦景點與行程（熱門程度、來源）
+data/future.json         不是每年舉辦的活動的下一屆（奧運、亞運、世界盃、隔年祭典），顯示在國家頁「未來的大型活動」
 data/map-world.json      世界地圖邊界（world-atlas）
 data/map-japan.json      日本都道府縣邊界（jpn-atlas）
 data/schema/             資料格式（JSON Schema），也是欄位說明

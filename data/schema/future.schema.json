@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "未來屆次",
+  "description": "不是每年舉辦、下一屆還不在行事曆年份內的活動（奧運、亞運、世界盃、隔年舉辦的祭典等）。行事曆加入該年份時，把該筆移到 events.json",
+  "type": "object",
+  "properties": {
+    "$schema": { "type": "string" },
+    "future": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "c": { "$ref": "common.schema.json#/$defs/code", "description": "主辦國代碼，對應 countries.json" },
+          "t": { "enum": ["H", "F", "G", "S"], "description": "類型，同 events.json" },
+          "n": { "type": "string", "minLength": 1, "description": "名稱" },
+          "year": { "type": "number", "description": "舉辦年份（西元）" },
+          "d": { "$ref": "common.schema.json#/$defs/monthDay", "description": "已公布或預定的日期；還沒公布就省略" },
+          "a": { "const": 1, "description": "日期或年份仍可能變動時填 1" },
+          "x": { "type": "string", "minLength": 1, "description": "一句說明" }
+        },
+        "required": ["c", "t", "n", "year", "x"],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": ["future"],
+  "additionalProperties": false
+}
