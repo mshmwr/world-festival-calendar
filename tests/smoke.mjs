@@ -121,10 +121,22 @@ await mob.goto(page_url + "m/7.html");
 check("月份頁手機版無橫向捲動", await mob.evaluate(() => document.documentElement.scrollWidth <= innerWidth));
 await mob.evaluate(() => scrollTo(0, document.querySelector("#c-fr").getBoundingClientRect().top + scrollY - 60));
 await mob.waitForTimeout(150);
-check("手機版：不顯示右側時間軸，右下角標籤顯示目前段落", await mob.evaluate(() => {
-  const pill = document.querySelector(".readpill"), r = pill.getBoundingClientRect();
-  return getComputedStyle(document.querySelector(".sidetl")).display === "none" && getComputedStyle(pill).position === "fixed" && pill.textContent.includes("法國") && r.bottom <= innerHeight && r.right <= innerWidth;
+check("手機版：右側細軸列出全部區域節點、目前區域標色，內文不被蓋住", await mob.evaluate(() => {
+  const n = document.querySelector(".sidetl"), r = n.getBoundingClientRect(), main = document.querySelector("main").getBoundingClientRect();
+  const regions = [...n.querySelectorAll("li.r")], countries = [...n.querySelectorAll("li.c")];
+  const cur = n.querySelector("li.in");
+  return getComputedStyle(n).position === "fixed" && r.right <= innerWidth && r.left >= main.right - 1 && regions.every(li => li.offsetParent) && countries.every(li => !li.offsetParent)
+    && cur && cur.textContent.includes("西歐") && !document.querySelector(".readpill");
 }));
+await mob.click(".sidetl");
+await mob.waitForTimeout(150);
+check("手機版：點細軸展開名稱與目前區域的國家", await mob.evaluate(() => {
+  const n = document.querySelector(".sidetl");
+  return n.classList.contains("open") && n.querySelector("li.now a").textContent.includes("法國") && n.querySelector("li.r a").offsetWidth > 20;
+}));
+await mob.click('.sidetl a[href="#r-NE"]');
+await mob.waitForTimeout(200);
+check("手機版：點展開後的節點跳到該段並收合", await mob.evaluate(() => location.hash === "#r-NE" && !document.querySelector(".sidetl").classList.contains("open")));
 
 // 點月曆的日期：右側改列當天活動，再點一次或按按鈕回到整個月
 await p.evaluate(() => { Object.assign(app.st, { y: 2027, m: 1, region: null, country: null, ev: null, day: null, q: "", openDay: null }); app.render(); });

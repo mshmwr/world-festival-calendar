@@ -82,9 +82,23 @@ ol.tl{list-style:none;margin:8px 0 0;padding:0}
 .sidetl li.r a,.sidetl li.past a{color:var(--fg)}
 .sidetl li.now a{color:var(--accent);font-weight:700}
 .sidetl a:hover{color:var(--accent)}
-/* 窄螢幕：右側放不下時間軸，改用右下角的小標籤 */
-.readpill{display:none}
+/* 窄螢幕：右側放不下完整時間軸，收成右邊一條細軸，只畫大項目節點；點一下展開名稱 */
 @media (max-width:1300px){
-  .sidetl{display:none}
-  .readpill{display:block;position:fixed;right:12px;bottom:calc(12px + env(safe-area-inset-bottom,0px));max-width:calc(100vw - 24px);padding:6px 12px;border-radius:999px;background:var(--surface);border:1px solid var(--line);box-shadow:0 2px 10px rgb(0 0 0/.15);color:var(--fg);font-size:12.5px;text-decoration:none;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;z-index:5}
+  body.has-sidetl .wrap{padding-right:46px}
+  .sidetl{--compact:1;left:auto;right:6px;top:50%;transform:translateY(-50%);width:30px;max-height:calc(100vh - 40px);padding:10px 0;border-radius:15px;background:color-mix(in srgb,var(--surface) 88%,transparent);border:1px solid var(--line);cursor:pointer;transition:width .15s}
+  .sidetl .st-h{display:none}
+  .sidetl ol{padding-left:22px}
+  .sidetl ol::before,.sidetl ol::after{left:6px}
+  .sidetl:not(.open) li.c{display:none}
+  .sidetl:not(.open) li{padding:9px 0}
+  .sidetl:not(.open) a{visibility:hidden;width:0}
+  .sidetl:not(.open) li.r::before{left:-21px}
+  .sidetl:not(.open) li.in::before{background:var(--accent);border-color:var(--accent);box-shadow:0 0 0 4px color-mix(in srgb,var(--accent) 25%,transparent)}
+  .sidetl:not(.open) li:not(.r)::before{left:-19px}
+  .sidetl.open{width:min(240px,calc(100vw - 24px));padding:12px 12px 12px 0;background:var(--surface);box-shadow:0 6px 24px rgb(0 0 0/.25);cursor:auto}
+  .sidetl.open .st-h{display:flex;padding-left:16px}
+  .sidetl.open ol{padding-left:34px}
+  .sidetl.open ol::before,.sidetl.open ol::after{left:16px}
+  .sidetl.open li::before{left:-22px}
+  .sidetl.open li.r::before{left:-25px}
 }
