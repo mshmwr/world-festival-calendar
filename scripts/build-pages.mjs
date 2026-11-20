@@ -273,7 +273,10 @@ export function build() {
   if (!re.test(index)) throw new Error("index.html 缺少 <!-- seo:links --> 標記");
   const reS = /(<!-- support -->)[\s\S]*?(<!-- \/support -->)/;
   if (!reS.test(index)) throw new Error("index.html 缺少 <!-- support --> 標記");
-  files["index.html"] = index.replace(re, `$1\n  ${indexLinks(D)}\n  $2`).replace(reS, `$1${supportHTML()}$2`);
+  // 標題與說明裡的國家數跟著資料更新
+  const nC = Object.keys(D.countries).length;
+  files["index.html"] = index.replace(re, `$1\n  ${indexLinks(D)}\n  $2`).replace(reS, `$1${supportHTML()}$2`)
+    .replace(/<head>[\s\S]*?<\/head>/, h => h.replace(/\d+ 國/g, `${nC} 國`));
   return files;
 }
 

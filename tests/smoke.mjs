@@ -1,5 +1,6 @@
 // 冒煙測試：載入頁面並走過主要互動流程，任何頁面錯誤都會讓測試失敗。
 // 用法：npm test（會自動啟動本機伺服器，不需要連網）。
+import { readFileSync } from "node:fs";
 import { chromium } from "playwright";
 import { serve } from "../scripts/serve.mjs";
 
@@ -24,7 +25,8 @@ async function open(width, height, colorScheme, url = page_url) {
 const p = await open(1300, 1000, "light");
 const visible = sel => p.evaluate(s => { const e = document.querySelector(s); return !!e && !e.hidden && e.offsetParent !== null; }, sel);
 
-check("資料：61 國", await p.evaluate(() => Object.keys(app.COUNTRIES).length === 61));
+const NC = Object.keys(JSON.parse(readFileSync(new URL("../data/countries.json", import.meta.url), "utf8")).countries).length;
+check(`資料：${NC} 國`, await p.evaluate(n => Object.keys(app.COUNTRIES).length === n, NC));
 check("資料：47 都道府縣", await p.evaluate(() => app.PREFS.length === 47));
 check("初始：國家列與日本專區隱藏", !(await visible("#crow")) && !(await visible("#jp")));
 
@@ -83,7 +85,7 @@ const sp = await browser.newPage({ javaScriptEnabled: false });
 await sp.goto(page_url + "c/jp.html");
 check("國家頁不靠 JavaScript 就有標題與推薦", (await sp.textContent("h1")).includes("日本") && (await sp.locator("ul.picks li").count()) > 20);
 await sp.goto(page_url + "m/2.html");
-check("月份頁有各國推薦與節慶", (await sp.locator("h4").count()) === 61 && (await sp.locator("ul.evs li").count()) > 10);
+check("月份頁有各國推薦與節慶", (await sp.locator("h4").count()) === NC && (await sp.locator("ul.evs li").count()) > 10);
 // 月份頁的閱讀進度條與區域跳轉
 const rp = await browser.newPage({ viewport: { width: 1100, height: 900 } });
 await rp.addInitScript(() => { window.__csp = []; document.addEventListener("securitypolicyviolation", e => window.__csp.push(e.violatedDirective)); });

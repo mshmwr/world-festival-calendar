@@ -1,6 +1,6 @@
 {
   "$schema": "./schema/picks.schema.json",
-  "sourceNames": {"liontravel.com":"雄獅旅遊","colatour.com.tw":"可樂旅遊","settour.com.tw":"東南旅遊","travel4u.com.tw":"山富旅遊","eztravel.com.tw":"易遊網","kkday.com":"KKday","klook.com":"Klook"},
+  "sourceNames": {"liontravel.com":"雄獅旅遊","colatour.com.tw":"可樂旅遊","settour.com.tw":"東南旅遊","travel4u.com.tw":"山富旅遊","eztravel.com.tw":"易遊網","kkday.com":"KKday","klook.com":"Klook","formula1.com":"F1 官網","acm.mc":"摩納哥汽車俱樂部","montecarlosbm.com":"蒙地卡羅 SBM","visitmonaco.com":"摩納哥觀光局"},
   "picks": {
     "1": {
       "JP": [
@@ -239,6 +239,26 @@
       "NZ": [
         {"n":"紐西蘭南島夏季：庫克山、皇后鎮、米佛峽灣","pop":3,"x":"1 月是紐西蘭夏季旺季，白天長、氣溫約 20 度，可樂、東南、山富的南北島團都在 1 月出發。","src":["https://www.colatour.com.tw/C10A_TourSell/C10A16_TourItinerary.aspx?PatternNo=214406","https://tour.settour.com.tw/product/GFG0000029913","https://www.travel4u.com.tw/en/group/itinerary/NZL11NZ01/"]},
         {"n":"北島：哈比屯與螢火蟲洞","pop":2,"x":"魔戒拍攝地哈比屯、懷托摩螢火蟲洞、羅托魯瓦毛利文化。","src":["https://tour.settour.com.tw/product/GFG0000029913","https://www.colatour.com.tw/webDM/tour/nz/NewZealand/tour.html"]}
+      ],
+      "SA": [
+        {"n":"埃爾奧拉・赫格拉古城與大象岩","pop":2,"x":"沙烏地最熱門的行程，1 月沙漠白天涼爽；多家旅行社 11 天團都排利雅德、埃爾奧拉、吉達三城。","src":["https://tour.settour.com.tw/product/GFG0000026994","https://www.travel4u.com.tw/en/group/itinerary/JED11P/","https://vacation.eztravel.com.tw/pkgfrn/p/VDR0000001846/KSA11DEK","https://vacation.eztravel.com.tw/pkgfrn/p/VDR0000001888/DXB1120EK"]},
+        {"n":"吉達老城與利雅德迪里耶","pop":1,"x":"兩座世界遺產老城，冬季步行參觀最舒服。","src":["https://tour.settour.com.tw/product/GFG0000026994","https://vacation.eztravel.com.tw/pkgfrn/p/VDR0000001846/KSA11DEK"]}
+      ],
+      "BH": [
+        {"n":"巴林堡與穆哈拉格珍珠之路","pop":1,"x":"1 月氣候宜人，兩處世界遺產可一天走完；台灣出發多與沙烏地或波斯灣郵輪合併。","src":["https://www.colatour.com.tw/C10A_TourSell/C10A16_TourItinerary.aspx?PatternNo=211666","https://www.travel4u.com.tw/en/group/itinerary/DXB1120EK/"]},
+        {"n":"波斯灣郵輪（杜拜・杜哈・巴林）","pop":2,"x":"冬季限定的波斯灣郵輪航線，一次停靠阿聯酋、卡達、巴林。","src":["https://tour.settour.com.tw/product/GFG0000024307","https://vacation.eztravel.com.tw/pkgfrn/p/VDR0000001914/DXBMSC-02"]}
+      ],
+      "QA": [
+        {"n":"伊斯蘭藝術博物館・國家博物館・瓦奇夫市集","pop":1,"x":"1 月杜哈白天約 20 多度，適合步行逛博物館和市集；也常作為歐洲、高加索行程的轉機停留。","src":["https://travel.liontravel.com/detail?Platform=APP&normgroupid=83d9666c-a3ec-493a-8c14-d12f6a182eab","https://www.kkday.com/zh-tw/product/804364"]},
+        {"n":"波斯灣郵輪（杜拜・杜哈・巴林）","pop":2,"x":"冬季限定的波斯灣郵輪航線，一次停靠阿聯酋、卡達、巴林。","src":["https://tour.settour.com.tw/product/GFG0000024307","https://vacation.eztravel.com.tw/pkgfrn/p/VDR0000001914/DXBMSC-02"]},
+        {"n":"內陸海沙漠衝沙","pop":1,"x":"沙丘直接連到海灣的內陸海，冬季是最適合的季節。","src":["https://travel.liontravel.com/detail?Platform=APP&normgroupid=83d9666c-a3ec-493a-8c14-d12f6a182eab"]}
+      ],
+      "AZ": [
+        {"n":"巴庫老城與火焰塔","pop":1,"x":"1 月巴庫寒冷有風，偶爾下雪，遊客少。","src":["https://go.liontravel.com/zh-tw/destination/azerbaijan-7848","https://www.kkday.com/zh-tw/product/792086"]}
+      ],
+      "MC": [
+        {"n":"蒙地卡羅與摩納哥王宮","pop":1,"x":"1 月是淡季，摩納哥有蒙地卡羅拉力賽和國際馬戲節。","src":["https://www.travel4u.com.tw/en/group/itinerary/MXP1001/","https://tour.settour.com.tw/product/GFG0000015103","https://tour.settour.com.tw/product/GFG0000029327","https://www.colatour.com.tw/C10A_TourSell/C10A16_TourItinerary.aspx?PatternNo=232331","https://vacation.eztravel.com.tw/pkgfrn/p/VDR0000001888/MXP1001"]},
+        {"n":"蒙地卡羅國際馬戲節","pop":1,"x":"世界最重要的馬戲比賽，約 1 月中下旬。","src":["https://www.visitmonaco.com/en/22107"]}
       ]
     },
     "2": {
@@ -469,6 +489,23 @@
       "NZ": [
         {"n":"紐西蘭南島夏季","pop":3,"x":"2 月天氣最穩定，春節東南、可樂都有紐西蘭團，庫克山、皇后鎮、米佛峽灣。","src":["https://www.settour.com.tw/act/mkt/cny/","https://www.colatour.com.tw/webDM/tour/nz/NewZealand/tour.html","https://www.travel4u.com.tw/en/group/itinerary/NZL11NZ01/"]},
         {"n":"北島：哈比屯與螢火蟲洞","pop":2,"x":"魔戒拍攝地哈比屯、懷托摩螢火蟲洞、羅托魯瓦毛利文化。","src":["https://tour.settour.com.tw/product/GFG0000029913","https://www.colatour.com.tw/webDM/tour/nz/NewZealand/tour.html"]}
+      ],
+      "SA": [
+        {"n":"埃爾奧拉・赫格拉古城與大象岩","pop":2,"x":"沙烏地最熱門的行程，2 月沙漠白天涼爽；多家旅行社 11 天團都排利雅德、埃爾奧拉、吉達三城。2027 年齋月約 2/8～3/9，白天餐廳多數不營業、景點縮短開放時間，開齋節前後住宿較貴。","src":["https://tour.settour.com.tw/product/GFG0000026994","https://www.travel4u.com.tw/en/group/itinerary/JED11P/","https://vacation.eztravel.com.tw/pkgfrn/p/VDR0000001846/KSA11DEK","https://vacation.eztravel.com.tw/pkgfrn/p/VDR0000001888/DXB1120EK"]}
+      ],
+      "BH": [
+        {"n":"巴林堡與穆哈拉格珍珠之路","pop":1,"x":"2 月氣候宜人，兩處世界遺產可一天走完；台灣出發多與沙烏地或波斯灣郵輪合併。","src":["https://www.colatour.com.tw/C10A_TourSell/C10A16_TourItinerary.aspx?PatternNo=211666","https://www.travel4u.com.tw/en/group/itinerary/DXB1120EK/"]},
+        {"n":"波斯灣郵輪（杜拜・杜哈・巴林）","pop":2,"x":"冬季限定的波斯灣郵輪航線，一次停靠阿聯酋、卡達、巴林。","src":["https://tour.settour.com.tw/product/GFG0000024307","https://vacation.eztravel.com.tw/pkgfrn/p/VDR0000001914/DXBMSC-02"]}
+      ],
+      "QA": [
+        {"n":"伊斯蘭藝術博物館・國家博物館・瓦奇夫市集","pop":1,"x":"2 月杜哈白天約 20 多度，適合步行逛博物館和市集；也常作為歐洲、高加索行程的轉機停留。","src":["https://travel.liontravel.com/detail?Platform=APP&normgroupid=83d9666c-a3ec-493a-8c14-d12f6a182eab","https://www.kkday.com/zh-tw/product/804364"]},
+        {"n":"波斯灣郵輪（杜拜・杜哈・巴林）","pop":2,"x":"冬季限定的波斯灣郵輪航線，一次停靠阿聯酋、卡達、巴林。","src":["https://tour.settour.com.tw/product/GFG0000024307","https://vacation.eztravel.com.tw/pkgfrn/p/VDR0000001914/DXBMSC-02"]}
+      ],
+      "AZ": [
+        {"n":"巴庫老城與火焰塔","pop":1,"x":"2 月仍然寒冷，適合室內博物館與地毯博物館。","src":["https://go.liontravel.com/zh-tw/destination/azerbaijan-7848","https://www.kkday.com/zh-tw/product/792086"]}
+      ],
+      "MC": [
+        {"n":"蒙地卡羅與摩納哥王宮","pop":2,"x":"2 月芒通檸檬節同期，南法團常把摩納哥、芒通排在同一天。","src":["https://www.travel4u.com.tw/en/group/itinerary/MXP1001/","https://tour.settour.com.tw/product/GFG0000015103","https://tour.settour.com.tw/product/GFG0000029327","https://www.colatour.com.tw/C10A_TourSell/C10A16_TourItinerary.aspx?PatternNo=232331","https://vacation.eztravel.com.tw/pkgfrn/p/VDR0000001888/MXP1001"]}
       ]
     },
     "3": {
@@ -681,6 +718,24 @@
       ],
       "NZ": [
         {"n":"紐西蘭初秋","pop":2,"x":"3 月天氣仍穩、遊客減少，南島開始有秋色；南北島團持續出發。","src":["https://www.colatour.com.tw/webDM/tour/nz/NewZealand/tour.html","https://tour.settour.com.tw/product/GFG0000029913"]}
+      ],
+      "SA": [
+        {"n":"埃爾奧拉・赫格拉古城與大象岩","pop":2,"x":"沙烏地最熱門的行程，3 月沙漠白天涼爽；多家旅行社 11 天團都排利雅德、埃爾奧拉、吉達三城。3 月中後開始變熱；2027 年齋月約 2/8～3/9，白天餐廳多數不營業、景點縮短開放時間，開齋節前後住宿較貴。","src":["https://tour.settour.com.tw/product/GFG0000026994","https://www.travel4u.com.tw/en/group/itinerary/JED11P/","https://vacation.eztravel.com.tw/pkgfrn/p/VDR0000001846/KSA11DEK","https://vacation.eztravel.com.tw/pkgfrn/p/VDR0000001888/DXB1120EK"]},
+        {"n":"F1 沙烏地大獎賽（吉達）","pop":1,"x":"2027 年 3/19～3/21 吉達街道夜賽；2026 年因中東衝突取消，出發前留意賽事是否如期。","src":["https://www.formula1.com/en/racing/2027"]}
+      ],
+      "BH": [
+        {"n":"F1 巴林大獎賽","pop":1,"x":"2027 年 F1 開幕戰（3/12～3/14），夜間比賽；2026 年因中東衝突取消。","src":["https://www.formula1.com/en/racing/2027"]},
+        {"n":"巴林堡與穆哈拉格珍珠之路","pop":1,"x":"3 月氣候宜人，兩處世界遺產可一天走完；台灣出發多與沙烏地或波斯灣郵輪合併。","src":["https://www.colatour.com.tw/C10A_TourSell/C10A16_TourItinerary.aspx?PatternNo=211666","https://www.travel4u.com.tw/en/group/itinerary/DXB1120EK/"]}
+      ],
+      "QA": [
+        {"n":"伊斯蘭藝術博物館・國家博物館・瓦奇夫市集","pop":1,"x":"3 月杜哈白天約 20 多度，適合步行逛博物館和市集；也常作為歐洲、高加索行程的轉機停留。","src":["https://travel.liontravel.com/detail?Platform=APP&normgroupid=83d9666c-a3ec-493a-8c14-d12f6a182eab","https://www.kkday.com/zh-tw/product/804364"]}
+      ],
+      "AZ": [
+        {"n":"新年節（Novruz）","pop":1,"x":"3/20 前後全國放假約一週，巴庫老城有篝火、跳火堆和傳統甜點，是亞塞拜然最熱鬧的時候。","src":["https://go.liontravel.com/zh-tw/destination/azerbaijan-7848"]},
+        {"n":"戈布斯坦岩畫與泥火山","pop":1,"x":"巴庫近郊一日遊，世界遺產岩畫加上泥火山、燃燒之山。","src":["https://activity.eztravel.com.tw/detail/TKNKL-127711","https://go.liontravel.com/zh-tw/destination/azerbaijan-7848"]}
+      ],
+      "MC": [
+        {"n":"蒙地卡羅與摩納哥王宮","pop":2,"x":"3 月春天開始，蔚藍海岸遊客還不多，南法團多半排摩納哥半天。","src":["https://www.travel4u.com.tw/en/group/itinerary/MXP1001/","https://tour.settour.com.tw/product/GFG0000015103","https://tour.settour.com.tw/product/GFG0000029327","https://www.colatour.com.tw/C10A_TourSell/C10A16_TourItinerary.aspx?PatternNo=232331","https://vacation.eztravel.com.tw/pkgfrn/p/VDR0000001888/MXP1001"]}
       ]
     },
     "4": {
@@ -890,6 +945,23 @@
       "NZ": [
         {"n":"南島秋色：箭鎮、皇后鎮","pop":2,"x":"4 月中下旬箭鎮的金黃白楊最美，2027 年箭鎮秋季節約 4/15～4/18。","src":["https://www.queenstownnz.co.nz/stories/post/autumn-in-queenstown/","https://www.scenichotelgroup.co.nz/regions/articles/autumn-events/"]},
         {"n":"紐西蘭南北島團","pop":2,"x":"秋季遊客少、天氣穩，庫克山與米佛峽灣。","src":["https://www.colatour.com.tw/webDM/tour/nz/NewZealand/tour.html","https://vacation.eztravel.com.tw/oversea/america-canada-newzealand-australia/"]}
+      ],
+      "SA": [
+        {"n":"吉達紅海與老城","pop":1,"x":"4 月內陸已熱，紅海沿岸還可以；適合短天數。","src":["https://tour.settour.com.tw/product/GFG0000026994"]}
+      ],
+      "BH": [
+        {"n":"巴林堡與穆哈拉格珍珠之路","pop":1,"x":"4 月氣候宜人，兩處世界遺產可一天走完；台灣出發多與沙烏地或波斯灣郵輪合併。","src":["https://www.colatour.com.tw/C10A_TourSell/C10A16_TourItinerary.aspx?PatternNo=211666","https://www.travel4u.com.tw/en/group/itinerary/DXB1120EK/"]}
+      ],
+      "QA": [
+        {"n":"伊斯蘭藝術博物館・國家博物館・瓦奇夫市集","pop":1,"x":"4 月杜哈白天約 20 多度，適合步行逛博物館和市集；也常作為歐洲、高加索行程的轉機停留。","src":["https://travel.liontravel.com/detail?Platform=APP&normgroupid=83d9666c-a3ec-493a-8c14-d12f6a182eab","https://www.kkday.com/zh-tw/product/804364"]}
+      ],
+      "AZ": [
+        {"n":"巴庫老城與火焰塔","pop":1,"x":"4 月春暖，巴庫濱海大道和老城最舒服的季節之一。","src":["https://go.liontravel.com/zh-tw/destination/azerbaijan-7848","https://www.kkday.com/zh-tw/product/792086"]},
+        {"n":"戈布斯坦岩畫與泥火山","pop":1,"x":"巴庫近郊一日遊，世界遺產岩畫加上泥火山、燃燒之山。","src":["https://activity.eztravel.com.tw/detail/TKNKL-127711","https://go.liontravel.com/zh-tw/destination/azerbaijan-7848"]}
+      ],
+      "MC": [
+        {"n":"蒙地卡羅網球大師賽","pop":1,"x":"紅土季開端的 ATP 大師賽，球場面海，約 4 月上中旬。","src":["https://www.visitmonaco.com/en/22107"]},
+        {"n":"蒙地卡羅與摩納哥王宮","pop":2,"x":"4 月南法春季團開始增加，摩納哥常和尼斯、埃茲排在同一天。","src":["https://www.travel4u.com.tw/en/group/itinerary/MXP1001/","https://tour.settour.com.tw/product/GFG0000015103","https://tour.settour.com.tw/product/GFG0000029327","https://www.colatour.com.tw/C10A_TourSell/C10A16_TourItinerary.aspx?PatternNo=232331","https://vacation.eztravel.com.tw/pkgfrn/p/VDR0000001888/MXP1001"]}
       ]
     },
     "5": {
@@ -1098,6 +1170,22 @@
       ],
       "NZ": [
         {"n":"紐西蘭晚秋","pop":1,"x":"5 月遊客少、價格低，南島開始降雪，6 月滑雪季。","src":["https://www.colatour.com.tw/webDM/tour/nz/NewZealand/tour.html"]}
+      ],
+      "SA": [
+        {"n":"塔伊夫與艾西爾山區","pop":1,"x":"5 月平地炎熱，海拔 2000 公尺的山區較涼爽；塔伊夫 4、5 月是玫瑰季。","src":["https://www.travel4u.com.tw/en/group/itinerary/JED11P/"]}
+      ],
+      "BH": [
+        {"n":"巴林堡與穆哈拉格珍珠之路","pop":1,"x":"5 月氣候宜人，兩處世界遺產可一天走完；台灣出發多與沙烏地或波斯灣郵輪合併。","src":["https://www.colatour.com.tw/C10A_TourSell/C10A16_TourItinerary.aspx?PatternNo=211666","https://www.travel4u.com.tw/en/group/itinerary/DXB1120EK/"]}
+      ],
+      "QA": [
+        {"n":"伊斯蘭藝術博物館・國家博物館・瓦奇夫市集","pop":1,"x":"5 月杜哈白天約 20 多度，適合步行逛博物館和市集；也常作為歐洲、高加索行程的轉機停留。","src":["https://travel.liontravel.com/detail?Platform=APP&normgroupid=83d9666c-a3ec-493a-8c14-d12f6a182eab","https://www.kkday.com/zh-tw/product/804364"]}
+      ],
+      "AZ": [
+        {"n":"巴庫老城與火焰塔","pop":1,"x":"5 月氣候舒適，可搭配加巴拉山區。","src":["https://go.liontravel.com/zh-tw/destination/azerbaijan-7848","https://www.kkday.com/zh-tw/product/792086"]},
+        {"n":"戈布斯坦岩畫與泥火山","pop":1,"x":"巴庫近郊一日遊，世界遺產岩畫加上泥火山、燃燒之山。","src":["https://activity.eztravel.com.tw/detail/TKNKL-127711","https://go.liontravel.com/zh-tw/destination/azerbaijan-7848"]}
+      ],
+      "MC": [
+        {"n":"蒙地卡羅與摩納哥王宮","pop":2,"x":"5 月坎城影展同月，蔚藍海岸遊客變多。","src":["https://www.travel4u.com.tw/en/group/itinerary/MXP1001/","https://tour.settour.com.tw/product/GFG0000015103","https://tour.settour.com.tw/product/GFG0000029327","https://www.colatour.com.tw/C10A_TourSell/C10A16_TourItinerary.aspx?PatternNo=232331","https://vacation.eztravel.com.tw/pkgfrn/p/VDR0000001888/MXP1001"]}
       ]
     },
     "6": {
@@ -1296,6 +1384,24 @@
       ],
       "NZ": [
         {"n":"毛利新年 Matariki 與滑雪季","pop":1,"x":"2027 年 6/25 是 Matariki 國定假日（6/25～6/27 連假）；皇后鎮滑雪場 6 月中開季。","src":["https://www.MBIE.govt.nz/assets/matariki-dates-2022-to-2052-matariki-advisory-group.pdf","https://www.queenstownnz.co.nz/stories/post/autumn-in-queenstown/"]}
+      ],
+      "SA": [
+        {"n":"夏季紅海度假","pop":1,"x":"6～9 月高溫常超過 40 度，旅行社幾乎不出團；紅海沿岸潛水是少數夏季行程。","src":["https://tour.settour.com.tw/product/GFG0000026994"]}
+      ],
+      "BH": [
+        {"n":"巴林國家博物館與室內景點","pop":1,"x":"6～9 月高溫常超過 40 度，旅行社幾乎不出團；以室內景點和飯店度假為主。","src":["https://www.colatour.com.tw/C10A_TourSell/C10A16_TourItinerary.aspx?PatternNo=211666"]}
+      ],
+      "QA": [
+        {"n":"杜哈轉機停留","pop":1,"x":"6～9 月高溫常超過 40 度，旅行社幾乎不出團；主要是轉機停留，參觀室內博物館。","src":["https://www.kkday.com/zh-tw/product/804364"]}
+      ],
+      "AZ": [
+        {"n":"巴庫老城與火焰塔","pop":1,"x":"6 月初夏，巴庫裏海沿岸開始熱鬧。","src":["https://go.liontravel.com/zh-tw/destination/azerbaijan-7848","https://www.kkday.com/zh-tw/product/792086"]},
+        {"n":"戈布斯坦岩畫與泥火山","pop":1,"x":"巴庫近郊一日遊，世界遺產岩畫加上泥火山、燃燒之山。","src":["https://activity.eztravel.com.tw/detail/TKNKL-127711","https://go.liontravel.com/zh-tw/destination/azerbaijan-7848"]}
+      ],
+      "MC": [
+        {"n":"F1 摩納哥大獎賽","pop":2,"x":"2027 年 6/4～6/6，F1 最具代表性的街道賽，首次加入衝刺賽；看台和飯店常在一年前售完。","src":["https://www.montecarlosbm.com/en/editorial/schedule-monaco-grand-prix-2027","https://acm.mc/en/the-circuit-events-calendar-until-2031"]},
+        {"n":"蒙地卡羅與摩納哥王宮","pop":3,"x":"6 月南法薰衣草團的旺季，多家旅行社都把摩納哥排進行程。","src":["https://www.travel4u.com.tw/en/group/itinerary/MXP1001/","https://tour.settour.com.tw/product/GFG0000015103","https://tour.settour.com.tw/product/GFG0000029327","https://www.colatour.com.tw/C10A_TourSell/C10A16_TourItinerary.aspx?PatternNo=232331","https://vacation.eztravel.com.tw/pkgfrn/p/VDR0000001888/MXP1001"]},
+        {"n":"南法薰衣草團順遊摩納哥","pop":3,"x":"6 月下旬起普羅旺斯薰衣草開花，南法團多半串連蔚藍海岸與摩納哥。","src":["https://www.colatour.com.tw/C10A_TourSell/C10A06_TourItinerary.aspx?PatternNo=84447","https://www.travel4u.com.tw/en/group/itinerary/MXP1001/","https://tour.settour.com.tw/product/GFG0000015103"]}
       ]
     },
     "7": {
@@ -1498,6 +1604,22 @@
       ],
       "NZ": [
         {"n":"南島冬季滑雪","pop":1,"x":"皇后鎮滑雪季，凱庫拉賞鯨、螢火蟲洞。","src":["https://www.kkday.com/zh-tw/blog/206979/july-where-to-travel"]}
+      ],
+      "SA": [
+        {"n":"夏季紅海度假","pop":1,"x":"6～9 月高溫常超過 40 度，旅行社幾乎不出團；紅海沿岸潛水是少數夏季行程。","src":["https://tour.settour.com.tw/product/GFG0000026994"]}
+      ],
+      "BH": [
+        {"n":"巴林國家博物館與室內景點","pop":1,"x":"6～9 月高溫常超過 40 度，旅行社幾乎不出團；以室內景點為主。","src":["https://www.colatour.com.tw/C10A_TourSell/C10A16_TourItinerary.aspx?PatternNo=211666"]}
+      ],
+      "QA": [
+        {"n":"杜哈轉機停留","pop":1,"x":"6～9 月高溫常超過 40 度，旅行社幾乎不出團；主要是轉機停留。","src":["https://www.kkday.com/zh-tw/product/804364"]}
+      ],
+      "AZ": [
+        {"n":"巴庫老城與火焰塔","pop":1,"x":"7 月炎熱，可到北部加巴拉山區避暑。","src":["https://go.liontravel.com/zh-tw/destination/azerbaijan-7848","https://www.kkday.com/zh-tw/product/792086"]}
+      ],
+      "MC": [
+        {"n":"南法薰衣草團順遊摩納哥","pop":3,"x":"7 月是普羅旺斯薰衣草盛開期，南法團旺季，摩納哥常排半天。","src":["https://www.colatour.com.tw/C10A_TourSell/C10A06_TourItinerary.aspx?PatternNo=84447","https://www.travel4u.com.tw/en/group/itinerary/MXP1001/","https://tour.settour.com.tw/product/GFG0000015103","https://www.colatour.com.tw/C10A_TourSell/C10A16_TourItinerary.aspx?PatternNo=232331"]},
+        {"n":"蒙地卡羅夏季海灘與夜生活","pop":2,"x":"拉爾沃托海灘、蒙地卡羅運動俱樂部夏季演出。","src":["https://tour.settour.com.tw/product/GFG0000029327","https://vacation.eztravel.com.tw/pkgfrn/p/VDR0000001888/MXP1001"]}
       ]
     },
     "8": {
@@ -1690,6 +1812,21 @@
       ],
       "NZ": [
         {"n":"紐西蘭冬季","pop":1,"x":"南島滑雪季，東南有南北島團。","src":["https://tour.settour.com.tw/oceania.html"]}
+      ],
+      "SA": [
+        {"n":"夏季紅海度假","pop":1,"x":"6～9 月高溫常超過 40 度，旅行社幾乎不出團；紅海沿岸潛水是少數夏季行程。","src":["https://tour.settour.com.tw/product/GFG0000026994"]}
+      ],
+      "BH": [
+        {"n":"巴林國家博物館與室內景點","pop":1,"x":"6～9 月高溫常超過 40 度，旅行社幾乎不出團；以室內景點為主。","src":["https://www.colatour.com.tw/C10A_TourSell/C10A16_TourItinerary.aspx?PatternNo=211666"]}
+      ],
+      "QA": [
+        {"n":"杜哈轉機停留","pop":1,"x":"6～9 月高溫常超過 40 度，旅行社幾乎不出團；主要是轉機停留。","src":["https://www.kkday.com/zh-tw/product/804364"]}
+      ],
+      "AZ": [
+        {"n":"巴庫老城與火焰塔","pop":1,"x":"8 月炎熱，巴庫濱海大道晚上最熱鬧。","src":["https://go.liontravel.com/zh-tw/destination/azerbaijan-7848","https://www.kkday.com/zh-tw/product/792086"]}
+      ],
+      "MC": [
+        {"n":"蒙地卡羅與摩納哥王宮","pop":2,"x":"8 月歐洲暑假最高峰，摩納哥港擠滿遊艇與遊客，住宿最貴。","src":["https://www.travel4u.com.tw/en/group/itinerary/MXP1001/","https://tour.settour.com.tw/product/GFG0000015103","https://tour.settour.com.tw/product/GFG0000029327","https://www.colatour.com.tw/C10A_TourSell/C10A16_TourItinerary.aspx?PatternNo=232331","https://vacation.eztravel.com.tw/pkgfrn/p/VDR0000001888/MXP1001"]}
       ]
     },
     "9": {
@@ -1889,6 +2026,24 @@
       ],
       "NZ": [
         {"n":"紐西蘭春季","pop":1,"x":"9 月春天、小羊出生，滑雪季尾聲。","src":["https://tour.settour.com.tw/oceania.html"]}
+      ],
+      "SA": [
+        {"n":"國慶日（9/23）","pop":1,"x":"全國綠色燈飾、煙火與無人機表演；天氣仍熱。","src":["https://tour.settour.com.tw/product/GFG0000026994"]}
+      ],
+      "BH": [
+        {"n":"巴林堡與穆哈拉格珍珠之路","pop":1,"x":"9 月氣候宜人，兩處世界遺產可一天走完；台灣出發多與沙烏地或波斯灣郵輪合併。","src":["https://www.colatour.com.tw/C10A_TourSell/C10A16_TourItinerary.aspx?PatternNo=211666","https://www.travel4u.com.tw/en/group/itinerary/DXB1120EK/"]}
+      ],
+      "QA": [
+        {"n":"伊斯蘭藝術博物館・國家博物館・瓦奇夫市集","pop":1,"x":"9 月杜哈白天約 20 多度，適合步行逛博物館和市集；也常作為歐洲、高加索行程的轉機停留。","src":["https://travel.liontravel.com/detail?Platform=APP&normgroupid=83d9666c-a3ec-493a-8c14-d12f6a182eab","https://www.kkday.com/zh-tw/product/804364"]}
+      ],
+      "AZ": [
+        {"n":"F1 亞塞拜然大獎賽（巴庫）","pop":1,"x":"9/24～9/26，巴庫老城旁的街道賽，週六比賽。","src":["https://www.formula1.com/en/racing/2027"]},
+        {"n":"巴庫老城與火焰塔","pop":1,"x":"9 月秋季開始，氣候舒適。","src":["https://go.liontravel.com/zh-tw/destination/azerbaijan-7848","https://www.kkday.com/zh-tw/product/792086"]},
+        {"n":"戈布斯坦岩畫與泥火山","pop":1,"x":"巴庫近郊一日遊，世界遺產岩畫加上泥火山、燃燒之山。","src":["https://activity.eztravel.com.tw/detail/TKNKL-127711","https://go.liontravel.com/zh-tw/destination/azerbaijan-7848"]}
+      ],
+      "MC": [
+        {"n":"摩納哥遊艇展","pop":1,"x":"約 9 月下旬，全球頂級超級遊艇展。","src":["https://www.visitmonaco.com/en/22107"]},
+        {"n":"蒙地卡羅與摩納哥王宮","pop":2,"x":"9 月暑假結束，南法秋季團開始，人潮比夏天少。","src":["https://www.travel4u.com.tw/en/group/itinerary/MXP1001/","https://tour.settour.com.tw/product/GFG0000015103","https://tour.settour.com.tw/product/GFG0000029327","https://www.colatour.com.tw/C10A_TourSell/C10A16_TourItinerary.aspx?PatternNo=232331","https://vacation.eztravel.com.tw/pkgfrn/p/VDR0000001888/MXP1001"]}
       ]
     },
     "10": {
@@ -2088,6 +2243,23 @@
       ],
       "NZ": [
         {"n":"紐西蘭春季","pop":2,"x":"10 月南島魯冰花季前、春季花開，南北島團。","src":["https://tour.settour.com.tw/oceania.html","https://www.colatour.com.tw/webDM/tour/nz/NewZealand/tour.html"]}
+      ],
+      "SA": [
+        {"n":"埃爾奧拉・赫格拉古城與大象岩","pop":2,"x":"沙烏地最熱門的行程，10 月沙漠白天涼爽；多家旅行社 11 天團都排利雅德、埃爾奧拉、吉達三城。10 月起旅行社開始出團。","src":["https://tour.settour.com.tw/product/GFG0000026994","https://www.travel4u.com.tw/en/group/itinerary/JED11P/","https://vacation.eztravel.com.tw/pkgfrn/p/VDR0000001846/KSA11DEK","https://vacation.eztravel.com.tw/pkgfrn/p/VDR0000001888/DXB1120EK"]},
+        {"n":"利雅德季","pop":1,"x":"2026 年 10/21 開幕，持續約 10 週的大型娛樂季，有演唱會、拳擊賽與主題園區。","src":["https://vacation.eztravel.com.tw/pkgfrn/p/VDR0000001888/DXB1120EK"]}
+      ],
+      "BH": [
+        {"n":"巴林堡與穆哈拉格珍珠之路","pop":1,"x":"10 月氣候宜人，兩處世界遺產可一天走完；台灣出發多與沙烏地或波斯灣郵輪合併。","src":["https://www.colatour.com.tw/C10A_TourSell/C10A16_TourItinerary.aspx?PatternNo=211666","https://www.travel4u.com.tw/en/group/itinerary/DXB1120EK/"]}
+      ],
+      "QA": [
+        {"n":"伊斯蘭藝術博物館・國家博物館・瓦奇夫市集","pop":1,"x":"10 月杜哈白天約 20 多度，適合步行逛博物館和市集；也常作為歐洲、高加索行程的轉機停留。","src":["https://travel.liontravel.com/detail?Platform=APP&normgroupid=83d9666c-a3ec-493a-8c14-d12f6a182eab","https://www.kkday.com/zh-tw/product/804364"]}
+      ],
+      "AZ": [
+        {"n":"巴庫老城與火焰塔","pop":1,"x":"10 月秋高氣爽，加巴拉、舍基一帶有秋色。","src":["https://go.liontravel.com/zh-tw/destination/azerbaijan-7848","https://www.kkday.com/zh-tw/product/792086"]},
+        {"n":"戈布斯坦岩畫與泥火山","pop":1,"x":"巴庫近郊一日遊，世界遺產岩畫加上泥火山、燃燒之山。","src":["https://activity.eztravel.com.tw/detail/TKNKL-127711","https://go.liontravel.com/zh-tw/destination/azerbaijan-7848"]}
+      ],
+      "MC": [
+        {"n":"蒙地卡羅與摩納哥王宮","pop":2,"x":"10 月秋季南法團仍多，氣候溫和。","src":["https://www.travel4u.com.tw/en/group/itinerary/MXP1001/","https://tour.settour.com.tw/product/GFG0000015103","https://tour.settour.com.tw/product/GFG0000029327","https://www.colatour.com.tw/C10A_TourSell/C10A16_TourItinerary.aspx?PatternNo=232331","https://vacation.eztravel.com.tw/pkgfrn/p/VDR0000001888/MXP1001"]}
       ]
     },
     "11": {
@@ -2358,6 +2530,26 @@
       "NZ": [
         {"n":"南島魯冰花","pop":3,"x":"11 月下旬魯冰花盛開，8 號景觀公路沿線是紐西蘭春季團的主打。","src":["https://www.kkday.com/zh-tw/blog/53005/november-where-to-travel","https://www.liontravel.com/promotion/season/autumntravel/tour-oceania.html","https://event.liontravel.com/zh-tw/newzealand/information"]},
         {"n":"南北島冰河、峽灣與景觀火車","pop":2,"x":"11 月有多個出發日的紐西蘭南北島團，白天日照長、早晚溫差大。","src":["https://www.travel4u.com.tw/en/group/category/10/newzealand-australia/","https://www.settour.com.tw/act/gfg/oceania/newzealand/index.html"]}
+      ],
+      "SA": [
+        {"n":"埃爾奧拉・赫格拉古城與大象岩","pop":2,"x":"沙烏地最熱門的行程，11 月沙漠白天涼爽；多家旅行社 11 天團都排利雅德、埃爾奧拉、吉達三城。","src":["https://tour.settour.com.tw/product/GFG0000026994","https://www.travel4u.com.tw/en/group/itinerary/JED11P/","https://vacation.eztravel.com.tw/pkgfrn/p/VDR0000001846/KSA11DEK","https://vacation.eztravel.com.tw/pkgfrn/p/VDR0000001888/DXB1120EK"]},
+        {"n":"吉達老城與利雅德迪里耶","pop":1,"x":"兩座世界遺產老城，冬季步行參觀最舒服。","src":["https://tour.settour.com.tw/product/GFG0000026994","https://vacation.eztravel.com.tw/pkgfrn/p/VDR0000001846/KSA11DEK"]}
+      ],
+      "BH": [
+        {"n":"巴林堡與穆哈拉格珍珠之路","pop":1,"x":"11 月氣候宜人，兩處世界遺產可一天走完；台灣出發多與沙烏地或波斯灣郵輪合併。","src":["https://www.colatour.com.tw/C10A_TourSell/C10A16_TourItinerary.aspx?PatternNo=211666","https://www.travel4u.com.tw/en/group/itinerary/DXB1120EK/"]},
+        {"n":"波斯灣郵輪（杜拜・杜哈・巴林）","pop":2,"x":"冬季限定的波斯灣郵輪航線，一次停靠阿聯酋、卡達、巴林。","src":["https://tour.settour.com.tw/product/GFG0000024307","https://vacation.eztravel.com.tw/pkgfrn/p/VDR0000001914/DXBMSC-02"]}
+      ],
+      "QA": [
+        {"n":"F1 卡達大獎賽","pop":1,"x":"2026 年 11/27～11/29 盧賽爾夜賽（2027 年改到 12/3～12/5）。","src":["https://www.formula1.com/en/racing/2027"]},
+        {"n":"伊斯蘭藝術博物館・國家博物館・瓦奇夫市集","pop":1,"x":"11 月杜哈白天約 20 多度，適合步行逛博物館和市集；也常作為歐洲、高加索行程的轉機停留。","src":["https://travel.liontravel.com/detail?Platform=APP&normgroupid=83d9666c-a3ec-493a-8c14-d12f6a182eab","https://www.kkday.com/zh-tw/product/804364"]},
+        {"n":"波斯灣郵輪（杜拜・杜哈・巴林）","pop":2,"x":"冬季限定的波斯灣郵輪航線，一次停靠阿聯酋、卡達、巴林。","src":["https://tour.settour.com.tw/product/GFG0000024307","https://vacation.eztravel.com.tw/pkgfrn/p/VDR0000001914/DXBMSC-02"]}
+      ],
+      "AZ": [
+        {"n":"巴庫老城與火焰塔","pop":1,"x":"11 月轉冷，遊客少。","src":["https://go.liontravel.com/zh-tw/destination/azerbaijan-7848","https://www.kkday.com/zh-tw/product/792086"]}
+      ],
+      "MC": [
+        {"n":"摩納哥國慶日（11/19）","pop":1,"x":"王宮廣場有典禮，親王一家在陽台向民眾致意。","src":["https://www.visitmonaco.com/en/22107"]},
+        {"n":"蒙地卡羅與摩納哥王宮","pop":1,"x":"11 月淡季，住宿價格較低。","src":["https://www.travel4u.com.tw/en/group/itinerary/MXP1001/","https://tour.settour.com.tw/product/GFG0000015103","https://tour.settour.com.tw/product/GFG0000029327","https://www.colatour.com.tw/C10A_TourSell/C10A16_TourItinerary.aspx?PatternNo=232331","https://vacation.eztravel.com.tw/pkgfrn/p/VDR0000001888/MXP1001"]}
       ]
     },
     "12": {
@@ -2591,6 +2783,26 @@
       ],
       "NZ": [
         {"n":"紐西蘭南北島夏季","pop":2,"x":"12 月進入南半球夏季、日照長，南北島團含冰河、峽灣與皇后鎮。","src":["https://www.settour.com.tw/act/gfg/oceania/newzealand/index.html","https://www.travel4u.com.tw/en/group/category/10/newzealand-australia/"]}
+      ],
+      "SA": [
+        {"n":"埃爾奧拉・赫格拉古城與大象岩","pop":2,"x":"沙烏地最熱門的行程，12 月沙漠白天涼爽；多家旅行社 11 天團都排利雅德、埃爾奧拉、吉達三城。","src":["https://tour.settour.com.tw/product/GFG0000026994","https://www.travel4u.com.tw/en/group/itinerary/JED11P/","https://vacation.eztravel.com.tw/pkgfrn/p/VDR0000001846/KSA11DEK","https://vacation.eztravel.com.tw/pkgfrn/p/VDR0000001888/DXB1120EK"]},
+        {"n":"吉達老城與利雅德迪里耶","pop":1,"x":"兩座世界遺產老城，冬季步行參觀最舒服。","src":["https://tour.settour.com.tw/product/GFG0000026994","https://vacation.eztravel.com.tw/pkgfrn/p/VDR0000001846/KSA11DEK"]}
+      ],
+      "BH": [
+        {"n":"巴林國慶日（12/16～12/17）","pop":1,"x":"市區燈飾與煙火。","src":["https://www.colatour.com.tw/C10A_TourSell/C10A16_TourItinerary.aspx?PatternNo=211666"]},
+        {"n":"巴林堡與穆哈拉格珍珠之路","pop":1,"x":"12 月氣候宜人，兩處世界遺產可一天走完；台灣出發多與沙烏地或波斯灣郵輪合併。","src":["https://www.colatour.com.tw/C10A_TourSell/C10A16_TourItinerary.aspx?PatternNo=211666","https://www.travel4u.com.tw/en/group/itinerary/DXB1120EK/"]},
+        {"n":"波斯灣郵輪（杜拜・杜哈・巴林）","pop":2,"x":"冬季限定的波斯灣郵輪航線，一次停靠阿聯酋、卡達、巴林。","src":["https://tour.settour.com.tw/product/GFG0000024307","https://vacation.eztravel.com.tw/pkgfrn/p/VDR0000001914/DXBMSC-02"]}
+      ],
+      "QA": [
+        {"n":"卡達國慶日（12/18）","pop":1,"x":"濱海大道遊行與煙火。","src":["https://travel.liontravel.com/detail?Platform=APP&normgroupid=83d9666c-a3ec-493a-8c14-d12f6a182eab"]},
+        {"n":"伊斯蘭藝術博物館・國家博物館・瓦奇夫市集","pop":1,"x":"12 月杜哈白天約 20 多度，適合步行逛博物館和市集；也常作為歐洲、高加索行程的轉機停留。","src":["https://travel.liontravel.com/detail?Platform=APP&normgroupid=83d9666c-a3ec-493a-8c14-d12f6a182eab","https://www.kkday.com/zh-tw/product/804364"]},
+        {"n":"波斯灣郵輪（杜拜・杜哈・巴林）","pop":2,"x":"冬季限定的波斯灣郵輪航線，一次停靠阿聯酋、卡達、巴林。","src":["https://tour.settour.com.tw/product/GFG0000024307","https://vacation.eztravel.com.tw/pkgfrn/p/VDR0000001914/DXBMSC-02"]}
+      ],
+      "AZ": [
+        {"n":"巴庫老城與火焰塔","pop":1,"x":"12 月冬季，巴庫有聖誕和新年燈飾。","src":["https://go.liontravel.com/zh-tw/destination/azerbaijan-7848","https://www.kkday.com/zh-tw/product/792086"]}
+      ],
+      "MC": [
+        {"n":"蒙地卡羅與摩納哥王宮","pop":1,"x":"12 月蒙地卡羅賭場廣場的聖誕燈飾與聖誕市集。","src":["https://www.travel4u.com.tw/en/group/itinerary/MXP1001/","https://tour.settour.com.tw/product/GFG0000015103","https://tour.settour.com.tw/product/GFG0000029327","https://www.colatour.com.tw/C10A_TourSell/C10A16_TourItinerary.aspx?PatternNo=232331","https://vacation.eztravel.com.tw/pkgfrn/p/VDR0000001888/MXP1001"]}
       ]
     }
   }
