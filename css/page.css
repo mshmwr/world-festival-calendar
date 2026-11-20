@@ -64,3 +64,9 @@ ol.tl::after{content:"";position:absolute;left:10px;top:14px;width:2px;height:va
 .tl .tl-r h3{display:inline-block;padding:4px 14px;border-radius:8px;background:var(--surface);border:1px solid var(--line);font-size:17px}
 .tl .tl-c>h3{font-size:18px}
 .tl ul.picks li:first-child{margin-top:4px}
+
+/* 贊助按鈕 */
+.support{display:flex;flex-wrap:wrap;align-items:center;gap:10px 16px;margin:0 0 16px;padding:14px 16px;border:1px solid var(--line);border-radius:12px;background:var(--surface);color:var(--fg);font-size:13.5px}
+.support p{margin:0;flex:1 1 260px;max-width:none}
+.support .bmc{display:inline-block;padding:8px 16px;border-radius:999px;background:#ffdd00;color:#1a1a1a;font-weight:700;text-decoration:none;white-space:nowrap}
+.support .bmc:hover{background:#ffe44d}

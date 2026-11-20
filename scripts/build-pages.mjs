@@ -7,6 +7,9 @@ import { join } from "node:path";
 
 export const SITE = "https://mshmwr.github.io/world-festival-calendar/";
 export const SITE_NAME = "環球節慶行事曆";
+// 贊助按鈕：填 Buy Me a Coffee 的帳號名稱（buymeacoffee.com/ 後面那段），改完執行 npm run build；空白就不顯示
+export const BMC_USER = "";
+const supportHTML = () => BMC_USER ? `<div class="support"><p>這個行事曆免費使用。如果它幫你排好了旅行，歡迎請我喝杯咖啡，支持資料持續更新。</p><a class="bmc" href="https://buymeacoffee.com/${encodeURIComponent(BMC_USER)}" target="_blank" rel="noopener">☕ 請我喝杯咖啡</a></div>` : "";
 const YEAR = 2027; // 靜態頁的節慶日期以這一年為準，沒有這一年的資料就用前一年
 const MONTHS = Array.from({ length: 12 }, (_, i) => i + 1);
 const TYPE_N = { H: "國定假日", F: "祭典活動", S: "旅遊季節" };
@@ -111,6 +114,7 @@ ${lds}
 ${body}
 </main>
 <footer>
+${supportHTML()}
 <p>標「約」的日期是依往年慣例或農曆、伊斯蘭曆推算的估計值，以主辦單位當年公告為準。推薦熱門程度：★★★ 多家台灣旅行社排入當月行程或是當月最具代表性的活動，★★ 一兩家旅行社或主要旅遊網站推薦，★ 觀光局或旅遊指南推薦。</p>
 <p><a href="${up}">回到${SITE_NAME}</a></p>
 </footer>
@@ -267,7 +271,9 @@ export function build() {
   const index = readFileSync(join(root, "index.html"), "utf8");
   const re = /(<!-- seo:links -->)[\s\S]*?(<!-- \/seo:links -->)/;
   if (!re.test(index)) throw new Error("index.html 缺少 <!-- seo:links --> 標記");
-  files["index.html"] = index.replace(re, `$1\n  ${indexLinks(D)}\n  $2`);
+  const reS = /(<!-- support -->)[\s\S]*?(<!-- \/support -->)/;
+  if (!reS.test(index)) throw new Error("index.html 缺少 <!-- support --> 標記");
+  files["index.html"] = index.replace(re, `$1\n  ${indexLinks(D)}\n  $2`).replace(reS, `$1${supportHTML()}$2`);
   return files;
 }
 

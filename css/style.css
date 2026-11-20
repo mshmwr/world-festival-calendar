@@ -247,3 +247,9 @@ footer p{margin:4px 0}
 .seo-links b{color:var(--fg);margin-right:6px;font-weight:600}
 .seo-links a{color:var(--accent);margin-right:10px;text-decoration:none;white-space:nowrap}
 .seo-links a:hover{text-decoration:underline}
+
+/* 贊助按鈕 */
+.support{display:flex;flex-wrap:wrap;align-items:center;gap:10px 16px;margin:0 0 16px;padding:14px 16px;border:1px solid var(--line);border-radius:12px;background:var(--surface);color:var(--fg);font-size:13.5px}
+.support p{margin:0;flex:1 1 260px;max-width:none}
+.support .bmc{display:inline-block;padding:8px 16px;border-radius:999px;background:#ffdd00;color:#1a1a1a;font-weight:700;text-decoration:none;white-space:nowrap}
+.support .bmc:hover{background:#ffe44d}
