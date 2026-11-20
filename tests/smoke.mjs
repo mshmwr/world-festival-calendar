@@ -86,30 +86,45 @@ await sp.goto(page_url + "c/jp.html");
 check("國家頁不靠 JavaScript 就有標題與推薦", (await sp.textContent("h1")).includes("日本") && (await sp.locator("ul.picks li").count()) > 20);
 await sp.goto(page_url + "m/2.html");
 check("月份頁有各國推薦與節慶", (await sp.locator("h4").count()) === NC && (await sp.locator("ul.evs li").count()) > 10);
-// 月份頁的閱讀進度條與區域跳轉
-const rp = await browser.newPage({ viewport: { width: 1100, height: 900 } });
+// 月份頁的閱讀進度：寬螢幕是右側固定時間軸，窄螢幕是右下角小標籤；內文不再有頂端進度條
+const rp = await browser.newPage({ viewport: { width: 1440, height: 900 } });
 await rp.addInitScript(() => { window.__csp = []; document.addEventListener("securitypolicyviolation", e => window.__csp.push(e.violatedDirective)); });
 await rp.goto(page_url + "m/1.html");
-await rp.waitForFunction(() => !document.querySelector(".readbar").hidden);
+await rp.waitForSelector(".sidetl");
+check("月份頁沒有頂端進度條、右側時間軸固定且看得到", await rp.evaluate(() => {
+  const n = document.querySelector(".sidetl"), r = n.getBoundingClientRect(), main = document.querySelector("main").getBoundingClientRect();
+  return !document.querySelector(".readbar") && getComputedStyle(n).position === "fixed" && r.width > 120 && r.left >= main.right && r.right <= innerWidth;
+}));
 await rp.evaluate(() => scrollTo(0, (document.documentElement.scrollHeight - innerHeight) / 2));
 await rp.waitForTimeout(150);
-const mid = await rp.evaluate(() => ({ where: document.querySelector(".readbar .where").textContent, now: +document.querySelector(".readbar").getAttribute("aria-valuenow"), csp: window.__csp.length }));
-check("月份頁進度條：捲到一半顯示約 50% 與目前段落", mid.now >= 45 && mid.now <= 55 && mid.where.includes("各國 1 月推薦 › ") && mid.csp === 0);
-// 時間軸：捲到泰國時，泰國是目前節點、之前的節點都已填色、之後的還沒有，線畫到目前位置
+const mid = await rp.evaluate(() => ({ pct: parseInt(document.querySelector(".sidetl .st-h b").textContent), csp: window.__csp.length }));
+check("右側時間軸：捲到一半顯示約 50%", mid.pct >= 45 && mid.pct <= 55 && mid.csp === 0);
+// 捲到泰國：泰國是目前節點、之前的都填色、之後的沒有；只展開東南亞的國家；線畫到目前位置
 await rp.evaluate(() => scrollTo(0, document.querySelector("#c-th").getBoundingClientRect().top + scrollY - 60));
 await rp.waitForTimeout(150);
-check("月份頁時間軸：讀到哪個國家就標到哪裡", await rp.evaluate(() => {
-  const items = [...document.querySelector("ol.tl").children];
-  const i = items.findIndex(li => li.querySelector("#c-th"));
-  const fill = parseFloat(getComputedStyle(document.querySelector("ol.tl")).getPropertyValue("--fill"));
-  return i > 0 && items[i].classList.contains("now") && items.slice(0, i).every(li => li.classList.contains("past")) && items.slice(i + 1).every(li => !li.classList.contains("past") && !li.classList.contains("now")) && fill > 100;
+check("右側時間軸：讀到哪個國家就標到哪裡，只展開目前區域", await rp.evaluate(() => {
+  const lis = [...document.querySelectorAll(".sidetl li")];
+  const i = lis.findIndex(li => li.querySelector('a[href="#c-th"]'));
+  const fill = parseFloat(getComputedStyle(document.querySelector(".sidetl ol")).getPropertyValue("--fill"));
+  const shownC = lis.filter(li => li.classList.contains("c") && !li.hidden).map(li => li.querySelector("a").getAttribute("href"));
+  return i > 0 && lis[i].classList.contains("now") && lis.slice(0, i).every(li => li.classList.contains("past")) && lis.slice(i + 1).every(li => !li.classList.contains("past") && !li.classList.contains("now"))
+    && fill > 20 && shownC.includes("#c-th") && !shownC.includes("#c-jp") && lis.filter(li => li.classList.contains("r")).every(li => !li.hidden);
 }));
-await rp.click('nav.toc a[href="#r-NE"]');
-await rp.waitForTimeout(150);
-check("月份頁區域跳轉：點北歐跳到北歐段落", await rp.evaluate(() => location.hash === "#r-NE" && document.querySelector(".readbar .where").textContent.includes("北歐")));
+await rp.click('.sidetl a[href="#r-NE"]');
+await rp.waitForTimeout(200);
+check("右側時間軸：點北歐跳到北歐段落", await rp.evaluate(() => location.hash === "#r-NE" && document.querySelector(".sidetl li.now a").textContent.includes("北歐")));
+await rp.click('nav.toc a[href="#r-SE"]');
+await rp.waitForTimeout(200);
+check("月份頁區域跳轉：點南歐跳到南歐段落", await rp.evaluate(() => location.hash === "#r-SE"));
 const mob = await browser.newPage({ viewport: { width: 390, height: 900 } });
 await mob.goto(page_url + "m/7.html");
 check("月份頁手機版無橫向捲動", await mob.evaluate(() => document.documentElement.scrollWidth <= innerWidth));
+await mob.evaluate(() => scrollTo(0, document.querySelector("#c-fr").getBoundingClientRect().top + scrollY - 60));
+await mob.waitForTimeout(150);
+check("手機版：不顯示右側時間軸，右下角標籤顯示目前段落", await mob.evaluate(() => {
+  const pill = document.querySelector(".readpill"), r = pill.getBoundingClientRect();
+  return getComputedStyle(document.querySelector(".sidetl")).display === "none" && getComputedStyle(pill).position === "fixed" && pill.textContent.includes("法國") && r.bottom <= innerHeight && r.right <= innerWidth;
+}));
 
 // 點月曆的日期：右側改列當天活動，再點一次或按按鈕回到整個月
 await p.evaluate(() => { Object.assign(app.st, { y: 2027, m: 1, region: null, country: null, ev: null, day: null, q: "", openDay: null }); app.render(); });

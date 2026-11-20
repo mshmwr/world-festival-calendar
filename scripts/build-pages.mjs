@@ -104,7 +104,6 @@ function page({ path, title, desc, h1, lead, crumbs, body, ld }) {
 ${lds}
 </head>
 <body>
-<div class="readbar" role="progressbar" aria-label="閱讀進度" aria-valuemin="0" aria-valuemax="100" hidden><div class="fill"></div><span class="where"></span><a href="#top">回到頂端</a></div>
 <div class="wrap" id="top">
 <nav class="crumb" aria-label="導覽路徑">${crumbs.map(([n, p], i) => i === crumbs.length - 1 ? `<span aria-current="page">${esc(n)}</span>` : `<a href="${up}${p}">${esc(n)}</a>`).join(" › ")}</nav>
 <header>
