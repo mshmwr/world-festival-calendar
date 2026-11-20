@@ -21,7 +21,7 @@ const sourceName = url => {
 const YEARS = [2026, 2027];
 const TABS = [["ev","節慶", (c, e) => e.length], ["s","景點", c => c.s.length], ["nat","自然景色", c => (c.nat || []).length], ["wh","世界遺產", c => (c.wh || []).length]];
 const WK = {"文":"cul","自":"nat","複":"mix"}, WN = {"文":"文化","自":"自然","複":"複合"};
-const TYPE_N = {H:"國定假日", F:"祭典活動", S:"旅遊季節"};
+const TYPE_N = {H:"國定假日", F:"祭典活動", G:"體育賽事", S:"旅遊季節"};
 const RN = Object.fromEntries(REGIONS.map(r => [r.k, r.n]));
 const ISO_REGION = {};
 for (const [k, s] of Object.entries(REGION_OF)) for (const id of s.split(" ")) ISO_REGION[id] = k;
@@ -58,7 +58,7 @@ const st = {
   y: YEARS.includes(now.getFullYear()) ? now.getFullYear() : YEARS[0],
   m: YEARS.includes(now.getFullYear()) ? now.getMonth() : 0,
   region: null, country: null, ev: null, day: null, q: "", groupOpen: {}, more: new Set(), open: new Set(), tab: "pk", pref: null, ptab: "s", area: null,
-  types: {H:true, F:true, S:true}
+  types: {H:true, F:true, G:true, S:true}
 };
 // 只讀回 H、F、S 三個布林值，其他內容一律忽略
 try { const saved = JSON.parse(localStorage.getItem("fest-types")); for (const k of Object.keys(st.types)) if (typeof saved?.[k] === "boolean") st.types[k] = saved[k]; } catch(_) {}

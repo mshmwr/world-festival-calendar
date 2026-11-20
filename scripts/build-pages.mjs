@@ -7,12 +7,12 @@ import { join } from "node:path";
 
 export const SITE = "https://mshmwr.github.io/world-festival-calendar/";
 export const SITE_NAME = "環球節慶行事曆";
-// 贊助按鈕：填 Buy Me a Coffee 的帳號名稱（buymeacoffee.com/ 後面那段），改完執行 npm run build；空白就不顯示
-export const BMC_USER = "";
-const supportHTML = () => BMC_USER ? `<div class="support"><p>這個行事曆免費使用。如果它幫你排好了旅行，歡迎請我喝杯咖啡，支持資料持續更新。</p><a class="bmc" href="https://buymeacoffee.com/${encodeURIComponent(BMC_USER)}" target="_blank" rel="noopener">☕ 請我喝杯咖啡</a></div>` : "";
+// 贊助按鈕：Ko-fi 頁面網址，改完執行 npm run build；空白就不顯示
+export const SUPPORT_URL = "https://ko-fi.com/mshmwr";
+const supportHTML = () => SUPPORT_URL ? `<div class="support"><p>這個行事曆免費使用。如果它幫你排好了旅行，歡迎請我喝杯咖啡，支持資料持續更新。</p><a class="kofi" href="${SUPPORT_URL}" target="_blank" rel="noopener">☕ 在 Ko-fi 請我喝杯咖啡</a></div>` : "";
 const YEAR = 2027; // 靜態頁的節慶日期以這一年為準，沒有這一年的資料就用前一年
 const MONTHS = Array.from({ length: 12 }, (_, i) => i + 1);
-const TYPE_N = { H: "國定假日", F: "祭典活動", S: "旅遊季節" };
+const TYPE_N = { H: "國定假日", F: "祭典活動", G: "體育賽事", S: "旅遊季節" };
 const WN = { "文": "文化", "自": "自然", "複": "複合" };
 
 const root = new URL("..", import.meta.url).pathname;

@@ -1,17 +1,17 @@
 /* 國家頁與月份頁（scripts/build-pages.mjs 產生）的樣式，色票與主頁一致 */
 :root{
   --bg:#f3f5f6; --surface:#fff; --fg:#17232b; --muted:#5b6b75; --line:#d9e0e4; --accent:#0e5a76;
-  --t-H:#b23a2a; --t-F:#0e5a76; --t-S:#4f7a35; --star:#c98a12;
+  --t-H:#b23a2a; --t-G:#9a5410; --t-F:#0e5a76; --t-S:#4f7a35; --star:#c98a12;
   --font-display:"Noto Serif TC","Songti TC","PMingLiU",serif;
   --font-body:"Noto Sans TC","PingFang TC","Microsoft JhengHei",system-ui,sans-serif;
   color-scheme:light;
 }
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
   --bg:#10181d; --surface:#172229; --fg:#e4ebef; --muted:#93a4ae; --line:#2a3943; --accent:#6cc0de;
-  --t-H:#ec7a66; --t-F:#6cc0de; --t-S:#94c472; --star:#e8b44a; color-scheme:dark}}
+  --t-H:#ec7a66; --t-G:#f0a560; --t-F:#6cc0de; --t-S:#94c472; --star:#e8b44a; color-scheme:dark}}
 :root[data-theme="dark"]{
   --bg:#10181d; --surface:#172229; --fg:#e4ebef; --muted:#93a4ae; --line:#2a3943; --accent:#6cc0de;
-  --t-H:#ec7a66; --t-F:#6cc0de; --t-S:#94c472; --star:#e8b44a; color-scheme:dark}
+  --t-H:#ec7a66; --t-G:#f0a560; --t-F:#6cc0de; --t-S:#94c472; --star:#e8b44a; color-scheme:dark}
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.7 var(--font-body)}
 .wrap{max-width:880px;margin:0 auto;padding:20px max(16px,env(safe-area-inset-left,0px)) 48px}
@@ -32,7 +32,7 @@ ul.picks li,ul.evs li{background:var(--surface);border:1px solid var(--line);bor
 small{color:var(--muted);font-size:12.5px}
 .dt{font-variant-numeric:tabular-nums;font-weight:600}
 .t{font-size:12px;padding:1px 6px;border-radius:4px;border:1px solid currentColor}
-.t.H{color:var(--t-H)} .t.F{color:var(--t-F)} .t.S{color:var(--t-S)}
+.t.H{color:var(--t-H)} .t.F{color:var(--t-F)} .t.G{color:var(--t-G)} .t.S{color:var(--t-S)}
 ul.tags{display:flex;flex-wrap:wrap;gap:6px;list-style:none;padding:0;margin:0}
 ul.tags li{background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:2px 10px;font-size:13.5px}
 nav.all p{margin:6px 0;line-height:1.9}
@@ -68,5 +68,5 @@ ol.tl::after{content:"";position:absolute;left:10px;top:14px;width:2px;height:va
 /* 贊助按鈕 */
 .support{display:flex;flex-wrap:wrap;align-items:center;gap:10px 16px;margin:0 0 16px;padding:14px 16px;border:1px solid var(--line);border-radius:12px;background:var(--surface);color:var(--fg);font-size:13.5px}
 .support p{margin:0;flex:1 1 260px;max-width:none}
-.support .bmc{display:inline-block;padding:8px 16px;border-radius:999px;background:#ffdd00;color:#1a1a1a;font-weight:700;text-decoration:none;white-space:nowrap}
-.support .bmc:hover{background:#ffe44d}
+.support .kofi{display:inline-block;padding:8px 16px;border-radius:999px;background:#72a4f2;color:#0b1b33;font-weight:700;text-decoration:none;white-space:nowrap}
+.support .kofi:hover{background:#8db6f5}

@@ -1,7 +1,7 @@
 // 檢查 scripts/build-pages.mjs 產生的靜態頁面是最新的，而且每頁都有搜尋引擎需要的基本標記
 import { readFileSync, existsSync, readdirSync } from "node:fs";
 import { join, dirname, normalize } from "node:path";
-import { build, SITE, BMC_USER } from "../scripts/build-pages.mjs";
+import { build, SITE, SUPPORT_URL } from "../scripts/build-pages.mjs";
 
 const root = new URL("..", import.meta.url).pathname;
 let failed = 0;
@@ -39,7 +39,7 @@ for (const [p, s] of Object.entries(files)) {
     else if (faq.mainEntity.map(q => q.name.replace(/&/g, "&amp;")).join("|") !== shown.join("|")) fail(p, "常見問題的頁面內容和結構化資料不一致");
   }
   // 有設定贊助帳號時，每一頁都要有贊助按鈕
-  if (BMC_USER && !s.includes(`href="https://buymeacoffee.com/${encodeURIComponent(BMC_USER)}"`)) fail(p, "缺少贊助按鈕");
+  if (SUPPORT_URL && !s.includes(`href="${SUPPORT_URL}"`)) fail(p, "缺少贊助按鈕");
   if (titles.has(title)) fail(p, `標題和 ${titles.get(title)} 重複`); else titles.set(title, p);
   if (descs.has(desc)) fail(p, `說明和 ${descs.get(desc)} 重複`); else descs.set(desc, p);
   // 站內連結都要指到存在的檔案

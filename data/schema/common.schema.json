@@ -10,7 +10,7 @@
       "description": "一項節日、祭典或旅遊季節",
       "properties": {
         "c": { "$ref": "#/$defs/code", "description": "國家代碼，對應 countries.json" },
-        "t": { "enum": ["H", "F", "S"], "description": "類型：H 國定假日、F 祭典活動、S 旅遊季節" },
+        "t": { "enum": ["H", "F", "G", "S"], "description": "類型：H 國定假日、F 祭典活動、G 體育賽事、S 旅遊季節" },
         "n": { "type": "string", "minLength": 1, "description": "名稱" },
         "x": { "type": "string", "minLength": 1, "description": "一句說明" },
         "d": { "$ref": "#/$defs/monthDay", "description": "每年固定的日期，例如 \"07-01~07-31\"；和 y 二選一" },
