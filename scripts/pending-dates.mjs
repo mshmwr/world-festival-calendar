@@ -12,7 +12,7 @@ const read = f => JSON.parse(readFileSync(join(root, "data", f), "utf8"));
 const today = process.argv[2] ? new Date(process.argv[2]) : new Date();
 const YEARS = JSON.parse(readFileSync(join(root, "js", "app.js"), "utf8").match(/const YEARS = (\[[^\]]*\])/)[1]);
 // 不會每年舉辦（或明年不在這個城市辦），缺明年日期不算待查；它們的下一屆記在 data/future.json
-const ONE_OFF = /奧運|帕運|亞運|亞帕運|世界盃|大英國協|泛美|田徑錦標賽|選舉|教宗|最後一屆|國民休日|花毯節|巴塞隆納）|山王祭/;
+const ONE_OFF = /奧運|帕運|亞運|亞帕運|世界盃|大英國協|泛美|田徑錦標賽|選舉|教宗|最後一屆|國民休日|花毯節|巴塞隆納）|山王祭|雙年展/;
 const TN = { H: "國定假日", F: "祭典活動", G: "體育賽事", S: "旅遊季節" };
 
 const { countries } = read("countries.json");
