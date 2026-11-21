@@ -7,9 +7,12 @@ import { join } from "node:path";
 
 export const SITE = "https://mshmwr.github.io/world-festival-calendar/";
 export const SITE_NAME = "環球節慶行事曆";
-// 贊助按鈕：Ko-fi 頁面網址，改完執行 npm run build；空白就不顯示
-export const SUPPORT_URL = "https://ko-fi.com/mshmwr";
-const supportHTML = () => SUPPORT_URL ? `<div class="support"><p>這個行事曆免費使用。如果它幫你排好了旅行，歡迎請我喝杯咖啡，支持資料持續更新。</p><a class="kofi" href="${SUPPORT_URL}" target="_blank" rel="noopener">☕ 在 Ko-fi 請我喝杯咖啡</a></div>` : "";
+// 贊助、廣告、聯盟行銷的設定在 js/site-config.js
+import { SITE_CONFIG, HAS_AFFILIATE, AFFILIATE_NOTE, affLink, withAds, adsenseScript } from "../js/site-config.js";
+export const SUPPORT_URL = SITE_CONFIG.support;
+const supportHTML = (up = "") => (SUPPORT_URL ? `<div class="support"><p>這個行事曆免費使用。如果它幫你排好了旅行，歡迎請我喝杯咖啡，支持資料持續更新。</p><a class="kofi" href="${SUPPORT_URL}" target="_blank" rel="noopener">☕ 在 Ko-fi 請我喝杯咖啡</a></div>` : "")
+  + `<p class="legal">${HAS_AFFILIATE ? AFFILIATE_NOTE + " " : ""}<a href="${up}privacy.html">隱私權政策</a></p>`;
+const PAGE_CSP = "default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'";
 const YEAR = 2027; // 靜態頁的節慶日期以這一年為準，沒有這一年的資料就用前一年
 const MONTHS = Array.from({ length: 12 }, (_, i) => i + 1);
 const TYPE_N = { H: "國定假日", F: "祭典活動", G: "體育賽事", S: "旅遊季節" };
@@ -80,7 +83,7 @@ function page({ path, title, desc, h1, lead, crumbs, body, ld }) {
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="${withAds(PAGE_CSP)}">${adsenseScript() ? "\n" + adsenseScript() : ""}
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <title>${esc(title)}</title>
 <meta name="description" content="${esc(desc)}">
@@ -114,7 +117,7 @@ ${lds}
 ${body}
 </main>
 <footer>
-${supportHTML()}
+${supportHTML(up)}
 <p>標「約」的日期是依往年慣例或農曆、伊斯蘭曆推算的估計值，以主辦單位當年公告為準。推薦熱門程度：★★★ 多家台灣旅行社排入當月行程或是當月最具代表性的活動，★★ 一兩家旅行社或主要旅遊網站推薦，★ 觀光局或旅遊指南推薦。</p>
 <p><a href="${up}">回到${SITE_NAME}</a></p>
 </footer>
@@ -130,7 +133,8 @@ function srcLinks(urls, names) {
   return urls.map((u, i) => {
     const dup = ns.filter(n => n === ns[i]).length > 1;
     const label = dup ? `${ns[i]} ${seen[ns[i]] = (seen[ns[i]] || 0) + 1}` : ns[i];
-    return `<a href="${esc(u)}" rel="nofollow noopener" target="_blank">${esc(label)}</a>`;
+    const l = affLink(u);
+    return `<a href="${esc(l.href)}" rel="nofollow noopener${l.sponsored ? " sponsored" : ""}" target="_blank">${esc(label)}</a>`;
   }).join("、");
 }
 const pickLi = (it, names, extra = "") => `<li><span class="stars" aria-label="熱門程度 ${it.pop} 顆星">${stars(it.pop)}</span> <b>${esc(it.n)}</b>${extra}<br>${esc(it.x)}<br><small>來源：${srcLinks(it.src, names)}</small></li>`;
@@ -256,6 +260,26 @@ ${regionNav(D, "../")}`;
   });
 }
 
+// ---------- 隱私權政策（AdSense 申請與聯盟行銷需要） ----------
+function privacyPage() {
+  const ads = SITE_CONFIG.adsense;
+  const body = `<section><h2>本站蒐集的資料</h2>
+<p>本站是靜態網站，沒有會員、表單或留言功能，不會要求你提供姓名、電子郵件等個人資料，也沒有自己的伺服器記錄你的瀏覽行為。</p>
+<p>網站會在你的瀏覽器（localStorage）記住你選的類型篩選，這些資料只存在你的裝置上，不會傳給任何人；清除瀏覽器資料即可刪除。</p></section>
+<section><h2>網站託管</h2><p>本站由 GitHub Pages 託管。GitHub 為了提供服務與維護安全，可能會記錄造訪者的 IP 位址等連線資料，詳見 <a href="https://docs.github.com/site-policy/privacy-policies/github-general-privacy-statement" rel="noopener" target="_blank">GitHub 隱私權聲明</a>。主頁使用 Google Fonts 載入字型，Google 會收到你的 IP 位址，詳見 <a href="https://policies.google.com/privacy" rel="noopener" target="_blank">Google 隱私權政策</a>。</p></section>
+<section><h2>廣告與 Cookie</h2>
+<p>${ads ? "本站使用 Google AdSense 顯示廣告。" : "本站未來可能使用 Google AdSense 顯示廣告。"}Google 等第三方廣告供應商會使用 Cookie，依據你先前造訪本站或其他網站的紀錄放送廣告。Google 使用廣告 Cookie，讓它和合作夥伴能依你造訪本站及網路上其他網站的情形放送廣告。</p>
+<p>你可以到 <a href="https://adssettings.google.com/" rel="noopener" target="_blank">Google 廣告設定</a> 停用個人化廣告，或到 <a href="https://www.aboutads.info/" rel="noopener" target="_blank">aboutads.info</a> 停用第三方廣告供應商的個人化廣告 Cookie。Google 如何使用這些資料，請見 <a href="https://policies.google.com/technologies/partner-sites" rel="noopener" target="_blank">Google 如何使用合作夥伴網站的資訊</a>。</p></section>
+<section><h2>聯盟行銷連結</h2><p>${AFFILIATE_NOTE}點擊這類連結後，旅遊平台可能在你的瀏覽器設定 Cookie，用來記錄訂單來自本站，適用該平台自己的隱私權政策。</p></section>
+<section><h2>外部連結</h2><p>推薦項目附的資料來源連到旅行社、觀光局等外部網站，這些網站的內容與隱私權做法由各網站負責。</p></section>
+<section><h2>政策更新與聯絡</h2><p>本政策若有修改會更新在這一頁。對本站或本政策有疑問，可以在 <a href="https://github.com/mshmwr/world-festival-calendar/issues" rel="noopener" target="_blank">GitHub</a> 留言${SUPPORT_URL ? `，或透過 <a href="${SUPPORT_URL}" rel="noopener" target="_blank">Ko-fi</a> 聯絡` : ""}。</p></section>`;
+  return page({
+    path: "privacy.html", title: `隱私權政策｜${SITE_NAME}`,
+    desc: `${SITE_NAME}的隱私權政策：本站蒐集哪些資料、廣告與 Cookie、聯盟行銷連結的說明。`,
+    h1: "隱私權政策", lead: "最後更新：2026 年 11 月。", crumbs: [[SITE_NAME, ""], ["隱私權政策", "privacy.html"]], body,
+  });
+}
+
 // ---------- 主頁的連結清單與 sitemap ----------
 function indexLinks(D) {
   return `<nav class="seo-links" aria-labelledby="seo-h">
@@ -276,7 +300,8 @@ export function build() {
   const files = {};
   for (const code of Object.keys(D.countries)) files[`c/${code.toLowerCase()}.html`] = countryPage(D, code);
   for (const m of MONTHS) files[`m/${m}.html`] = monthPage(D, m);
-  files["sitemap.xml"] = sitemap(["", ...MONTHS.map(m => `m/${m}.html`), ...Object.keys(D.countries).map(k => `c/${k.toLowerCase()}.html`)]);
+  files["privacy.html"] = privacyPage();
+  files["sitemap.xml"] = sitemap(["", ...MONTHS.map(m => `m/${m}.html`), ...Object.keys(D.countries).map(k => `c/${k.toLowerCase()}.html`), "privacy.html"]);
   const index = readFileSync(join(root, "index.html"), "utf8");
   const re = /(<!-- seo:links -->)[\s\S]*?(<!-- \/seo:links -->)/;
   if (!re.test(index)) throw new Error("index.html 缺少 <!-- seo:links --> 標記");
@@ -285,7 +310,9 @@ export function build() {
   // 標題與說明裡的國家數跟著資料更新
   const nC = Object.keys(D.countries).length;
   files["index.html"] = index.replace(re, `$1\n  ${indexLinks(D)}\n  $2`).replace(reS, `$1${supportHTML()}$2`)
-    .replace(/<head>[\s\S]*?<\/head>/, h => h.replace(/\d+ 國/g, `${nC} 國`));
+    .replace(/<head>[\s\S]*?<\/head>/, h => h.replace(/\d+ 國/g, `${nC} 國`))
+    .replace(/(<meta http-equiv="Content-Security-Policy" content=")([^"]*)(">)/, (_, a, csp, b) => a + withAds(csp) + b)
+    .replace(/(<!-- ads:head -->)[\s\S]*?(<!-- \/ads:head -->)/, `$1${adsenseScript()}$2`);
   return files;
 }
 

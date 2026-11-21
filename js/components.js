@@ -1,3 +1,4 @@
+import { affLink } from "./site-config.js";
 // 共用元件：只依參數產生 HTML 或操作傳入的元素，不讀取程式狀態
 // 篩選按鈕列：第一顆是「全部」，items 為 {v, label, dot, n, title}
 function chipRow(attr, current, allLabel, items){
@@ -24,7 +25,7 @@ function pickList(items, sourceName, extra = () => ""){
   return `<ul class="list picks">${sorted.map(it => `<li class="pick">
     <div class="pk-h"><span class="nm">${it.n}</span>${stars(it.pop)}</div>
     ${extra(it)}<p class="ds">${it.x}</p>
-    <p class="src">來源：${it.src.map(u => `<a href="${u}" target="_blank" rel="noopener">${sourceName(u)}</a>`).join("、")}</p></li>`).join("")}</ul>`;
+    <p class="src">來源：${it.src.map(u => { const l = affLink(u); return `<a href="${l.href}" target="_blank" rel="noopener${l.sponsored ? " sponsored" : ""}">${sourceName(u)}</a>`; }).join("、")}</p></li>`).join("")}</ul>`;
 }
 // 國家／縣市卡片標題
 function entityHead({flag, name, color, sub, btnId, btnLabel}){

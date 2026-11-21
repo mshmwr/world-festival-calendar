@@ -2,6 +2,7 @@
 import { readFileSync, existsSync, readdirSync } from "node:fs";
 import { join, dirname, normalize } from "node:path";
 import { build, SITE, SUPPORT_URL } from "../scripts/build-pages.mjs";
+import { withAds, affLink } from "../js/site-config.js";
 
 const root = new URL("..", import.meta.url).pathname;
 let failed = 0;
@@ -55,5 +56,11 @@ const pages = Object.keys(files).filter(p => p.endsWith(".html") && p !== "index
 if (locs.length !== pages.length + 1) fail("sitemap.xml", `應有 ${pages.length + 1} 個網址，實際 ${locs.length} 個`);
 if (!existsSync(join(root, "og.png"))) fail("og.png", "分享圖不存在，請執行 node scripts/make-og.mjs");
 
+// 廣告 CSP 開關：主頁的 CSP 寫在 index.html 裡，要能來回切換不留痕跡（靜態頁每次由固定字串重新產生）
+for (const [p, csp] of [["index.html"], ["m/1.html"]].map(([p]) => [p, files[p].match(/Content-Security-Policy" content="([^"]*)"/)[1]])) {
+  const on = withAds(csp, true);
+  if ((p === "index.html" && withAds(on, false) !== withAds(csp, false)) || withAds(on, true) !== on || !on.includes("pagead2.googlesyndication.com") || !/frame-src [^;]*doubleclick/.test(on)) fail("site-config.js", `廣告 CSP 切換結果不正確：${on}`);
+}
+if (affLink("not a url").href !== "not a url" || affLink("https://www.liontravel.com/x").sponsored) fail("site-config.js", "非聯盟網域的連結不應被修改");
 if (failed) { console.log(`\n${failed} 項靜態頁面檢查未通過`); process.exit(1); }
 console.log(`PASS 靜態頁面：${pages.length} 頁、sitemap ${locs.length} 個網址，內容為最新`);
