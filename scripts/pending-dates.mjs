@@ -1,5 +1,8 @@
 // 列出日期還沒確定的活動，產生 docs/pending-dates.md
-// 用法：node scripts/pending-dates.mjs [YYYY-MM-DD]   （預設今天；只列今天以後還會發生的）
+// 用法：node scripts/pending-dates.mjs [YYYY-MM-DD] [--within 天數] [--max 筆數]
+//   預設基準日為今天，只列今天以後還會發生的。
+//   另外產生 docs/check-batch.md：這次要查的精簡批次（--within 天內開始、最多 --max 筆，預設 100 天、60 筆），
+//   依「一次搜尋能確認多筆」分組；每月例行檢查只需要讀這個檔案。
 // 兩種情況會列出：
 //   1. 標 "a":1 的推估日期（農曆、伊斯蘭曆、主辦單位尚未公布等）
 //   2. 每年都辦、但缺少明年日期的活動（只有今年的 y）
@@ -9,7 +12,11 @@ import { join } from "node:path";
 
 const root = new URL("..", import.meta.url).pathname;
 const read = f => JSON.parse(readFileSync(join(root, "data", f), "utf8"));
-const today = process.argv[2] ? new Date(process.argv[2]) : new Date();
+const args = process.argv.slice(2);
+const opt = (k, d) => { const i = args.indexOf(k); return i >= 0 ? Number(args[i + 1]) : d; };
+const dateArg = args.find(a => /^\d{4}-\d{2}-\d{2}$/.test(a));
+const today = dateArg ? new Date(dateArg) : new Date();
+const WITHIN = opt("--within", 100), MAX = opt("--max", 60);
 const YEARS = JSON.parse(readFileSync(join(root, "js", "app.js"), "utf8").match(/const YEARS = (\[[^\]]*\])/)[1]);
 // 不會每年舉辦（或明年不在這個城市辦），缺明年日期不算待查；它們的下一屆記在 data/future.json
 const ONE_OFF = /奧運|帕運|亞運|亞帕運|世界盃|大英國協|泛美|田徑錦標賽|選舉|教宗|最後一屆|國民休日|花毯節|巴塞隆納）|山王祭|雙年展/;
@@ -48,4 +55,31 @@ md += `\n## 不是每年舉辦的活動：下一屆（data/future.json，${futur
 for (const f of [...future].sort((a, b) => a.year - b.year || (a.d || "13").localeCompare(b.d || "13")))
   md += `| ${f.year} | ${countries[f.c].n} | ${f.n} | ${TN[f.t]} | ${f.d ? f.d.replace("~", "～") : "—"} | ${!f.d ? "日期未公布" : f.a ? "日期可能變動" : "已公布"} |\n`;
 writeFileSync(join(root, "docs", "pending-dates.md"), md);
-console.log(`docs/pending-dates.md：${rows.length} 筆待確認，另有 ${future.length} 筆未來屆次`);
+
+// ---- 本次檢查批次：只取近期項目，依查證方式分組，減少搜尋次數 ----
+const ISLAMIC = /開齋|宰牲|齋月|回曆|先知誕辰|登霄|阿舒拉|阿拉法|古蘭經|Hayit|Ramazon/;
+const day = 864e5;
+const soon = rows.filter(r => r.spec && (start(r.y, r.spec) - today) / day <= WITHIN);
+const groups = { islamic: [], holiday: {}, f1: [], other: [] };
+let skippedIslamic = 0;
+for (const r of soon) {
+  const days = (start(r.y, r.spec) - today) / day;
+  if (ISLAMIC.test(r.e.n)) { if (days <= 21) groups.islamic.push(r); else skippedIslamic++; }
+  else if (r.e.t === "H") (groups.holiday[r.e.where] ||= []).push(r);
+  else if (/^F1 /.test(r.e.n)) groups.f1.push(r);
+  else groups.other.push(r);
+}
+const line = r => `- ${r.e.where}｜${r.e.n}｜${r.y} 年 ${r.spec.replace("~", "～")}`;
+let n = 0, bm = `# 本次日期檢查批次\n\n基準日 ${today.toISOString().slice(0, 10)}；只列 ${WITHIN} 天內開始的待確認項目（完整清單見 pending-dates.md）。依分組查證：同一組用一次搜尋確認。\n`;
+const take = xs => { const out = xs.slice(0, Math.max(0, MAX - n)); n += out.length; return out; };
+const hol = Object.entries(groups.holiday);
+if (hol.length) { bm += `\n## 國定假日（每國查一次政府公告的年度假日表）\n`; for (const [w, xs] of hol) { const t = take(xs); if (t.length) bm += `\n### ${w}\n${t.map(line).join("\n")}\n`; } }
+if (groups.f1.length) bm += `\n## F1（查一次官方賽曆即可）\n${take(groups.f1).map(line).join("\n")}\n`;
+if (groups.islamic.length) bm += `\n## 伊斯蘭節日（3 週內，查當地政府公告）\n${take(groups.islamic).map(line).join("\n")}\n`;
+if (groups.other.length) bm += `\n## 祭典、賽事、季節（查主辦單位官網）\n${take(groups.other).map(line).join("\n")}\n`;
+const rest = soon.length - n - skippedIslamic;
+bm += `\n---\n本批 ${n} 筆。${rest > 0 ? `另有 ${rest} 筆近期項目超過本批上限，下次處理。` : ""}${skippedIslamic ? `${skippedIslamic} 筆伊斯蘭節日距今超過 3 週，官方要到前幾天才公告，本次略過。` : ""}\n`;
+const fut = future.filter(f => !f.d || f.a);
+bm += `\n## 未來屆次（只看有沒有新消息，一兩次搜尋即可）\n${fut.map(f => `- ${f.year}｜${countries[f.c].n}｜${f.n}${f.d ? `｜${f.d}（暫定）` : "｜日期未公布"}`).join("\n")}\n`;
+writeFileSync(join(root, "docs", "check-batch.md"), bm);
+console.log(`docs/pending-dates.md：${rows.length} 筆待確認，另有 ${future.length} 筆未來屆次；docs/check-batch.md：本批 ${n} 筆`);
