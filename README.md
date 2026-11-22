@@ -69,7 +69,7 @@ npm run dev        # 開啟 http://localhost:8000/
 - **新增國家**：在 `data/countries.json` 加一筆，`iso` 填 ISO 3166 數字碼，並確認它在 `data/regions.json` 的 `regionOf` 裡屬於同一個區域；地圖上找不到的小國改填 `pin: [經度, 緯度]`
 - **每月推薦**：在 `data/picks.json` 的 `picks.<月份>.<國家代碼>` 加景點或行程，欄位有 `n` 名稱、`pop` 熱門程度 1～3、`x` 說明、`src` 來源網址，日本可加 `p` 縣市代碼。熱門程度的標準寫在 `data/schema/picks.schema.json`。也可以把多國資料寫成一個 JSON，再用 `node scripts/add-picks.mjs <月份> <檔案>` 一次併入。要求某個月份涵蓋全部國家時，把月份加進 `tests/data.mjs` 的 `REQUIRED_MONTHS`
 - **新增年份**：在 `js/app.js` 的 `YEARS` 加上年份，並替使用 `y` 的節慶補上該年日期
-- **贊助、廣告、聯盟行銷**：都在 `js/site-config.js` 設定，改完執行 `npm run build`。`support` 是贊助按鈕（目前 Ko-fi）；`adsense` 填 AdSense 發布商 ID（`ca-pub-…`）後，所有頁面會載入 AdSense 並自動放寬 CSP，另外要把 `ads.txt` 放到網域根目錄；`affiliate` 填 KKday、Klook 的聯盟 ID 後，推薦來源連到這些網站的連結會加上追蹤參數、標成 `rel="sponsored"`，頁尾顯示聯盟行銷說明。隱私權政策在 `privacy.html`（由 build 產生）
+- **贊助、廣告、聯盟行銷**：都在 `js/site-config.js` 設定，改完執行 `npm run build`。`support` 是贊助按鈕（目前 Ko-fi）；`report` 填 Notion 回報表單的公開連結後，所有頁尾會出現「回報錯誤或建議」；`adsense` 填 AdSense 發布商 ID（`ca-pub-…`）後，所有頁面會載入 AdSense 並自動放寬 CSP，另外要把 `ads.txt` 放到網域根目錄；`affiliate` 填 KKday、Klook 的聯盟 ID 後，推薦來源連到這些網站的連結會加上追蹤參數、標成 `rel="sponsored"`，頁尾顯示聯盟行銷說明。隱私權政策在 `privacy.html`（由 build 產生）
 - **待確認日期**：`npm run pending` 產生 `docs/pending-dates.md`（推估日期、缺明年日期的活動），查證與更新流程見 `docs/date-check.md`
 
 ## 搜尋引擎最佳化（SEO）

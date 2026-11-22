@@ -58,11 +58,17 @@ writeFileSync(join(root, "docs", "pending-dates.md"), md);
 
 // ---- 本次檢查批次：只取近期項目，依查證方式分組，減少搜尋次數 ----
 const ISLAMIC = /開齋|宰牲|齋月|回曆|先知誕辰|登霄|阿舒拉|阿拉法|古蘭經|Hayit|Ramazon/;
+// 小型活動不主動查證：祭典與季節只有在「每月推薦」有提到時才列入批次，其餘維持「約」，等使用者回報再改
+const { picks } = read("picks.json");
+const pickText = Object.values(picks).flatMap(byC => Object.values(byC).flat()).map(it => it.n + it.x).join("\n");
+const core = n => n.replace(/（.*?）/g, "").split("・")[0].trim();
+const major = r => r.e.t === "H" || r.e.t === "G" || pickText.includes(core(r.e.n));
 const day = 864e5;
 const soon = rows.filter(r => r.spec && (start(r.y, r.spec) - today) / day <= WITHIN);
 const groups = { islamic: [], holiday: {}, f1: [], other: [] };
-let skippedIslamic = 0;
+let skippedIslamic = 0, skippedMinor = 0;
 for (const r of soon) {
+  if (!major(r)) { skippedMinor++; continue; }
   const days = (start(r.y, r.spec) - today) / day;
   if (ISLAMIC.test(r.e.n)) { if (days <= 21) groups.islamic.push(r); else skippedIslamic++; }
   else if (r.e.t === "H") (groups.holiday[r.e.where] ||= []).push(r);
@@ -77,8 +83,8 @@ if (hol.length) { bm += `\n## 國定假日（每國查一次政府公告的年�
 if (groups.f1.length) bm += `\n## F1（查一次官方賽曆即可）\n${take(groups.f1).map(line).join("\n")}\n`;
 if (groups.islamic.length) bm += `\n## 伊斯蘭節日（3 週內，查當地政府公告）\n${take(groups.islamic).map(line).join("\n")}\n`;
 if (groups.other.length) bm += `\n## 祭典、賽事、季節（查主辦單位官網）\n${take(groups.other).map(line).join("\n")}\n`;
-const rest = soon.length - n - skippedIslamic;
-bm += `\n---\n本批 ${n} 筆。${rest > 0 ? `另有 ${rest} 筆近期項目超過本批上限，下次處理。` : ""}${skippedIslamic ? `${skippedIslamic} 筆伊斯蘭節日距今超過 3 週，官方要到前幾天才公告，本次略過。` : ""}\n`;
+const rest = soon.length - n - skippedIslamic - skippedMinor;
+bm += `\n---\n本批 ${n} 筆。${rest > 0 ? `另有 ${rest} 筆近期項目超過本批上限，下次處理。` : ""}${skippedIslamic ? `${skippedIslamic} 筆伊斯蘭節日距今超過 3 週，官方要到前幾天才公告，本次略過。` : ""}${skippedMinor ? `${skippedMinor} 筆小型祭典（每月推薦沒提到）不主動查證，維持「約」，有人回報再改。` : ""}\n`;
 const fut = future.filter(f => !f.d || f.a);
 bm += `\n## 未來屆次（只看有沒有新消息，一兩次搜尋即可）\n${fut.map(f => `- ${f.year}｜${countries[f.c].n}｜${f.n}${f.d ? `｜${f.d}（暫定）` : "｜日期未公布"}`).join("\n")}\n`;
 writeFileSync(join(root, "docs", "check-batch.md"), bm);

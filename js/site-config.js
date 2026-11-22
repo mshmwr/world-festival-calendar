@@ -3,6 +3,8 @@
 export const SITE_CONFIG = {
   // 贊助按鈕連結；空白就不顯示
   support: "https://ko-fi.com/mshmwr",
+  // 「回報錯誤或建議」表單網址（Notion 表單的公開分享連結）；空白就不顯示
+  report: "",
   // Google AdSense 發布商 ID，例如 "ca-pub-1234567890123456"；空白就不載入廣告。
   // 填好後還要把 ads.txt 放到 https://mshmwr.github.io/ads.txt（或自訂網域的根目錄）。
   adsense: "",

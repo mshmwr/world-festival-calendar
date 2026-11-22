@@ -254,3 +254,4 @@ footer p{margin:4px 0}
 .support .kofi{display:inline-block;padding:8px 16px;border-radius:999px;background:#72a4f2;color:#0b1b33;font-weight:700;text-decoration:none;white-space:nowrap}
 .support .kofi:hover{background:#8db6f5}
 footer .legal{font-size:12px;color:var(--muted)}
+footer .legal .report{font-weight:600}
