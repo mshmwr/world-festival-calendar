@@ -3,8 +3,8 @@
 export const SITE_CONFIG = {
   // 贊助按鈕連結；空白就不顯示
   support: "https://ko-fi.com/mshmwr",
-  // 「回報錯誤或建議」表單網址（Notion 表單的公開分享連結）；空白就不顯示
-  report: "",
+  // 「回報錯誤或建議」表單的後台網址（Cloudflare Worker，程式在 worker/report.js）；空白就不顯示回報按鈕
+  reportEndpoint: "",
   // Google AdSense 發布商 ID，例如 "ca-pub-1234567890123456"；空白就不載入廣告。
   // 填好後還要把 ads.txt 放到 https://mshmwr.github.io/ads.txt（或自訂網域的根目錄）。
   adsense: "",
@@ -50,6 +50,14 @@ export function withAds(csp, on = !!SITE_CONFIG.adsense) {
     for (const v of vs) if (!d.includes(v)) d.push(v);
   }
   return dirs.filter(d => d.length > 1).map(d => d.join(" ")).join("; ");
+}
+// 網站的 CSP：依設定加入廣告來源與回報後台網址。connect-src 每次重建，換網址也不會留下舊的
+export function cspFor(csp) {
+  const base = withAds(csp, false).split("; ").filter(d => !d.startsWith("connect-src"));
+  const extra = SITE_CONFIG.reportEndpoint ? [new URL(SITE_CONFIG.reportEndpoint).origin] : [];
+  const i = base.findIndex(d => d.startsWith("object-src"));
+  base.splice(i < 0 ? base.length : i, 0, ["connect-src", "'self'", ...extra].join(" "));
+  return withAds(base.join("; "));
 }
 export const adsenseScript = () => SITE_CONFIG.adsense
   ? `<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${encodeURIComponent(SITE_CONFIG.adsense)}" crossorigin="anonymous"></script>` : "";

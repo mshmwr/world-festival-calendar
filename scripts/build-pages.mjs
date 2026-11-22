@@ -8,10 +8,11 @@ import { join } from "node:path";
 export const SITE = "https://mshmwr.github.io/world-festival-calendar/";
 export const SITE_NAME = "環球節慶行事曆";
 // 贊助、廣告、聯盟行銷的設定在 js/site-config.js
-import { SITE_CONFIG, HAS_AFFILIATE, AFFILIATE_NOTE, affLink, withAds, adsenseScript } from "../js/site-config.js";
+import { SITE_CONFIG, HAS_AFFILIATE, AFFILIATE_NOTE, affLink, cspFor, adsenseScript } from "../js/site-config.js";
 export const SUPPORT_URL = SITE_CONFIG.support;
 const supportHTML = (up = "") => (SUPPORT_URL ? `<div class="support"><p>這個行事曆免費使用。如果它幫你排好了旅行，歡迎請我喝杯咖啡，支持資料持續更新。</p><a class="kofi" href="${SUPPORT_URL}" target="_blank" rel="noopener">☕ 在 Ko-fi 請我喝杯咖啡</a></div>` : "")
-  + `<p class="legal">${SITE_CONFIG.report ? `<a class="report" href="${SITE_CONFIG.report}" target="_blank" rel="noopener">📮 回報錯誤或建議</a>　` : ""}${HAS_AFFILIATE ? AFFILIATE_NOTE + " " : ""}<a href="${up}privacy.html">隱私權政策</a></p>`;
+  + `<p class="legal">${SITE_CONFIG.reportEndpoint ? `<button type="button" class="report" data-report="${SITE_CONFIG.reportEndpoint}">📮 回報錯誤或建議</button>　` : ""}${HAS_AFFILIATE ? AFFILIATE_NOTE + " " : ""}<a href="${up}privacy.html">隱私權政策</a></p>`
+  + (SITE_CONFIG.reportEndpoint ? `<script src="${up}js/report.js" defer></script>` : "");
 const PAGE_CSP = "default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'";
 const YEAR = 2027; // 靜態頁的節慶日期以這一年為準，沒有這一年的資料就用前一年
 const MONTHS = Array.from({ length: 12 }, (_, i) => i + 1);
@@ -83,7 +84,7 @@ function page({ path, title, desc, h1, lead, crumbs, body, ld }) {
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta http-equiv="Content-Security-Policy" content="${withAds(PAGE_CSP)}">${adsenseScript() ? "\n" + adsenseScript() : ""}
+<meta http-equiv="Content-Security-Policy" content="${cspFor(PAGE_CSP)}">${adsenseScript() ? "\n" + adsenseScript() : ""}
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <title>${esc(title)}</title>
 <meta name="description" content="${esc(desc)}">
@@ -272,7 +273,7 @@ function privacyPage() {
 <p>你可以到 <a href="https://adssettings.google.com/" rel="noopener" target="_blank">Google 廣告設定</a> 停用個人化廣告，或到 <a href="https://www.aboutads.info/" rel="noopener" target="_blank">aboutads.info</a> 停用第三方廣告供應商的個人化廣告 Cookie。Google 如何使用這些資料，請見 <a href="https://policies.google.com/technologies/partner-sites" rel="noopener" target="_blank">Google 如何使用合作夥伴網站的資訊</a>。</p></section>
 <section><h2>聯盟行銷連結</h2><p>${AFFILIATE_NOTE}點擊這類連結後，旅遊平台可能在你的瀏覽器設定 Cookie，用來記錄訂單來自本站，適用該平台自己的隱私權政策。</p></section>
 <section><h2>外部連結</h2><p>推薦項目附的資料來源連到旅行社、觀光局等外部網站，這些網站的內容與隱私權做法由各網站負責。</p></section>
-<section><h2>政策更新與聯絡</h2><p>本政策若有修改會更新在這一頁。${SITE_CONFIG.report ? `回報表單收到的內容（以及你選填的電子郵件）只用來修正資料與回覆你，存放在 Notion。` : ""}對本站或本政策有疑問，可以在 <a href="https://github.com/mshmwr/world-festival-calendar/issues" rel="noopener" target="_blank">GitHub</a> 留言${SUPPORT_URL ? `，或透過 <a href="${SUPPORT_URL}" rel="noopener" target="_blank">Ko-fi</a> 聯絡` : ""}。</p></section>`;
+<section><h2>政策更新與聯絡</h2><p>本政策若有修改會更新在這一頁。${SITE_CONFIG.reportEndpoint ? `透過「回報錯誤或建議」送出的內容（以及你選填的電子郵件）會經由 Cloudflare 轉存到本站的 Notion 資料庫，只用來修正資料與回覆你。` : ""}對本站或本政策有疑問，可以在 <a href="https://github.com/mshmwr/world-festival-calendar/issues" rel="noopener" target="_blank">GitHub</a> 留言${SUPPORT_URL ? `，或透過 <a href="${SUPPORT_URL}" rel="noopener" target="_blank">Ko-fi</a> 聯絡` : ""}。</p></section>`;
   return page({
     path: "privacy.html", title: `隱私權政策｜${SITE_NAME}`,
     desc: `${SITE_NAME}的隱私權政策：本站蒐集哪些資料、廣告與 Cookie、聯盟行銷連結的說明。`,
@@ -311,7 +312,7 @@ export function build() {
   const nC = Object.keys(D.countries).length;
   files["index.html"] = index.replace(re, `$1\n  ${indexLinks(D)}\n  $2`).replace(reS, `$1${supportHTML()}$2`)
     .replace(/<head>[\s\S]*?<\/head>/, h => h.replace(/\d+ 國/g, `${nC} 國`))
-    .replace(/(<meta http-equiv="Content-Security-Policy" content=")([^"]*)(">)/, (_, a, csp, b) => a + withAds(csp) + b)
+    .replace(/(<meta http-equiv="Content-Security-Policy" content=")([^"]*)(">)/, (_, a, csp, b) => a + cspFor(csp) + b)
     .replace(/(<!-- ads:head -->)[\s\S]*?(<!-- \/ads:head -->)/, `$1${adsenseScript()}$2`);
   return files;
 }
