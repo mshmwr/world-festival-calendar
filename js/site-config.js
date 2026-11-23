@@ -8,6 +8,8 @@ export const SITE_CONFIG = {
   // Google AdSense 發布商 ID，例如 "ca-pub-1234567890123456"；空白就不載入廣告。
   // 填好後還要把 ads.txt 放到 https://mshmwr.github.io/ads.txt（或自訂網域的根目錄）。
   adsense: "",
+  // Google Analytics 4 評估 ID，例如 "G-ABC123XYZ"；空白就不載入
+  ga: "",
   // 聯盟行銷：網域 → 追蹤參數名稱與你的聯盟 ID。填了 id 的網域，推薦來源連結會自動加上追蹤參數並標示為贊助連結。
   affiliate: {
     "kkday.com": { param: "cid", id: "" },
@@ -40,24 +42,36 @@ export const ADS_CSP = {
   "style-src": ["'unsafe-inline'"],
 };
 // 在 CSP 字串上加入（或移除）廣告來源；重複執行結果相同
-export function withAds(csp, on = !!SITE_CONFIG.adsense) {
+// 在 CSP 字串上加入（或移除）一組來源；重複執行結果相同。'unsafe-inline' 不會被移除（主頁本來就需要）
+function withGroup(csp, group, on) {
   const dirs = csp.split(";").map(s => s.trim()).filter(Boolean).map(s => s.split(/\s+/));
-  const all = new Set(Object.values(ADS_CSP).flat().filter(x => x !== "'unsafe-inline'"));
+  const all = new Set(Object.values(group).flat().filter(x => x !== "'unsafe-inline'"));
   for (const d of dirs) d.splice(1, d.length, ...d.slice(1).filter(v => !all.has(v)));
-  if (on) for (const [k, vs] of Object.entries(ADS_CSP)) {
+  if (on) for (const [k, vs] of Object.entries(group)) {
     let d = dirs.find(x => x[0] === k);
     if (!d) { d = [k, ...(k === "frame-src" ? [] : ["'self'"])]; dirs.splice(dirs.findIndex(x => x[0] === "object-src"), 0, d); }
     for (const v of vs) if (!d.includes(v)) d.push(v);
   }
   return dirs.filter(d => d.length > 1).map(d => d.join(" ")).join("; ");
 }
+export const withAds = (csp, on = !!SITE_CONFIG.adsense) => withGroup(csp, ADS_CSP, on);
+// Google Analytics 4 需要的來源
+export const GA_CSP = {
+  "script-src": ["https://www.googletagmanager.com"],
+  "img-src": ["https://*.google-analytics.com", "https://*.googletagmanager.com"],
+  "connect-src": ["https://*.google-analytics.com", "https://*.analytics.google.com", "https://*.googletagmanager.com"],
+};
+export const withGa = (csp, on = !!SITE_CONFIG.ga) => withGroup(csp, GA_CSP, on);
 // 網站的 CSP：依設定加入廣告來源與回報後台網址。connect-src 每次重建，換網址也不會留下舊的
 export function cspFor(csp) {
-  const base = withAds(csp, false).split("; ").filter(d => !d.startsWith("connect-src"));
+  const base = withGa(withAds(csp, false), false).split("; ").filter(d => !d.startsWith("connect-src"));
   const extra = SITE_CONFIG.reportEndpoint ? [new URL(SITE_CONFIG.reportEndpoint).origin] : [];
   const i = base.findIndex(d => d.startsWith("object-src"));
   base.splice(i < 0 ? base.length : i, 0, ["connect-src", "'self'", ...extra].join(" "));
-  return withAds(base.join("; "));
+  return withGa(withAds(base.join("; ")));
 }
+// GA：外部檔案 js/ga.js 讀取 data-id 後初始化，不用行內腳本（CSP 不必放寬 'unsafe-inline'）
+export const gaScript = (up = "") => SITE_CONFIG.ga
+  ? `<script async src="https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(SITE_CONFIG.ga)}"></script><script src="${up}js/ga.js" data-id="${SITE_CONFIG.ga}"></script>` : "";
 export const adsenseScript = () => SITE_CONFIG.adsense
   ? `<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${encodeURIComponent(SITE_CONFIG.adsense)}" crossorigin="anonymous"></script>` : "";
