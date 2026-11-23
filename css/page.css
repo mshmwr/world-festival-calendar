@@ -62,11 +62,13 @@ ol.tl{list-style:none;margin:8px 0 0;padding:0}
 .tl>li{padding:4px 0 10px}
 .tl>li.tl-r{padding:14px 0 4px}
 
-/* 右側固定的閱讀進度時間軸（寬螢幕） */
-.sidetl{position:fixed;top:72px;left:calc(50% + 440px + 24px);width:min(200px,calc(50vw - 440px - 40px));max-height:calc(100vh - 110px);display:flex;flex-direction:column;font-size:13px;z-index:5}
-.sidetl .st-h{display:flex;justify-content:space-between;gap:8px;margin:0 0 8px;color:var(--muted);font-size:12px}
-.sidetl .st-h span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+/* 右側固定的閱讀進度時間軸 */
+.sidetl{position:fixed;top:72px;left:calc(50% + 440px + 24px);width:min(210px,calc(50vw - 440px - 40px));max-height:calc(100vh - 110px);display:flex;flex-direction:column;font-size:13px;z-index:5}
+.sidetl .st-h{display:flex;align-items:center;gap:8px;margin:0 0 8px;color:var(--muted);font-size:12px}
+.sidetl .st-h span{flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .sidetl .st-h b{color:var(--accent);font-family:var(--font-mono,ui-monospace,monospace)}
+.sidetl .st-fold{flex:none;width:26px;height:26px;border-radius:50%;border:1px solid var(--line);background:var(--surface);color:var(--fg);font:inherit;font-size:14px;line-height:1;cursor:pointer}
+.sidetl .st-fold[hidden]{display:none}
 .sidetl ol{list-style:none;margin:0;padding:0 0 0 26px;position:relative;overflow-y:auto;scrollbar-width:none;--fill:0px}
 .sidetl ol::-webkit-scrollbar{display:none}
 .sidetl ol::before{content:"";position:absolute;left:8px;top:10px;bottom:10px;border-left:2px dashed var(--line)}
@@ -74,33 +76,42 @@ ol.tl{list-style:none;margin:8px 0 0;padding:0}
 .sidetl li{position:relative;padding:3px 0}
 .sidetl li[hidden]{display:none}
 .sidetl li::before{content:"";position:absolute;left:-22px;top:50%;width:8px;height:8px;margin-top:-6px;border-radius:50%;background:var(--bg);border:2px solid var(--muted);z-index:1;transition:background .15s,border-color .15s,box-shadow .15s}
-.sidetl li.r{padding:7px 0 3px;font-weight:700}
-.sidetl li.r::before{left:-25px;width:12px;height:12px;margin-top:-6px;border-radius:4px}
-.sidetl li.past::before,.sidetl li.now::before{background:var(--accent);border-color:var(--accent)}
-.sidetl li.now::before{box-shadow:0 0 0 4px color-mix(in srgb,var(--accent) 25%,transparent)}
+.sidetl li.r{padding:6px 0 4px;font-weight:700}
+.sidetl li.r::before{left:-25px;width:12px;height:12px;margin-top:-8px;border-radius:4px}
+.sidetl li.past::before,.sidetl li.now::before,.sidetl li.in::before{background:var(--accent);border-color:var(--accent)}
+.sidetl li.now::before,.sidetl li.in.r::before{box-shadow:0 0 0 4px color-mix(in srgb,var(--accent) 25%,transparent)}
 .sidetl a{display:block;color:var(--muted);text-decoration:none;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .sidetl li.r a,.sidetl li.past a{color:var(--fg)}
-.sidetl li.now a{color:var(--accent);font-weight:700}
+.sidetl li.now a,.sidetl li.in.r a{color:var(--accent);font-weight:700}
 .sidetl a:hover{color:var(--accent)}
-/* 窄螢幕：右側放不下完整時間軸，收成右邊一條細軸，只畫大項目節點；點一下展開名稱 */
+/* 有小項目的大項目：右側箭頭，展開時轉向 */
+.sidetl li.kids>a{display:flex;align-items:center;gap:6px}
+.sidetl li.kids>a::after{content:"›";margin-left:auto;color:var(--muted);font-weight:400;transition:transform .15s}
+.sidetl li.kids>a[aria-expanded="true"]::after{transform:rotate(90deg)}
+/* 折疊：只留大項目的節點與名稱 */
+.sidetl.folded li.c{display:none}
+.sidetl .sh{display:none}
+.sidetl.folded .sh{display:inline}
+.sidetl.folded .sh~*,.sidetl.folded .lb{display:none}
+.sidetl.folded li.kids>a::after{display:none}
+.sidetl.folded .st-h span,.sidetl.folded .st-h b{display:none}
 @media (max-width:1300px){
-  body.has-sidetl .wrap{padding-right:46px}
-  .sidetl{--compact:1;left:auto;right:6px;top:50%;transform:translateY(-50%);width:30px;max-height:calc(100vh - 40px);padding:10px 0;border-radius:15px;background:color-mix(in srgb,var(--surface) 88%,transparent);border:1px solid var(--line);cursor:pointer;transition:width .15s}
-  .sidetl .st-h{display:none}
-  .sidetl ol{padding-left:22px}
-  .sidetl ol::before,.sidetl ol::after{left:6px}
-  .sidetl:not(.open) li.c{display:none}
-  .sidetl:not(.open) li{padding:9px 0}
-  .sidetl:not(.open) a{visibility:hidden;width:0}
-  .sidetl:not(.open) li.r::before{left:-21px}
-  .sidetl:not(.open) li.in::before{background:var(--accent);border-color:var(--accent);box-shadow:0 0 0 4px color-mix(in srgb,var(--accent) 25%,transparent)}
-  .sidetl:not(.open) li:not(.r)::before{left:-19px}
-  .sidetl.open{width:min(240px,calc(100vw - 24px));padding:12px 12px 12px 0;background:var(--surface);box-shadow:0 6px 24px rgb(0 0 0/.25);cursor:auto}
-  .sidetl.open .st-h{display:flex;padding-left:16px}
-  .sidetl.open ol{padding-left:34px}
-  .sidetl.open ol::before,.sidetl.open ol::after{left:16px}
-  .sidetl.open li::before{left:-22px}
-  .sidetl.open li.r::before{left:-25px}
+  body.has-sidetl .wrap{padding-right:104px}
+  .sidetl{left:auto;right:6px;top:50%;transform:translateY(-50%);width:min(250px,calc(100vw - 24px));max-height:calc(100vh - 40px);padding:12px 12px 12px 0;border-radius:14px;background:var(--surface);border:1px solid var(--line);box-shadow:0 6px 24px rgb(0 0 0/.25)}
+  .sidetl .st-h{padding-left:12px}
+  .sidetl ol{padding-left:34px}
+  .sidetl ol::before,.sidetl ol::after{left:16px}
+  .sidetl.folded{width:92px;padding:8px 6px 8px 0;background:color-mix(in srgb,var(--surface) 92%,transparent);box-shadow:none}
+  .sidetl.folded .st-h{padding-left:6px;margin-bottom:4px}
+  .sidetl.folded ol{padding-left:24px}
+  .sidetl.folded ol::before,.sidetl.folded ol::after{left:7px}
+  .sidetl.folded li.r{padding:5px 0;font-size:11.5px}
+  .sidetl.folded li.r::before{left:-23px;width:10px;height:10px;margin-top:-7px}
+}
+@media (max-width:600px){
+  body.has-sidetl .wrap{padding-right:92px}
+  .sidetl.folded{width:80px}
+  .sidetl.folded li.r{font-size:11px;padding:4px 0}
 }
 footer .legal{font-size:12px;color:var(--muted)}
 

@@ -1,31 +1,49 @@
-// 國家頁與月份頁的閱讀進度：固定在右側的時間軸。寬螢幕直接顯示名稱；
-// 窄螢幕收成右邊一條細軸，只畫大項目（區域，或國家頁的月份）的節點，點一下展開名稱。
-// 時間軸由內文的 ol.tl 產生：區域是方形節點、國家或月份是圓點；只展開目前所在區域的國家；
-// 線從頂端畫到目前閱讀位置，經過的節點填色，目前所在的節點加光圈，點節點可跳到該段。
+// 國家頁與月份頁的閱讀進度：固定在右側的時間軸，由內文的 ol.tl 產生。
+// 大項目（區域；國家頁沒有區域時就是各月份）是方形節點，小項目（國家）是圓點。
+// 展開狀態：點大項目展開或收起底下的小項目，點小項目跳到該段。
+// 折疊狀態（窄螢幕預設，或按 » 收起）：向右收成細欄，只列大項目的節點與名稱，點名稱直接跳到該段；按 « 展開。
+// 線從頂端畫到目前閱讀位置，經過的節點填色，目前所在的節點加光圈。
 const tl = document.querySelector("main ol.tl");
 if (tl) {
   const REF = 64; // 標題捲到畫面頂端往下這個位置以內，就算「正在讀」這段（跳轉時標題停在 44px）
   const items = [...tl.children].map(li => {
-    const h = li.querySelector("h3, h4"), a = h.querySelector("a");
+    const h = li.querySelector("h3, h4");
     return { li, h, region: li.classList.contains("tl-r"), text: h.textContent.trim(), id: h.id };
   });
   let region = null;
   for (const it of items) { if (it.region) region = it; else it.parent = region; }
+  items.forEach(it => { it.major = it.region || !it.parent; it.kids = items.filter(x => x.parent === it).length; });
   const title = tl.closest("section")?.querySelector("h2")?.textContent.trim() || document.querySelector("h1").textContent.trim();
 
   const nav = document.createElement("nav");
   nav.className = "sidetl"; nav.setAttribute("aria-label", "閱讀進度");
-  nav.innerHTML = `<p class="st-h"><span></span><b></b></p><ol>${items.map((it, i) =>
-    `<li class="${it.region ? "r" : "c"}" data-i="${i}"><a href="#${it.id}">${it.text}</a></li>`).join("")}</ol>`;
+  nav.innerHTML = `<p class="st-h"><button type="button" class="st-fold"></button><span></span><b></b></p><ol>${items.map((it, i) =>
+    `<li class="${it.major ? "r" : "c"}${it.kids ? " kids" : ""}" data-i="${i}"><a href="#${it.id}"${it.kids ? ' aria-expanded="false"' : ""}>${
+      it.major && it.text.includes("・") ? `<span class="lb">${it.text}</span><span class="sh" aria-hidden="true">${it.text.replace(/・/g, "")}</span>` : it.text}</a></li>`).join("")}</ol>`;
   document.body.append(nav);
   document.body.classList.add("has-sidetl");
-  // 窄螢幕：收合時點時間軸展開；展開後點節點跳轉並收合，點其他地方也收合
+  const opened = new Set();               // 已展開的大項目
+  const narrow = matchMedia("(max-width:1300px)");
+  const foldBtn = nav.querySelector(".st-fold");
+  const setFolded = f => {
+    nav.classList.toggle("folded", f);
+    foldBtn.textContent = f ? "«" : "»";
+    foldBtn.setAttribute("aria-label", f ? "展開時間軸" : "向右收起時間軸");
+    foldBtn.hidden = !narrow.matches && !f; // 寬螢幕空間夠，不必收起
+    update();
+  };
+  foldBtn.addEventListener("click", () => setFolded(!nav.classList.contains("folded")));
+  narrow.addEventListener("change", () => setFolded(narrow.matches));
   nav.addEventListener("click", e => {
-    if (getComputedStyle(nav).getPropertyValue("--compact").trim() !== "1") return;
-    if (!nav.classList.contains("open")) { e.preventDefault(); nav.classList.add("open"); update(); }
-    else if (e.target.closest("a")) nav.classList.remove("open");
+    const a = e.target.closest("li a"); if (!a) return;
+    const li = a.parentElement, it = items[+li.dataset.i];
+    if (nav.classList.contains("folded")) return;           // 折疊時直接跳轉
+    if (it.kids) {                                          // 展開時：點大項目展開／收起小項目
+      e.preventDefault();
+      opened.has(it) ? opened.delete(it) : opened.add(it);
+      update();
+    } else if (narrow.matches) setFolded(true);             // 窄螢幕跳到小項目後收回細欄
   });
-  document.addEventListener("click", e => { if (!nav.contains(e.target) && nav.classList.contains("open")) { nav.classList.remove("open"); update(); } });
   nav.querySelector(".st-h span").textContent = title;
   const ol = nav.querySelector("ol"), lis = [...ol.children], pct = nav.querySelector(".st-h b");
 
@@ -40,7 +58,8 @@ if (tl) {
     const curRegion = cur < 0 ? null : items[cur].region ? items[cur] : items[cur].parent;
     lis.forEach((li, i) => {
       const it = items[i];
-      li.hidden = !it.region && it.parent && it.parent !== curRegion;
+      li.hidden = !it.major && !opened.has(it.parent);
+      if (it.kids) li.firstChild.setAttribute("aria-expanded", opened.has(it));
       li.classList.toggle("past", i < cur);
       li.classList.toggle("now", i === cur);
       li.classList.toggle("in", it === curRegion);
@@ -66,5 +85,5 @@ if (tl) {
   }
   addEventListener("scroll", () => { if (!ticking) { ticking = true; requestAnimationFrame(update); } }, { passive: true });
   addEventListener("resize", update);
-  update();
+  setFolded(narrow.matches);
 }
