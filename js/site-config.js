@@ -9,7 +9,7 @@ export const SITE_CONFIG = {
   // 填好後還要把 ads.txt 放到 https://mshmwr.github.io/ads.txt（或自訂網域的根目錄）。
   adsense: "",
   // Google Analytics 4 評估 ID，例如 "G-ABC123XYZ"；空白就不載入
-  ga: "",
+  ga: "G-2N38R93PEQ",
   // 聯盟行銷：網域 → 追蹤參數名稱與你的聯盟 ID。填了 id 的網域，推薦來源連結會自動加上追蹤參數並標示為贊助連結。
   affiliate: {
     "kkday.com": { param: "cid", id: "" },
