@@ -7,7 +7,7 @@ export const SITE_CONFIG = {
   reportEndpoint: "",
   // Google AdSense 發布商 ID，例如 "ca-pub-1234567890123456"；空白就不載入廣告。
   // 填好後還要把 ads.txt 放到 https://mshmwr.github.io/ads.txt（或自訂網域的根目錄）。
-  adsense: "",
+  adsense: "ca-pub-5782421020035365",
   // Google Analytics 4 評估 ID，例如 "G-ABC123XYZ"；空白就不載入
   ga: "G-2N38R93PEQ",
   // 聯盟行銷：網域 → 追蹤參數名稱與你的聯盟 ID。填了 id 的網域，推薦來源連結會自動加上追蹤參數並標示為贊助連結。
@@ -74,4 +74,4 @@ export function cspFor(csp) {
 export const gaScript = (up = "") => SITE_CONFIG.ga
   ? `<script async src="https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(SITE_CONFIG.ga)}"></script><script src="${up}js/ga.js" data-id="${SITE_CONFIG.ga}"></script>` : "";
 export const adsenseScript = () => SITE_CONFIG.adsense
-  ? `<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${encodeURIComponent(SITE_CONFIG.adsense)}" crossorigin="anonymous"></script>` : "";
+  ? `<meta name="google-adsense-account" content="${SITE_CONFIG.adsense}"><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${encodeURIComponent(SITE_CONFIG.adsense)}" crossorigin="anonymous"></script>` : "";
