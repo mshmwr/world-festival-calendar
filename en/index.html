@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en" data-base="../">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-OdnE20q7JSktrKrUng1fCtcOaNxL3okgC3ru7iS9qtw=' https://pagead2.googlesyndication.com https://*.googlesyndication.com https://*.google.com https://*.doubleclick.net https://*.gstatic.com https://www.googletagservices.com https://adservice.google.com https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https: https://*.google-analytics.com https://*.googletagmanager.com; connect-src 'self' https://*.google.com https://*.doubleclick.net https://*.googlesyndication.com https://*.gstatic.com https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com; frame-src https://*.doubleclick.net https://*.googlesyndication.com https://*.google.com; object-src 'none'; base-uri 'self'; form-action 'none'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<!-- ads:head --><script async src="https://www.googletagmanager.com/gtag/js?id=G-2N38R93PEQ"></script><script src="../js/ga.js" data-id="G-2N38R93PEQ"></script><meta name="google-adsense-account" content="ca-pub-5782421020035365"><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5782421020035365" crossorigin="anonymous"></script><!-- /ads:head -->
+<title>World Festival Calendar: Holidays, Festivals & Events in 66 Countries</title>
+<meta name="description" content="A month-by-month calendar of holidays, festivals, sports events and the best time to visit in 66 countries, with a world map and World Heritage sites.">
+<link rel="canonical" href="https://mshmwr.github.io/world-festival-calendar/en/">
+<link rel="alternate" hreflang="zh-Hant" href="https://mshmwr.github.io/world-festival-calendar/">
+<link rel="alternate" hreflang="en" href="https://mshmwr.github.io/world-festival-calendar/en/">
+<link rel="alternate" hreflang="x-default" href="https://mshmwr.github.io/world-festival-calendar/">
+<link rel="alternate" hreflang="zh-Hant" href="https://mshmwr.github.io/world-festival-calendar/">
+<link rel="alternate" hreflang="en" href="https://mshmwr.github.io/world-festival-calendar/en/">
+<link rel="alternate" hreflang="x-default" href="https://mshmwr.github.io/world-festival-calendar/">
+<meta name="theme-color" content="#0e5a76">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="World Festival Calendar">
+<meta property="og:locale" content="en_US">
+<meta property="og:title" content="World Festival Calendar: Holidays, Festivals & Events in 66 Countries">
+<meta property="og:description" content="Public holidays, festivals, sports events and travel seasons in 66 countries, month by month.">
+<meta property="og:url" content="https://mshmwr.github.io/world-festival-calendar/en/">
+<meta property="og:image" content="https://mshmwr.github.io/world-festival-calendar/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","name":"World Festival Calendar","url":"https://mshmwr.github.io/world-festival-calendar/en/","inLanguage":"en"},{"@type":"WebApplication","name":"World Festival Calendar","url":"https://mshmwr.github.io/world-festival-calendar/en/","applicationCategory":"TravelApplication","operatingSystem":"Any","inLanguage":"en","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}]}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@600;900&family=IBM+Plex+Mono:wght@400;600&display=swap">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="icon" href="../favicon-192.png" sizes="192x192" type="image/png">
+<link rel="apple-touch-icon" href="../favicon-192.png">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div>
+      <h1>World Festival Calendar</h1><a class="lang" href="../" hreflang="zh-Hant" lang="zh-Hant">中文</a>
+      <p class="sub" id="sub">Public holidays, festivals, sports events and the best time to visit around the world. Click a country on the map or a region below to filter.</p>
+    </div>
+    <div class="legend-types" aria-label="Legend">
+      <span><i class="sw H"></i>Public holiday</span>
+      <span><i class="sw F"></i>Festival</span>
+      <span><i class="sw G"></i>Sports</span>
+      <span><i class="sw S"></i>Season</span>
+    </div>
+  </header>
+
+  <div class="map-card">
+    <svg id="map" role="img" aria-label="World map coloured by region"></svg>
+    <div class="map-tools">
+      <button id="zin" aria-label="Zoom in">＋</button>
+      <button id="zout" aria-label="Zoom out">－</button>
+      <button id="zreset" aria-label="Show the whole world">⟲</button>
+    </div>
+    <div class="map-hint">Darker = events this month · Drag to pan, Ctrl + scroll to zoom</div>
+    <div class="tip" id="tip" hidden></div>
+  </div>
+
+  <div class="regions" id="regions" role="group" aria-label="Region filter"></div>
+  <div class="crow" id="crow" role="group" aria-label="Country filter" hidden></div>
+
+  <div class="controls">
+    <div class="monthnav">
+      <button id="prev" aria-label="Previous month">‹</button>
+      <h2 id="mtitle"></h2>
+      <button id="next" aria-label="Next month">›</button>
+    </div>
+    <select id="year" aria-label="Year"></select>
+    <div class="months" id="months"></div>
+    <div class="filters">
+      <button class="tbtn" data-t="H" aria-pressed="true"><i class="sw H"></i>Public holiday</button>
+      <button class="tbtn" data-t="F" aria-pressed="true"><i class="sw F"></i>Festival</button>
+      <button class="tbtn" data-t="G" aria-pressed="true"><i class="sw G"></i>Sports</button>
+      <button class="tbtn" data-t="S" aria-pressed="true"><i class="sw S"></i>Season</button>
+      <input id="q" type="search" placeholder="Search events or countries">
+    </div>
+  </div>
+  <div class="active-filter" id="af"></div>
+
+  <div class="main">
+    <section class="cal" aria-label="Calendar">
+      <div class="dow"><div>Sun</div><div>Mon</div><div>Tue</div><div>Wed</div><div>Thu</div><div>Fri</div><div>Sat</div></div>
+      <div class="grid" id="grid"></div>
+    </section>
+    <aside class="side" id="side"></aside>
+  </div>
+
+  <section class="jp" id="jp" aria-labelledby="jp-h">
+    <div class="jp-head">
+      <h2 id="jp-h">Japan's 47 prefectures</h2>
+      <p class="sub">Top sights, historic sites, World Heritage and festivals in every prefecture. Click the map or a name; festival dates also appear in the calendar above.</p>
+    </div>
+    <div class="areas" id="areas" role="group" aria-label="Region filter"></div>
+    <div class="jp-bar">
+      <div class="seg" role="tablist" aria-label="View">
+        <button role="tab" data-view="map" aria-selected="true">Map</button>
+        <button role="tab" data-view="list" aria-selected="false">All prefectures</button>
+      </div>
+      <input id="jpq" type="search" placeholder="Search sights, historic sites, festivals" hidden>
+      <button class="tbtn" id="jpcopy" hidden>Copy as Markdown</button>
+      <span class="copymsg" id="jpcopymsg" role="status"></span>
+    </div>
+    <div class="jp-list" id="jplist" hidden></div>
+    <textarea id="jpmd" readonly hidden aria-label="Markdown"></textarea>
+    <div class="jp-grid" id="jpgrid">
+      <div class="jp-map-card">
+        <svg id="jpmap" role="img" aria-label="Map of Japan's prefectures coloured by region"></svg>
+        <div class="tip" id="jptip" hidden></div>
+      </div>
+      <div class="panel" id="pref"></div>
+    </div>
+  </section>
+
+  <!-- seo:links -->
+  <nav class="seo-links" aria-labelledby="seo-h">
+    <h2 id="seo-h">Months and countries</h2>
+    <p><a href="m/1.html">January</a> <a href="m/2.html">February</a> <a href="m/3.html">March</a> <a href="m/4.html">April</a> <a href="m/5.html">May</a> <a href="m/6.html">June</a> <a href="m/7.html">July</a> <a href="m/8.html">August</a> <a href="m/9.html">September</a> <a href="m/10.html">October</a> <a href="m/11.html">November</a> <a href="m/12.html">December</a></p>
+    <p><b>Northeast Asia</b> <a href="c/jp.html">Japan</a> <a href="c/kr.html">South Korea</a> <a href="c/cn.html">China</a> <a href="c/tw.html">Taiwan</a> <a href="c/hk.html">Hong Kong</a> <a href="c/mn.html">Mongolia</a></p>
+    <p><b>Southeast Asia</b> <a href="c/th.html">Thailand</a> <a href="c/vn.html">Vietnam</a> <a href="c/sg.html">Singapore</a> <a href="c/my.html">Malaysia</a> <a href="c/id.html">Indonesia</a> <a href="c/ph.html">Philippines</a> <a href="c/kh.html">Cambodia</a> <a href="c/lao.html">Laos</a> <a href="c/mm.html">Myanmar</a> <a href="c/bn.html">Brunei</a></p>
+    <p><b>South Asia</b> <a href="c/in.html">India</a> <a href="c/np.html">Nepal</a> <a href="c/lk.html">Sri Lanka</a> <a href="c/mv.html">Maldives</a></p>
+    <p><b>Central Asia</b> <a href="c/uz.html">Uzbekistan</a></p>
+    <p><b>Middle East</b> <a href="c/tr.html">Türkiye</a> <a href="c/ae.html">UAE</a> <a href="c/jo.html">Jordan</a> <a href="c/bh.html">Bahrain</a> <a href="c/sa.html">Saudi Arabia</a> <a href="c/qa.html">Qatar</a> <a href="c/az.html">Azerbaijan</a></p>
+    <p><b>Western Europe</b> <a href="c/gb.html">United Kingdom</a> <a href="c/ie.html">Ireland</a> <a href="c/fr.html">France</a> <a href="c/nl.html">Netherlands</a> <a href="c/be.html">Belgium</a> <a href="c/mc.html">Monaco</a></p>
+    <p><b>Central Europe</b> <a href="c/de.html">Germany</a> <a href="c/at.html">Austria</a> <a href="c/ch.html">Switzerland</a> <a href="c/cz.html">Czechia</a> <a href="c/hu.html">Hungary</a> <a href="c/pl.html">Poland</a></p>
+    <p><b>Eastern Europe</b> <a href="c/ru.html">Russia</a> <a href="c/ro.html">Romania</a> <a href="c/bg.html">Bulgaria</a> <a href="c/ee.html">Estonia</a></p>
+    <p><b>Southern Europe</b> <a href="c/it.html">Italy</a> <a href="c/es.html">Spain</a> <a href="c/pt.html">Portugal</a> <a href="c/gr.html">Greece</a> <a href="c/hr.html">Croatia</a></p>
+    <p><b>Northern Europe</b> <a href="c/no.html">Norway</a> <a href="c/se.html">Sweden</a> <a href="c/fi.html">Finland</a> <a href="c/dk.html">Denmark</a> <a href="c/is.html">Iceland</a></p>
+    <p><b>North America</b> <a href="c/us.html">United States</a> <a href="c/ca.html">Canada</a></p>
+    <p><b>Latin America</b> <a href="c/mx.html">Mexico</a> <a href="c/br.html">Brazil</a> <a href="c/pe.html">Peru</a> <a href="c/ar.html">Argentina</a></p>
+    <p><b>Africa</b> <a href="c/eg.html">Egypt</a> <a href="c/ma.html">Morocco</a> <a href="c/za.html">South Africa</a> <a href="c/ke.html">Kenya</a></p>
+    <p><b>Oceania</b> <a href="c/au.html">Australia</a> <a href="c/nz.html">New Zealand</a></p>
+  </nav>
+  <!-- /seo:links -->
+
+  <footer>
+    <!-- support --><div class="support"><p>This calendar is free to use. If it helped you plan a trip, you can buy me a coffee to keep the data up to date.</p><a class="kofi" href="https://ko-fi.com/mshmwr" target="_blank" rel="noopener">☕ Buy me a coffee on Ko-fi</a></div><p class="legal"><a href="../privacy.html" hreflang="zh-Hant">Privacy policy (Chinese)</a></p><!-- /support -->
+    <p>Dates marked "approx." are estimates based on past years or on the lunar or Islamic calendar; Islamic holidays can shift by a day depending on the moon sighting, and local festivals follow each organiser's announcement.</p>
+    <p>Regions follow the UN geoscheme: Central Europe covers Germany, Austria, Switzerland, Czechia, Slovakia, Hungary and Poland; Eastern Europe covers Russia, Ukraine, Belarus, Romania, Bulgaria and the Baltic states; the Balkans are in Southern Europe.</p>
+    <p>World Heritage sites follow the UNESCO World Heritage List (as of the 47th session, 2025); large countries show selected sites only. The official list prevails.</p>
+    <p>Sources include official government holiday calendars, national tourism boards and festival organisers, the UNESCO World Heritage List and more. Translated from the Chinese edition.</p>
+  </footer>
+</div>
+
+<script src="../vendor/d3.min.js"></script>
+<script src="../vendor/topojson.min.js"></script>
+<script>
+  // 直接開檔時瀏覽器不會執行 ES module，也不允許讀取資料檔，所以在這裡先說明怎麼開啟
+  if (location.protocol === "file:") {
+    const box = document.createElement("div");
+    box.className = "load-error";
+    box.setAttribute("role", "alert");
+    box.innerHTML = "<b>這個網頁需要透過本機伺服器開啟。</b>請在專案資料夾執行 <code>npm run dev</code>，再開啟它顯示的網址。";
+    document.querySelector(".wrap").prepend(box);
+  }
+</script>
+<script type="module" src="../js/app.js"></script>
+</body>
+</html>

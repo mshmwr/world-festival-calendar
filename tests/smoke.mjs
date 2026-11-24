@@ -263,6 +263,20 @@ if (violations.length) console.log("CSP：", violations);
 const hidden = await fetch(page_url + ".git/HEAD");
 check("本機伺服器拒絕 .git 檔案", hidden.status === 403);
 
+// 英文版：介面、國名與活動說明都是英文，資料從根目錄載入
+const en = await browser.newPage({ viewport: { width: 1300, height: 1000 } });
+en.on("pageerror", e => errors.push(e.message));
+await en.goto(page_url + "en/");
+await en.waitForFunction(() => document.querySelectorAll("#map path").length > 100);
+await en.click('.chip[data-r="NEA"]');
+await en.click('#crow .chip[data-c="JP"]');
+const enText = await en.evaluate(() => document.body.innerText);
+check("英文版：顯示英文國名與介面", enText.includes("Japan") && enText.includes("Public holiday"));
+await en.click('[data-tab="ev"]');
+check("英文版：活動清單沒有殘留中文", await en.evaluate(() => { const t = [...document.querySelectorAll("#side, #mtitle, #crow")].map(e => e.innerText).join(""); return !/[\u4e00-\u9fff]/.test(t.replace(/[（）]/g, "")); }));
+await en.goto(page_url + "en/c/jp.html");
+check("英文國家頁可開啟", (await en.textContent("h1")).includes("Japan"));
+
 check("沒有頁面錯誤", errors.length === 0);
 
 // 直接開檔（file://）時要顯示如何啟動伺服器，而不是空白頁

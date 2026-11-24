@@ -14,7 +14,7 @@ for (const [p, s] of Object.entries(files)) {
   if (!existsSync(f)) fail(p, "檔案不存在，請執行 node scripts/build-pages.mjs");
   else if (readFileSync(f, "utf8") !== s) fail(p, "內容不是最新的，改過 data/ 後請執行 node scripts/build-pages.mjs");
 }
-for (const dir of ["c", "m"]) for (const f of readdirSync(join(root, dir))) if (!files[`${dir}/${f}`]) fail(`${dir}/${f}`, "多出來的舊檔案，請執行 node scripts/build-pages.mjs");
+for (const dir of ["c", "m", "en/c", "en/m"]) for (const f of readdirSync(join(root, dir))) if (!files[`${dir}/${f}`]) fail(`${dir}/${f}`, "多出來的舊檔案，請執行 node scripts/build-pages.mjs");
 
 const titles = new Map(), descs = new Map();
 for (const [p, s] of Object.entries(files)) {
@@ -24,8 +24,8 @@ for (const [p, s] of Object.entries(files)) {
   const canon = s.match(/<link rel="canonical" href="([^"]+)">/)?.[1];
   if (!title) fail(p, "缺少 <title>");
   if (!desc) fail(p, "缺少 meta description");
-  else if (desc.length > 120) fail(p, `meta description 太長（${desc.length} 字）`);
-  if (canon !== SITE + (p === "index.html" ? "" : p)) fail(p, `canonical 不正確：${canon}`);
+  else if (desc.length > (p.startsWith("en/") ? 160 : 120)) fail(p, `meta description 太長（${desc.length} 字）`);
+  if (canon !== SITE + (p === "index.html" ? "" : p === "en/index.html" ? "en/" : p)) fail(p, `canonical 不正確：${canon}`);
   if ((s.match(/<h1[\s>]/g) || []).length !== 1) fail(p, "應該剛好有一個 <h1>");
   if (!s.includes('property="og:image"')) fail(p, "缺少 og:image");
   if (!s.includes('http-equiv="Content-Security-Policy"')) fail(p, "缺少內容安全政策（CSP）");

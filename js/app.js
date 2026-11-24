@@ -1,5 +1,6 @@
 import { chipRow, tabBar, tagList, listOf, pickList, entityHead, placeTip, onClicks } from "./components.js";
 import { loadData } from "./data.js";
+import { t, LANG } from "./i18n.js";
 
 // ---------- 資料 ----------
 const { REGIONS, REGION_OF, COUNTRIES, WH_NOTE, EVENTS, JP_AREAS, PREFS, JP_NATIONAL, PICKS, SOURCE_NAMES, TOPO, JPTOPO } = await loadData();
@@ -19,9 +20,10 @@ const sourceName = url => {
 };
 
 const YEARS = [2026, 2027];
-const TABS = [["ev","節慶", (c, e) => e.length], ["s","景點", c => c.s.length], ["nat","自然景色", c => (c.nat || []).length], ["wh","世界遺產", c => (c.wh || []).length]];
-const WK = {"文":"cul","自":"nat","複":"mix"}, WN = {"文":"文化","自":"自然","複":"複合"};
-const TYPE_N = {H:"國定假日", F:"祭典活動", G:"體育賽事", S:"旅遊季節"};
+const TB = t("tabs");
+const TABS = [["ev", TB.ev, (c, e) => e.length], ["s", TB.s, c => c.s.length], ["nat", TB.nat, c => (c.nat || []).length], ["wh", TB.wh, c => (c.wh || []).length]];
+const WK = {"文":"cul","自":"nat","複":"mix"}, WN = t("whKind");
+const TYPE_N = t("types");
 const RN = Object.fromEntries(REGIONS.map(r => [r.k, r.n]));
 const ISO_REGION = {};
 for (const [k, s] of Object.entries(REGION_OF)) for (const id of s.split(" ")) ISO_REGION[id] = k;
@@ -150,7 +152,7 @@ function showTip(ev, code, iso){
     const c = COUNTRIES[code];
     const n = monthCount(x => x.c === code);
     const wh = c.wh ? c.wh.length : 0;
-    html = `${c.f} <b>${c.n}</b>　${RN[c.r]}<br><span style="color:var(--muted)">${st.m+1} 月 ${n} 項活動${wh ? `・世界遺產 ${wh} 處` : ""}・點擊查看</span>`;
+    html = `${c.f} <b>${c.n}</b>　${RN[c.r]}<br><span style="color:var(--muted)">${t("mapTipCountry", st.m+1, n, wh)}</span>`;
   } else {
     const f = geo.features.find(f => f.id === iso);
     html = `${f ? f.properties.name : ""}　<span style="color:var(--muted)">${RN[ISO_REGION[iso]] || ""}</span>`;
@@ -182,15 +184,15 @@ function renderRegions(){
   const el = document.getElementById("regions");
   const counts = {};
   for (const c of Object.values(COUNTRIES)) counts[c.r] = (counts[c.r] || 0) + 1;
-  el.innerHTML = chipRow("r", st.region, "全部地區", REGIONS.map(r => ({v: r.k, label: r.n, dot: r.k, n: counts[r.k] || 0, title: `${r.n}：收錄 ${counts[r.k] || 0} 個國家`})));
+  el.innerHTML = chipRow("r", st.region, t("allRegions"), REGIONS.map(r => ({v: r.k, label: r.n, dot: r.k, n: counts[r.k] || 0, title: t("regionTitle", r.n, counts[r.k] || 0)})));
   onClicks(el, "button", b => setRegion(b.dataset.r || null));
   // 第二層：選定區域後列出該區國家
   const cr = document.getElementById("crow");
   cr.hidden = !st.region;
   if (!st.region){ cr.innerHTML = ""; return; }
   const list = Object.entries(COUNTRIES).filter(([, c]) => c.r === st.region);
-  cr.innerHTML = `<span class="lab"><i class="dot" style="width:9px;height:9px;border-radius:50%;background:var(--r-${st.region})"></i>${RN[st.region]}的國家<small>數字＝${st.m+1} 月活動數</small></span>` +
-    chipRow("c", st.country, "全部國家", list.map(([code, c]) => { const n = monthCount(x => x.c === code); return {v: code, label: `${c.f} ${c.n}`, n, title: `${c.n}：${st.m+1} 月共 ${n} 項活動`}; }));
+  cr.innerHTML = `<span class="lab"><i class="dot" style="width:9px;height:9px;border-radius:50%;background:var(--r-${st.region})"></i>${t("regionCountries", RN[st.region])}<small>${t("countsHint", st.m+1)}</small></span>` +
+    chipRow("c", st.country, t("allCountries"), list.map(([code, c]) => { const n = monthCount(x => x.c === code); return {v: code, label: `${c.f} ${c.n}`, n, title: t("countryTitle", c.n, st.m+1, n)}; }));
   onClicks(cr, "button", b => {
     if (!b.dataset.c){ st.country = null; st.ev = null; render(); return; }
     selectCountry(b.dataset.c);
@@ -199,7 +201,7 @@ function renderRegions(){
 
 // ---------- 控制列 ----------
 const yearSel = document.getElementById("year");
-yearSel.innerHTML = YEARS.map(y => `<option value="${y}">${y} 年</option>`).join("");
+yearSel.innerHTML = YEARS.map(y => `<option value="${y}">${t("year", y)}</option>`).join("");
 yearSel.onchange = () => { st.y = +yearSel.value; st.ev = null; render(); };
 document.getElementById("prev").onclick = () => shiftMonth(-1);
 document.getElementById("next").onclick = () => shiftMonth(1);
@@ -249,12 +251,12 @@ function showEventOnDay(id, key){
 
 // ---------- 月曆 ----------
 function renderCalendar(){
-  document.getElementById("mtitle").textContent = `${st.y} 年 ${st.m+1} 月`;
+  document.getElementById("mtitle").textContent = t("yearMonth", st.y, st.m+1);
   yearSel.value = st.y;
   document.getElementById("prev").disabled = st.y === YEARS[0] && st.m === 0;
   document.getElementById("next").disabled = st.y === YEARS.at(-1) && st.m === 11;
   document.getElementById("months").innerHTML = Array.from({length:12}, (_, i) =>
-    `<button data-m="${i}" aria-current="${i === st.m}" aria-label="${i+1} 月">${i+1}</button>`).join("");
+    `<button data-m="${i}" aria-current="${i === st.m}" aria-label="${t("month", i+1)}">${LANG === "en" ? t("monthShort", i+1) : i+1}</button>`).join("");
   document.querySelectorAll("#months button").forEach(b => b.onclick = () => { st.m = +b.dataset.m; st.ev = null; render(); });
 
   const evs = monthEvents(false).filter(x => x.t !== "S");
@@ -275,12 +277,12 @@ function renderCalendar(){
     const open = st.openDay === key;
     const chips = starts.slice(0, open ? starts.length : maxChips).map(x => {
       const c = COUNTRIES[x.c];
-      return `<button class="ev ${x.t}${x.s < first ? " cont" : ""}" data-id="${x.id}" title="${c.n}${x.p ? "・" + PREF_BY_ID[x.p].n : ""}・${x.n}（${fmtRange(x)}）">${c.f} ${x.n}</button>`;
+      return `<button class="ev ${x.t}${x.s < first ? " cont" : ""}" data-id="${x.id}" title="${c.n}${x.p ? t("sep") + PREF_BY_ID[x.p].n : ""}${t("sep")}${x.n} (${fmtRange(x)})">${c.f} ${x.n}</button>`;
     }).join("");
-    const more = starts.length > maxChips ? `<button class="more" data-day="${key}" aria-expanded="${open}">${open ? "收合" : `＋${starts.length - maxChips} 項`}</button>` : "";
+    const more = starts.length > maxChips ? `<button class="more" data-day="${key}" aria-expanded="${open}">${open ? t("collapse") : t("moreN", starts.length - maxChips)}</button>` : "";
     const picked = st.day === key;
     html += `<div class="cell${key === today ? " today" : ""}${span ? " span" : ""}${picked ? " picked" : ""}" data-day="${key}">
-      <div class="dn"><button class="dbtn" data-day="${key}" aria-pressed="${picked}" aria-label="${st.m+1} 月 ${day.getDate()} 日，在右側列出當天活動"><b>${day.getDate()}</b></button>${ongoing ? `<span class="ongo">進行中 ${ongoing}</span>` : ""}</div>${chips}${more}</div>`;
+      <div class="dn"><button class="dbtn" data-day="${key}" aria-pressed="${picked}" aria-label="${t("dayAria", st.m+1, day.getDate())}"><b>${day.getDate()}</b></button>${ongoing ? `<span class="ongo">${t("ongoingN", ongoing)}</span>` : ""}</div>${chips}${more}</div>`;
   }
   const grid = document.getElementById("grid");
   grid.innerHTML = html;
@@ -297,12 +299,12 @@ function renderCalendar(){
 // ---------- 側欄 ----------
 function itemHTML(x, showCountry, hidePref){
   const c = COUNTRIES[x.c];
-  const approx = x.a ? `<i>約</i>` : "";
+  const approx = x.a ? `<i>${t("approx")}</i>` : "";
   const sel = st.open.has(x.id) ? " on" : "";
-  return `<li><button class="item${sel}" data-id="${x.id}" data-day-start="${ymd(x.s)}" aria-expanded="${!!sel}" title="${sel ? "收合介紹" : "看介紹"}">
+  return `<li><button class="item${sel}" data-id="${x.id}" data-day-start="${ymd(x.s)}" aria-expanded="${!!sel}" title="${sel ? t("hideIntro") : t("showIntro")}">
     <span class="dt">${fmtRange(x)}${approx}</span>
     <span><span class="nm">${showCountry ? c.f + " " : ""}${x.n}<span class="tag ${x.t}">${TYPE_N[x.t]}</span></span>
-    ${showCountry ? `<span class="meta rg"><i style="background:var(--r-${x.r})"></i>${c.n}${x.p ? "・" + PREF_BY_ID[x.p].n : ""}・${RN[x.r]}</span>` : x.p && !hidePref ? `<span class="meta">${PREF_BY_ID[x.p].n}</span>` : ""}
+    ${showCountry ? `<span class="meta rg"><i style="background:var(--r-${x.r})"></i>${c.n}${x.p ? t("sep") + PREF_BY_ID[x.p].n : ""}${t("sep")}${RN[x.r]}</span>` : x.p && !hidePref ? `<span class="meta">${PREF_BY_ID[x.p].n}</span>` : ""}
     ${sel ? `<span class="ds">${x.x}</span>` : ""}</span></button></li>`;
 }
 // 可收合的分組：標題顯示項目數，每組先列 LIMIT 項，按「顯示全部」再展開。
@@ -314,9 +316,9 @@ function group(key, label, xs, { open = true, showCountry = true, hidePref = fal
   const hasSel = xs.some(x => st.open.has(x.id));
   const isOpen = hasSel || (st.groupOpen[key] ?? open);
   const shown = st.more.has(key) || xs.slice(LIMIT).some(x => st.open.has(x.id)) ? xs : xs.slice(0, LIMIT);
-  return `<details class="grp-d" data-g="${key}"${isOpen ? " open" : ""}><summary><span class="gl">${label}</span><small>${xs.length} 項</small></summary>
+  return `<details class="grp-d" data-g="${key}"${isOpen ? " open" : ""}><summary><span class="gl">${label}</span><small>${t("nItems", xs.length)}</small></summary>
     ${eventList(shown, "", showCountry, hidePref)}
-    ${xs.length > shown.length ? `<button class="more-g" data-g="${key}">顯示全部 ${xs.length} 項</button>` : ""}</details>`;
+    ${xs.length > shown.length ? `<button class="more-g" data-g="${key}">${t("showAll", xs.length)}</button>` : ""}</details>`;
 }
 const dotLabel = (r, text) => `<i class="sw" style="background:var(--r-${r});border-radius:50%"></i>${text}`;
 
@@ -328,13 +330,13 @@ function dayPanel(showCountry){
   const fest = evs.filter(x => x.t !== "S"), seas = evs.filter(x => x.t === "S");
   const starts = fest.filter(x => +x.s === +day), ongoing = fest.filter(x => +x.s !== +day);
   const where = st.country ? COUNTRIES[st.country].n : st.region ? RN[st.region] : "";
-  const title = `${m} 月 ${d} 日（${"日一二三四五六"[day.getDay()]}）${where ? `・${where}` : ""}`;
-  return `<div class="panel day-panel"><h3>${title}<small>${fest.length} 項</small></h3>
-    <button class="x day-clear" id="clearDay">${showCountry ? "看整個月" : "取消選取日期"}</button>
-    ${fest.length ? "" : `<p class="empty">這天沒有符合篩選的節慶活動${st.types.S && seas.length ? "，但適合前往下列地方" : ""}。</p>`}
-    ${group("day:start", "當天開始", starts, { showCountry })}
-    ${group("day:on", "進行中", ongoing, { showCountry, open: !starts.length })}
-    ${st.types.S ? group("day:season", "適合前往", seas, { showCountry, open: !fest.length }) : ""}</div>`;
+  const title = `${t("dayTitle", m, d, day.getDay())}${where ? `${t("sep")}${where}` : ""}`;
+  return `<div class="panel day-panel"><h3>${title}<small>${t("nItems", fest.length)}</small></h3>
+    <button class="x day-clear" id="clearDay">${showCountry ? t("wholeMonth") : t("clearDay")}</button>
+    ${fest.length ? "" : `<p class="empty">${t("emptyDay", st.types.S && seas.length)}</p>`}
+    ${group("day:start", t("startsToday"), starts, { showCountry })}
+    ${group("day:on", t("ongoing"), ongoing, { showCountry, open: !starts.length })}
+    ${st.types.S ? group("day:season", t("goodToVisit"), seas, { showCountry, open: !fest.length }) : ""}</div>`;
 }
 let lastSideView = "";
 function renderSide(){
@@ -346,28 +348,28 @@ function renderSide(){
     const yearEvs = ALL.filter(x => x.c === st.country && (x.s.getFullYear() === st.y) && st.types[x.t]).sort((a,b) => a.s - b.s);
     // 有當月推薦時多一個分頁並預設打開；沒有時退回景點分頁
     const picks = monthPicks(st.country);
-    const tabs = picks.length ? [["pk", `${st.m + 1} 月推薦`, () => picks.length], ...TABS] : TABS;
+    const tabs = picks.length ? [["pk", t("monthPicks", st.m + 1), () => picks.length], ...TABS] : TABS;
     const tab = st.tab === "pk" && !picks.length ? "s" : st.tab;
     html += `<div class="panel">
-      ${entityHead({flag: c.f, name: c.n, color: c.r, sub: RN[c.r], btnId: "clearC", btnLabel: "看全部國家"})}
+      ${entityHead({flag: c.f, name: c.n, color: c.r, sub: RN[c.r], btnId: "clearC", btnLabel: t("allCountriesBtn")})}
       ${c.warn ? `<p class="warn">${c.warn}</p>` : ""}
-      ${st.country === "JP" ? `<button class="jp-link" id="toJP">查看 47 都道府縣的景點、遺跡與祭典 ↓</button>` : ""}
+      ${st.country === "JP" ? `<button class="jp-link" id="toJP">${t("toJP")}</button>` : ""}
       ${tabBar("tab", tab, tabs, c, yearEvs)}
-      ${tab === "pk" ? `<p class="pk-legend">熱門程度依台灣旅行社 ${st.m + 1} 月行程與旅遊網站推薦整理，★★★ 為最熱門。</p>${pickList(picks, sourceName, it => it.p ? `<p class="meta">${PREF_BY_ID[it.p].n}</p>` : "")}` : ""}
-      ${tab === "ev" ? (yearEvs.length ? Array.from({length: 12}, (_, i) => group(`cev:${i}`, `${i + 1} 月`, yearEvs.filter(x => x.s.getMonth() === i), { showCountry: false, open: i === st.m })).join("") : `<p class="empty">這一年沒有符合篩選的項目</p>`) : ""}
+      ${tab === "pk" ? `<p class="pk-legend">${t("picksLegend", st.m + 1)}</p>${pickList(picks, sourceName, it => it.p ? `<p class="meta">${PREF_BY_ID[it.p].n}</p>` : "")}` : ""}
+      ${tab === "ev" ? (yearEvs.length ? Array.from({length: 12}, (_, i) => group(`cev:${i}`, t("month", i + 1), yearEvs.filter(x => x.s.getMonth() === i), { showCountry: false, open: i === st.m })).join("") : `<p class="empty">${t("emptyYear")}</p>`) : ""}
       ${tab === "s" ? tagList(c.s) : ""}
       ${tab === "nat" ? tagList(c.nat || [], "nat") : ""}
-      ${tab === "wh" ? (c.wh && c.wh.length ? `${tagList(c.wh, "wh", ([n, k]) => `<span class="wk ${WK[k]}">${WN[k]}</span>${n}`)}<p class="wh-legend">依聯合國教科文組織登錄類別分為文化、自然、複合遺產。</p>` : `<p class="empty">${WH_NOTE[st.country] || "目前沒有登錄的世界遺產。"}</p>`) : ""}
+      ${tab === "wh" ? (c.wh && c.wh.length ? `${tagList(c.wh, "wh", ([n, k]) => `<span class="wk ${WK[k]}">${WN[k]}</span>${n}`)}<p class="wh-legend">${t("whLegend")}</p>` : `<p class="empty">${WH_NOTE[st.country] || t("noWh")}</p>`) : ""}
     </div>`;
   } else if (!st.day){
     const evs = monthEvents(false);
     const fest = evs.filter(x => x.t !== "S"), seas = evs.filter(x => x.t === "S");
     const byRegion = REGIONS.map(r => ({r, xs: fest.filter(x => x.r === r.k)})).filter(g => g.xs.length);
-    html += `<div class="panel"><h3>${st.m+1} 月節慶活動<small>${fest.length} 項</small></h3>
+    html += `<div class="panel"><h3>${t("monthEvents", st.m+1)}<small>${t("nItems", fest.length)}</small></h3>
       ${byRegion.map(g => group(`mon:${g.r.k}`, dotLabel(g.r.k, g.r.n), g.xs)).join("")
-        || `<p class="empty">沒有符合條件的活動，試著放寬區域或類型篩選。</p>`}</div>`;
-    if (st.types.S) html += `<div class="panel"><h3>${st.m+1} 月適合前往<small>${seas.length} 項</small></h3>
-      ${seas.length ? group("mon:season", "全部地區", seas, { open: false }) : `<p class="empty">沒有符合條件的旅遊季節</p>`}</div>`;
+        || `<p class="empty">${t("emptyMonth")}</p>`}</div>`;
+    if (st.types.S) html += `<div class="panel"><h3>${t("monthSeason", st.m+1)}<small>${t("nItems", seas.length)}</small></h3>
+      ${seas.length ? group("mon:season", t("allRegions"), seas, { open: false }) : `<p class="empty">${t("emptySeason")}</p>`}</div>`;
   }
   // 換了顯示內容（月份、日期、國家、分頁）時，回到清單頂端並收起「顯示全部」
   const view = `${st.y}-${st.m}|${st.day}|${st.country}|${st.tab}`;
@@ -395,9 +397,9 @@ function renderSide(){
 function renderActive(){
   const el = document.getElementById("af");
   const pills = [];
-  if (st.region) pills.push(`<span class="pill">區域：${RN[st.region]}<button data-k="region" aria-label="清除區域">✕</button></span>`);
-  if (st.country) pills.push(`<span class="pill">只看 ${COUNTRIES[st.country].f} ${COUNTRIES[st.country].n}<button data-k="country" aria-label="清除國家">✕</button></span>`);
-  if (st.q) pills.push(`<span class="pill">搜尋：${esc(st.q)}<button data-k="q" aria-label="清除搜尋">✕</button></span>`);
+  if (st.region) pills.push(`<span class="pill">${t("pillRegion", RN[st.region])}<button data-k="region" aria-label="${t("clearRegion")}">✕</button></span>`);
+  if (st.country) pills.push(`<span class="pill">${t("pillCountry", `${COUNTRIES[st.country].f} ${COUNTRIES[st.country].n}`)}<button data-k="country" aria-label="${t("clearCountry")}">✕</button></span>`);
+  if (st.q) pills.push(`<span class="pill">${t("pillSearch", esc(st.q))}<button data-k="q" aria-label="${t("clearSearch")}">✕</button></span>`);
   el.innerHTML = pills.join("");
   el.querySelectorAll("button").forEach(b => b.onclick = () => {
     if (b.dataset.k === "region"){ st.region = null; zoomToRegion(null); }
@@ -416,7 +418,7 @@ function render(){
 {
   const nc = Object.keys(COUNTRIES).length;
   const nwh = Object.values(COUNTRIES).reduce((a, c) => a + (c.wh ? c.wh.length : 0), 0);
-  document.getElementById("sub").textContent = `${nc} 個國家的國定假日、祭典與最佳旅遊季節，附旅行團必去景點、自然景色與 ${nwh} 處世界遺產。點地圖上的國家或下方的區域就能篩選。`;
+  document.getElementById("sub").textContent = t("subtitle", nc, nwh);
 }
 // ---------- 日本都道府縣 ----------
 const AREA_BY = Object.fromEntries(JP_AREAS.map(a => [a.k, a]));
@@ -441,7 +443,7 @@ const [[ox0, oy0], [ox1, oy1]] = jpath.bounds(okiF);
 const oScale = Math.min(220 / (ox1 - ox0), 180 / (oy1 - oy0));
 const okiT = `translate(${22 - ox0 * oScale},${40 - oy0 * oScale}) scale(${oScale})`;
 jg.append("rect").attr("class", "inset").attr("x", 10).attr("y", 26).attr("width", 244).attr("height", 204).attr("rx", 6);
-jg.append("text").attr("x", 16).attr("y", 20).text("沖繩縣");
+jg.append("text").attr("x", 16).attr("y", 20).text(t("okinawa"));
 const jpaths = jg.append("g").selectAll("path").data(jfc.features).join("path")
   .attr("d", jpath)
   .attr("transform", f => f.id === "47" ? okiT : null)
@@ -451,7 +453,7 @@ const jtip = document.getElementById("jptip");
 jpaths.on("mousemove", (ev, f) => {
   const p = PREF_BY_ID[f.id];
   const n = monthCount(x => x.p === f.id);
-  placeTip(jtip, document.querySelector(".jp-map-card"), ev, `<b>${p.n}</b>　${AREA_BY[p.a].n}地方<br><span style="color:var(--muted)">${st.m+1} 月 ${n} 項活動${p.wh.length ? `・世界遺產 ${p.wh.length}` : ""}</span>`);
+  placeTip(jtip, document.querySelector(".jp-map-card"), ev, `<b>${p.n}</b>　${t("area", AREA_BY[p.a].n)}<br><span style="color:var(--muted)">${t("prefTip", st.m+1, n, p.wh.length)}</span>`);
 }).on("mouseleave", () => jtip.hidden = true)
   .on("click", (ev, f) => selectPref(f.id));
 
@@ -460,14 +462,15 @@ function selectPref(id){
   renderJP();
   if (st.pref && innerWidth <= 900) document.getElementById("pref").scrollIntoView({behavior: reduce ? "auto" : "smooth", block:"start"});
 }
-const PTABS = [["s","景點", p => p.s.length], ["h","遺跡・史蹟", p => p.h.length], ["wh","世界遺產", p => p.wh.length], ["ev","祭典活動", (p, e) => e.length]];
+const PT = t("ptabs");
+const PTABS = [["s", PT.s, p => p.s.length], ["h", PT.h, p => p.h.length], ["wh", PT.wh, p => p.wh.length], ["ev", PT.ev, (p, e) => e.length]];
 function renderJP(){
   // 日本 47 都道府縣只在選到日本時顯示
   const jpOn = st.country === "JP";
   document.getElementById("jp").hidden = !jpOn;
   if (!jpOn) return;
   const areasEl = document.getElementById("areas");
-  areasEl.innerHTML = chipRow("a", st.area, "全部地方", JP_AREAS.map(a => { const n = PREFS.filter(p => p.a === a.k).length; return {v: a.k, label: a.n, dot: a.c, n, title: `${a.n}地方：${n} 個都道府縣`}; }));
+  areasEl.innerHTML = chipRow("a", st.area, t("allAreas"), JP_AREAS.map(a => { const n = PREFS.filter(p => p.a === a.k).length; return {v: a.k, label: a.n, dot: a.c, n, title: t("areaTitle", a.n, n)}; }));
   onClicks(areasEl, "button", b => { st.area = b.dataset.a && st.area !== b.dataset.a ? b.dataset.a : null; renderJP(); renderJPList(); });
   const active = new Set(ALL.filter(x => x.p && inMonth(x) && st.types[x.t]).map(x => x.p));
   jpaths.attr("fill-opacity", f => st.area && PREF_BY_ID[f.id].a !== st.area ? .15 : active.has(f.id) ? 1 : .45)
@@ -477,7 +480,7 @@ function renderJP(){
   const el = document.getElementById("pref");
   if (!st.pref){
     const areas = JP_AREAS.filter(a => !st.area || a.k === st.area);
-    el.innerHTML = `<h3>選擇都道府縣<small>${st.m+1} 月有活動的縣市以深色標示</small></h3>
+    el.innerHTML = `<h3>${t("choosePref")}<small>${t("choosePrefHint", st.m+1)}</small></h3>
       <div class="pref-index">${areas.map(a => `<div class="row"><span class="lab"><i class="sw" style="background:var(--r-${a.c});border-radius:50%"></i>${a.n}</span>
         ${PREFS.filter(p => p.a === a.k).map(p => `<button class="pbtn" data-p="${p.id}">${p.n}${active.has(p.id) ? `<small>●</small>` : ""}</button>`).join("")}</div>`).join("")}</div>`;
     el.querySelectorAll(".pbtn").forEach(b => b.onclick = () => selectPref(b.dataset.p));
@@ -485,13 +488,13 @@ function renderJP(){
   }
   const p = PREF_BY_ID[st.pref], ar = AREA_BY[p.a];
   const evs = ALL.filter(x => x.p === p.id && x.s.getFullYear() === st.y && st.types[x.t]).sort((a, b) => a.s - b.s);
-  const list = (arr, cls) => arr.length ? tagList(arr, cls) : `<p class="empty">此縣沒有登錄的世界遺產。</p>`;
-  el.innerHTML = `${entityHead({name: p.n, color: ar.c, sub: `${ar.n}地方`, btnId: "clearP", btnLabel: "全部縣市"})}
+  const list = (arr, cls) => arr.length ? tagList(arr, cls) : `<p class="empty">${t("prefNoWh")}</p>`;
+  el.innerHTML = `${entityHead({name: p.n, color: ar.c, sub: t("area", ar.n), btnId: "clearP", btnLabel: t("allPrefs")})}
     ${tabBar("ptab", st.ptab, PTABS, p, evs)}
     ${st.ptab === "s" ? list(p.s, "") : ""}
     ${st.ptab === "h" ? list(p.h, "hist") : ""}
     ${st.ptab === "wh" ? list(p.wh, "wh") : ""}
-    ${st.ptab === "ev" ? eventList(evs, `${st.y} 年沒有符合篩選的活動`, false, true) : ""}`;
+    ${st.ptab === "ev" ? eventList(evs, t("prefEmptyYear", st.y), false, true) : ""}`;
   onClicks(el, "[data-ptab]", b => { st.ptab = b.dataset.ptab; renderJP(); });
   el.querySelector("#clearP").onclick = () => selectPref(st.pref);
   el.querySelectorAll(".item").forEach(b => b.onclick = () => selectEvent(b.dataset.id));
@@ -515,20 +518,20 @@ function renderJPList(){
   if (!list){ document.getElementById("jpmd").hidden = true; document.getElementById("jpcopymsg").textContent = ""; return; }
   const ps = visiblePrefs();
   const hl = s => st.jpq ? esc(s).split(esc(st.jpq)).join(`<mark>${esc(st.jpq)}</mark>`) : esc(s);
-  const evTxt = x => `${hl(x.n)} <span class="d">${fmtRange(x)}${x.a ? "（約）" : ""}</span>`;
+  const evTxt = x => `${hl(x.n)} <span class="d">${fmtRange(x)}${x.a ? t("approxParen") : ""}</span>`;
   el.innerHTML = JP_AREAS.map(a => {
     const g = ps.filter(p => p.a === a.k);
     if (!g.length) return "";
-    return `<section><h3 class="al"><i class="sw" style="background:var(--r-${a.c});border-radius:50%"></i>${a.n}地方<small>${g.length}</small></h3>
+    return `<section><h3 class="al"><i class="sw" style="background:var(--r-${a.c});border-radius:50%"></i>${t("area", a.n)}<small>${g.length}</small></h3>
       <div class="pcards">${g.map(p => {
         const evs = prefEvents(p);
-        return `<article class="pc"><h4><button data-p="${p.id}" title="在地圖上查看">${p.n}</button><small>世界遺產 ${p.wh.length}・祭典 ${evs.length}</small></h4>
-          <dl><dt>景點</dt><dd>${p.s.map(hl).join("、")}</dd>
-          <dt>遺跡・史蹟</dt><dd>${p.h.map(hl).join("、")}</dd>
-          <dt>世界遺產</dt><dd>${p.wh.length ? p.wh.map(hl).join("、") : "—"}</dd>
-          <dt>祭典活動</dt><dd>${evs.map(evTxt).join("、") || "—"}</dd></dl></article>`;
+        return `<article class="pc"><h4><button data-p="${p.id}" title="${t("onMap")}">${p.n}</button><small>${t("prefCounts", p.wh.length, evs.length)}</small></h4>
+          <dl><dt>${PT.s}</dt><dd>${p.s.map(hl).join(t("list"))}</dd>
+          <dt>${PT.h}</dt><dd>${p.h.map(hl).join(t("list"))}</dd>
+          <dt>${PT.wh}</dt><dd>${p.wh.length ? p.wh.map(hl).join(t("list")) : "—"}</dd>
+          <dt>${PT.ev}</dt><dd>${evs.map(evTxt).join(t("list")) || "—"}</dd></dl></article>`;
       }).join("")}</div></section>`;
-  }).join("") || `<p class="empty">找不到符合「${esc(st.jpq)}」的縣市。</p>`;
+  }).join("") || `<p class="empty">${t("noPrefMatch", esc(st.jpq))}</p>`;
   el.querySelectorAll("[data-p]").forEach(b => b.onclick = () => {
     st.pref = b.dataset.p; st.jpView = "map";
     renderJP(); renderJPList();
@@ -537,16 +540,17 @@ function renderJPList(){
 }
 document.getElementById("jpcopy").onclick = () => {
   const ps = visiblePrefs();
-  const md = `# 日本都道府縣景點・祭典筆記（${st.y} 年）\n\n` + JP_AREAS.map(a => {
+  const md = `# ${t("mdTitle", st.y)}\n\n` + JP_AREAS.map(a => {
     const g = ps.filter(p => p.a === a.k);
     if (!g.length) return "";
-    return `## ${a.n}地方\n\n` + g.map(p => `### ${p.n}\n\n- **景點**：${p.s.join("、")}\n- **遺跡・史蹟**：${p.h.join("、")}\n- **世界遺產**：${p.wh.join("、") || "無"}\n- **祭典活動**：\n` +
-      prefEvents(p).map(x => `  - ${fmtRange(x)}${x.a ? "（約）" : ""} ${x.n}：${x.x}`).join("\n")).join("\n\n") + "\n";
+    const L = t("list"), C = t("colon");
+    return `## ${t("area", a.n)}\n\n` + g.map(p => `### ${p.n}\n\n- **${PT.s}**${C}${p.s.join(L)}\n- **${PT.h}**${C}${p.h.join(L)}\n- **${PT.wh}**${C}${p.wh.join(L) || t("none")}\n- **${PT.ev}**${C}\n` +
+      prefEvents(p).map(x => `  - ${fmtRange(x)}${x.a ? t("approxParen") : ""} ${x.n}${C}${x.x}`).join("\n")).join("\n\n") + "\n";
   }).filter(Boolean).join("\n");
   const msg = document.getElementById("jpcopymsg"), ta = document.getElementById("jpmd");
-  const fallback = () => { ta.value = md; ta.hidden = false; ta.select(); msg.textContent = "無法直接複製，已選取下方文字，請按 Ctrl+C 或 ⌘C。"; };
+  const fallback = () => { ta.value = md; ta.hidden = false; ta.select(); msg.textContent = t("copyFail"); };
   try {
-    navigator.clipboard.writeText(md).then(() => { ta.hidden = true; msg.textContent = `已複製 ${ps.length} 個縣市的 Markdown。`; }, fallback);
+    navigator.clipboard.writeText(md).then(() => { ta.hidden = true; msg.textContent = t("copied", ps.length); }, fallback);
   } catch (_) { fallback(); }
 };
 

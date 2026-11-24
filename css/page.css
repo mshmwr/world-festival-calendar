@@ -133,3 +133,4 @@ footer .legal button.report{font:inherit;font-weight:600;color:var(--accent);bac
 .report-dlg .rp-btns button{padding:8px 16px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--fg);font:inherit;cursor:pointer}
 .report-dlg .rp-btns .rp-send{background:var(--accent);border-color:var(--accent);color:var(--surface);font-weight:700}
 .report-dlg .rp-btns .rp-send:disabled{opacity:.6;cursor:wait}
+.lang{float:right;margin:0;font-size:13px}.lang a{padding:3px 10px;border:1px solid currentColor;border-radius:999px;text-decoration:none}

@@ -38,7 +38,10 @@ scripts/build-pages.mjs  產生給搜尋引擎讀的國家頁、月份頁、site
 scripts/make-og.mjs      產生社群分享圖 og.png
 css/page.css             國家頁、月份頁的樣式
 vendor/                  d3、topojson 與授權檔
-c/、m/、sitemap.xml      build-pages.mjs 產生的檔案，不要手動修改
+c/、m/、en/、sitemap.xml build-pages.mjs 產生的檔案，不要手動修改
+js/i18n.js               介面文字（中文／英文），依 <html lang> 切換
+data/i18n/en.json        資料的英文翻譯（中文字串 → 英文）
+scripts/i18n.mjs         找出還沒翻譯的字串、匯入翻譯
 tests/data.mjs           資料檢查
 tests/schema.mjs         資料檢查使用的 JSON Schema 驗證器
 tests/smoke.mjs          瀏覽器冒煙測試
@@ -70,6 +73,7 @@ npm run dev        # 開啟 http://localhost:8000/
 - **每月推薦**：在 `data/picks.json` 的 `picks.<月份>.<國家代碼>` 加景點或行程，欄位有 `n` 名稱、`pop` 熱門程度 1～3、`x` 說明、`src` 來源網址，日本可加 `p` 縣市代碼。熱門程度的標準寫在 `data/schema/picks.schema.json`。也可以把多國資料寫成一個 JSON，再用 `node scripts/add-picks.mjs <月份> <檔案>` 一次併入。要求某個月份涵蓋全部國家時，把月份加進 `tests/data.mjs` 的 `REQUIRED_MONTHS`
 - **新增年份**：在 `js/app.js` 的 `YEARS` 加上年份，並替使用 `y` 的節慶補上該年日期
 - **贊助、廣告、聯盟行銷**：都在 `js/site-config.js` 設定，改完執行 `npm run build`。`support` 是贊助按鈕（目前 Ko-fi）；`reportEndpoint` 填回報後台（Cloudflare Worker，程式與部署步驟在 `worker/`）網址後，所有頁尾會出現「回報錯誤或建議」，表單（`js/report.js`）送出的內容由後台直接寫進 Notion 資料庫，後台不存資料；`ga` 填 Google Analytics 4 評估 ID（`G-…`）後全站載入 GA（初始化在 `js/ga.js`，不用行內腳本）並自動放寬 CSP；`adsense` 填 AdSense 發布商 ID（`ca-pub-…`）後，所有頁面會載入 AdSense 並自動放寬 CSP，另外要把 `ads.txt` 放到網域根目錄；`affiliate` 填 KKday、Klook 的聯盟 ID 後，推薦來源連到這些網站的連結會加上追蹤參數、標成 `rel="sponsored"`，頁尾顯示聯盟行銷說明。隱私權政策在 `privacy.html`（由 build 產生）
+- **英文翻譯**：新增或修改資料的中文字串後，執行 `node scripts/i18n.mjs stats` 查看缺幾筆；`node scripts/i18n.mjs todo` 把缺的字串寫到 `i18n-todo/`，翻好後（每行「中文<Tab>英文」）用 `node scripts/i18n.mjs apply <todo 檔> <譯文檔>` 匯入 `data/i18n/en.json`。沒翻到的字串在英文版會直接顯示中文。介面文字在 `js/i18n.js` 的 `M`，每個鍵是 `[中文, 英文]`
 - **待確認日期**：`npm run pending` 產生 `docs/pending-dates.md`（推估日期、缺明年日期的活動），查證與更新流程見 `docs/date-check.md`
 
 ## 搜尋引擎最佳化（SEO）
@@ -80,6 +84,7 @@ npm run dev        # 開啟 http://localhost:8000/
 - `m/<月>.html`：12 個月各一頁，含當月最熱門、各國推薦與節日
 - 閱讀進度：右側固定一條時間軸（大項目＝區域或月份是方形節點、國家是圓點），線畫到目前閱讀位置、經過的節點填色、目前區域標色。點大項目展開或收起底下的國家，點國家跳到該段（捲動不會自動展開）。螢幕寬度 1300px 以下預設向右折疊成細欄，仍列出所有大項目的名稱，點名稱直接跳轉，按 « 展開完整清單。月份頁另有區域跳轉連結；程式在 `js/page.js`，不支援 JavaScript 時內容照常顯示
 - 月份頁最後有「常見問題」（最熱門去哪、日韓泰各玩什麼、哪些國家放假），全部從資料自動產生，並附 FAQPage 結構化資料，方便搜尋引擎與 AI 摘要引用
+- 英文版：`en/` 是英文主頁（由 `index.html` 自動轉換，資料仍從根目錄讀取並套用 `data/i18n/en.json`），`en/c/`、`en/m/` 是英文國家頁與月份頁。中英文頁面互相以 hreflang 標示，頁首有切換連結。每月推薦是依台灣旅行社整理，只有中文，英文頁會附連結
 - 網站圖示：`favicon.svg` 與 `favicon-192.png`（Google 搜尋結果用 PNG）
 - `sitemap.xml`：全部頁面的網址
 - `index.html` 底部 `<!-- seo:links -->` 標記之間的連結清單

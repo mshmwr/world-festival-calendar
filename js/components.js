@@ -1,4 +1,5 @@
 import { affLink } from "./site-config.js";
+import { t } from "./i18n.js";
 // 共用元件：只依參數產生 HTML 或操作傳入的元素，不讀取程式狀態
 // 篩選按鈕列：第一顆是「全部」，items 為 {v, label, dot, n, title}
 function chipRow(attr, current, allLabel, items){
@@ -20,12 +21,12 @@ function listOf(xs, renderItem, empty){
 }
 // 推薦清單：依熱門程度排序，附來源連結。sourceName 把網址換成來源名稱，extra 產生名稱下方的補充說明
 function pickList(items, sourceName, extra = () => ""){
-  const stars = n => `<span class="stars" role="img" aria-label="熱門程度 ${n} 顆星（滿分 3）">${"★".repeat(n)}<span class="off">${"★".repeat(3 - n)}</span></span>`;
+  const stars = n => `<span class="stars" role="img" aria-label="${t("stars", n)}">${"★".repeat(n)}<span class="off">${"★".repeat(3 - n)}</span></span>`;
   const sorted = [...items].sort((a, b) => b.pop - a.pop);
   return `<ul class="list picks">${sorted.map(it => `<li class="pick">
     <div class="pk-h"><span class="nm">${it.n}</span>${stars(it.pop)}</div>
     ${extra(it)}<p class="ds">${it.x}</p>
-    <p class="src">來源：${it.src.map(u => { const l = affLink(u); return `<a href="${l.href}" target="_blank" rel="noopener${l.sponsored ? " sponsored" : ""}">${sourceName(u)}</a>`; }).join("、")}</p></li>`).join("")}</ul>`;
+    <p class="src">${t("source")}${it.src.map(u => { const l = affLink(u); return `<a href="${l.href}" target="_blank" rel="noopener${l.sponsored ? " sponsored" : ""}">${sourceName(u)}</a>`; }).join(t("list"))}</p></li>`).join("")}</ul>`;
 }
 // 國家／縣市卡片標題
 function entityHead({flag, name, color, sub, btnId, btnLabel}){

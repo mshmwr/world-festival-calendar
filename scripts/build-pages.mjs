@@ -70,7 +70,9 @@ function sourceName(url, names) {
 }
 
 // ---------- 共用版型 ----------
-function page({ path, title, desc, h1, lead, crumbs, body, ld }) {
+// 中英版本互相對應的 hreflang 標記；zh、en 為相對 SITE 的路徑
+const hreflang = (zh, en) => `<link rel="alternate" hreflang="zh-Hant" href="${SITE}${zh}">\n<link rel="alternate" hreflang="en" href="${SITE}${en}">\n<link rel="alternate" hreflang="x-default" href="${SITE}${zh}">`;
+function page({ path, title, desc, h1, lead, crumbs, body, ld, en }) {
   const url = SITE + path;
   const depth = path.split("/").length - 1;
   const up = "../".repeat(depth);
@@ -88,7 +90,7 @@ function page({ path, title, desc, h1, lead, crumbs, body, ld }) {
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <title>${esc(title)}</title>
 <meta name="description" content="${esc(desc)}">
-<link rel="canonical" href="${url}">
+<link rel="canonical" href="${url}">${en ? "\n" + hreflang(path, en) : ""}
 <meta name="theme-color" content="#0e5a76">
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="${SITE_NAME}">
@@ -109,7 +111,7 @@ ${lds}
 </head>
 <body>
 <div class="wrap" id="top">
-<nav class="crumb" aria-label="導覽路徑">${crumbs.map(([n, p], i) => i === crumbs.length - 1 ? `<span aria-current="page">${esc(n)}</span>` : `<a href="${up}${p}">${esc(n)}</a>`).join(" › ")}</nav>
+${en ? `<p class="lang"><a href="${up}${en}" hreflang="en" lang="en">English</a></p>` : ""}<nav class="crumb" aria-label="導覽路徑">${crumbs.map(([n, p], i) => i === crumbs.length - 1 ? `<span aria-current="page">${esc(n)}</span>` : `<a href="${up}${p}">${esc(n)}</a>`).join(" › ")}</nav>
 <header>
 <h1>${esc(h1)}</h1>
 <p class="lead">${esc(lead)}</p>
@@ -183,7 +185,7 @@ ${futureHTML(D, code)}
 ${list("熱門景點", c.s)}${list("自然景色", c.nat)}${wh}${prefs}
 ${regionNav(D, "../", code)}`;
   return page({
-    path: `c/${code.toLowerCase()}.html`,
+    path: `c/${code.toLowerCase()}.html`, en: `en/c/${code.toLowerCase()}.html`,
     title: `${c.n}旅遊行事曆｜每月推薦景點、節日與祭典｜${SITE_NAME}`,
     desc, h1: `${c.f} ${c.n}旅遊行事曆`,
     lead: `${rn}・${c.n}一年 12 個月的推薦景點與行程、國定假日、祭典活動與最佳旅遊季節，以及熱門景點、自然景色與世界遺產。`,
@@ -251,7 +253,7 @@ ${topHTML}
 ${faqHTML}
 ${regionNav(D, "../")}`;
   return page({
-    path: `m/${m}.html`,
+    path: `m/${m}.html`, en: `en/m/${m}.html`,
     title: `${m} 月出國去哪玩？各國 ${m} 月推薦景點與節慶｜${SITE_NAME}`,
     desc, h1: `${m} 月出國去哪玩？`,
     lead: `${Object.keys(byCountry).length} 國 ${m} 月的推薦景點與行程，依熱門程度 1～3 顆星排列，附資料來源；下方另有 ${m} 月各國節日與祭典。`,
@@ -282,6 +284,240 @@ function privacyPage() {
   });
 }
 
+// ---------- 英文版（en/）：資料用 data/i18n/en.json 翻譯；每月推薦是依台灣旅行社整理，只在中文頁提供 ----------
+const SITE_NAME_EN = "World Festival Calendar";
+const EN_MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+const EN_MON = EN_MONTHS.map(m => m.slice(0, 3));
+const TYPE_EN = { H: "Public holiday", F: "Festival", G: "Sports", S: "Season" };
+const WN_EN = { "文": "cultural", "自": "natural", "複": "mixed" };
+const fitEn = (head, items, max = 155) => { const out = []; for (const it of items) { if ((head + [...out, it].join(", ") + ".").length > max) break; out.push(it); } return head + (out.length ? out.join(", ") + "." : ""); };
+const fmtSpanEn = x => {
+  const f = ([m, d]) => `${EN_MON[m - 1]} ${d}`;
+  const t = x.s[0] === x.e[0] && x.s[1] === x.e[1] ? f(x.s) : x.s[0] === x.e[0] ? `${f(x.s)}–${x.e[1]}` : `${f(x.s)}–${f(x.e)}`;
+  return x.y === YEAR ? t : `${t} (${x.y})`;
+};
+
+// 把資料換成英文；回傳新的 D（不改動原本的中文資料）
+function englishData(D) {
+  const EN = JSON.parse(readFileSync(join(root, "data", "i18n", "en.json"), "utf8"));
+  const tr = s => (s && EN[s]) || s;
+  const E = structuredClone(D);
+  E.regions.forEach(r => { r.n = tr(r.n); });
+  for (const c of Object.values(E.countries)) { c.n = tr(c.n); c.s = c.s.map(tr); c.nat = (c.nat || []).map(tr); c.wh = (c.wh || []).map(([n, k]) => [tr(n), k]); }
+  E.evs.forEach(e => { e.n = tr(e.n); e.x = tr(e.x); });
+  E.japan.areas.forEach(a => { a.n = tr(a.n); });
+  E.japan.prefectures.forEach(p => { p.n = tr(p.n); });
+  for (const k of Object.keys(E.prefName)) E.prefName[k] = tr(E.prefName[k]);
+  E.future.forEach(f => { f.n = tr(f.n); f.x = tr(f.x); });
+  E.whNote = Object.fromEntries(Object.entries(read("countries.json").whNote).map(([k, v]) => [k, tr(v)]));
+  return E;
+}
+
+const supportHTMLEn = (up = "") => (SUPPORT_URL ? `<div class="support"><p>This calendar is free to use. If it helped you plan a trip, you can buy me a coffee to keep the data up to date.</p><a class="kofi" href="${SUPPORT_URL}" target="_blank" rel="noopener">☕ Buy me a coffee on Ko-fi</a></div>` : "")
+  + `<p class="legal">${SITE_CONFIG.reportEndpoint ? `<button type="button" class="report" data-report="${SITE_CONFIG.reportEndpoint}">📮 Report a problem</button>　` : ""}<a href="${up}privacy.html" hreflang="zh-Hant">Privacy policy (Chinese)</a></p>`
+  + (SITE_CONFIG.reportEndpoint ? `<script src="${up}js/report.js" defer></script>` : "");
+
+function pageEn({ path, zh, title, desc, h1, lead, crumbs, body, ld }) {
+  const url = SITE + path;
+  const up = "../".repeat(path.split("/").length - 1);
+  const breadcrumb = { "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: crumbs.map(([name, p], i) => ({ "@type": "ListItem", position: i + 1, name, item: SITE + p })) };
+  const lds = [breadcrumb, ...(ld ? [ld] : [])].map(o => `<script type="application/ld+json">${JSON.stringify(o)}</script>`).join("\n");
+  return `<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="${cspFor(PAGE_CSP)}">${[gaScript(up), adsenseScript()].filter(Boolean).map(x => "\n" + x).join("")}
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>${esc(title)}</title>
+<meta name="description" content="${esc(desc)}">
+<link rel="canonical" href="${url}">
+${hreflang(zh, path)}
+<meta name="theme-color" content="#0e5a76">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="${SITE_NAME_EN}">
+<meta property="og:locale" content="en_US">
+<meta property="og:title" content="${esc(title)}">
+<meta property="og:description" content="${esc(desc)}">
+<meta property="og:url" content="${url}">
+<meta property="og:image" content="${SITE}og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="${up}favicon.svg" type="image/svg+xml">
+<link rel="icon" href="${up}favicon-192.png" sizes="192x192" type="image/png">
+<link rel="apple-touch-icon" href="${up}favicon-192.png">
+<link rel="stylesheet" href="${up}css/page.css">
+<script src="${up}js/page.js" defer></script>
+${lds}
+</head>
+<body>
+<div class="wrap" id="top">
+<p class="lang"><a href="${up}${zh}" hreflang="zh-Hant" lang="zh-Hant">中文</a></p><nav class="crumb" aria-label="Breadcrumb">${crumbs.map(([n, p], i) => i === crumbs.length - 1 ? `<span aria-current="page">${esc(n)}</span>` : `<a href="${up}${p}">${esc(n)}</a>`).join(" › ")}</nav>
+<header>
+<h1>${esc(h1)}</h1>
+<p class="lead">${esc(lead)}</p>
+</header>
+<main>
+${body}
+</main>
+<footer>
+${supportHTMLEn(up)}
+<p>Dates marked "approx." are estimates based on past years or on the lunar or Islamic calendar; check with the organisers for the year's official dates.</p>
+<p><a href="${up}en/">Back to ${SITE_NAME_EN}</a></p>
+</footer>
+</div>
+</body>
+</html>
+`;
+}
+
+const evLiEn = (x, extra = "") => `<li><span class="dt">${fmtSpanEn(x.span)}${x.a ? " (approx.)" : ""}</span> <span class="t ${x.t}">${TYPE_EN[x.t]}</span> <b>${esc(x.n)}</b>${extra}: ${esc(x.x)}</li>`;
+const monthNavEn = (up, current) => `<nav class="months" aria-label="Months">${MONTHS.map(m => m === current ? `<span>${EN_MON[m - 1]}</span>` : `<a href="${up}en/m/${m}.html">${EN_MON[m - 1]}</a>`).join(" ")}</nav>`;
+function regionNavEn(E, up, current) {
+  return `<nav class="all" aria-labelledby="all-h"><h2 id="all-h">Countries</h2>${E.regions.map(r => {
+    const cs = Object.entries(E.countries).filter(([, c]) => c.r === r.k);
+    return `<p><b>${esc(r.n)}</b> ${cs.map(([k, c]) => k === current ? `<span>${esc(c.n)}</span>` : `<a href="${up}en/c/${k.toLowerCase()}.html">${esc(c.n)}</a>`).join(" ")}</p>`;
+  }).join("")}</nav>`;
+}
+const withSpan = (E, pred) => E.evs.filter(pred).map(e => ({ ...e, span: span(e) })).filter(e => e.span).sort((a, b) => sortKey(a.span) - sortKey(b.span));
+
+function countryPageEn(E, code) {
+  const c = E.countries[code], lc = code.toLowerCase();
+  const rn = E.regions.find(r => r.k === c.r).n;
+  const evs = withSpan(E, e => e.c === code);
+  const pref = x => x.p ? ` (${esc(E.prefName[x.p])})` : "";
+  const byMonth = MONTHS.map(m => {
+    const xs = evs.filter(x => x.span.s[0] === m);
+    return xs.length ? `<li class="tl-c"><h3 id="m${m}">${EN_MONTHS[m - 1]}</h3><ul class="evs">${xs.map(x => evLiEn(x, pref(x))).join("")}</ul></li>` : "";
+  }).join("");
+  const big = evs.filter(x => x.t === "F" || x.t === "G").map(x => x.n);
+  const desc = fitEn(`${c.n} festivals, public holidays and best time to visit, month by month, with top sights and World Heritage. Highlights: `, big);
+  const list = (h, xs) => xs?.length ? `<section><h2>${h}</h2><ul class="tags">${xs.map(x => `<li>${esc(x)}</li>`).join("")}</ul></section>` : "";
+  const wh = c.wh.length ? `<section><h2>World Heritage sites</h2><ul class="tags">${c.wh.map(([n, k]) => `<li>${esc(n)}<small> (${WN_EN[k]})</small></li>`).join("")}</ul></section>` : (E.whNote[code] ? `<section><h2>World Heritage sites</h2><p>${esc(E.whNote[code])}</p></section>` : "");
+  const fut = E.future.filter(f => f.c === code).sort((a, b) => a.year - b.year);
+  const when = f => f.d ? `${f.year}: ${f.d.split("~").map(x => { const [m, d] = x.split("-").map(Number); return `${EN_MON[m - 1]} ${d}`; }).join("–")}${f.a ? " (provisional)" : ""}` : `${f.year} (dates TBA)`;
+  const futHTML = fut.length ? `<section><h2>Coming up in future years</h2><ul class="evs">${fut.map(f => `<li><span class="dt">${when(f)}</span> <span class="t ${f.t}">${TYPE_EN[f.t]}</span> <b>${esc(f.n)}</b>: ${esc(f.x)}</li>`).join("")}</ul></section>` : "";
+  const prefs = code === "JP" ? `<section><h2>Japan's 47 prefectures</h2>${E.japan.areas.map(a => `<p><b>${esc(a.n)}</b> ${E.japan.prefectures.filter(p => p.a === a.k).map(p => esc(p.n)).join(", ")}</p>`).join("")}<p>For each prefecture's sights, historic sites and festivals, see the <a href="../?c=JP">Japan section of the interactive calendar</a>.</p></section>` : "";
+  const body = `<p class="cta"><a href="../?c=${code}">Open ${esc(c.n)} in the interactive calendar →</a></p>
+${monthNavEn("../../")}
+<section><h2>${esc(c.n)} events by month (${YEAR})</h2>${byMonth ? `<ol class="tl">${byMonth}</ol>` : "<p>No events listed yet.</p>"}</section>
+${futHTML}
+${list("Top sights", c.s)}${list("Nature", c.nat)}${wh}${prefs}
+<p>Month-by-month trip picks rated by Taiwanese tour operators are available on the <a href="../../c/${lc}.html" hreflang="zh-Hant">Chinese version of this page</a>.</p>
+${regionNavEn(E, "../../", code)}`;
+  return pageEn({
+    path: `en/c/${lc}.html`, zh: `c/${lc}.html`,
+    title: `${c.n} Travel Calendar: Festivals, Holidays & When to Go | ${SITE_NAME_EN}`,
+    desc, h1: `${c.f} ${c.n} travel calendar`,
+    lead: `${rn} · ${c.n}: public holidays, festivals, sports events and travel seasons for every month of ${YEAR}, plus top sights, nature and World Heritage sites.`,
+    crumbs: [[SITE_NAME_EN, "en/"], [c.n, `en/c/${lc}.html`]],
+    body,
+    ld: { "@context": "https://schema.org", "@type": "TouristDestination", name: c.n, description: desc, url: SITE + `en/c/${lc}.html`, includesAttraction: c.s.slice(0, 20).map(n => ({ "@type": "TouristAttraction", name: n })) },
+  });
+}
+
+function monthFAQEn(E, m, evs) {
+  const M = EN_MONTHS[m - 1], cn = x => E.countries[x.c].n;
+  const out = [];
+  const fest = evs.filter(x => x.t === "F" || x.t === "G");
+  if (fest.length) out.push([`What are the big festivals and events in ${M}?`,
+    `Highlights in ${M} ${YEAR} include ${fest.slice(0, 12).map(x => `${x.n} (${cn(x)}, ${fmtSpanEn(x.span)})`).join("; ")}${fest.length > 12 ? `, among ${fest.length} events listed on this page` : ""}.`]);
+  const hol = evs.filter(x => x.t === "H");
+  if (hol.length) out.push([`Which countries have public holidays in ${M} ${YEAR}?`,
+    `There are ${hol.length} public holidays or long weekends, including ${hol.slice(0, 12).map(x => `${x.n} in ${cn(x)} (${fmtSpanEn(x.span)})`).join("; ")}${hol.length > 12 ? " and more" : ""}. Sights and transport get busier and some shops close, so check before you book.`]);
+  const sea = evs.filter(x => x.t === "S");
+  if (sea.length) out.push([`Where is in season in ${M}?`, `Good-season picks for ${M} include ${sea.slice(0, 10).map(x => `${x.n} (${cn(x)})`).join(", ")}.`]);
+  out.push(["How accurate are the dates?", `Fixed-date holidays come from official calendars. Dates marked "approx." follow past years or the lunar or Islamic calendar and are checked monthly as organisers announce them.`]);
+  return out;
+}
+
+function monthPageEn(E, m) {
+  const M = EN_MONTHS[m - 1];
+  const evs = withSpan(E, e => !e.p && span(e)?.months.has(m));
+  const pref = x => x.p ? ` (${esc(E.prefName[x.p])})` : "";
+  const regionHTML = E.regions.map(r => {
+    const cs = Object.keys(E.countries).filter(code => E.countries[code].r === r.k && evs.some(x => x.c === code));
+    if (!cs.length) return "";
+    return `<li class="tl-r"><h3 id="r-${r.k}">${esc(r.n)}</h3></li>${cs.map(code => `<li class="tl-c"><h4 id="c-${code.toLowerCase()}"><a href="../c/${code.toLowerCase()}.html#m${m}">${E.countries[code].f} ${esc(E.countries[code].n)}</a></h4><ul class="evs">${evs.filter(x => x.c === code).map(x => evLiEn(x, pref(x))).join("")}</ul></li>`).join("")}`;
+  }).join("");
+  const nC = new Set(evs.map(x => x.c)).size;
+  const desc = fitEn(`${M} festivals, public holidays and travel seasons in ${nC} countries. Highlights: `, evs.filter(x => x.t === "F" || x.t === "G").map(x => x.n));
+  const faq = monthFAQEn(E, m, evs);
+  const body = `<p class="cta"><a href="../?m=${m}">Open ${M} in the interactive calendar →</a></p>
+${monthNavEn("../../", m)}
+<section><h2>Events in ${M} ${YEAR} by country</h2><nav class="toc" aria-label="Jump to region">${E.regions.filter(r => Object.keys(E.countries).some(code => E.countries[code].r === r.k && evs.some(x => x.c === code))).map(r => `<a href="#r-${r.k}">${esc(r.n)}</a>`).join("")}</nav><ol class="tl">${regionHTML}</ol></section>
+<section class="faq"><h2>${M} travel FAQ</h2>${faq.map(([q, a]) => `<h3>${esc(q)}</h3><p>${esc(a)}</p>`).join("")}</section>
+<p>Trip picks for ${M}, rated by Taiwanese tour operators, are on the <a href="../../m/${m}.html" hreflang="zh-Hant">Chinese version of this page</a>. Japan's prefecture festivals are on the <a href="../c/jp.html">Japan page</a>.</p>
+${regionNavEn(E, "../../")}`;
+  return pageEn({
+    path: `en/m/${m}.html`, zh: `m/${m}.html`,
+    title: `Where to Travel in ${M}: Festivals & Events Worldwide | ${SITE_NAME_EN}`,
+    desc, h1: `Where to go in ${M}`,
+    lead: `Public holidays, festivals, sports events and travel seasons in ${M} ${YEAR} across ${nC} countries, grouped by region.`,
+    crumbs: [[SITE_NAME_EN, "en/"], [M, `en/m/${m}.html`]],
+    body,
+    ld: { "@context": "https://schema.org", "@type": "FAQPage", mainEntity: faq.map(([q, a]) => ({ "@type": "Question", name: q, acceptedAnswer: { "@type": "Answer", text: a } })) },
+  });
+}
+
+function indexLinksEn(E) {
+  return `<nav class="seo-links" aria-labelledby="seo-h">
+    <h2 id="seo-h">Months and countries</h2>
+    <p>${MONTHS.map(m => `<a href="m/${m}.html">${EN_MONTHS[m - 1]}</a>`).join(" ")}</p>
+${E.regions.map(r => `    <p><b>${esc(r.n)}</b> ${Object.entries(E.countries).filter(([, c]) => c.r === r.k).map(([k, c]) => `<a href="c/${k.toLowerCase()}.html">${esc(c.n)}</a>`).join(" ")}</p>`).join("\n")}
+  </nav>`;
+}
+
+// 由中文主頁產生 en/index.html：換成英文文字、資源路徑加上 ../，資料路徑由 data-base 指回根目錄
+function englishIndex(zhIndex, E, nC) {
+  const R = [
+    ['<html lang="zh-Hant-TW">', '<html lang="en" data-base="../">'],
+    [/<title>[^<]*<\/title>/, `<title>World Festival Calendar: Holidays, Festivals & Events in ${nC} Countries</title>`],
+    [/<meta name="description" content="[^"]*">/, `<meta name="description" content="A month-by-month calendar of holidays, festivals, sports events and the best time to visit in ${nC} countries, with a world map and World Heritage sites.">`],
+    [/<link rel="canonical" href="[^"]*">/, `<link rel="canonical" href="${SITE}en/">\n${hreflang("", "en/")}`],
+    ['<meta property="og:site_name" content="環球節慶行事曆">', `<meta property="og:site_name" content="${SITE_NAME_EN}">`],
+    ['<meta property="og:locale" content="zh_TW">', '<meta property="og:locale" content="en_US">'],
+    [/<meta property="og:title" content="[^"]*">/, `<meta property="og:title" content="World Festival Calendar: Holidays, Festivals & Events in ${nC} Countries">`],
+    [/<meta property="og:description" content="[^"]*">/, `<meta property="og:description" content="Public holidays, festivals, sports events and travel seasons in ${nC} countries, month by month.">`],
+    [`<meta property="og:url" content="${SITE}">`, `<meta property="og:url" content="${SITE}en/">`],
+    [/<script type="application\/ld\+json">[^<]*<\/script>/, `<script type="application/ld+json">${JSON.stringify({ "@context": "https://schema.org", "@graph": [{ "@type": "WebSite", name: SITE_NAME_EN, url: SITE + "en/", inLanguage: "en" }, { "@type": "WebApplication", name: SITE_NAME_EN, url: SITE + "en/", applicationCategory: "TravelApplication", operatingSystem: "Any", inLanguage: "en", offers: { "@type": "Offer", price: "0", priceCurrency: "USD" } }] })}</script>`],
+    ['href="favicon.svg"', 'href="../favicon.svg"'], ['href="favicon-192.png" sizes', 'href="../favicon-192.png" sizes'], ['<link rel="apple-touch-icon" href="favicon-192.png">', '<link rel="apple-touch-icon" href="../favicon-192.png">'],
+    ['href="css/style.css"', 'href="../css/style.css"'], ['src="vendor/d3.min.js"', 'src="../vendor/d3.min.js"'], ['src="vendor/topojson.min.js"', 'src="../vendor/topojson.min.js"'], ['src="js/app.js"', 'src="../js/app.js"'],
+    ['href="privacy.html"', 'href="../privacy.html" hreflang="zh-Hant"'],
+    ['<h1>環球節慶行事曆</h1>', `<h1>World Festival Calendar</h1>`],
+    ['<a class="lang" href="en/" hreflang="en" lang="en">English</a>', '<a class="lang" href="../" hreflang="zh-Hant" lang="zh-Hant">中文</a>'],
+    [/<p class="sub" id="sub">[^<]*<\/p>/, `<p class="sub" id="sub">Public holidays, festivals, sports events and the best time to visit around the world. Click a country on the map or a region below to filter.</p>`],
+    ['aria-label="圖例"', 'aria-label="Legend"'],
+    [/<i class="sw H"><\/i>國定假日/g, '<i class="sw H"></i>Public holiday'], [/<i class="sw F"><\/i>祭典活動/g, '<i class="sw F"></i>Festival'], [/<i class="sw G"><\/i>體育賽事/g, '<i class="sw G"></i>Sports'], [/<i class="sw S"><\/i>旅遊季節/g, '<i class="sw S"></i>Season'],
+    ['aria-label="世界地圖，依區域上色"', 'aria-label="World map coloured by region"'], ['aria-label="放大"', 'aria-label="Zoom in"'], ['aria-label="縮小"', 'aria-label="Zoom out"'], ['aria-label="顯示全世界"', 'aria-label="Show the whole world"'],
+    ['深色＝本月有活動　拖曳可移動地圖，Ctrl＋滾輪縮放', 'Darker = events this month · Drag to pan, Ctrl + scroll to zoom'],
+    ['aria-label="區域篩選"', 'aria-label="Region filter"'], ['aria-label="國家篩選"', 'aria-label="Country filter"'],
+    ['aria-label="上個月"', 'aria-label="Previous month"'], ['aria-label="下個月"', 'aria-label="Next month"'], ['aria-label="年份"', 'aria-label="Year"'],
+    ['placeholder="搜尋節慶或國家"', 'placeholder="Search events or countries"'], ['aria-label="月曆"', 'aria-label="Calendar"'],
+    ['<div>日</div><div>一</div><div>二</div><div>三</div><div>四</div><div>五</div><div>六</div>', '<div>Sun</div><div>Mon</div><div>Tue</div><div>Wed</div><div>Thu</div><div>Fri</div><div>Sat</div>'],
+    ['<h2 id="jp-h">日本 47 都道府縣</h2>', '<h2 id="jp-h">Japan\'s 47 prefectures</h2>'],
+    ['每個縣市的知名景點、遺跡史蹟、世界遺產與祭典活動。點地圖或縣名查看，祭典日期會同步排進上方月曆。', 'Top sights, historic sites, World Heritage and festivals in every prefecture. Click the map or a name; festival dates also appear in the calendar above.'],
+    ['aria-label="地方篩選"', 'aria-label="Region filter"'], ['aria-label="顯示方式"', 'aria-label="View"'],
+    ['>地圖</button>', '>Map</button>'], ['>全部縣市一覽</button>', '>All prefectures</button>'],
+    ['placeholder="在一覽中搜尋景點、遺跡、祭典"', 'placeholder="Search sights, historic sites, festivals"'], ['>複製為 Markdown</button>', '>Copy as Markdown</button>'],
+    ['aria-label="Markdown 內容"', 'aria-label="Markdown"'], ['aria-label="日本都道府縣地圖，依八大地方上色"', 'aria-label="Map of Japan\'s prefectures coloured by region"'],
+    [/(<!-- seo:links -->)[\s\S]*?(<!-- \/seo:links -->)/, `$1\n  ${indexLinksEn(E)}\n  $2`],
+    [/(<!-- support -->)[\s\S]*?(<!-- \/support -->)/, `$1${supportHTMLEn("../")}$2`],
+    [/<p>標「約」的日期[^<]*<\/p>/, '<p>Dates marked "approx." are estimates based on past years or on the lunar or Islamic calendar; Islamic holidays can shift by a day depending on the moon sighting, and local festivals follow each organiser\'s announcement.</p>'],
+    [/<p>區域劃分參考[^<]*<\/p>/, '<p>Regions follow the UN geoscheme: Central Europe covers Germany, Austria, Switzerland, Czechia, Slovakia, Hungary and Poland; Eastern Europe covers Russia, Ukraine, Belarus, Romania, Bulgaria and the Baltic states; the Balkans are in Southern Europe.</p>'],
+    [/<p>世界遺產依[^<]*<\/p>/, '<p>World Heritage sites follow the UNESCO World Heritage List (as of the 47th session, 2025); large countries show selected sites only. The official list prevails.</p>'],
+    [/<p>資料來源：[^<]*<\/p>/, '<p>Sources include official government holiday calendars, national tourism boards and festival organisers, the UNESCO World Heritage List and more. Translated from the Chinese edition.</p>'],
+  ];
+  let s = zhIndex;
+  for (const [a, b] of R) {
+    const hit = typeof a === "string" ? s.includes(a) : a.test(s);
+    if (!hit) throw new Error(`en/index.html 轉換找不到：${a}`);
+    s = s.replace(a, b);
+  }
+  return s.replace(/src="js\//g, 'src="../js/');
+}
+
 // ---------- 主頁的連結清單與 sitemap ----------
 function indexLinks(D) {
   return `<nav class="seo-links" aria-labelledby="seo-h">
@@ -303,7 +539,11 @@ export function build() {
   for (const code of Object.keys(D.countries)) files[`c/${code.toLowerCase()}.html`] = countryPage(D, code);
   for (const m of MONTHS) files[`m/${m}.html`] = monthPage(D, m);
   files["privacy.html"] = privacyPage();
-  files["sitemap.xml"] = sitemap(["", ...MONTHS.map(m => `m/${m}.html`), ...Object.keys(D.countries).map(k => `c/${k.toLowerCase()}.html`), "privacy.html"]);
+  const E = englishData(D);
+  for (const code of Object.keys(D.countries)) files[`en/c/${code.toLowerCase()}.html`] = countryPageEn(E, code);
+  for (const m of MONTHS) files[`en/m/${m}.html`] = monthPageEn(E, m);
+  files["sitemap.xml"] = sitemap(["", ...MONTHS.map(m => `m/${m}.html`), ...Object.keys(D.countries).map(k => `c/${k.toLowerCase()}.html`), "privacy.html",
+    "en/", ...MONTHS.map(m => `en/m/${m}.html`), ...Object.keys(D.countries).map(k => `en/c/${k.toLowerCase()}.html`)]);
   const index = readFileSync(join(root, "index.html"), "utf8");
   const re = /(<!-- seo:links -->)[\s\S]*?(<!-- \/seo:links -->)/;
   if (!re.test(index)) throw new Error("index.html 缺少 <!-- seo:links --> 標記");
@@ -313,8 +553,10 @@ export function build() {
   const nC = Object.keys(D.countries).length;
   files["index.html"] = index.replace(re, `$1\n  ${indexLinks(D)}\n  $2`).replace(reS, `$1${supportHTML()}$2`)
     .replace(/<head>[\s\S]*?<\/head>/, h => h.replace(/\d+ 國/g, `${nC} 國`))
+    .replace(/(<link rel="canonical" href="[^"]*">)(\n<link rel="alternate"[^\n]*){0,3}/, `$1\n${hreflang("", "en/")}`)
     .replace(/(<meta http-equiv="Content-Security-Policy" content=")([^"]*)(">)/, (_, a, csp, b) => a + cspFor(csp) + b)
     .replace(/(<!-- ads:head -->)[\s\S]*?(<!-- \/ads:head -->)/, `$1${gaScript()}${adsenseScript()}$2`);
+  files["en/index.html"] = englishIndex(files["index.html"], E, nC);
   return files;
 }
 
@@ -322,7 +564,8 @@ if (process.argv[1] === new URL(import.meta.url).pathname) {
   const files = build();
   rmSync(join(root, "c"), { recursive: true, force: true });
   rmSync(join(root, "m"), { recursive: true, force: true });
-  mkdirSync(join(root, "c")); mkdirSync(join(root, "m"));
+  rmSync(join(root, "en"), { recursive: true, force: true });
+  for (const d of ["c", "m", "en", "en/c", "en/m"]) mkdirSync(join(root, d));
   for (const [p, s] of Object.entries(files)) writeFileSync(join(root, p), s);
   console.log(`已產生 ${Object.keys(files).length} 個檔案`);
 }

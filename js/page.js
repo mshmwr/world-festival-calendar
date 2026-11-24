@@ -16,10 +16,14 @@ if (tl) {
   const title = tl.closest("section")?.querySelector("h2")?.textContent.trim() || document.querySelector("h1").textContent.trim();
 
   const nav = document.createElement("nav");
-  nav.className = "sidetl"; nav.setAttribute("aria-label", "閱讀進度");
+  const EN = document.documentElement.lang.startsWith("en");
+  // 收合時欄寬有限：中文去掉「・」，英文把方位詞縮寫（Northeast Asia → NE Asia）
+  const ABBR = { Northeast: "NE", Southeast: "SE", Western: "W.", Central: "C.", Eastern: "E.", Southern: "S.", Northern: "N.",  Middle: "Mid." };
+  const short = t => EN ? ({ "North America": "N. Amer.", "Latin America": "Lat. Amer." })[t] || t.replace(/^(\w+) (?=\w)/, (m, w) => ABBR[w] ? ABBR[w] + " " : m) : t.replace(/・/g, "");
+  nav.className = "sidetl"; nav.setAttribute("aria-label", EN ? "Reading progress" : "閱讀進度");
   nav.innerHTML = `<p class="st-h"><button type="button" class="st-fold"></button><span></span><b></b></p><ol>${items.map((it, i) =>
     `<li class="${it.major ? "r" : "c"}${it.kids ? " kids" : ""}" data-i="${i}"><a href="#${it.id}"${it.kids ? ' aria-expanded="false"' : ""}>${
-      it.major && it.text.includes("・") ? `<span class="lb">${it.text}</span><span class="sh" aria-hidden="true">${it.text.replace(/・/g, "")}</span>` : it.text}</a></li>`).join("")}</ol>`;
+      it.major && short(it.text) !== it.text ? `<span class="lb">${it.text}</span><span class="sh" aria-hidden="true">${short(it.text)}</span>` : it.text}</a></li>`).join("")}</ol>`;
   document.body.append(nav);
   document.body.classList.add("has-sidetl");
   const opened = new Set();               // 已展開的大項目
@@ -28,7 +32,7 @@ if (tl) {
   const setFolded = f => {
     nav.classList.toggle("folded", f);
     foldBtn.textContent = f ? "«" : "»";
-    foldBtn.setAttribute("aria-label", f ? "展開時間軸" : "向右收起時間軸");
+    foldBtn.setAttribute("aria-label", f ? (EN ? "Expand timeline" : "展開時間軸") : (EN ? "Collapse timeline" : "向右收起時間軸"));
     foldBtn.hidden = !narrow.matches && !f; // 寬螢幕空間夠，不必收起
     update();
   };
