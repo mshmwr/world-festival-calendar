@@ -11,7 +11,7 @@ export const SITE_NAME = "環球節慶行事曆";
 import { SITE_CONFIG, HAS_AFFILIATE, AFFILIATE_NOTE, affLink, cspFor, adsenseScript, gaScript } from "../js/site-config.js";
 export const SUPPORT_URL = SITE_CONFIG.support;
 const supportHTML = (up = "") => (SUPPORT_URL ? `<div class="support"><p>這個行事曆免費使用。如果它幫你排好了旅行，歡迎請我喝杯咖啡，支持資料持續更新。</p><a class="kofi" href="${SUPPORT_URL}" target="_blank" rel="noopener">☕ 在 Ko-fi 請我喝杯咖啡</a></div>` : "")
-  + `<p class="legal">${SITE_CONFIG.reportEndpoint ? `<button type="button" class="report" data-report="${SITE_CONFIG.reportEndpoint}">📮 回報錯誤或建議</button>　` : ""}${HAS_AFFILIATE ? AFFILIATE_NOTE + " " : ""}<a href="${up}privacy.html">隱私權政策</a></p>`
+  + `<p class="legal">${SITE_CONFIG.reportEndpoint ? `<button type="button" class="report" data-report="${SITE_CONFIG.reportEndpoint}">📮 回報錯誤或建議</button>　` : ""}${HAS_AFFILIATE ? AFFILIATE_NOTE + " " : ""}<a href="${up}about.html">關於本站</a>　<a href="${up}contact.html">聯絡我們</a>　<a href="${up}privacy.html">隱私權政策</a></p>`
   + (SITE_CONFIG.reportEndpoint ? `<script src="${up}js/report.js" defer></script>` : "");
 const PAGE_CSP = "default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'";
 const YEAR = 2027; // 靜態頁的節慶日期以這一年為準，沒有這一年的資料就用前一年
@@ -182,7 +182,7 @@ ${monthNav("../")}
 <section><h2>${esc(c.n)}每月推薦景點與行程</h2><ol class="tl">${picksHTML}</ol></section>
 <section><h2>${esc(c.n)}節日、祭典與旅遊季節（${YEAR} 年）</h2>${evHTML}</section>
 ${futureHTML(D, code)}
-${list("熱門景點", c.s)}${list("自然景色", c.nat)}${wh}${prefs}
+${list("熱門景點", c.s)}${list("自然景色", c.nat)}${list("全年體驗", c.ex)}${prefEx(D, code, "zh")}${wh}${prefs}
 ${regionNav(D, "../", code)}`;
   return page({
     path: `c/${code.toLowerCase()}.html`, en: `en/c/${code.toLowerCase()}.html`,
@@ -284,6 +284,100 @@ function privacyPage() {
   });
 }
 
+// ---------- 關於本站、聯絡我們（AdSense 審核要求公開透明的頁面） ----------
+const REPO = "https://github.com/mshmwr/world-festival-calendar";
+function siteStats(D) {
+  const nC = Object.keys(D.countries).length;
+  const nEv = D.evs.length;
+  const nWh = Object.values(D.countries).reduce((n, c) => n + (c.wh?.length || 0), 0);
+  return { nC, nEv, nWh };
+}
+function contactWays(zh) {
+  const L = zh
+    ? [SITE_CONFIG.reportEndpoint && `<li><b>回報資料錯誤或建議</b>：每一頁最下方都有「📮 回報錯誤或建議」按鈕，填寫後會直接送到站長的待辦清單，通常一週內處理。</li>`,
+       `<li><b>GitHub</b>：在 <a href="${REPO}/issues" rel="noopener" target="_blank">GitHub Issues</a> 開一則留言，適合回報錯誤、提出新功能或想加入的國家與活動，處理進度公開可查。</li>`,
+       SUPPORT_URL && `<li><b>Ko-fi</b>：在 <a href="${SUPPORT_URL}" rel="noopener" target="_blank">Ko-fi 頁面</a> 留言或私訊，合作、媒體採訪等事項也可以從這裡聯絡。</li>`]
+    : [SITE_CONFIG.reportEndpoint && `<li><b>Report a data error</b>: use the "📮 Report a problem" button at the bottom of every page. Reports go straight to the maintainer's to-do list and are usually handled within a week.</li>`,
+       `<li><b>GitHub</b>: open an issue on <a href="${REPO}/issues" rel="noopener" target="_blank">GitHub Issues</a> to report a bug, suggest a feature or a country or event to add. Progress is public.</li>`,
+       SUPPORT_URL && `<li><b>Ko-fi</b>: leave a message on <a href="${SUPPORT_URL}" rel="noopener" target="_blank">Ko-fi</a>; partnership and press enquiries are welcome there too.</li>`];
+  return `<ul>${L.filter(Boolean).join("")}</ul>`;
+}
+function aboutPage(D) {
+  const { nC, nEv, nWh } = siteStats(D);
+  const body = `<section><h2>這個網站在做什麼</h2>
+<p>${SITE_NAME}是一個免費的出國旅遊月曆，把 ${nC} 個國家的國定假日、祭典活動、體育賽事與最佳旅遊季節排進同一個月曆，讓你一眼看出「這個月去哪裡剛好有慶典」「哪幾天當地放假會人擠人」。</p>
+<p>每個國家另外整理了熱門景點、自然景色、世界遺產與全年都能參加的在地體驗；日本細分到 47 個都道府縣。每個月還有依台灣旅行社行程熱門程度標星的推薦，適合排旅行時參考。</p></section>
+<section><h2>資料從哪裡來</h2>
+<ul><li><b>國定假日</b>：各國政府公告的官方假日，彙整自開源的 <a href="https://pypi.org/project/holidays/" rel="noopener" target="_blank">holidays</a> 資料集，再人工翻譯並合併連假。</li>
+<li><b>祭典與活動</b>：各國觀光局、主辦單位官網與賽事官方網站；目前收錄約 ${nEv} 筆。</li>
+<li><b>世界遺產</b>：聯合國教科文組織（UNESCO）世界遺產名錄，共 ${nWh} 處。</li>
+<li><b>每月推薦</b>：台灣各大旅行社的出團行程與旅遊平台的推薦文章，每筆都附來源連結。</li></ul></section>
+<section><h2>怎麼維護</h2>
+<p>農曆、伊斯蘭曆或主辦單位每年公布的日期，會先依往年推估並標「約」。網站每個月固定檢查一次，官方公布正式日期後就更新；不是每年舉辦的活動（例如奧運、世界盃）另外追蹤下一屆。發現錯誤歡迎到<a href="contact.html">聯絡我們</a>告訴我。</p>
+<p>網站的程式碼公開在 <a href="${REPO}" rel="noopener" target="_blank">GitHub</a>，每一次資料更新都有紀錄。</p></section>
+<section><h2>誰在做</h2>
+<p>本站由一位喜歡出國旅行的個人開發者製作與維護，起因是每次排假都要在好幾個網站之間查各國節日。網站沒有接受任何旅行社或觀光局的付費置入，推薦的星等只依行程與文章的數量和熱門程度判斷。網站靠廣告與讀者在 Ko-fi 的贊助支撐營運。</p></section>`;
+  return page({
+    path: "about.html", en: "en/about.html", title: `關於本站｜${SITE_NAME}`,
+    desc: `${SITE_NAME}是什麼、資料從哪裡來、多久更新一次，以及誰在維護這個免費的出國旅遊月曆。`,
+    h1: "關於本站", lead: `一個月曆看 ${nC} 國的節日、祭典與旅遊季節。`, crumbs: [[SITE_NAME, ""], ["關於本站", "about.html"]], body,
+  });
+}
+function contactPage() {
+  const body = `<section><h2>聯絡方式</h2>${contactWays(true)}</section>
+<section><h2>常見的聯絡事項</h2>
+<ul><li><b>日期錯了或活動取消了</b>：請附上官方公告的網址，確認後會盡快更新。</li>
+<li><b>想新增國家、祭典或體驗</b>：歡迎提供活動名稱、舉辦地點、大約日期與官網。</li>
+<li><b>旅行社、觀光單位合作</b>：本站不收費刊登，但歡迎提供正確的活動資訊與官方來源。</li></ul>
+<p>資料與廣告、Cookie 的使用方式請見<a href="privacy.html">隱私權政策</a>。</p></section>`;
+  return page({
+    path: "contact.html", en: "en/contact.html", title: `聯絡我們｜${SITE_NAME}`,
+    desc: `回報${SITE_NAME}的資料錯誤、建議新增的國家或活動，或洽詢合作的聯絡方式。`,
+    h1: "聯絡我們", lead: "發現資料有誤、想新增活動，或有任何建議，都歡迎告訴我。", crumbs: [[SITE_NAME, ""], ["聯絡我們", "contact.html"]], body,
+  });
+}
+function aboutPageEn(D) {
+  const { nC, nEv, nWh } = siteStats(D);
+  const body = `<section><h2>What this site does</h2>
+<p>${SITE_NAME_EN} is a free travel calendar that puts the public holidays, festivals, sports events and best travel seasons of ${nC} countries on one calendar, so you can see at a glance where there is a festival this month and which days will be crowded because of local holidays.</p>
+<p>Each country also lists top sights, nature, World Heritage sites and local experiences you can do all year round, with Japan broken down into its 47 prefectures.</p></section>
+<section><h2>Where the data comes from</h2>
+<ul><li><b>Public holidays</b>: official government calendars, compiled from the open-source <a href="https://pypi.org/project/holidays/" rel="noopener" target="_blank">holidays</a> dataset and checked by hand.</li>
+<li><b>Festivals and events</b>: national tourism boards, organisers and official event sites; about ${nEv} entries so far.</li>
+<li><b>World Heritage</b>: the UNESCO World Heritage List, ${nWh} sites.</li>
+<li><b>Monthly picks</b> (Chinese edition): Taiwanese tour operators' departures and travel platforms, each with a source link.</li></ul></section>
+<section><h2>How it is kept up to date</h2>
+<p>Dates that follow the lunar or Islamic calendar, or that organisers announce each year, are first estimated from past years and marked "approx.". The site is checked every month and updated once official dates are out; events that are not held every year, such as the Olympics, are tracked separately. The code and every data change are public on <a href="${REPO}" rel="noopener" target="_blank">GitHub</a>.</p></section>
+<section><h2>Who makes it</h2>
+<p>The site is built and maintained by an independent developer who loves travelling. It takes no paid placements from tour operators or tourism boards and is supported by ads and reader donations on Ko-fi. The English edition is translated from the original Chinese edition.</p></section>`;
+  return pageEn({
+    path: "en/about.html", zh: "about.html", title: `About | ${SITE_NAME_EN}`,
+    desc: `What ${SITE_NAME_EN} is, where its holiday and festival data comes from, how often it is updated and who maintains it.`,
+    h1: "About", lead: `Holidays, festivals and travel seasons for ${nC} countries on one calendar.`, crumbs: [[SITE_NAME_EN, "en/"], ["About", "en/about.html"]], body,
+  });
+}
+function contactPageEn() {
+  const body = `<section><h2>How to reach us</h2>${contactWays(false)}</section>
+<section><h2>Common requests</h2>
+<ul><li><b>A date is wrong or an event was cancelled</b>: please include a link to the official announcement.</li>
+<li><b>Add a country, festival or experience</b>: send the name, place, approximate dates and official website.</li>
+<li><b>Tour operators and tourism boards</b>: listings are free; accurate information and official sources are always welcome.</li></ul></section>`;
+  return pageEn({
+    path: "en/contact.html", zh: "contact.html", title: `Contact | ${SITE_NAME_EN}`,
+    desc: `Report a data error, suggest a country or event to add, or get in touch with ${SITE_NAME_EN}.`,
+    h1: "Contact", lead: "Found a mistake or want something added? Let me know.", crumbs: [[SITE_NAME_EN, "en/"], ["Contact", "en/contact.html"]], body,
+  });
+}
+
+// 日本各縣的全年體驗（國家頁用）
+function prefEx(D, code, lang) {
+  if (code !== "JP") return "";
+  const ps = D.japan.prefectures.filter(p => p.ex?.length);
+  if (!ps.length) return "";
+  const zh = lang === "zh";
+  return `<section><h2>${zh ? "日本各縣全年體驗" : "Experiences by prefecture"}</h2>${ps.map(p => `<p><b>${esc(p.n)}</b> ${p.ex.map(esc).join(zh ? "、" : ", ")}</p>`).join("")}</section>`;
+}
+
 // ---------- 英文版（en/）：資料用 data/i18n/en.json 翻譯；每月推薦是依台灣旅行社整理，只在中文頁提供 ----------
 const SITE_NAME_EN = "World Festival Calendar";
 const EN_MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
@@ -303,10 +397,10 @@ function englishData(D) {
   const tr = s => (s && EN[s]) || s;
   const E = structuredClone(D);
   E.regions.forEach(r => { r.n = tr(r.n); });
-  for (const c of Object.values(E.countries)) { c.n = tr(c.n); c.s = c.s.map(tr); c.nat = (c.nat || []).map(tr); c.wh = (c.wh || []).map(([n, k]) => [tr(n), k]); }
+  for (const c of Object.values(E.countries)) { c.n = tr(c.n); c.s = c.s.map(tr); c.nat = (c.nat || []).map(tr); c.ex = (c.ex || []).map(tr); c.wh = (c.wh || []).map(([n, k]) => [tr(n), k]); }
   E.evs.forEach(e => { e.n = tr(e.n); e.x = tr(e.x); });
   E.japan.areas.forEach(a => { a.n = tr(a.n); });
-  E.japan.prefectures.forEach(p => { p.n = tr(p.n); });
+  E.japan.prefectures.forEach(p => { p.n = tr(p.n); p.ex = (p.ex || []).map(tr); });
   for (const k of Object.keys(E.prefName)) E.prefName[k] = tr(E.prefName[k]);
   E.future.forEach(f => { f.n = tr(f.n); f.x = tr(f.x); });
   E.whNote = Object.fromEntries(Object.entries(read("countries.json").whNote).map(([k, v]) => [k, tr(v)]));
@@ -314,7 +408,7 @@ function englishData(D) {
 }
 
 const supportHTMLEn = (up = "") => (SUPPORT_URL ? `<div class="support"><p>This calendar is free to use. If it helped you plan a trip, you can buy me a coffee to keep the data up to date.</p><a class="kofi" href="${SUPPORT_URL}" target="_blank" rel="noopener">☕ Buy me a coffee on Ko-fi</a></div>` : "")
-  + `<p class="legal">${SITE_CONFIG.reportEndpoint ? `<button type="button" class="report" data-report="${SITE_CONFIG.reportEndpoint}">📮 Report a problem</button>　` : ""}<a href="${up}privacy.html" hreflang="zh-Hant">Privacy policy (Chinese)</a></p>`
+  + `<p class="legal">${SITE_CONFIG.reportEndpoint ? `<button type="button" class="report" data-report="${SITE_CONFIG.reportEndpoint}">📮 Report a problem</button>　` : ""}<a href="${up}en/about.html">About</a>　<a href="${up}en/contact.html">Contact</a>　<a href="${up}privacy.html" hreflang="zh-Hant">Privacy policy (Chinese)</a></p>`
   + (SITE_CONFIG.reportEndpoint ? `<script src="${up}js/report.js" defer></script>` : "");
 
 function pageEn({ path, zh, title, desc, h1, lead, crumbs, body, ld }) {
@@ -403,7 +497,7 @@ function countryPageEn(E, code) {
 ${monthNavEn("../../")}
 <section><h2>${esc(c.n)} events by month (${YEAR})</h2>${byMonth ? `<ol class="tl">${byMonth}</ol>` : "<p>No events listed yet.</p>"}</section>
 ${futHTML}
-${list("Top sights", c.s)}${list("Nature", c.nat)}${wh}${prefs}
+${list("Top sights", c.s)}${list("Nature", c.nat)}${list("Experiences all year round", c.ex)}${prefEx(E, code, "en")}${wh}${prefs}
 <p>Month-by-month trip picks rated by Taiwanese tour operators are available on the <a href="../../c/${lc}.html" hreflang="zh-Hant">Chinese version of this page</a>.</p>
 ${regionNavEn(E, "../../", code)}`;
   return pageEn({
@@ -539,11 +633,15 @@ export function build() {
   for (const code of Object.keys(D.countries)) files[`c/${code.toLowerCase()}.html`] = countryPage(D, code);
   for (const m of MONTHS) files[`m/${m}.html`] = monthPage(D, m);
   files["privacy.html"] = privacyPage();
+  files["about.html"] = aboutPage(D);
+  files["contact.html"] = contactPage();
   const E = englishData(D);
   for (const code of Object.keys(D.countries)) files[`en/c/${code.toLowerCase()}.html`] = countryPageEn(E, code);
   for (const m of MONTHS) files[`en/m/${m}.html`] = monthPageEn(E, m);
-  files["sitemap.xml"] = sitemap(["", ...MONTHS.map(m => `m/${m}.html`), ...Object.keys(D.countries).map(k => `c/${k.toLowerCase()}.html`), "privacy.html",
-    "en/", ...MONTHS.map(m => `en/m/${m}.html`), ...Object.keys(D.countries).map(k => `en/c/${k.toLowerCase()}.html`)]);
+  files["en/about.html"] = aboutPageEn(D);
+  files["en/contact.html"] = contactPageEn();
+  files["sitemap.xml"] = sitemap(["", ...MONTHS.map(m => `m/${m}.html`), ...Object.keys(D.countries).map(k => `c/${k.toLowerCase()}.html`), "privacy.html", "about.html", "contact.html",
+    "en/", "en/about.html", "en/contact.html", ...MONTHS.map(m => `en/m/${m}.html`), ...Object.keys(D.countries).map(k => `en/c/${k.toLowerCase()}.html`)]);
   const index = readFileSync(join(root, "index.html"), "utf8");
   const re = /(<!-- seo:links -->)[\s\S]*?(<!-- \/seo:links -->)/;
   if (!re.test(index)) throw new Error("index.html 缺少 <!-- seo:links --> 標記");

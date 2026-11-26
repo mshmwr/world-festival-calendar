@@ -21,7 +21,7 @@ const sourceName = url => {
 
 const YEARS = [2026, 2027];
 const TB = t("tabs");
-const TABS = [["ev", TB.ev, (c, e) => e.length], ["s", TB.s, c => c.s.length], ["nat", TB.nat, c => (c.nat || []).length], ["wh", TB.wh, c => (c.wh || []).length]];
+const TABS = [["ev", TB.ev, (c, e) => e.length], ["s", TB.s, c => c.s.length], ["nat", TB.nat, c => (c.nat || []).length], ["wh", TB.wh, c => (c.wh || []).length], ["ex", TB.ex, c => (c.ex || []).length]];
 const WK = {"文":"cul","自":"nat","複":"mix"}, WN = t("whKind");
 const TYPE_N = t("types");
 const RN = Object.fromEntries(REGIONS.map(r => [r.k, r.n]));
@@ -348,8 +348,10 @@ function renderSide(){
     const yearEvs = ALL.filter(x => x.c === st.country && (x.s.getFullYear() === st.y) && st.types[x.t]).sort((a,b) => a.s - b.s);
     // 有當月推薦時多一個分頁並預設打開；沒有時退回景點分頁
     const picks = monthPicks(st.country);
-    const tabs = picks.length ? [["pk", t("monthPicks", st.m + 1), () => picks.length], ...TABS] : TABS;
-    const tab = st.tab === "pk" && !picks.length ? "s" : st.tab;
+    // 「全年體驗」還沒整理的國家不顯示該分頁
+    const base = TABS.filter(([k]) => k !== "ex" || c.ex?.length);
+    const tabs = picks.length ? [["pk", t("monthPicks", st.m + 1), () => picks.length], ...base] : base;
+    const tab = (st.tab === "pk" && !picks.length) || (st.tab === "ex" && !c.ex?.length) ? "s" : st.tab;
     html += `<div class="panel">
       ${entityHead({flag: c.f, name: c.n, color: c.r, sub: RN[c.r], btnId: "clearC", btnLabel: t("allCountriesBtn")})}
       ${c.warn ? `<p class="warn">${c.warn}</p>` : ""}
@@ -359,6 +361,7 @@ function renderSide(){
       ${tab === "ev" ? (yearEvs.length ? Array.from({length: 12}, (_, i) => group(`cev:${i}`, t("month", i + 1), yearEvs.filter(x => x.s.getMonth() === i), { showCountry: false, open: i === st.m })).join("") : `<p class="empty">${t("emptyYear")}</p>`) : ""}
       ${tab === "s" ? tagList(c.s) : ""}
       ${tab === "nat" ? tagList(c.nat || [], "nat") : ""}
+      ${tab === "ex" ? `${tagList(c.ex, "ex")}<p class="wh-legend">${t("exLegend")}</p>` : ""}
       ${tab === "wh" ? (c.wh && c.wh.length ? `${tagList(c.wh, "wh", ([n, k]) => `<span class="wk ${WK[k]}">${WN[k]}</span>${n}`)}<p class="wh-legend">${t("whLegend")}</p>` : `<p class="empty">${WH_NOTE[st.country] || t("noWh")}</p>`) : ""}
     </div>`;
   } else if (!st.day){
@@ -375,6 +378,7 @@ function renderSide(){
   const view = `${st.y}-${st.m}|${st.day}|${st.country}|${st.tab}`;
   if (view !== lastSideView){ st.more.clear(); }
   side.innerHTML = html;
+  showSelectedTab(side);
   if (view !== lastSideView){ side.scrollTop = 0; lastSideView = view; }
   // 只記住使用者自己點開或收合的分組（瀏覽器在預設展開時也會觸發 toggle，所以改聽點擊）
   // 點擊事件先於展開動作，所以點下時的相反狀態就是新狀態；立即記下，避免緊接著重畫時用到舊狀態
@@ -462,8 +466,16 @@ function selectPref(id){
   renderJP();
   if (st.pref && innerWidth <= 900) document.getElementById("pref").scrollIntoView({behavior: reduce ? "auto" : "smooth", block:"start"});
 }
+// 分頁列放不下時會橫向捲動，把選中的分頁捲進可見範圍
+function showSelectedTab(root){
+  const bar = root.querySelector(".tabs"), b = bar?.querySelector('[aria-selected="true"]');
+  if (!b) return;
+  const l = b.offsetLeft - bar.offsetLeft, r = l + b.offsetWidth;
+  if (r > bar.scrollLeft + bar.clientWidth) bar.scrollLeft = r - bar.clientWidth + 8;
+  else if (l < bar.scrollLeft) bar.scrollLeft = l;
+}
 const PT = t("ptabs");
-const PTABS = [["s", PT.s, p => p.s.length], ["h", PT.h, p => p.h.length], ["wh", PT.wh, p => p.wh.length], ["ev", PT.ev, (p, e) => e.length]];
+const PTABS = [["s", PT.s, p => p.s.length], ["h", PT.h, p => p.h.length], ["wh", PT.wh, p => p.wh.length], ["ev", PT.ev, (p, e) => e.length], ["ex", PT.ex, p => (p.ex || []).length]];
 function renderJP(){
   // 日本 47 都道府縣只在選到日本時顯示
   const jpOn = st.country === "JP";
@@ -490,11 +502,13 @@ function renderJP(){
   const evs = ALL.filter(x => x.p === p.id && x.s.getFullYear() === st.y && st.types[x.t]).sort((a, b) => a.s - b.s);
   const list = (arr, cls) => arr.length ? tagList(arr, cls) : `<p class="empty">${t("prefNoWh")}</p>`;
   el.innerHTML = `${entityHead({name: p.n, color: ar.c, sub: t("area", ar.n), btnId: "clearP", btnLabel: t("allPrefs")})}
-    ${tabBar("ptab", st.ptab, PTABS, p, evs)}
-    ${st.ptab === "s" ? list(p.s, "") : ""}
+    ${tabBar("ptab", st.ptab === "ex" && !p.ex?.length ? "s" : st.ptab, PTABS.filter(([k]) => k !== "ex" || p.ex?.length), p, evs)}
+    ${st.ptab === "s" || (st.ptab === "ex" && !p.ex?.length) ? list(p.s, "") : ""}
+    ${st.ptab === "ex" && p.ex?.length ? `${tagList(p.ex, "ex")}<p class="wh-legend">${t("exLegend")}</p>` : ""}
     ${st.ptab === "h" ? list(p.h, "hist") : ""}
     ${st.ptab === "wh" ? list(p.wh, "wh") : ""}
     ${st.ptab === "ev" ? eventList(evs, t("prefEmptyYear", st.y), false, true) : ""}`;
+  showSelectedTab(el);
   onClicks(el, "[data-ptab]", b => { st.ptab = b.dataset.ptab; renderJP(); });
   el.querySelector("#clearP").onclick = () => selectPref(st.pref);
   el.querySelectorAll(".item").forEach(b => b.onclick = () => selectEvent(b.dataset.id));
@@ -503,7 +517,7 @@ function renderJP(){
 // ---------- 日本縣市一覽 ----------
 st.jpView = "map"; st.jpq = "";
 const prefEvents = p => ALL.filter(x => x.p === p.id && x.s.getFullYear() === st.y).sort((a, b) => a.s - b.s);
-const prefText = p => [p.n, ...p.s, ...p.h, ...p.wh, ...prefEvents(p).map(x => x.n + x.x)].join(" ");
+const prefText = p => [p.n, ...p.s, ...p.h, ...p.wh, ...(p.ex || []), ...prefEvents(p).map(x => x.n + x.x)].join(" ");
 const visiblePrefs = () => PREFS.filter(p => (!st.area || p.a === st.area) && (!st.jpq || prefText(p).includes(st.jpq)));
 document.querySelectorAll(".seg button").forEach(b => b.onclick = () => { st.jpView = b.dataset.view; renderJPList(); });
 document.getElementById("jpq").oninput = e => { st.jpq = e.target.value.trim(); renderJPList(); };
@@ -529,6 +543,7 @@ function renderJPList(){
           <dl><dt>${PT.s}</dt><dd>${p.s.map(hl).join(t("list"))}</dd>
           <dt>${PT.h}</dt><dd>${p.h.map(hl).join(t("list"))}</dd>
           <dt>${PT.wh}</dt><dd>${p.wh.length ? p.wh.map(hl).join(t("list")) : "—"}</dd>
+          ${p.ex?.length ? `<dt>${PT.ex}</dt><dd>${p.ex.map(hl).join(t("list"))}</dd>` : ""}
           <dt>${PT.ev}</dt><dd>${evs.map(evTxt).join(t("list")) || "—"}</dd></dl></article>`;
       }).join("")}</div></section>`;
   }).join("") || `<p class="empty">${t("noPrefMatch", esc(st.jpq))}</p>`;
@@ -544,7 +559,7 @@ document.getElementById("jpcopy").onclick = () => {
     const g = ps.filter(p => p.a === a.k);
     if (!g.length) return "";
     const L = t("list"), C = t("colon");
-    return `## ${t("area", a.n)}\n\n` + g.map(p => `### ${p.n}\n\n- **${PT.s}**${C}${p.s.join(L)}\n- **${PT.h}**${C}${p.h.join(L)}\n- **${PT.wh}**${C}${p.wh.join(L) || t("none")}\n- **${PT.ev}**${C}\n` +
+    return `## ${t("area", a.n)}\n\n` + g.map(p => `### ${p.n}\n\n- **${PT.s}**${C}${p.s.join(L)}\n- **${PT.h}**${C}${p.h.join(L)}\n- **${PT.wh}**${C}${p.wh.join(L) || t("none")}\n${p.ex?.length ? `- **${PT.ex}**${C}${p.ex.join(L)}\n` : ""}- **${PT.ev}**${C}\n` +
       prefEvents(p).map(x => `  - ${fmtRange(x)}${x.a ? t("approxParen") : ""} ${x.n}${C}${x.x}`).join("\n")).join("\n\n") + "\n";
   }).filter(Boolean).join("\n");
   const msg = document.getElementById("jpcopymsg"), ta = document.getElementById("jpmd");

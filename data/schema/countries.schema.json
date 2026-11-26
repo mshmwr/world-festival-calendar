@@ -18,6 +18,7 @@
           "f": { "type": "string", "minLength": 1, "description": "國旗 emoji" },
           "s": { "$ref": "common.schema.json#/$defs/names", "minItems": 1, "description": "景點" },
           "nat": { "$ref": "common.schema.json#/$defs/names", "description": "自然景色" },
+          "ex": { "$ref": "common.schema.json#/$defs/names", "description": "全年體驗：一年四季都能參加的在地體驗（觀光列車、人力車、料理、工藝、溫泉等）。有固定日期或固定季節的放進活動（t: S 旅遊季節）" },
           "wh": {
             "type": "array",
             "description": "世界遺產，每筆為 [名稱, 類別]；沒有時給空陣列並在 whNote 加說明",

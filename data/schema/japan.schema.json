@@ -31,6 +31,7 @@
           "a": { "type": "string", "pattern": "^[a-z]{2}$", "description": "地方代碼，對應 areas" },
           "s": { "$ref": "common.schema.json#/$defs/names", "minItems": 1, "description": "景點" },
           "h": { "$ref": "common.schema.json#/$defs/names", "description": "遺跡・史蹟" },
+          "ex": { "$ref": "common.schema.json#/$defs/names", "description": "全年體驗：一年四季都能參加的在地體驗（觀光列車、人力車、料理、工藝、溫泉等）。有固定日期或固定季節的放進活動（t: S 旅遊季節）" },
           "wh": { "$ref": "common.schema.json#/$defs/names", "description": "世界遺產（沒有時給空陣列）" },
           "ev": { "type": "array", "description": "祭典活動，可省略 c；t 預設為 F", "items": { "$ref": "common.schema.json#/$defs/event" } }
         },

@@ -19,7 +19,7 @@ function applyEnglish(d) {
   const trList = xs => xs && xs.map(tr);
   d.regions.regions.forEach(r => { r.n = tr(r.n); });
   for (const c of Object.values(d.countries.countries)) {
-    c.n = tr(c.n); c.s = trList(c.s); c.nat = trList(c.nat); c.warn = tr(c.warn);
+    c.n = tr(c.n); c.s = trList(c.s); c.nat = trList(c.nat); c.ex = trList(c.ex); c.warn = tr(c.warn);
     if (c.wh) c.wh = c.wh.map(([n, k]) => [tr(n), k]);
   }
   for (const k of Object.keys(d.countries.whNote)) d.countries.whNote[k] = tr(d.countries.whNote[k]);
@@ -27,7 +27,7 @@ function applyEnglish(d) {
   d.japan.areas.forEach(a => { a.n = tr(a.n); });
   d.japan.national.forEach(e => { e.n = tr(e.n); e.x = tr(e.x); });
   d.japan.prefectures.forEach(p => {
-    p.n = tr(p.n); p.s = trList(p.s); p.h = trList(p.h); p.wh = trList(p.wh);
+    p.n = tr(p.n); p.s = trList(p.s); p.h = trList(p.h); p.wh = trList(p.wh); p.ex = trList(p.ex);
     p.ev.forEach(e => { e.n = tr(e.n); e.x = tr(e.x); });
   });
   for (const k of Object.keys(d.picks.sourceNames)) d.picks.sourceNames[k] = tr(d.picks.sourceNames[k]);

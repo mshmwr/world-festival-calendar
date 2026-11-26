@@ -20,13 +20,13 @@ export function collect() {
   J.areas.forEach(a => add(a.n, "jp-area"));
   J.prefectures.forEach(p => add(p.n, "jp-pref"));
   Object.values(P.sourceNames).forEach(v => add(v, "source"));
-  for (const [code, c] of Object.entries(C.countries)) { c.s.forEach(v => add(v, `sight:${code}`)); (c.nat || []).forEach(v => add(v, `nature:${code}`)); (c.wh || []).forEach(w => add(w[0], `heritage:${code}`)); add(c.warn, "warning"); }
+  for (const [code, c] of Object.entries(C.countries)) { c.s.forEach(v => add(v, `sight:${code}`)); (c.nat || []).forEach(v => add(v, `nature:${code}`)); (c.ex || []).forEach(v => add(v, `experience:${code}`)); (c.wh || []).forEach(w => add(w[0], `heritage:${code}`)); add(c.warn, "warning"); }
   Object.values(C.whNote).forEach(v => add(v, "note"));
   E.forEach(e => add(e.n, `event-name:${e.c}`));
   J.national.forEach(e => add(e.n, "event-name:JP"));
   J.prefectures.forEach(p => p.ev.forEach(e => add(e.n, `event-name:JP-${p.n}`)));
   F.forEach(f => add(f.n, `event-name:${f.c}`));
-  J.prefectures.forEach(p => { p.s.forEach(v => add(v, `sight:JP-${p.n}`)); p.h.forEach(v => add(v, `historic:JP-${p.n}`)); p.wh.forEach(v => add(v, `heritage:JP-${p.n}`)); });
+  J.prefectures.forEach(p => { p.s.forEach(v => add(v, `sight:JP-${p.n}`)); p.h.forEach(v => add(v, `historic:JP-${p.n}`)); p.wh.forEach(v => add(v, `heritage:JP-${p.n}`)); (p.ex || []).forEach(v => add(v, `experience:JP-${p.n}`)); });
   E.forEach(e => add(e.x, `event-desc:${e.c}`));
   J.national.forEach(e => add(e.x, "event-desc:JP"));
   J.prefectures.forEach(p => p.ev.forEach(e => add(e.x, `event-desc:JP-${p.n}`)));

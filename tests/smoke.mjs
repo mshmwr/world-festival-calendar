@@ -35,7 +35,10 @@ check("選東北亞：出現國家列", await visible("#crow"));
 await p.click('#crow .chip[data-c="JP"]');
 check("選日本：出現日本專區", await visible("#jp"));
 check("國家按鈕有活動數說明", (await p.textContent("#crow .lab")).includes("月活動數") && /月共 \d+ 項活動/.test(await p.getAttribute('#crow .chip[data-c="JP"]', "title")));
-for (const tab of ["s", "nat", "wh", "ev"]) await p.click(`[data-tab="${tab}"]`);
+for (const tab of ["s", "nat", "wh", "ex", "ev"]) await p.click(`[data-tab="${tab}"]`);
+await p.click('[data-tab="ex"]');
+check("日本有全年體驗分頁", await p.evaluate(() => document.querySelectorAll("#side ul.ex li").length > 3));
+await p.click('[data-tab="ev"]');
 
 check("日本 11 月推薦分頁有星等與來源", await p.evaluate(() => { Object.assign(app.st, { y: 2026, m: 10, tab: "pk" }); app.render();
   const s = document.getElementById("side"); return s.querySelector('[data-tab="pk"]')?.textContent.includes("11 月推薦") && s.querySelectorAll(".pick").length > 0 && !!s.querySelector(".pick .stars") && !!s.querySelector(".pick .src a[href^='https://']"); }));

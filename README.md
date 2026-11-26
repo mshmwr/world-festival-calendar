@@ -68,6 +68,7 @@ npm run dev        # 開啟 http://localhost:8000/
   - 國定假日（日本以外 60 國）是以 Python 套件 [holidays](https://pypi.org/project/holidays/) 的各國官方假日資料為底，補休、連續幾天的假日併成一筆、翻成中文；斯里蘭卡另外手動整理。伊斯蘭曆、農曆等推估日期標 `"a":1`
   - 日期是推估的就加 `"a":1`，畫面會標「約」
 - **日本各縣祭典**：加在 `data/japan.json` 對應縣的 `ev`，格式同上，可省略 `c` 和 `t`（預設祭典活動）
+- **全年體驗**：一年四季都能參加的在地體驗（觀光列車、人力車、料理、工藝等）放在 `data/countries.json` 的 `ex`，日本各縣在 `data/japan.json` 的 `ex`；有資料的國家和縣市才會出現「全年體驗」分頁。有固定日期或固定季節的體驗（採草莓、觀光小火車的行駛期間等）不要放這裡，改加成活動（`t: "S"` 旅遊季節）排進月曆
 - **景點、自然景色、世界遺產**：改 `data/countries.json` 的 `s`、`nat`、`wh`；日本各縣在 `data/japan.json` 的 `s`、`h`、`wh`
 - **新增國家**：在 `data/countries.json` 加一筆，`iso` 填 ISO 3166 數字碼，並確認它在 `data/regions.json` 的 `regionOf` 裡屬於同一個區域；地圖上找不到的小國改填 `pin: [經度, 緯度]`
 - **每月推薦**：在 `data/picks.json` 的 `picks.<月份>.<國家代碼>` 加景點或行程，欄位有 `n` 名稱、`pop` 熱門程度 1～3、`x` 說明、`src` 來源網址，日本可加 `p` 縣市代碼。熱門程度的標準寫在 `data/schema/picks.schema.json`。也可以把多國資料寫成一個 JSON，再用 `node scripts/add-picks.mjs <月份> <檔案>` 一次併入。要求某個月份涵蓋全部國家時，把月份加進 `tests/data.mjs` 的 `REQUIRED_MONTHS`
@@ -86,6 +87,7 @@ npm run dev        # 開啟 http://localhost:8000/
 - 月份頁最後有「常見問題」（最熱門去哪、日韓泰各玩什麼、哪些國家放假），全部從資料自動產生，並附 FAQPage 結構化資料，方便搜尋引擎與 AI 摘要引用
 - 英文版：`en/` 是英文主頁（由 `index.html` 自動轉換，資料仍從根目錄讀取並套用 `data/i18n/en.json`），`en/c/`、`en/m/` 是英文國家頁與月份頁。中英文頁面互相以 hreflang 標示，頁首有切換連結。每月推薦是依台灣旅行社整理，只有中文，英文頁會附連結
 - 網站圖示：`favicon.svg` 與 `favicon-192.png`（Google 搜尋結果用 PNG）
+- `about.html`、`contact.html`（及英文版 `en/about.html`、`en/contact.html`）：關於本站與聯絡方式，AdSense 審核要求網站要有這兩頁
 - `sitemap.xml`：全部頁面的網址
 - `index.html` 底部 `<!-- seo:links -->` 標記之間的連結清單
 
