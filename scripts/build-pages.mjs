@@ -141,7 +141,9 @@ function srcLinks(urls, names) {
   }).join("、");
 }
 const pickLi = (it, names, extra = "") => `<li><span class="stars" aria-label="熱門程度 ${it.pop} 顆星">${stars(it.pop)}</span> <b>${esc(it.n)}</b>${extra}<br>${esc(it.x)}<br><small>來源：${srcLinks(it.src, names)}</small></li>`;
-const evLi = (x, extra = "") => `<li><span class="dt">${fmtSpan(x.span)}${x.a ? "（約）" : ""}</span> <span class="t ${x.t}">${TYPE_N[x.t]}</span> <b>${esc(x.n)}</b>${extra}：${esc(x.x)}</li>`;
+// 有查證來源的活動（季節性體驗）附上來源連結
+const evSrc = (x, label, sep) => x.src?.length ? ` <small class="src">${label}${x.src.map(u => `<a href="${esc(u)}" target="_blank" rel="noopener">${esc(new URL(u).hostname.replace(/^www\./, ""))}</a>`).join(sep)}</small>` : "";
+const evLi = (x, extra = "") => `<li><span class="dt">${fmtSpan(x.span)}${x.a ? "（約）" : ""}</span> <span class="t ${x.t}">${TYPE_N[x.t]}</span> <b>${esc(x.n)}</b>${extra}：${esc(x.x)}${evSrc(x, "來源：", "、")}</li>`;
 
 function regionNav(D, up, current) {
   return `<nav class="all" aria-labelledby="all-h"><h2 id="all-h">各國頁面</h2>${D.regions.map(r => {
@@ -276,7 +278,7 @@ function privacyPage() {
 <section><h2>流量分析</h2><p>${SITE_CONFIG.ga ? "本站使用 Google Analytics 統計造訪人數與熱門頁面，" : "本站未來可能使用 Google Analytics 統計造訪人數與熱門頁面，"}Google 會透過 Cookie 收集匿名的瀏覽資料（例如瀏覽的頁面、裝置類型、大約所在地區），不包含你的姓名或聯絡方式。你可以安裝 <a href="https://tools.google.com/dlpage/gaoptout" rel="noopener" target="_blank">Google Analytics 停用瀏覽器外掛程式</a> 拒絕被統計。</p></section>
 <section><h2>聯盟行銷連結</h2><p>${AFFILIATE_NOTE}點擊這類連結後，旅遊平台可能在你的瀏覽器設定 Cookie，用來記錄訂單來自本站，適用該平台自己的隱私權政策。</p></section>
 <section><h2>外部連結</h2><p>推薦項目附的資料來源連到旅行社、觀光局等外部網站，這些網站的內容與隱私權做法由各網站負責。</p></section>
-<section><h2>政策更新與聯絡</h2><p>本政策若有修改會更新在這一頁。${SITE_CONFIG.reportEndpoint ? `透過「回報錯誤或建議」送出的內容（以及你選填的電子郵件）會經由 Cloudflare 轉存到本站的 Notion 資料庫，只用來修正資料與回覆你。` : ""}對本站或本政策有疑問，可以在 <a href="https://github.com/mshmwr/world-festival-calendar/issues" rel="noopener" target="_blank">GitHub</a> 留言${SUPPORT_URL ? `，或透過 <a href="${SUPPORT_URL}" rel="noopener" target="_blank">Ko-fi</a> 聯絡` : ""}。</p></section>`;
+<section><h2>政策更新與聯絡</h2><p>本政策若有修改會更新在這一頁。${SITE_CONFIG.reportEndpoint ? `透過「回報錯誤或建議」送出的內容（以及你選填的電子郵件）會經由 Cloudflare 轉存到本站的 Notion 資料庫，只用來修正資料與回覆你。` : ""}對本站或本政策有疑問，請寫信到 <a href="mailto:${SITE_CONFIG.contact}">${SITE_CONFIG.contact}</a>，或到<a href="contact.html">聯絡我們</a>頁面查看其他聯絡方式。</p></section>`;
   return page({
     path: "privacy.html", title: `隱私權政策｜${SITE_NAME}`,
     desc: `${SITE_NAME}的隱私權政策：本站蒐集哪些資料、廣告與 Cookie、聯盟行銷連結的說明。`,
@@ -285,7 +287,8 @@ function privacyPage() {
 }
 
 // ---------- 關於本站、聯絡我們（AdSense 審核要求公開透明的頁面） ----------
-const REPO = "https://github.com/mshmwr/world-festival-calendar";
+const MAIL = SITE_CONFIG.contact;
+const mailLink = () => `<a href="mailto:${MAIL}">${MAIL}</a>`;
 function siteStats(D) {
   const nC = Object.keys(D.countries).length;
   const nEv = D.evs.length;
@@ -295,10 +298,10 @@ function siteStats(D) {
 function contactWays(zh) {
   const L = zh
     ? [SITE_CONFIG.reportEndpoint && `<li><b>回報資料錯誤或建議</b>：每一頁最下方都有「📮 回報錯誤或建議」按鈕，填寫後會直接送到站長的待辦清單，通常一週內處理。</li>`,
-       `<li><b>GitHub</b>：在 <a href="${REPO}/issues" rel="noopener" target="_blank">GitHub Issues</a> 開一則留言，適合回報錯誤、提出新功能或想加入的國家與活動，處理進度公開可查。</li>`,
+       MAIL && `<li><b>電子郵件</b>：${mailLink()}，回報錯誤、建議新增的國家或活動、合作洽詢都可以寄到這裡，通常一週內回覆。</li>`,
        SUPPORT_URL && `<li><b>Ko-fi</b>：在 <a href="${SUPPORT_URL}" rel="noopener" target="_blank">Ko-fi 頁面</a> 留言或私訊，合作、媒體採訪等事項也可以從這裡聯絡。</li>`]
     : [SITE_CONFIG.reportEndpoint && `<li><b>Report a data error</b>: use the "📮 Report a problem" button at the bottom of every page. Reports go straight to the maintainer's to-do list and are usually handled within a week.</li>`,
-       `<li><b>GitHub</b>: open an issue on <a href="${REPO}/issues" rel="noopener" target="_blank">GitHub Issues</a> to report a bug, suggest a feature or a country or event to add. Progress is public.</li>`,
+       MAIL && `<li><b>Email</b>: ${mailLink()} for data errors, suggestions and partnership enquiries. We usually reply within a week.</li>`,
        SUPPORT_URL && `<li><b>Ko-fi</b>: leave a message on <a href="${SUPPORT_URL}" rel="noopener" target="_blank">Ko-fi</a>; partnership and press enquiries are welcome there too.</li>`];
   return `<ul>${L.filter(Boolean).join("")}</ul>`;
 }
@@ -314,7 +317,7 @@ function aboutPage(D) {
 <li><b>每月推薦</b>：台灣各大旅行社的出團行程與旅遊平台的推薦文章，每筆都附來源連結。</li></ul></section>
 <section><h2>怎麼維護</h2>
 <p>農曆、伊斯蘭曆或主辦單位每年公布的日期，會先依往年推估並標「約」。網站每個月固定檢查一次，官方公布正式日期後就更新；不是每年舉辦的活動（例如奧運、世界盃）另外追蹤下一屆。發現錯誤歡迎到<a href="contact.html">聯絡我們</a>告訴我。</p>
-<p>網站的程式碼公開在 <a href="${REPO}" rel="noopener" target="_blank">GitHub</a>，每一次資料更新都有紀錄。</p></section>
+</section>
 <section><h2>誰在做</h2>
 <p>本站由一位喜歡出國旅行的個人開發者製作與維護，起因是每次排假都要在好幾個網站之間查各國節日。網站沒有接受任何旅行社或觀光局的付費置入，推薦的星等只依行程與文章的數量和熱門程度判斷。網站靠廣告與讀者在 Ko-fi 的贊助支撐營運。</p></section>`;
   return page({
@@ -347,7 +350,7 @@ function aboutPageEn(D) {
 <li><b>World Heritage</b>: the UNESCO World Heritage List, ${nWh} sites.</li>
 <li><b>Monthly picks</b> (Chinese edition): Taiwanese tour operators' departures and travel platforms, each with a source link.</li></ul></section>
 <section><h2>How it is kept up to date</h2>
-<p>Dates that follow the lunar or Islamic calendar, or that organisers announce each year, are first estimated from past years and marked "approx.". The site is checked every month and updated once official dates are out; events that are not held every year, such as the Olympics, are tracked separately. The code and every data change are public on <a href="${REPO}" rel="noopener" target="_blank">GitHub</a>.</p></section>
+<p>Dates that follow the lunar or Islamic calendar, or that organisers announce each year, are first estimated from past years and marked "approx.". The site is checked every month and updated once official dates are out; events that are not held every year, such as the Olympics, are tracked separately.</p></section>
 <section><h2>Who makes it</h2>
 <p>The site is built and maintained by an independent developer who loves travelling. It takes no paid placements from tour operators or tourism boards and is supported by ads and reader donations on Ko-fi. The English edition is translated from the original Chinese edition.</p></section>`;
   return pageEn({
@@ -466,7 +469,7 @@ ${supportHTMLEn(up)}
 `;
 }
 
-const evLiEn = (x, extra = "") => `<li><span class="dt">${fmtSpanEn(x.span)}${x.a ? " (approx.)" : ""}</span> <span class="t ${x.t}">${TYPE_EN[x.t]}</span> <b>${esc(x.n)}</b>${extra}: ${esc(x.x)}</li>`;
+const evLiEn = (x, extra = "") => `<li><span class="dt">${fmtSpanEn(x.span)}${x.a ? " (approx.)" : ""}</span> <span class="t ${x.t}">${TYPE_EN[x.t]}</span> <b>${esc(x.n)}</b>${extra}: ${esc(x.x)}${evSrc(x, "Sources: ", ", ")}</li>`;
 const monthNavEn = (up, current) => `<nav class="months" aria-label="Months">${MONTHS.map(m => m === current ? `<span>${EN_MON[m - 1]}</span>` : `<a href="${up}en/m/${m}.html">${EN_MON[m - 1]}</a>`).join(" ")}</nav>`;
 function regionNavEn(E, up, current) {
   return `<nav class="all" aria-labelledby="all-h"><h2 id="all-h">Countries</h2>${E.regions.map(r => {

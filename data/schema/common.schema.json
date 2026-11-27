@@ -21,7 +21,9 @@
           "additionalProperties": { "$ref": "#/$defs/monthDay" },
           "minProperties": 1
         },
-        "a": { "const": 1, "description": "日期為估計值時填 1，畫面會標「約」" }
+        "a": { "const": 1, "description": "日期為估計值時填 1，畫面會標「約」" },
+        "e": { "const": 1, "description": "季節性體驗（採水果、觀光列車行駛期間、賞鯨等）填 1；必須同時填 src，逐筆查證過的來源" },
+        "src": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "type": "string", "pattern": "^https://" }, "description": "查證日期用的來源網址（官方優先）" }
       },
       "required": ["n", "x"],
       "oneOf": [{ "required": ["d"] }, { "required": ["y"] }],

@@ -3,6 +3,8 @@
 export const SITE_CONFIG = {
   // 贊助按鈕連結；空白就不顯示
   support: "https://ko-fi.com/mshmwr",
+  // 公開的聯絡信箱（顯示在「聯絡我們」、「關於本站」、隱私權政策）
+  contact: "mshmwr20@gmail.com",
   // 「回報錯誤或建議」表單的後台網址（Cloudflare Worker，程式在 worker/report.js）；空白就不顯示回報按鈕
   reportEndpoint: "",
   // Google AdSense 發布商 ID，例如 "ca-pub-1234567890123456"；空白就不載入廣告。

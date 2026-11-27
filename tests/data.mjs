@@ -49,6 +49,8 @@ for (const code of Object.keys(whNote)) if (!countries[code]) fail("countries.js
 const DAYS = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 const validDates = s => s.split("~").every(md => { const [m, d] = md.split("-").map(Number); return m >= 1 && m <= 12 && d >= 1 && d <= DAYS[m - 1]; });
 function checkDates(w, e) {
+  // 季節性體驗必須附逐筆查證的來源（規則見 CLAUDE.md）
+  if (e.e && !e.src?.length) fail(w, "季節性體驗（e: 1）必須填 src 來源網址");
   if (e.d && !validDates(e.d)) fail(w, `不存在的日期 ${e.d}`);
   for (const [yr, s] of Object.entries(e.y || {})) if (!validDates(s)) fail(w, `不存在的日期 ${yr} ${s}`);
 }
