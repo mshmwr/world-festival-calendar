@@ -132,16 +132,19 @@ check("右側時間軸：點小項目跳到該段", await rp.evaluate(() => loca
 await rp.click('nav.toc a[href="#r-SE"]');
 await rp.waitForTimeout(200);
 check("月份頁區域跳轉：點南歐跳到南歐段落", await rp.evaluate(() => location.hash === "#r-SE"));
-// 回報表單：注入按鈕與 js/report.js（不論 site-config 是否已設定後台），攔截送出請求檢查內容
+// 回報表單：頁面已有回報按鈕就用它，沒有（site-config 未設定後台）就注入按鈕與 js/report.js；送出請求一律攔截，不會真的寫進 Notion
 const rf = await browser.newPage({ viewport: { width: 1100, height: 900 } });
 let reported = null;
-await rf.route("**/__report", async route => { reported = JSON.parse(route.request().postData()); await route.fulfill({ status: 200, contentType: "application/json", body: '{"ok":true}' }); });
+const fakeReply = async route => { reported = JSON.parse(route.request().postData()); await route.fulfill({ status: 200, contentType: "application/json", body: '{"ok":true}', headers: { "Access-Control-Allow-Origin": "*" } }); };
+await rf.route("**/__report", fakeReply);
+await rf.route(/workers\.dev/, fakeReply);
 await rf.goto(page_url + "c/jp.html");
-await rf.evaluate(() => new Promise(res => {
-  const b = document.createElement("button"); b.dataset.report = "/__report"; b.id = "rpbtn"; b.textContent = "回報"; document.body.append(b);
+await rf.waitForLoadState("load");
+if (!(await rf.$("[data-report]"))) await rf.evaluate(() => new Promise(res => {
+  const b = document.createElement("button"); b.dataset.report = "/__report"; b.textContent = "回報"; document.body.append(b);
   const s = document.createElement("script"); s.src = "../js/report.js"; s.onload = res; document.body.append(s);
 }));
-await rf.click("#rpbtn");
+await rf.click("[data-report]");
 const rpOpen = await rf.evaluate(() => ({ open: document.querySelector(".report-dlg").open, place: document.querySelector(".report-dlg [name=place]").value }));
 await rf.click(".rp-send");
 const tooShort = await rf.textContent(".rp-msg");

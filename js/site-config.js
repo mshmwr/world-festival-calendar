@@ -6,7 +6,7 @@ export const SITE_CONFIG = {
   // 公開的聯絡信箱（顯示在「聯絡我們」、「關於本站」、隱私權政策）
   contact: "mshmwr20@gmail.com",
   // 「回報錯誤或建議」表單的後台網址（Cloudflare Worker，程式在 worker/report.js）；空白就不顯示回報按鈕
-  reportEndpoint: "",
+  reportEndpoint: "https://festival-report.mshmwr20.workers.dev",
   // Google AdSense 發布商 ID，例如 "ca-pub-1234567890123456"；空白就不載入廣告。
   // 填好後還要把 ads.txt 放到 https://mshmwr.github.io/ads.txt（或自訂網域的根目錄）。
   adsense: "ca-pub-5782421020035365",
